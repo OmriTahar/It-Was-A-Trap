@@ -7,10 +7,10 @@ public class SaveManager : MonoBehaviour
 {
     public static SaveManager Instance;
     public SaveFile CurrentSave;
+    string Path;
+    [SerializeField] bool AutoLoad = false;
 
     [SerializeField] GameObject PlayerGO;
-
-    string Path;
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class SaveManager : MonoBehaviour
 
         Instance = this;
 
-        if (File.Exists(Path))
+        if (File.Exists(Path) && AutoLoad)
         {
             LoadGame();
         }
@@ -60,9 +60,4 @@ public class SaveManager : MonoBehaviour
         PlayerGO.transform.rotation = CurrentSave.rotation;
     }
 
-    [ContextMenu("Delete Save.")]
-    public void ClearSave()
-    {
-        File.Delete(Path);
-    }
 }
