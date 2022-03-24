@@ -6,7 +6,7 @@ public class SavePoint : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<FirstPersonController>())
+        if (other.gameObject.tag == "Player")
         {
             SaveManager.Instance.SaveGame();
             Destroy(gameObject);
