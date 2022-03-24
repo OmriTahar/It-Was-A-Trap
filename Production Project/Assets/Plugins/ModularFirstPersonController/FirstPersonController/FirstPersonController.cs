@@ -635,7 +635,7 @@ public class FirstPersonControllerEditor : Editor
         fpc.SprintSpeed = EditorGUILayout.Slider(new GUIContent("Sprint Speed", "Determines how fast the player will move while sprinting."), fpc.SprintSpeed, fpc.WalkSpeed, 20f);
 
         //GUI.enabled = !fpc.unlimitedSprint;
-        fpc.SprintDuration = EditorGUILayout.Slider(new GUIContent("Sprint Duration", "Determines how long the player can sprint while unlimited sprint is disabled."), fpc.SprintDuration, 1f, 20f);
+        fpc.SprintDuration = EditorGUILayout.Slider(new GUIContent("Sprint Duration", "Determines how long the player can sprint while unlimited sprint is disabled."), fpc.SprintDuration, 0.5f, 20f);
         fpc.SprintCooldown = EditorGUILayout.Slider(new GUIContent("Sprint Cooldown", "Determines how long the recovery time is when the player runs out of sprint."), fpc.SprintCooldown, .1f, fpc.SprintDuration);
         //GUI.enabled = true;
 

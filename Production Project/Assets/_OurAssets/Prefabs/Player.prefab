@@ -244,8 +244,8 @@ MonoBehaviour:
   EnableSprint: 1
   UnlimitedSprint: 0
   SprintKey: 304
-  SprintSpeed: 7
-  SprintDuration: 5
+  SprintSpeed: 15
+  SprintDuration: 0.5
   SprintCooldown: 0.5
   SprintFOV: 80
   SprintFOVStepTime: 10
