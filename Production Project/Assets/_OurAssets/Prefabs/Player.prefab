@@ -230,7 +230,7 @@ MonoBehaviour:
   MouseSensitivity: 2
   MaxLookAngle: 50
   IsCursorLocked: 1
-  CrosshairEnabled: 1
+  CrosshairEnabled: 0
   CrosshairImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   CrosshairColor: {r: 1, g: 0, b: 0, a: 1}
   EnableZoom: 1
@@ -410,7 +410,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
+  m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
