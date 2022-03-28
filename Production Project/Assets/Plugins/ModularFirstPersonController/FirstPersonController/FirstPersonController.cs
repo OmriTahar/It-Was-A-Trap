@@ -131,6 +131,15 @@ public class FirstPersonController : MonoBehaviour
 
     #endregion
 
+    #region NewDash
+
+    private bool _isDashing;
+    public float _dashSpeed;
+    public float _dashRecharge; 
+    [SerializeField] GameObject _dashEffect;
+
+    #endregion
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
@@ -362,6 +371,11 @@ public class FirstPersonController : MonoBehaviour
         {
             HeadBob();
         }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            _isDashing = true;
+        }
     }
 
     void FixedUpdate()
@@ -436,6 +450,11 @@ public class FirstPersonController : MonoBehaviour
                 velocityChange.y = 0;
 
                 _rb.AddForce(velocityChange, ForceMode.VelocityChange);
+            }
+
+            if (_isDashing)
+            {
+                Dash();
             }
         }
 
@@ -525,6 +544,26 @@ public class FirstPersonController : MonoBehaviour
             // Resets when play stops moving
             _headBobTimer = 0;
             Joint.localPosition = new Vector3(Mathf.Lerp(Joint.localPosition.x, _jointOriginalPos.x, Time.deltaTime * BobSpeed), Mathf.Lerp(Joint.localPosition.y, _jointOriginalPos.y, Time.deltaTime * BobSpeed), Mathf.Lerp(Joint.localPosition.z, _jointOriginalPos.z, Time.deltaTime * BobSpeed));
+        }
+    }
+
+    private void Dash()
+    {
+        _rb.AddForce(transform.forward * _dashSpeed, ForceMode.Impulse);
+        _isDashing = false;
+
+        //if (_dashRecharge <= 0)
+        //{
+           
+        //    _dashRecharge 
+        //}
+        
+
+        if (_dashEffect != null) // Placeholder. 
+        {
+            GameObject dashEffect = Instantiate(_dashEffect, transform.position, _dashEffect.transform.rotation);
+            dashEffect.transform.parent = transform;
+            dashEffect.transform.LookAt(transform);
         }
     }
 }
@@ -705,6 +744,8 @@ public class FirstPersonControllerEditor : Editor
         fpc.CrouchKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Crouch Key", "Determines what key is used to crouch."), fpc.CrouchKey);
         fpc.CrouchHeight = EditorGUILayout.Slider(new GUIContent("Crouch Height", "Determines the y scale of the player object when crouched."), fpc.CrouchHeight, .1f, 1);
         fpc.CrouchSpeedReduction = EditorGUILayout.Slider(new GUIContent("Speed Reduction", "Determines the percent 'Walk Speed' is reduced by. 1 being no reduction, and .5 being half."), fpc.CrouchSpeedReduction, .1f, 1);
+        fpc._dashSpeed = EditorGUILayout.Slider(new GUIContent("Dash Speed", "Description"), fpc._dashSpeed, 50, 300);
+        fpc._dashRecharge = EditorGUILayout.Slider(new GUIContent("Dash Recharge Time", "Description"), fpc._dashSpeed, 50, 300);
         GUI.enabled = true;
 
         #endregion
@@ -736,6 +777,7 @@ public class FirstPersonControllerEditor : Editor
             Undo.RecordObject(fpc, "FPC Change");
             SerFPC.ApplyModifiedProperties();
         }
+
     }
 
 }
