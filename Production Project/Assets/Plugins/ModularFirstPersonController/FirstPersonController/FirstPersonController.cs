@@ -135,8 +135,8 @@ public class FirstPersonController : MonoBehaviour
 
     private bool _isDashing;
     public float _dashSpeed;
-    public float _dashRecharge; 
-    [SerializeField] GameObject _dashEffect;
+    public float _dashRecharge;              // Currenty Unused
+    [SerializeField] GameObject _dashEffect; // Currenty Unused
 
     #endregion
 

@@ -267,6 +267,9 @@ MonoBehaviour:
   Joint: {fileID: 4153713906352441136}
   BobSpeed: 10
   BobAmount: {x: 0.15, y: 0.05, z: 0}
+  _dashSpeed: 50
+  _dashRecharge: 50
+  _dashEffect: {fileID: 0}
 --- !u!1 &4153713905015239961
 GameObject:
   m_ObjectHideFlags: 0
