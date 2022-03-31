@@ -140,6 +140,9 @@ public class FirstPersonController : MonoBehaviour
 
     #endregion
 
+    // New Mouse Movement
+    Vector3 _mousePosition;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();

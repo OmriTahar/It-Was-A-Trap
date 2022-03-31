@@ -87,28 +87,27 @@ public class EnemyAI : MonoBehaviour
     {
         if (!_isPlayerInSight && !_isPlayerInAttackRange)
         {
-            print("Patroling.");
+            print("Patroling");
             Patroling();
         }
 
         if (_isPlayerInSight && !_isPlayerInAttackRange)
         {
-            print("Chasing.");
+            print("Chasing");
             ChasePlayer();
         }
 
         if (_isPlayerTooClose && _canFlee)
         {
-            print("fleeing!");
+            print("fleeing");
             Flee();
         }
 
         if ((_isPlayerInAttackRange && !_isPlayerTooClose) || (_isPlayerTooClose && !_canFlee))
         {
-            print("Attacking player.");
+            print("Attacking");
             AttackPlayer();
         }
-
     }
 
     private void Patroling()
