@@ -190,12 +190,12 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  _playerDetectionImage: {fileID: 0}
   _moveDestination: {x: 0, y: 0, z: 0}
   _isDestinationSet: 0
   _DestinationPointRange: 20
   _playerSightRange: 25
   _isPlayerInSight: 0
+  IsEnemyActivated: 0
   ShootPoint: {fileID: 399740694393486663}
   ShootForce: 12
   _attackRange: 15

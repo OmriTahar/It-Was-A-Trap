@@ -14,7 +14,6 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] int _health;
     [SerializeField] Transform _playerTransform;
     [SerializeField] LayerMask _groundLayer, _playerLayer;
-    [SerializeField] Image _playerDetectionImage;
 
     [Header("Patroling")]
     [SerializeField] Vector3 _moveDestination;
@@ -24,6 +23,7 @@ public class EnemyAI : MonoBehaviour
     [Header("Chasing")]
     [SerializeField] float _playerSightRange;
     [SerializeField] bool _isPlayerInSight;
+    public bool IsEnemyActivated;
 
     [Header("Attacking")]
     [SerializeField] Transform ShootPoint;
@@ -67,43 +67,41 @@ public class EnemyAI : MonoBehaviour
 
     private void PlayerDetaction()
     {
-        _isPlayerInSight = Physics.CheckSphere(transform.position, _playerSightRange, _playerLayer);
-        _isPlayerInAttackRange = Physics.CheckSphere(transform.position, _attackRange, _playerLayer);
-        _isPlayerTooClose = Physics.CheckSphere(transform.position, _moveBackRange, _playerLayer);
+        //_isPlayerInSight = Physics.CheckSphere(transform.position, _playerSightRange, _playerLayer);
 
-        if (_isPlayerTooClose)
+        if (IsEnemyActivated)
         {
-            _canFlee = CanEnemyFlee();
+            _isPlayerInAttackRange = Physics.CheckSphere(transform.position, _attackRange, _playerLayer);
+            _isPlayerTooClose = Physics.CheckSphere(transform.position, _moveBackRange, _playerLayer);
+
+            if (_isPlayerTooClose)
+            {
+                _canFlee = CanEnemyFlee();
+            }
         }
-
-        if (_isPlayerInSight)
-            _playerDetectionImage.gameObject.SetActive(true);
-        else
-            _playerDetectionImage.gameObject.SetActive(false);
-
     }
 
     private void EnemyStateMachine()
     {
-        if (!_isPlayerInSight && !_isPlayerInAttackRange)
+        if (!IsEnemyActivated)
         {
             print("Patroling");
             Patroling();
         }
 
-        if (_isPlayerInSight && !_isPlayerInAttackRange)
+        if (IsEnemyActivated && !_isPlayerInAttackRange)
         {
             print("Chasing");
             ChasePlayer();
         }
 
-        if (_isPlayerTooClose && _canFlee)
+        if (IsEnemyActivated && _isPlayerTooClose && _canFlee)
         {
             print("fleeing");
             Flee();
         }
 
-        if ((_isPlayerInAttackRange && !_isPlayerTooClose) || (_isPlayerTooClose && !_canFlee))
+        if (IsEnemyActivated && (!_isPlayerTooClose && _isPlayerInAttackRange || _isPlayerTooClose && !_canFlee))
         {
             print("Attacking");
             AttackPlayer();
@@ -205,7 +203,5 @@ public class EnemyAI : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, _moveBackRange);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _attackRange);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, _playerSightRange);
     }
 }
