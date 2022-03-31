@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 306363219331687878}
   - component: {fileID: 306363219331687873}
   - component: {fileID: 306363219331687872}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Penis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 4153713904787626793}
   - component: {fileID: 4153713904787626797}
   - component: {fileID: 4153713904787626796}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ MonoBehaviour:
   CameraCanMove: 1
   MouseSensitivity: 2
   MaxLookAngle: 50
-  IsCursorLocked: 1
+  IsCursorLocked: 0
   CrosshairEnabled: 0
   CrosshairImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   CrosshairColor: {r: 1, g: 0, b: 0, a: 1}
@@ -239,7 +239,7 @@ MonoBehaviour:
   ZoomFOV: 30
   ZoomStepTime: 5
   PlayerCanMove: 1
-  WalkSpeed: 5
+  WalkSpeed: 7
   MaxVelocityChange: 10
   EnableSprint: 1
   UnlimitedSprint: 0
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 4153713905015239960}
   - component: {fileID: 4153713905015239962}
   - component: {fileID: 4153713905015239963}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Reticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 4153713906143375794}
   - component: {fileID: 4153713906143375795}
   - component: {fileID: 306363220947579614}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerCamera (For movement)
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 4153713906224450993}
   - component: {fileID: 4153713906224450995}
   - component: {fileID: 4153713906224450992}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: StaminaBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 4153713906309271863}
   - component: {fileID: 4153713906309271865}
   - component: {fileID: 4153713906309271862}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CrosshairAndStamina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -630,7 +630,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4153713906352441136}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Joint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -663,7 +663,7 @@ GameObject:
   - component: {fileID: 4153713906736650213}
   - component: {fileID: 4153713906736650215}
   - component: {fileID: 4153713906736650212}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Stamina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -737,7 +737,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4153713906755511731}
   - component: {fileID: 4153713906755511730}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SprintBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
