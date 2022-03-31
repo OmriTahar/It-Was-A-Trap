@@ -25,6 +25,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] bool _isPlayerInSight;
 
     [Header("Attacking")]
+    [SerializeField] Transform ShootPoint;
+    [SerializeField] float ShootForce;
     [SerializeField] float _attackRange, _timeBetweenAttacks;
     [SerializeField] bool _isPlayerInAttackRange, _alreadyAttacked;
     public GameObject EnemyProjectile;
@@ -37,11 +39,23 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        // Check for sight and attack range
+        PlayerDetaction();
+        EnemyStateMachine();
+    }
+
+    private void PlayerDetaction()
+    {
         _isPlayerInSight = Physics.CheckSphere(transform.position, _playerSightRange, _playerLayer);
         _isPlayerInAttackRange = Physics.CheckSphere(transform.position, _attackRange, _playerLayer);
 
-        // Enemy States
+        if (_isPlayerInSight)
+            _playerDetectionImage.gameObject.SetActive(true);
+        else
+            _playerDetectionImage.gameObject.SetActive(false);
+    }
+
+    private void EnemyStateMachine()
+    {
         if (!_isPlayerInSight && !_isPlayerInAttackRange) Patroling();
         if (_isPlayerInSight && !_isPlayerInAttackRange) ChasePlayer();
         if (_isPlayerInAttackRange && _isPlayerInSight) AttackPlayer();
@@ -75,11 +89,6 @@ public class EnemyAI : MonoBehaviour
 
     private void ChasePlayer()
     {
-        if (_isPlayerInSight)
-            _playerDetectionImage.gameObject.SetActive(true);
-        else
-            _playerDetectionImage.gameObject.SetActive(false);
-
         _agent.SetDestination(_playerTransform.position);
     }
 
@@ -93,9 +102,9 @@ public class EnemyAI : MonoBehaviour
         if (!_alreadyAttacked)
         {
             /// Attack code here
-            Rigidbody rb = Instantiate(EnemyProjectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+            Rigidbody rb = Instantiate(EnemyProjectile, ShootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rb.AddForce(ShootPoint.forward * ShootForce, ForceMode.Impulse);
+            rb.AddForce(ShootPoint.up * (ShootForce / 2), ForceMode.Impulse);
 
             _alreadyAttacked = true;
             Invoke(nameof(ResetAttack), _timeBetweenAttacks);
