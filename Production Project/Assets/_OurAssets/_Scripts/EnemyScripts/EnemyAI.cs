@@ -8,12 +8,23 @@ public class EnemyAI : MonoBehaviour
 {
 
     private NavMeshAgent _agent;
+    private Rigidbody _rb;
 
     [Header("General Settings")]
     [SerializeField] int _health;
     [SerializeField] Transform _playerTransform;
     [SerializeField] LayerMask _groundLayer, _playerLayer;
     [SerializeField] Image _playerDetectionImage;
+
+
+    [Header("Jump Settings")]
+    [SerializeField] Transform _groundCheck;
+    [SerializeField] float _groundCheckRadius;
+    [SerializeField] float _jumpForce;
+    [SerializeField] bool _isGrounded;
+    [SerializeField] float _jumpVelocity;
+    [SerializeField] float _gravity = 9.81f;
+    [SerializeField] float _gravityScale = 5f;
 
     [Header("Patroling")]
     [SerializeField] Vector3 _moveDestination;
@@ -34,13 +45,32 @@ public class EnemyAI : MonoBehaviour
 
     private void Awake()
     {
+        _rb = GetComponent<Rigidbody>();
         _agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
+        _jumpVelocity += _gravity * _gravityScale * Time.deltaTime;
+
+        if (_isGrounded)
+        {
+            _jumpVelocity = _jumpForce;
+        }
+        else if (_isGrounded && _jumpVelocity < 0)
+        {
+            _jumpVelocity = 0;
+        }
+
+        transform.Translate(new Vector3(0, _jumpVelocity, 0) * Time.deltaTime);
+
         PlayerDetaction();
         EnemyStateMachine();
+    }
+
+    private void FixedUpdate()
+    {
+        _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundCheckRadius, _groundLayer);
     }
 
     private void PlayerDetaction()
@@ -130,9 +160,16 @@ public class EnemyAI : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(transform.position, _attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, _playerSightRange);
+
+        Gizmos.DrawSphere(_groundCheck.position, _groundCheckRadius);
+        if (_isGrounded)
+            Gizmos.color = Color.green;
+        else
+            Gizmos.color = Color.red;
+
     }
 }
