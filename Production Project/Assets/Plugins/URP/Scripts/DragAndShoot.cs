@@ -27,7 +27,7 @@ public class DragAndShoot : MonoBehaviour
     private void OnMouseUp()
     {
         mouseReleasePos = Input.mousePosition;
-        Shoot(mouseReleasePos - mousePressDownPos);
+        //Shoot(mouseReleasePos - mousePressDownPos);
     }
     [SerializeField]
     private float forceMultiplier = 2;

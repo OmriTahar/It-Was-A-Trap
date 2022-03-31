@@ -32,6 +32,12 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] bool _isPlayerInAttackRange, _alreadyAttacked;
     public GameObject EnemyProjectile;
 
+    [Header("Fleeing")]
+    [SerializeField] float _moveBackRange;
+    [SerializeField] bool _isPlayerTooClose;
+    [SerializeField] bool _canFlee;
+    private Vector3 _directionToPlayer;
+
     #region Jumping (Currently Not Used)
 
     //[Header("Jump Settings")]
@@ -63,18 +69,46 @@ public class EnemyAI : MonoBehaviour
     {
         _isPlayerInSight = Physics.CheckSphere(transform.position, _playerSightRange, _playerLayer);
         _isPlayerInAttackRange = Physics.CheckSphere(transform.position, _attackRange, _playerLayer);
+        _isPlayerTooClose = Physics.CheckSphere(transform.position, _moveBackRange, _playerLayer);
+
+        if (_isPlayerTooClose)
+        {
+            _canFlee = CanEnemyFlee();
+        }
 
         if (_isPlayerInSight)
             _playerDetectionImage.gameObject.SetActive(true);
         else
             _playerDetectionImage.gameObject.SetActive(false);
+
     }
 
     private void EnemyStateMachine()
     {
-        if (!_isPlayerInSight && !_isPlayerInAttackRange) Patroling();
-        if (_isPlayerInSight && !_isPlayerInAttackRange) ChasePlayer();
-        if (_isPlayerInAttackRange && _isPlayerInSight) AttackPlayer();
+        if (!_isPlayerInSight && !_isPlayerInAttackRange)
+        {
+            print("Patroling.");
+            Patroling();
+        }
+
+        if (_isPlayerInSight && !_isPlayerInAttackRange)
+        {
+            print("Chasing.");
+            ChasePlayer();
+        }
+
+        if (_isPlayerTooClose && _canFlee)
+        {
+            print("fleeing!");
+            Flee();
+        }
+
+        if ((_isPlayerInAttackRange && !_isPlayerTooClose) || (_isPlayerTooClose && !_canFlee))
+        {
+            print("Attacking player.");
+            AttackPlayer();
+        }
+
     }
 
     private void Patroling()
@@ -127,6 +161,28 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    private bool CanEnemyFlee()
+    {
+        _directionToPlayer = transform.position - _playerTransform.position;
+        Vector3 newPosition = transform.position + _directionToPlayer;
+
+        if (_agent.CalculatePath(newPosition, new NavMeshPath()))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void Flee()
+    {
+        _directionToPlayer = transform.position - _playerTransform.position;
+        Vector3 newPosition = transform.position + _directionToPlayer;
+        _agent.SetDestination(newPosition);
+    }
+
     private void ResetAttack()
     {
         _alreadyAttacked = false;
@@ -147,6 +203,8 @@ public class EnemyAI : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(transform.position, _moveBackRange);
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, _playerSightRange);
