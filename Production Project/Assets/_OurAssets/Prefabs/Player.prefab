@@ -223,12 +223,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90ba6530d9bfda47abb4610956b2f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainCamera: {fileID: 0}
   PlayerCamera: {fileID: 4153713906143375794}
   FOV: 60
   InvertCamera: 0
   CameraCanMove: 1
-  MouseSensitivity: 2
-  MaxLookAngle: 50
+  MouseSensitivity: 3
+  MaxLookAngle: 90
   IsCursorLocked: 0
   CrosshairEnabled: 0
   CrosshairImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}

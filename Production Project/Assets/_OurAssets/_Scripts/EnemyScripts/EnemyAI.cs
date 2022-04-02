@@ -14,7 +14,6 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] int _health;
     [SerializeField] Transform _playerTransform;
     [SerializeField] LayerMask _groundLayer, _playerLayer;
-    [SerializeField] Image _playerDetectionImage;
 
     [Header("Patroling")]
     [SerializeField] Vector3 _moveDestination;
@@ -24,6 +23,7 @@ public class EnemyAI : MonoBehaviour
     [Header("Chasing")]
     [SerializeField] float _playerSightRange;
     [SerializeField] bool _isPlayerInSight;
+    public bool IsEnemyActivated;
 
     [Header("Attacking")]
     [SerializeField] Transform ShootPoint;
@@ -31,6 +31,12 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float _attackRange, _timeBetweenAttacks;
     [SerializeField] bool _isPlayerInAttackRange, _alreadyAttacked;
     public GameObject EnemyProjectile;
+
+    [Header("Fleeing")]
+    [SerializeField] float _moveBackRange;
+    [SerializeField] bool _isPlayerTooClose;
+    [SerializeField] bool _canFlee;
+    private Vector3 _directionToPlayer;
 
     #region Jumping (Currently Not Used)
 
@@ -61,20 +67,45 @@ public class EnemyAI : MonoBehaviour
 
     private void PlayerDetaction()
     {
-        _isPlayerInSight = Physics.CheckSphere(transform.position, _playerSightRange, _playerLayer);
-        _isPlayerInAttackRange = Physics.CheckSphere(transform.position, _attackRange, _playerLayer);
+        //_isPlayerInSight = Physics.CheckSphere(transform.position, _playerSightRange, _playerLayer);
 
-        if (_isPlayerInSight)
-            _playerDetectionImage.gameObject.SetActive(true);
-        else
-            _playerDetectionImage.gameObject.SetActive(false);
+        if (IsEnemyActivated)
+        {
+            _isPlayerInAttackRange = Physics.CheckSphere(transform.position, _attackRange, _playerLayer);
+            _isPlayerTooClose = Physics.CheckSphere(transform.position, _moveBackRange, _playerLayer);
+
+            if (_isPlayerTooClose)
+            {
+                _canFlee = CanEnemyFlee();
+            }
+        }
     }
 
     private void EnemyStateMachine()
     {
-        if (!_isPlayerInSight && !_isPlayerInAttackRange) Patroling();
-        if (_isPlayerInSight && !_isPlayerInAttackRange) ChasePlayer();
-        if (_isPlayerInAttackRange && _isPlayerInSight) AttackPlayer();
+        if (!IsEnemyActivated)
+        {
+            print("Patroling");
+            Patroling();
+        }
+
+        if (IsEnemyActivated && !_isPlayerInAttackRange)
+        {
+            print("Chasing");
+            ChasePlayer();
+        }
+
+        if (IsEnemyActivated && _isPlayerTooClose && _canFlee)
+        {
+            print("fleeing");
+            Flee();
+        }
+
+        if (IsEnemyActivated && (!_isPlayerTooClose && _isPlayerInAttackRange || _isPlayerTooClose && !_canFlee))
+        {
+            print("Attacking");
+            AttackPlayer();
+        }
     }
 
     private void Patroling()
@@ -127,6 +158,28 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    private bool CanEnemyFlee()
+    {
+        _directionToPlayer = transform.position - _playerTransform.position;
+        Vector3 newPosition = transform.position + _directionToPlayer;
+
+        if (_agent.CalculatePath(newPosition, new NavMeshPath()))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void Flee()
+    {
+        _directionToPlayer = transform.position - _playerTransform.position;
+        Vector3 newPosition = transform.position + _directionToPlayer;
+        _agent.SetDestination(newPosition);
+    }
+
     private void ResetAttack()
     {
         _alreadyAttacked = false;
@@ -147,8 +200,8 @@ public class EnemyAI : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(transform.position, _moveBackRange);
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _attackRange);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, _playerSightRange);
     }
 }

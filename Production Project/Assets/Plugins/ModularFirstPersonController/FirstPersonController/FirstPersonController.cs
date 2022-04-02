@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -20,6 +21,7 @@ public class FirstPersonController : MonoBehaviour
 
     #region Camera Movement Variables
 
+    public Camera MainCamera;
     public Camera PlayerCamera;
 
     public float FOV = 60f;
@@ -140,6 +142,7 @@ public class FirstPersonController : MonoBehaviour
 
     #endregion
 
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
@@ -216,23 +219,7 @@ public class FirstPersonController : MonoBehaviour
         // Control camera movement
         if (CameraCanMove)
         {
-            _yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSensitivity;
-
-            if (!InvertCamera)
-            {
-                _pitch -= MouseSensitivity * Input.GetAxis("Mouse Y");
-            }
-            else
-            {
-                // Inverted Y
-                _pitch += MouseSensitivity * Input.GetAxis("Mouse Y");
-            }
-
-            // Clamp pitch between lookAngle
-            _pitch = Mathf.Clamp(_pitch, -MaxLookAngle, MaxLookAngle);
-
-            transform.localEulerAngles = new Vector3(0, _yaw, 0);
-            PlayerCamera.transform.localEulerAngles = new Vector3(_pitch, 0, 0);
+            NewCameraInput();
         }
 
         #region Camera Zoom
@@ -375,6 +362,42 @@ public class FirstPersonController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             _isDashing = true;
+        }
+    }
+
+    private void OldCameraInput()
+    {
+        _yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSensitivity;
+
+        if (!InvertCamera)
+        {
+            _pitch -= MouseSensitivity * Input.GetAxis("Mouse Y");
+        }
+        else
+        {
+            // Inverted Y
+            _pitch += MouseSensitivity * Input.GetAxis("Mouse Y");
+        }
+
+        // Clamp pitch between lookAngle
+        _pitch = Mathf.Clamp(_pitch, -MaxLookAngle, MaxLookAngle);
+
+        transform.localEulerAngles = new Vector3(0, _yaw, 0);
+        PlayerCamera.transform.localEulerAngles = new Vector3(_pitch, 0, 0);
+    }
+
+    private void NewCameraInput()
+    {
+        Ray cameraRay = MainCamera.ScreenPointToRay(Input.mousePosition);
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        float rayLength;
+
+        if (groundPlane.Raycast(cameraRay, out rayLength))
+        {
+            Vector3 pointToLook = cameraRay.GetPoint(rayLength);
+            Debug.DrawLine(cameraRay.origin, pointToLook, Color.cyan);
+
+            transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
         }
     }
 
@@ -600,7 +623,8 @@ public class FirstPersonControllerEditor : Editor
         GUILayout.Label("Camera Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
         EditorGUILayout.Space();
 
-        fpc.PlayerCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Camera", "Camera attached to the controller."), fpc.PlayerCamera, typeof(Camera), true);
+        fpc.MainCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Player Camera", "Camera attached to the controller."), fpc.MainCamera, typeof(Camera), true);
+        fpc.PlayerCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Player Camera", "Camera attached to the controller."), fpc.PlayerCamera, typeof(Camera), true);
         fpc.FOV = EditorGUILayout.Slider(new GUIContent("Field of View", "The camera’s view angle. Changes the player camera directly."), fpc.FOV, fpc.ZoomFOV, 179f);
         fpc.CameraCanMove = EditorGUILayout.ToggleLeft(new GUIContent("Enable Camera Rotation", "Determines if the camera is allowed to move."), fpc.CameraCanMove);
 
