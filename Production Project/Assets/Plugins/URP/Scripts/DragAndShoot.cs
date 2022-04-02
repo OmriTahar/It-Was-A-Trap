@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Collider))]
 public class DragAndShoot : MonoBehaviour
 {
     private Vector3 mouseReleasePos;
+    private Vector3 moyseRelasePos;
     private Rigidbody rb;
     private bool isShoot;
     private void Start()
@@ -27,7 +30,7 @@ public class DragAndShoot : MonoBehaviour
     private void OnMouseUp()
     {
         mouseReleasePos = Input.mousePosition;
-        Shoot(mouseReleasePos - mousePressDownPos);
+        Shoot(mouseReleasePos - mouseReleasePos);
     }
     [SerializeField]
     private float forceMultiplier = 2;

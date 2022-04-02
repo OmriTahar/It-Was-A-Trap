@@ -10,6 +10,11 @@ public class DrawTrajectory : MonoBehaviour
     [Range(3, 30)]
     private int _linesegmentCount = 20;
     private List<Vector3> _linePoints = new List<Vector3>();
+    [SerializeField]
+    [Range(10, 100)]
+    private int _showPercentage = 50;
+    [SerializeField]
+    private int _linePointsCount;
     #region Singleton
     public static DrawTrajectory instance;
     private void Awake()
@@ -20,7 +25,7 @@ public class DrawTrajectory : MonoBehaviour
     public void UpdateTrajectory (Vector3 forceVector,Rigidbody rigidbody,Vector3 startingPoint)
     {
         Vector3 velocity = (forceVector / rigidbody.mass) * Time.fixedDeltaTime;
-        float stepTime = FlightDuration / _linesegmentCountl;
+        float stepTime = FlightDuration / _linesegmentCount;
         _linePoints.Clear();
         for (int i = 0; i < _linePointsCount; i++)
         {
