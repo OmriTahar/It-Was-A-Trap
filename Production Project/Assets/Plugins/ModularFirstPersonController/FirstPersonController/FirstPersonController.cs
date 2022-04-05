@@ -4,11 +4,8 @@
 //
 // "Enable/Disable Headbob, Changed look rotations - should result in reduced camera jitters" || version 1.0.1
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Cinemachine;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -21,36 +18,21 @@ public class FirstPersonController : MonoBehaviour
 
     #region Camera Movement Variables
 
-    public Camera MainCamera;
-    public Camera PlayerCamera;
-
-    public float FOV = 60f;
-    public bool InvertCamera = false;
+    public Camera IsomatricCamera;
     public bool CameraCanMove = true;
-    public float MouseSensitivity = 2f;
-    public float MaxLookAngle = 50f;
-
-    // Crosshair
     public bool IsCursorLocked = true;
-    public bool CrosshairEnabled = true;
-    public Sprite CrosshairImage;
-    public Color CrosshairColor = Color.white;
 
-    // Internal Variables
-    private float _yaw = 0.0f;
-    private float _pitch = 0.0f;
-    private Image _crosshairObject;
 
     #region Camera Zoom Variables
 
-    public bool EnableZoom = true;
-    public bool HoldToZoom = false;
-    public KeyCode ZoomKey = KeyCode.Mouse1;
-    public float ZoomFOV = 30f;
-    public float ZoomStepTime = 5f;
+    //public bool EnableZoom = true;
+    //public bool HoldToZoom = false;
+    //public KeyCode ZoomKey = KeyCode.Mouse1;
+    //public float ZoomFOV = 30f;
+    //public float ZoomStepTime = 5f;
 
     // Internal Variables
-    private bool _isZoomed = false;
+    //private bool _isZoomed = false;
 
     #endregion
     #endregion
@@ -72,8 +54,8 @@ public class FirstPersonController : MonoBehaviour
     public float SprintSpeed = 7f;
     public float SprintDuration = 5f;
     public float SprintCooldown = .5f;
-    public float SprintFOV = 80f;
-    public float SprintFOVStepTime = 10f;
+    //public float SprintFOV = 80f;
+    //public float SprintFOVStepTime = 10f;
 
     // Sprint Bar
     public bool UseSprintBar = true;
@@ -122,23 +104,23 @@ public class FirstPersonController : MonoBehaviour
 
     #region Head Bob
 
-    public bool EnableHeadBob = true;
-    public Transform Joint;
-    public float BobSpeed = 10f;
-    public Vector3 BobAmount = new Vector3(.15f, .05f, 0f);
+    //public bool EnableHeadBob = true;
+    //public Transform Joint;
+    //public float BobSpeed = 10f;
+    //public Vector3 BobAmount = new Vector3(.15f, .05f, 0f);
 
-    // Internal Variables
-    private Vector3 _jointOriginalPos;
-    private float _headBobTimer = 0;
+    //// Internal Variables
+    //private Vector3 _jointOriginalPos;
+    //private float _headBobTimer = 0;
 
     #endregion
 
     #region NewDash
 
-    private bool _isDashing;
-    public float _dashSpeed;
-    public float _dashRecharge;              // Currenty Unused
-    [SerializeField] GameObject _dashEffect; // Currenty Unused
+    //private bool _isDashing;
+    //public float _dashSpeed;
+    //public float _dashRecharge;              // Currenty Unused
+    //[SerializeField] GameObject _dashEffect; // Currenty Unused
 
     #endregion
 
@@ -147,12 +129,12 @@ public class FirstPersonController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
 
-        _crosshairObject = GetComponentInChildren<Image>();
+        //_crosshairObject = GetComponentInChildren<Image>();
 
         // Set internal variables
-        PlayerCamera.fieldOfView = FOV;
+        //PlayerCamera.fieldOfView = FOV;
         _standingScale = transform.localScale;
-        _jointOriginalPos = Joint.localPosition;
+        //_jointOriginalPos = Joint.localPosition;
 
         if (!UnlimitedSprint)
         {
@@ -168,15 +150,15 @@ public class FirstPersonController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
 
-        if (CrosshairEnabled)
-        {
-            _crosshairObject.sprite = CrosshairImage;
-            _crosshairObject.color = CrosshairColor;
-        }
-        else
-        {
-            _crosshairObject.gameObject.SetActive(false);
-        }
+        //if (CrosshairEnabled)
+        //{
+        //    _crosshairObject.sprite = CrosshairImage;
+        //    _crosshairObject.color = CrosshairColor;
+        //}
+        //else
+        //{
+        //    _crosshairObject.gameObject.SetActive(false);
+        //}
 
         #region Sprint Bar
 
@@ -210,7 +192,7 @@ public class FirstPersonController : MonoBehaviour
         #endregion
     }
 
-    float _camRotation; // Not necessary?
+    //float _camRotation; // Not necessary?
 
     private void Update()
     {
@@ -224,46 +206,46 @@ public class FirstPersonController : MonoBehaviour
 
         #region Camera Zoom
 
-        if (EnableZoom)
-        {
-            // Changes isZoomed when key is pressed
-            // Behavior for toogle zoom
-            if (Input.GetKeyDown(ZoomKey) && !HoldToZoom && !_isSprinting)
-            {
-                if (!_isZoomed)
-                {
-                    _isZoomed = true;
-                }
-                else
-                {
-                    _isZoomed = false;
-                }
-            }
+        //if (EnableZoom)
+        //{
+        //    // Changes isZoomed when key is pressed
+        //    // Behavior for toogle zoom
+        //    if (Input.GetKeyDown(ZoomKey) && !HoldToZoom && !_isSprinting)
+        //    {
+        //        if (!_isZoomed)
+        //        {
+        //            _isZoomed = true;
+        //        }
+        //        else
+        //        {
+        //            _isZoomed = false;
+        //        }
+        //    }
 
             // Changes isZoomed when key is pressed
             // Behavior for hold to zoom
-            if (HoldToZoom && !_isSprinting)
-            {
-                if (Input.GetKeyDown(ZoomKey))
-                {
-                    _isZoomed = true;
-                }
-                else if (Input.GetKeyUp(ZoomKey))
-                {
-                    _isZoomed = false;
-                }
-            }
+            //if (HoldToZoom && !_isSprinting)
+            //{
+            //    if (Input.GetKeyDown(ZoomKey))
+            //    {
+            //        _isZoomed = true;
+            //    }
+            //    else if (Input.GetKeyUp(ZoomKey))
+            //    {
+            //        _isZoomed = false;
+            //    }
+            //}
 
             // Lerps camera.fieldOfView to allow for a smooth transistion
-            if (_isZoomed)
-            {
-                PlayerCamera.fieldOfView = Mathf.Lerp(PlayerCamera.fieldOfView, ZoomFOV, ZoomStepTime * Time.deltaTime);
-            }
-            else if (!_isZoomed && !_isSprinting)
-            {
-                PlayerCamera.fieldOfView = Mathf.Lerp(PlayerCamera.fieldOfView, FOV, ZoomStepTime * Time.deltaTime);
-            }
-        }
+            //if (_isZoomed)
+            //{
+            //    PlayerCamera.fieldOfView = Mathf.Lerp(PlayerCamera.fieldOfView, ZoomFOV, ZoomStepTime * Time.deltaTime);
+            //}
+            //else if (!_isZoomed && !_isSprinting)
+            //{
+            //    PlayerCamera.fieldOfView = Mathf.Lerp(PlayerCamera.fieldOfView, FOV, ZoomStepTime * Time.deltaTime);
+            //}
+        //}
 
         #endregion
         #endregion
@@ -274,8 +256,8 @@ public class FirstPersonController : MonoBehaviour
         {
             if (_isSprinting)
             {
-                _isZoomed = false;
-                PlayerCamera.fieldOfView = Mathf.Lerp(PlayerCamera.fieldOfView, SprintFOV, SprintFOVStepTime * Time.deltaTime);
+                //_isZoomed = false;
+                //PlayerCamera.fieldOfView = Mathf.Lerp(PlayerCamera.fieldOfView, SprintFOV, SprintFOVStepTime * Time.deltaTime);
 
                 // Drain sprint remaining while sprinting
                 if (!UnlimitedSprint)
@@ -354,50 +336,50 @@ public class FirstPersonController : MonoBehaviour
 
         CheckGround();
 
-        if (EnableHeadBob)
-        {
-            HeadBob();
-        }
+        //if (EnableHeadBob)
+        //{
+        //    HeadBob();
+        //}
 
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            _isDashing = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.V))
+        //{
+        //    _isDashing = true;
+        //}
     }
 
     private void OldCameraInput()
     {
-        _yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSensitivity;
+        //_yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * MouseSensitivity;
 
-        if (!InvertCamera)
-        {
-            _pitch -= MouseSensitivity * Input.GetAxis("Mouse Y");
-        }
-        else
-        {
-            // Inverted Y
-            _pitch += MouseSensitivity * Input.GetAxis("Mouse Y");
-        }
+        //if (!InvertCamera)
+        //{
+        //    _pitch -= MouseSensitivity * Input.GetAxis("Mouse Y");
+        //}
+        //else
+        //{
+        //    // Inverted Y
+        //    _pitch += MouseSensitivity * Input.GetAxis("Mouse Y");
+        //}
 
-        // Clamp pitch between lookAngle
-        _pitch = Mathf.Clamp(_pitch, -MaxLookAngle, MaxLookAngle);
+        //// Clamp pitch between lookAngle
+        //_pitch = Mathf.Clamp(_pitch, -MaxLookAngle, MaxLookAngle);
 
-        transform.localEulerAngles = new Vector3(0, _yaw, 0);
-        PlayerCamera.transform.localEulerAngles = new Vector3(_pitch, 0, 0);
+        //transform.localEulerAngles = new Vector3(0, _yaw, 0);
+        //PlayerCamera.transform.localEulerAngles = new Vector3(_pitch, 0, 0);
     }
 
     private void NewCameraInput()
     {
-        Ray cameraRay = MainCamera.ScreenPointToRay(Input.mousePosition);
+        Ray cameraRay = IsomatricCamera.ScreenPointToRay(Input.mousePosition);
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
         float rayLength;
 
         if (groundPlane.Raycast(cameraRay, out rayLength))
         {
             Vector3 pointToLook = cameraRay.GetPoint(rayLength);
-            Debug.DrawLine(cameraRay.origin, pointToLook, Color.cyan);
-
             transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+
+            Debug.DrawLine(cameraRay.origin, pointToLook, Color.cyan);
         }
     }
 
@@ -475,10 +457,10 @@ public class FirstPersonController : MonoBehaviour
                 _rb.AddForce(velocityChange, ForceMode.VelocityChange);
             }
 
-            if (_isDashing)
-            {
-                Dash();
-            }
+            //if (_isDashing)
+            //{
+            //    Dash();
+            //}
         }
 
         #endregion
@@ -542,52 +524,52 @@ public class FirstPersonController : MonoBehaviour
 
     private void HeadBob()
     {
-        if (_isWalking)
-        {
-            // Calculates HeadBob speed during sprint
-            if (_isSprinting)
-            {
-                _headBobTimer += Time.deltaTime * (BobSpeed + SprintSpeed);
-            }
-            // Calculates HeadBob speed during crouched movement
-            else if (_isCrouched)
-            {
-                _headBobTimer += Time.deltaTime * (BobSpeed * CrouchSpeedReduction);
-            }
-            // Calculates HeadBob speed during walking
-            else
-            {
-                _headBobTimer += Time.deltaTime * BobSpeed;
-            }
-            // Applies HeadBob movement
-            Joint.localPosition = new Vector3(_jointOriginalPos.x + Mathf.Sin(_headBobTimer) * BobAmount.x, _jointOriginalPos.y + Mathf.Sin(_headBobTimer) * BobAmount.y, _jointOriginalPos.z + Mathf.Sin(_headBobTimer) * BobAmount.z);
-        }
-        else
-        {
-            // Resets when play stops moving
-            _headBobTimer = 0;
-            Joint.localPosition = new Vector3(Mathf.Lerp(Joint.localPosition.x, _jointOriginalPos.x, Time.deltaTime * BobSpeed), Mathf.Lerp(Joint.localPosition.y, _jointOriginalPos.y, Time.deltaTime * BobSpeed), Mathf.Lerp(Joint.localPosition.z, _jointOriginalPos.z, Time.deltaTime * BobSpeed));
-        }
+        //if (_isWalking)
+        //{
+        //    // Calculates HeadBob speed during sprint
+        //    if (_isSprinting)
+        //    {
+        //        _headBobTimer += Time.deltaTime * (BobSpeed + SprintSpeed);
+        //    }
+        //    // Calculates HeadBob speed during crouched movement
+        //    else if (_isCrouched)
+        //    {
+        //        _headBobTimer += Time.deltaTime * (BobSpeed * CrouchSpeedReduction);
+        //    }
+        //    // Calculates HeadBob speed during walking
+        //    else
+        //    {
+        //        _headBobTimer += Time.deltaTime * BobSpeed;
+        //    }
+        //    // Applies HeadBob movement
+        //    Joint.localPosition = new Vector3(_jointOriginalPos.x + Mathf.Sin(_headBobTimer) * BobAmount.x, _jointOriginalPos.y + Mathf.Sin(_headBobTimer) * BobAmount.y, _jointOriginalPos.z + Mathf.Sin(_headBobTimer) * BobAmount.z);
+        //}
+        //else
+        //{
+        //    // Resets when play stops moving
+        //    _headBobTimer = 0;
+        //    Joint.localPosition = new Vector3(Mathf.Lerp(Joint.localPosition.x, _jointOriginalPos.x, Time.deltaTime * BobSpeed), Mathf.Lerp(Joint.localPosition.y, _jointOriginalPos.y, Time.deltaTime * BobSpeed), Mathf.Lerp(Joint.localPosition.z, _jointOriginalPos.z, Time.deltaTime * BobSpeed));
+        //}
     }
 
     private void Dash()
     {
-        _rb.AddForce(transform.forward * _dashSpeed, ForceMode.Impulse);
-        _isDashing = false;
+        //_rb.AddForce(transform.forward * _dashSpeed, ForceMode.Impulse);
+        //_isDashing = false;
 
-        //if (_dashRecharge <= 0)
-        //{
+        ////if (_dashRecharge <= 0)
+        ////{
            
-        //    _dashRecharge 
-        //}
+        ////    _dashRecharge 
+        ////}
         
 
-        if (_dashEffect != null) // Placeholder. 
-        {
-            GameObject dashEffect = Instantiate(_dashEffect, transform.position, _dashEffect.transform.rotation);
-            dashEffect.transform.parent = transform;
-            dashEffect.transform.LookAt(transform);
-        }
+        //if (_dashEffect != null) // Placeholder. 
+        //{
+        //    GameObject dashEffect = Instantiate(_dashEffect, transform.position, _dashEffect.transform.rotation);
+        //    dashEffect.transform.parent = transform;
+        //    dashEffect.transform.LookAt(transform);
+        //}
     }
 }
 
@@ -598,18 +580,18 @@ public class FirstPersonController : MonoBehaviour
 [CustomEditor(typeof(FirstPersonController)), InitializeOnLoadAttribute]
 public class FirstPersonControllerEditor : Editor
 {
-    FirstPersonController fpc;
-    SerializedObject SerFPC;
+    FirstPersonController _firstPersonController_EditorRef;
+    SerializedObject _serializedObject;
 
     private void OnEnable()
     {
-        fpc = (FirstPersonController)target;
-        SerFPC = new SerializedObject(fpc);
+        _firstPersonController_EditorRef = (FirstPersonController)target;
+        _serializedObject = new SerializedObject(_firstPersonController_EditorRef);
     }
 
     public override void OnInspectorGUI()
     {
-        SerFPC.Update();
+        _serializedObject.Update();
 
         EditorGUILayout.Space();
         GUILayout.Label("Modular First Person Controller", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 16 });
@@ -620,53 +602,53 @@ public class FirstPersonControllerEditor : Editor
         #region Camera Setup
 
         EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
-        GUILayout.Label("Camera Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        GUILayout.Label("Camera", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
         EditorGUILayout.Space();
 
-        fpc.MainCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Player Camera", "Camera attached to the controller."), fpc.MainCamera, typeof(Camera), true);
-        fpc.PlayerCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Player Camera", "Camera attached to the controller."), fpc.PlayerCamera, typeof(Camera), true);
-        fpc.FOV = EditorGUILayout.Slider(new GUIContent("Field of View", "The camera’s view angle. Changes the player camera directly."), fpc.FOV, fpc.ZoomFOV, 179f);
-        fpc.CameraCanMove = EditorGUILayout.ToggleLeft(new GUIContent("Enable Camera Rotation", "Determines if the camera is allowed to move."), fpc.CameraCanMove);
+        _firstPersonController_EditorRef.IsomatricCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Player Movement Camera", "The camera that shoots rays for the player to look at."), _firstPersonController_EditorRef.IsomatricCamera, typeof(Camera), true);
+        //_firstPersonController_EditorRef.PlayerCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Player Camera", "Camera attached to the controller."), _firstPersonController_EditorRef.PlayerCamera, typeof(Camera), true);
+        //_firstPersonController_EditorRef.FOV = EditorGUILayout.Slider(new GUIContent("Field of View", "The camera’s view angle. Changes the player camera directly."), _firstPersonController_EditorRef.FOV, _firstPersonController_EditorRef.ZoomFOV, 179f);
+        _firstPersonController_EditorRef.CameraCanMove = EditorGUILayout.ToggleLeft(new GUIContent("Enable Player Rotation", "Determines if the camera is allowed to move."), _firstPersonController_EditorRef.CameraCanMove);
 
-        GUI.enabled = fpc.CameraCanMove;
-        fpc.InvertCamera = EditorGUILayout.ToggleLeft(new GUIContent("Invert Camera Rotation", "Inverts the up and down movement of the camera."), fpc.InvertCamera);
-        fpc.MouseSensitivity = EditorGUILayout.Slider(new GUIContent("Look Sensitivity", "Determines how sensitive the mouse movement is."), fpc.MouseSensitivity, .1f, 10f);
-        fpc.MaxLookAngle = EditorGUILayout.Slider(new GUIContent("Max Look Angle", "Determines the max and min angle the player camera is able to look."), fpc.MaxLookAngle, 40, 90);
+        GUI.enabled = _firstPersonController_EditorRef.CameraCanMove;
+        //_firstPersonController_EditorRef.InvertCamera = EditorGUILayout.ToggleLeft(new GUIContent("Invert Camera Rotation", "Inverts the up and down movement of the camera."), _firstPersonController_EditorRef.InvertCamera);
+        //_firstPersonController_EditorRef.MouseSensitivity = EditorGUILayout.Slider(new GUIContent("Look Sensitivity", "Determines how sensitive the mouse movement is."), _firstPersonController_EditorRef.MouseSensitivity, .1f, 10f);
+        //_firstPersonController_EditorRef.MaxLookAngle = EditorGUILayout.Slider(new GUIContent("Max Look Angle", "Determines the max and min angle the player camera is able to look."), _firstPersonController_EditorRef.MaxLookAngle, 40, 90);
         GUI.enabled = true;
 
-        fpc.IsCursorLocked = EditorGUILayout.ToggleLeft(new GUIContent("Lock and Hide Cursor", "Turns off the cursor visibility and locks it to the middle of the screen."), fpc.IsCursorLocked);
+        _firstPersonController_EditorRef.IsCursorLocked = EditorGUILayout.ToggleLeft(new GUIContent("Lock and Hide Cursor", "Turns off the cursor visibility and locks it to the middle of the screen."), _firstPersonController_EditorRef.IsCursorLocked);
 
-        fpc.CrosshairEnabled = EditorGUILayout.ToggleLeft(new GUIContent("Auto Crosshair", "Determines if the basic crosshair will be turned on, and sets is to the center of the screen."), fpc.CrosshairEnabled);
+        //_firstPersonController_EditorRef.CrosshairEnabled = EditorGUILayout.ToggleLeft(new GUIContent("Auto Crosshair", "Determines if the basic crosshair will be turned on, and sets is to the center of the screen."), _firstPersonController_EditorRef.CrosshairEnabled);
 
         // Only displays crosshair options if crosshair is enabled
-        if (fpc.CrosshairEnabled)
-        {
-            EditorGUI.indentLevel++;
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PrefixLabel(new GUIContent("Crosshair Image", "Sprite to use as the crosshair."));
-            fpc.CrosshairImage = (Sprite)EditorGUILayout.ObjectField(fpc.CrosshairImage, typeof(Sprite), false);
-            EditorGUILayout.EndHorizontal();
+        //if (_firstPersonController_EditorRef.CrosshairEnabled)
+        //{
+        //    EditorGUI.indentLevel++;
+        //    EditorGUILayout.BeginHorizontal();
+        //    EditorGUILayout.PrefixLabel(new GUIContent("Crosshair Image", "Sprite to use as the crosshair."));
+        //    _firstPersonController_EditorRef.CrosshairImage = (Sprite)EditorGUILayout.ObjectField(_firstPersonController_EditorRef.CrosshairImage, typeof(Sprite), false);
+        //    EditorGUILayout.EndHorizontal();
 
-            EditorGUILayout.BeginHorizontal();
-            fpc.CrosshairColor = EditorGUILayout.ColorField(new GUIContent("Crosshair Color", "Determines the color of the crosshair."), fpc.CrosshairColor);
-            EditorGUILayout.EndHorizontal();
-            EditorGUI.indentLevel--;
-        }
+        //    EditorGUILayout.BeginHorizontal();
+        //    _firstPersonController_EditorRef.CrosshairColor = EditorGUILayout.ColorField(new GUIContent("Crosshair Color", "Determines the color of the crosshair."), _firstPersonController_EditorRef.CrosshairColor);
+        //    EditorGUILayout.EndHorizontal();
+        //    EditorGUI.indentLevel--;
+        //}
 
         EditorGUILayout.Space();
 
         #region Camera Zoom Setup
 
-        GUILayout.Label("Zoom", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        //GUILayout.Label("Zoom", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
 
-        fpc.EnableZoom = EditorGUILayout.ToggleLeft(new GUIContent("Enable Zoom", "Determines if the player is able to zoom in while playing."), fpc.EnableZoom);
+        //_firstPersonController_EditorRef.EnableZoom = EditorGUILayout.ToggleLeft(new GUIContent("Enable Zoom", "Determines if the player is able to zoom in while playing."), _firstPersonController_EditorRef.EnableZoom);
 
-        GUI.enabled = fpc.EnableZoom;
-        fpc.HoldToZoom = EditorGUILayout.ToggleLeft(new GUIContent("Hold to Zoom", "Requires the player to hold the zoom key instead if pressing to zoom and unzoom."), fpc.HoldToZoom);
-        fpc.ZoomKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Zoom Key", "Determines what key is used to zoom."), fpc.ZoomKey);
-        fpc.ZoomFOV = EditorGUILayout.Slider(new GUIContent("Zoom FOV", "Determines the field of view the camera zooms to."), fpc.ZoomFOV, .1f, fpc.FOV);
-        fpc.ZoomStepTime = EditorGUILayout.Slider(new GUIContent("Step Time", "Determines how fast the FOV transitions while zooming in."), fpc.ZoomStepTime, .1f, 10f);
-        GUI.enabled = true;
+        //GUI.enabled = _firstPersonController_EditorRef.EnableZoom;
+        //_firstPersonController_EditorRef.HoldToZoom = EditorGUILayout.ToggleLeft(new GUIContent("Hold to Zoom", "Requires the player to hold the zoom key instead if pressing to zoom and unzoom."), _firstPersonController_EditorRef.HoldToZoom);
+        //_firstPersonController_EditorRef.ZoomKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Zoom Key", "Determines what key is used to zoom."), _firstPersonController_EditorRef.ZoomKey);
+        //_firstPersonController_EditorRef.ZoomFOV = EditorGUILayout.Slider(new GUIContent("Zoom FOV", "Determines the field of view the camera zooms to."), _firstPersonController_EditorRef.ZoomFOV, .1f, _firstPersonController_EditorRef.FOV);
+        //_firstPersonController_EditorRef.ZoomStepTime = EditorGUILayout.Slider(new GUIContent("Step Time", "Determines how fast the FOV transitions while zooming in."), _firstPersonController_EditorRef.ZoomStepTime, .1f, 10f);
+        //GUI.enabled = true;
 
         #endregion
 
@@ -675,64 +657,68 @@ public class FirstPersonControllerEditor : Editor
         #region Movement Setup
 
         EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
-        GUILayout.Label("Movement Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        GUILayout.Label("Movement", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
         EditorGUILayout.Space();
 
-        fpc.PlayerCanMove = EditorGUILayout.ToggleLeft(new GUIContent("Enable Player Movement", "Determines if the player is allowed to move."), fpc.PlayerCanMove);
+        _firstPersonController_EditorRef.PlayerCanMove = EditorGUILayout.ToggleLeft(new GUIContent("Enable Player Movement", "Determines if the player is allowed to move."), _firstPersonController_EditorRef.PlayerCanMove);
 
-        GUI.enabled = fpc.PlayerCanMove;
-        fpc.WalkSpeed = EditorGUILayout.Slider(new GUIContent("Walk Speed", "Determines how fast the player will move while walking."), fpc.WalkSpeed, .1f, fpc.SprintSpeed);
+        GUI.enabled = _firstPersonController_EditorRef.PlayerCanMove;
+        _firstPersonController_EditorRef.WalkSpeed = EditorGUILayout.Slider(new GUIContent("Walk Speed", "Determines how fast the player will move while walking."), _firstPersonController_EditorRef.WalkSpeed, .1f, _firstPersonController_EditorRef.SprintSpeed);
         GUI.enabled = true;
 
         EditorGUILayout.Space();
 
         #region Sprint
 
-        GUILayout.Label("Sprint", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        GUILayout.Label("Sprint", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        EditorGUILayout.Space();
 
-        fpc.EnableSprint = EditorGUILayout.ToggleLeft(new GUIContent("Enable Sprint", "Determines if the player is allowed to sprint."), fpc.EnableSprint);
+        //GUILayout.Label("Sprint", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
 
-        GUI.enabled = fpc.EnableSprint;
-        fpc.UnlimitedSprint = EditorGUILayout.ToggleLeft(new GUIContent("Unlimited Sprint", "Determines if 'Sprint Duration' is enabled. Turning this on will allow for unlimited sprint."), fpc.UnlimitedSprint);
-        fpc.SprintKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Sprint Key", "Determines what key is used to sprint."), fpc.SprintKey);
-        fpc.SprintSpeed = EditorGUILayout.Slider(new GUIContent("Sprint Speed", "Determines how fast the player will move while sprinting."), fpc.SprintSpeed, fpc.WalkSpeed, 20f);
+        _firstPersonController_EditorRef.EnableSprint = EditorGUILayout.ToggleLeft(new GUIContent("Enable Sprint", "Determines if the player is allowed to sprint."), _firstPersonController_EditorRef.EnableSprint);
+
+        GUI.enabled = _firstPersonController_EditorRef.EnableSprint;
+        _firstPersonController_EditorRef.UnlimitedSprint = EditorGUILayout.ToggleLeft(new GUIContent("Unlimited Sprint", "Determines if 'Sprint Duration' is enabled. Turning this on will allow for unlimited sprint."), _firstPersonController_EditorRef.UnlimitedSprint);
+        _firstPersonController_EditorRef.SprintKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Sprint Key", "Determines what key is used to sprint."), _firstPersonController_EditorRef.SprintKey);
+        _firstPersonController_EditorRef.SprintSpeed = EditorGUILayout.Slider(new GUIContent("Sprint Speed", "Determines how fast the player will move while sprinting."), _firstPersonController_EditorRef.SprintSpeed, _firstPersonController_EditorRef.WalkSpeed, 20f);
 
         //GUI.enabled = !fpc.unlimitedSprint;
-        fpc.SprintDuration = EditorGUILayout.Slider(new GUIContent("Sprint Duration", "Determines how long the player can sprint while unlimited sprint is disabled."), fpc.SprintDuration, 0.5f, 20f);
-        fpc.SprintCooldown = EditorGUILayout.Slider(new GUIContent("Sprint Cooldown", "Determines how long the recovery time is when the player runs out of sprint."), fpc.SprintCooldown, .1f, fpc.SprintDuration);
+        _firstPersonController_EditorRef.SprintDuration = EditorGUILayout.Slider(new GUIContent("Sprint Duration", "Determines how long the player can sprint while unlimited sprint is disabled."), _firstPersonController_EditorRef.SprintDuration, 0.5f, 20f);
+        _firstPersonController_EditorRef.SprintCooldown = EditorGUILayout.Slider(new GUIContent("Sprint Cooldown", "Determines how long the recovery time is when the player runs out of sprint."), _firstPersonController_EditorRef.SprintCooldown, .1f, _firstPersonController_EditorRef.SprintDuration);
         //GUI.enabled = true;
 
-        fpc.SprintFOV = EditorGUILayout.Slider(new GUIContent("Sprint FOV", "Determines the field of view the camera changes to while sprinting."), fpc.SprintFOV, fpc.FOV, 179f);
-        fpc.SprintFOVStepTime = EditorGUILayout.Slider(new GUIContent("Step Time", "Determines how fast the FOV transitions while sprinting."), fpc.SprintFOVStepTime, .1f, 20f);
+        //_firstPersonController_EditorRef.SprintFOV = EditorGUILayout.Slider(new GUIContent("Sprint FOV", "Determines the field of view the camera changes to while sprinting."), _firstPersonController_EditorRef.SprintFOV, _firstPersonController_EditorRef.FOV, 179f);
+        //_firstPersonController_EditorRef.SprintFOVStepTime = EditorGUILayout.Slider(new GUIContent("Step Time", "Determines how fast the FOV transitions while sprinting."), _firstPersonController_EditorRef.SprintFOVStepTime, .1f, 20f);
 
-        fpc.UseSprintBar = EditorGUILayout.ToggleLeft(new GUIContent("Use Sprint Bar", "Determines if the default sprint bar will appear on screen."), fpc.UseSprintBar);
+        _firstPersonController_EditorRef.UseSprintBar = EditorGUILayout.ToggleLeft(new GUIContent("Use Sprint Bar", "Determines if the default sprint bar will appear on screen."), _firstPersonController_EditorRef.UseSprintBar);
 
         // Only displays sprint bar options if sprint bar is enabled
-        if (fpc.UseSprintBar)
+        if (_firstPersonController_EditorRef.UseSprintBar)
         {
             EditorGUI.indentLevel++;
 
             EditorGUILayout.BeginHorizontal();
-            fpc.HideBarWhenFull = EditorGUILayout.ToggleLeft(new GUIContent("Hide Full Bar", "Hides the sprint bar when sprint duration is full, and fades the bar in when sprinting. Disabling this will leave the bar on screen at all times when the sprint bar is enabled."), fpc.HideBarWhenFull);
+            _firstPersonController_EditorRef.HideBarWhenFull = EditorGUILayout.ToggleLeft(new GUIContent("Hide Full Bar", "Hides the sprint bar when sprint duration is full, and fades the bar in when sprinting. Disabling this will leave the bar on screen at all times when the sprint bar is enabled."), _firstPersonController_EditorRef.HideBarWhenFull);
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel(new GUIContent("Bar BG", "Object to be used as sprint bar background."));
-            fpc.SprintBarBG = (Image)EditorGUILayout.ObjectField(fpc.SprintBarBG, typeof(Image), true);
+            _firstPersonController_EditorRef.SprintBarBG = (Image)EditorGUILayout.ObjectField(_firstPersonController_EditorRef.SprintBarBG, typeof(Image), true);
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel(new GUIContent("Bar", "Object to be used as sprint bar foreground."));
-            fpc.SprintBarFill = (Image)EditorGUILayout.ObjectField(fpc.SprintBarFill, typeof(Image), true);
+            _firstPersonController_EditorRef.SprintBarFill = (Image)EditorGUILayout.ObjectField(_firstPersonController_EditorRef.SprintBarFill, typeof(Image), true);
             EditorGUILayout.EndHorizontal();
 
 
             EditorGUILayout.BeginHorizontal();
-            fpc.SprintBarWidthPercent = EditorGUILayout.Slider(new GUIContent("Bar Width", "Determines the width of the sprint bar."), fpc.SprintBarWidthPercent, .1f, .5f);
+            _firstPersonController_EditorRef.SprintBarWidthPercent = EditorGUILayout.Slider(new GUIContent("Bar Width", "Determines the width of the sprint bar."), _firstPersonController_EditorRef.SprintBarWidthPercent, .1f, .5f);
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
-            fpc.SprintBarHeightPercent = EditorGUILayout.Slider(new GUIContent("Bar Height", "Determines the height of the sprint bar."), fpc.SprintBarHeightPercent, .001f, .025f);
+            _firstPersonController_EditorRef.SprintBarHeightPercent = EditorGUILayout.Slider(new GUIContent("Bar Height", "Determines the height of the sprint bar."), _firstPersonController_EditorRef.SprintBarHeightPercent, .001f, .025f);
             EditorGUILayout.EndHorizontal();
             EditorGUI.indentLevel--;
         }
@@ -744,13 +730,17 @@ public class FirstPersonControllerEditor : Editor
 
         #region Jump
 
-        GUILayout.Label("Jump", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        GUILayout.Label("Jump", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        EditorGUILayout.Space();
 
-        fpc.EnableJump = EditorGUILayout.ToggleLeft(new GUIContent("Enable Jump", "Determines if the player is allowed to jump."), fpc.EnableJump);
+        //GUILayout.Label("Jump", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
 
-        GUI.enabled = fpc.EnableJump;
-        fpc.JumpKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Jump Key", "Determines what key is used to jump."), fpc.JumpKey);
-        fpc.JumpPower = EditorGUILayout.Slider(new GUIContent("Jump Power", "Determines how high the player will jump."), fpc.JumpPower, .1f, 20f);
+        _firstPersonController_EditorRef.EnableJump = EditorGUILayout.ToggleLeft(new GUIContent("Enable Jump", "Determines if the player is allowed to jump."), _firstPersonController_EditorRef.EnableJump);
+
+        GUI.enabled = _firstPersonController_EditorRef.EnableJump;
+        _firstPersonController_EditorRef.JumpKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Jump Key", "Determines what key is used to jump."), _firstPersonController_EditorRef.JumpKey);
+        _firstPersonController_EditorRef.JumpPower = EditorGUILayout.Slider(new GUIContent("Jump Power", "Determines how high the player will jump."), _firstPersonController_EditorRef.JumpPower, .1f, 20f);
         GUI.enabled = true;
 
         EditorGUILayout.Space();
@@ -759,17 +749,21 @@ public class FirstPersonControllerEditor : Editor
 
         #region Crouch
 
-        GUILayout.Label("Crouch", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        GUILayout.Label("Crouch", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        EditorGUILayout.Space();
 
-        fpc.EnableCrouch = EditorGUILayout.ToggleLeft(new GUIContent("Enable Crouch", "Determines if the player is allowed to crouch."), fpc.EnableCrouch);
+        //GUILayout.Label("Crouch", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
 
-        GUI.enabled = fpc.EnableCrouch;
-        fpc.HoldToCrouch = EditorGUILayout.ToggleLeft(new GUIContent("Hold To Crouch", "Requires the player to hold the crouch key instead if pressing to crouch and uncrouch."), fpc.HoldToCrouch);
-        fpc.CrouchKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Crouch Key", "Determines what key is used to crouch."), fpc.CrouchKey);
-        fpc.CrouchHeight = EditorGUILayout.Slider(new GUIContent("Crouch Height", "Determines the y scale of the player object when crouched."), fpc.CrouchHeight, .1f, 1);
-        fpc.CrouchSpeedReduction = EditorGUILayout.Slider(new GUIContent("Speed Reduction", "Determines the percent 'Walk Speed' is reduced by. 1 being no reduction, and .5 being half."), fpc.CrouchSpeedReduction, .1f, 1);
-        fpc._dashSpeed = EditorGUILayout.Slider(new GUIContent("Dash Speed", "Description"), fpc._dashSpeed, 50, 300);
-        fpc._dashRecharge = EditorGUILayout.Slider(new GUIContent("Dash Recharge Time", "Description"), fpc._dashSpeed, 50, 300);
+        _firstPersonController_EditorRef.EnableCrouch = EditorGUILayout.ToggleLeft(new GUIContent("Enable Crouch", "Determines if the player is allowed to crouch."), _firstPersonController_EditorRef.EnableCrouch);
+
+        GUI.enabled = _firstPersonController_EditorRef.EnableCrouch;
+        _firstPersonController_EditorRef.HoldToCrouch = EditorGUILayout.ToggleLeft(new GUIContent("Hold To Crouch", "Requires the player to hold the crouch key instead if pressing to crouch and uncrouch."), _firstPersonController_EditorRef.HoldToCrouch);
+        _firstPersonController_EditorRef.CrouchKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Crouch Key", "Determines what key is used to crouch."), _firstPersonController_EditorRef.CrouchKey);
+        _firstPersonController_EditorRef.CrouchHeight = EditorGUILayout.Slider(new GUIContent("Crouch Height", "Determines the y scale of the player object when crouched."), _firstPersonController_EditorRef.CrouchHeight, .1f, 1);
+        _firstPersonController_EditorRef.CrouchSpeedReduction = EditorGUILayout.Slider(new GUIContent("Speed Reduction", "Determines the percent 'Walk Speed' is reduced by. 1 being no reduction, and .5 being half."), _firstPersonController_EditorRef.CrouchSpeedReduction, .1f, 1);
+        //_firstPersonController_EditorRef._dashSpeed = EditorGUILayout.Slider(new GUIContent("Dash Speed", "Description"), _firstPersonController_EditorRef._dashSpeed, 50, 300);
+        //_firstPersonController_EditorRef._dashRecharge = EditorGUILayout.Slider(new GUIContent("Dash Recharge Time", "Description"), _firstPersonController_EditorRef._dashSpeed, 50, 300);
         GUI.enabled = true;
 
         #endregion
@@ -778,28 +772,28 @@ public class FirstPersonControllerEditor : Editor
 
         #region Head Bob
 
-        EditorGUILayout.Space();
-        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
-        GUILayout.Label("Head Bob Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
-        EditorGUILayout.Space();
+        //EditorGUILayout.Space();
+        //EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        //GUILayout.Label("Head Bob Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        //EditorGUILayout.Space();
 
-        fpc.EnableHeadBob = EditorGUILayout.ToggleLeft(new GUIContent("Enable Head Bob", "Determines if the camera will bob while the player is walking."), fpc.EnableHeadBob);
+        //_firstPersonController_EditorRef.EnableHeadBob = EditorGUILayout.ToggleLeft(new GUIContent("Enable Head Bob", "Determines if the camera will bob while the player is walking."), _firstPersonController_EditorRef.EnableHeadBob);
 
 
-        GUI.enabled = fpc.EnableHeadBob;
-        fpc.Joint = (Transform)EditorGUILayout.ObjectField(new GUIContent("Camera Joint", "Joint object position is moved while head bob is active."), fpc.Joint, typeof(Transform), true);
-        fpc.BobSpeed = EditorGUILayout.Slider(new GUIContent("Speed", "Determines how often a bob rotation is completed."), fpc.BobSpeed, 1, 20);
-        fpc.BobAmount = EditorGUILayout.Vector3Field(new GUIContent("Bob Amount", "Determines the amount the joint moves in both directions on every axes."), fpc.BobAmount);
-        GUI.enabled = true;
+        //GUI.enabled = _firstPersonController_EditorRef.EnableHeadBob;
+        //_firstPersonController_EditorRef.Joint = (Transform)EditorGUILayout.ObjectField(new GUIContent("Camera Joint", "Joint object position is moved while head bob is active."), _firstPersonController_EditorRef.Joint, typeof(Transform), true);
+        //_firstPersonController_EditorRef.BobSpeed = EditorGUILayout.Slider(new GUIContent("Speed", "Determines how often a bob rotation is completed."), _firstPersonController_EditorRef.BobSpeed, 1, 20);
+        //_firstPersonController_EditorRef.BobAmount = EditorGUILayout.Vector3Field(new GUIContent("Bob Amount", "Determines the amount the joint moves in both directions on every axes."), _firstPersonController_EditorRef.BobAmount);
+        //GUI.enabled = true;
 
         #endregion
 
         //Sets any changes from the prefab
         if (GUI.changed)
         {
-            EditorUtility.SetDirty(fpc);
-            Undo.RecordObject(fpc, "FPC Change");
-            SerFPC.ApplyModifiedProperties();
+            EditorUtility.SetDirty(_firstPersonController_EditorRef);
+            Undo.RecordObject(_firstPersonController_EditorRef, "FPC Change");
+            _serializedObject.ApplyModifiedProperties();
         }
 
     }

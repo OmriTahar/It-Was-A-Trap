@@ -2010,34 +2010,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 134291458}
     m_Modifications:
-    - target: {fileID: 77056239381677808, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -11.2501135
-      objectReference: {fileID: 0}
-    - target: {fileID: 77056239381677808, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12.342305
-      objectReference: {fileID: 0}
-    - target: {fileID: 77056239381677808, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -16.18275
-      objectReference: {fileID: 0}
     - target: {fileID: 77056239381677809, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 4459864851264094600}
-    - target: {fileID: 77056239723743883, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -11.2501135
-      objectReference: {fileID: 0}
-    - target: {fileID: 77056239723743883, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12.342305
-      objectReference: {fileID: 0}
-    - target: {fileID: 77056239723743883, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -16.18275
-      objectReference: {fileID: 0}
     - target: {fileID: 180299725938175916, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2084,7 +2060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6746754019185788234, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
       propertyPath: m_Name
-      value: Isomatric Camera Prefab
+      value: Player Movement Cam + Scene Isomatric Cam Prefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
@@ -2144,7 +2120,27 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: MainCamera
+      propertyPath: InvertCamera
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: CameraCanMove
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: PlayerCanMove
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: IsCursorLocked
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: SprintCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: IsomatricCamera
       value: 
       objectReference: {fileID: 2032137546}
     m_RemovedComponents: []
