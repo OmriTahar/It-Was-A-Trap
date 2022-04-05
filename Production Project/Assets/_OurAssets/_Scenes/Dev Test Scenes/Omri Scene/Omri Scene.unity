@@ -2120,27 +2120,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: InvertCamera
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: CameraCanMove
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: PlayerCanMove
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: IsCursorLocked
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: SprintCooldown
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: IsomatricCamera
+      propertyPath: PlayerMovementCamera
       value: 
       objectReference: {fileID: 2032137546}
     m_RemovedComponents: []

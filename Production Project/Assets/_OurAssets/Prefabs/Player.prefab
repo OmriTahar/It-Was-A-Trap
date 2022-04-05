@@ -223,8 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90ba6530d9bfda47abb4610956b2f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsomatricCamera: {fileID: 0}
-  InvertCamera: 0
+  PlayerMovementCamera: {fileID: 0}
   CameraCanMove: 1
   IsCursorLocked: 0
   PlayerCanMove: 1

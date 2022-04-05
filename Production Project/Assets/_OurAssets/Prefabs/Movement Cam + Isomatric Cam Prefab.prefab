@@ -316,7 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 180299725938175916}
   m_Layer: 0
-  m_Name: Player Movement Cam + Scene Isomatric Cam Prefab
+  m_Name: Movement Cam + Isomatric Cam Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
