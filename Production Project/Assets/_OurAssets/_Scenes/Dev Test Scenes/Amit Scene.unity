@@ -402,7 +402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373836586}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.344, y: 1.053, z: 0}
+  m_LocalPosition: {x: 0.344, y: 1.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 426458915}
@@ -422,17 +422,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathVerysList:
-  - {x: 0, y: -0, z: -0}
-  - {x: 2, y: -0.5, z: -0}
-  - {x: 4, y: -2, z: -0}
-  - {x: 6, y: -4.5, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0.27306563, y: 0.33094686, z: -0.62325}
+  - {x: 1.0922625, y: 1.3237875, z: -2.493}
+  - {x: 2.4575908, y: 2.9785218, z: -5.60925}
+  - {x: 4.36905, y: 5.29515, z: -9.972}
   time: 3
-  velocity: {x: 2, y: 0, z: 0}
-  acceleration: {x: 0, y: -1, z: 0}
-  splits: 4
+  velocity: {x: 0.73, y: 0.41, z: -2.77}
+  acceleration: {x: 1.33, y: 2.87, z: 0.8}
+  unityAccuracyFix: {x: -0.32, y: 1.06, z: 0.23}
+  splits: 5
   LineRendere: {fileID: 426458916}
+  projectile: {fileID: 0}
   calc_Trajectory: 0
   auto_calc: 1
+  fire: 0
 --- !u!1 &403918560
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,10 +540,11 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: -0, z: -0}
-  - {x: 2, y: -0.5, z: -0}
-  - {x: 4, y: -2, z: -0}
-  - {x: 6, y: -4.5, z: -0}
+  - {x: 0, y: 0, z: -0}
+  - {x: 0.27306563, y: 0.33094686, z: -0.62325}
+  - {x: 1.0922625, y: 1.3237875, z: -2.493}
+  - {x: 2.4575908, y: 2.9785218, z: -5.60925}
+  - {x: 4.36905, y: 5.29515, z: -9.972}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1
