@@ -6,14 +6,14 @@ public class Trajectory : MonoBehaviour
 {
     [SerializeField] List<Vector3> pathVerysList = new List<Vector3>();
     [SerializeField] float time = 1;
-    [SerializeField] Vector3 velocity = Vector3.right;
+    [SerializeField] Vector3 velocity = Vector3.forward;
     [SerializeField] Vector3 acceleration = Vector3.down;
     [SerializeField] Vector3 unityAccuracyFix = Vector3.zero;
     [SerializeField] int splits = 3;
     // UT+.5 ATT
     public float Distance_InTime_DueToAcc(float u, float a, float t)
     {
-        return u* 0.5f * a * t * t;
+        return u * t + 0.5f * a * t * t;
     }
     public void Calculate_Trajectory()
     {
@@ -22,7 +22,7 @@ public class Trajectory : MonoBehaviour
             pathVerysList = new List<Vector3>();
         }
         pathVerysList.Clear();
-         Vector3 d;
+        Vector3 d;
         float dt = 0;
         for (int i = 0; i < splits; i++)
         {
@@ -53,7 +53,10 @@ public class Trajectory : MonoBehaviour
             Calculate_Trajectory();
             LineRendere.positionCount = splits;
             LineRendere.SetPositions(pathVerysList.ToArray());
+            projectile.transform.position = LineRendere.transform.position;
+            print("i set line renderer to postions from array");
         }
+
         if (fire)
         {
             fire = false;
