@@ -15,6 +15,10 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] Transform _playerTransform;
     [SerializeField] LayerMask _groundLayer, _playerLayer;
 
+    [Header("Enemy TYPE")]
+    public bool IsRangedEnemy;
+    public bool IsLeapEnemy;
+
     [Header("Patroling")]
     [SerializeField] Vector3 _moveDestination;
     [SerializeField] bool _isDestinationSet;
@@ -57,12 +61,26 @@ public class EnemyAI : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _agent = GetComponent<NavMeshAgent>();
+
+        LockEnemyType();
     }
 
     private void Update()
     {
         PlayerDetaction();
         EnemyStateMachine();
+    }
+
+    private void LockEnemyType()
+    {
+        if (IsRangedEnemy || (IsRangedEnemy && IsLeapEnemy))
+        {
+            IsLeapEnemy = false;
+        }
+        else if (!IsRangedEnemy || (!IsRangedEnemy && !IsLeapEnemy))
+        {
+            IsLeapEnemy = true;
+        }
     }
 
     private void PlayerDetaction()
