@@ -42,6 +42,14 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] bool _canFlee;
     private Vector3 _directionToPlayer;
 
+    [Header("Leaper")]
+    private BoxCollider _leapCollider;
+    [SerializeField] float _waitBeforeLeap;
+    [SerializeField] float _waitForLeapEnd;
+    [SerializeField] float _leapPower;
+    [SerializeField] bool _hasLeaped = false;
+
+
     #region Jumping (Currently Not Used)
 
     //[Header("Jump Settings")]
@@ -61,6 +69,12 @@ public class EnemyAI : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _agent = GetComponent<NavMeshAgent>();
+
+        if (IsLeapEnemy)
+        {
+            _leapCollider = GetComponent<BoxCollider>();
+            _leapCollider.enabled = false;
+        }
 
         LockEnemyType();
     }
@@ -129,14 +143,33 @@ public class EnemyAI : MonoBehaviour
         }
         else if (IsLeapEnemy)
         {
-            print("leaping");
-            Leap();
+            if (IsEnemyActivated && _isPlayerInAttackRange && !_hasLeaped)
+            {
+                print("Leaping");
+                StartCoroutine(Leap());
+            }
+            else if (IsEnemyActivated && _isPlayerInAttackRange && _hasLeaped)
+            {
+                print("Recharging Leap");
+            }
         }
     }
 
-    private void Leap()
+    private IEnumerator Leap()
     {
+        _hasLeaped = true;
 
+        _agent.SetDestination(transform.position);
+        transform.LookAt(_playerTransform);
+
+        yield return new WaitForSeconds(_waitBeforeLeap); 
+
+        _leapCollider.enabled = true;
+        _rb.AddForce(_playerTransform.position.normalized * _leapPower, ForceMode.Impulse); // HERE IS THE PROBLEM. THE ENEMY LEAP TO A WIERD DIRECTION.
+
+        yield return new WaitForSeconds(_waitForLeapEnd);
+        _leapCollider.enabled = false;
+        _hasLeaped = false;
     }
 
     private void Patroling()
