@@ -113,16 +113,23 @@ public class EnemyAI : MonoBehaviour
             ChasePlayer();
         }
 
-        if (IsEnemyActivated && _isPlayerTooClose && _canFlee)
+        if (IsRangedEnemy)
         {
-            print("fleeing");
-            Flee();
-        }
+            if (IsEnemyActivated && _isPlayerTooClose && _canFlee)
+            {
+                print("fleeing");
+                Flee();
+            }
 
-        if (IsEnemyActivated && (!_isPlayerTooClose && _isPlayerInAttackRange || _isPlayerTooClose && !_canFlee))
+            if (IsEnemyActivated && (!_isPlayerTooClose && _isPlayerInAttackRange || _isPlayerTooClose && !_canFlee))
+            {
+                print("Attacking");
+                RangeAttack();
+            }
+        }
+        else if (IsLeapEnemy)
         {
-            print("Attacking");
-            AttackPlayer();
+
         }
     }
 
@@ -157,7 +164,7 @@ public class EnemyAI : MonoBehaviour
         _agent.SetDestination(_playerTransform.position);
     }
 
-    private void AttackPlayer()
+    private void RangeAttack()
     {
         // Make sure enemy doesn't move while attacking
         _agent.SetDestination(transform.position);
