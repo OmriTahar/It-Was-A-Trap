@@ -129,8 +129,14 @@ public class EnemyAI : MonoBehaviour
         }
         else if (IsLeapEnemy)
         {
-
+            print("leaping");
+            Leap();
         }
+    }
+
+    private void Leap()
+    {
+
     }
 
     private void Patroling()
