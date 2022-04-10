@@ -247,10 +247,10 @@ public class EnemyAI : MonoBehaviour
     {
         if (!_isFleeing)
         {
-            _isFleeing = true; 
+            _isFleeing = true;
 
             // Current Fleeing behaviour
-            _directionToPlayer = transform.position - _playerTransform.position; 
+            _directionToPlayer = transform.position - _playerTransform.position;
             Vector3 newPosition = transform.position + _directionToPlayer;
             _agent.SetDestination(newPosition);
             // -------------------------
