@@ -11,7 +11,6 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody _rb;
 
     [Header("General Settings")]
-    [SerializeField] int _health;
     [SerializeField] Transform _playerTransform;
     [SerializeField] LayerMask _groundLayer, _playerLayer;
 
@@ -20,14 +19,14 @@ public class EnemyAI : MonoBehaviour
     public bool IsLeapEnemy;
 
     [Header("Patroling")]
-    [SerializeField] Vector3 _moveDestination;
-    [SerializeField] bool _isDestinationSet;
-    [SerializeField] float _DestinationPointRange;
+    private bool _isDestinationSet;
+    private float _PatrolingPointRange;
+    private Vector3 _moveDestination;
 
     [Header("Chasing")]
-    [SerializeField] float _playerSightRange;
-    [SerializeField] bool _isPlayerInSight;
     public bool IsEnemyActivated;
+    //[SerializeField] bool _isPlayerInSight;
+    //[SerializeField] float _playerSightRange;
 
     [Header("Attacking")]
     [SerializeField] Transform ShootPoint;
@@ -37,17 +36,19 @@ public class EnemyAI : MonoBehaviour
     public GameObject EnemyProjectile;
 
     [Header("Fleeing")]
-    [SerializeField] float _moveBackRange;
     [SerializeField] bool _isPlayerTooClose;
+    [SerializeField] bool _isFleeing;
+    [SerializeField] float _fleeingDuration;
+    [SerializeField] float _moveBackRange;
     [SerializeField] bool _canFlee;
     private Vector3 _directionToPlayer;
 
     [Header("Leaper")]
-    private BoxCollider _leapCollider;
-    [SerializeField] float _waitBeforeLeap;
-    [SerializeField] float _waitForLeapEnd;
     [SerializeField] float _leapPower;
+    [SerializeField] float _waitBeforeLeap;
+    [SerializeField] float _waitAfterLeap;
     [SerializeField] bool _hasLeaped = false;
+    private BoxCollider _leapCollider;
 
 
     #region Jumping (Currently Not Used)
@@ -99,16 +100,18 @@ public class EnemyAI : MonoBehaviour
 
     private void PlayerDetaction()
     {
-        //_isPlayerInSight = Physics.CheckSphere(transform.position, _playerSightRange, _playerLayer);
+        //_isPlayerInSight = Physics.CheckSphere(transform.position, _playerSightRange, _playerLayer); // This was before manual enemy activation
 
         if (IsEnemyActivated)
         {
             _isPlayerInAttackRange = Physics.CheckSphere(transform.position, _attackRange, _playerLayer);
-            _isPlayerTooClose = Physics.CheckSphere(transform.position, _moveBackRange, _playerLayer);
 
-            if (_isPlayerTooClose)
+            if (IsRangedEnemy)
             {
-                _canFlee = CanEnemyFlee();
+                _isPlayerTooClose = Physics.CheckSphere(transform.position, _moveBackRange, _playerLayer);
+
+                if (_isPlayerTooClose)
+                    _canFlee = CanEnemyFlee();
             }
         }
     }
@@ -121,7 +124,7 @@ public class EnemyAI : MonoBehaviour
             Patroling();
         }
 
-        if (IsEnemyActivated && !_isPlayerInAttackRange)
+        if (IsEnemyActivated && !_isPlayerInAttackRange && !_isFleeing)
         {
             print("Chasing");
             ChasePlayer();
@@ -129,10 +132,11 @@ public class EnemyAI : MonoBehaviour
 
         if (IsRangedEnemy)
         {
+
             if (IsEnemyActivated && _isPlayerTooClose && _canFlee)
             {
                 print("fleeing");
-                Flee();
+                StartCoroutine(Flee());
             }
 
             if (IsEnemyActivated && (!_isPlayerTooClose && _isPlayerInAttackRange || _isPlayerTooClose && !_canFlee))
@@ -140,6 +144,8 @@ public class EnemyAI : MonoBehaviour
                 print("Attacking");
                 RangeAttack();
             }
+
+
         }
         else if (IsLeapEnemy)
         {
@@ -162,12 +168,12 @@ public class EnemyAI : MonoBehaviour
         _agent.SetDestination(transform.position);
         transform.LookAt(_playerTransform);
 
-        yield return new WaitForSeconds(_waitBeforeLeap); 
+        yield return new WaitForSeconds(_waitBeforeLeap);
 
         _leapCollider.enabled = true;
-        _rb.AddForce(_playerTransform.position.normalized * _leapPower, ForceMode.Impulse); // HERE IS THE PROBLEM. THE ENEMY LEAP TO A WIERD DIRECTION.
+        _rb.AddForce((_playerTransform.position - transform.position) * _leapPower, ForceMode.Impulse);
 
-        yield return new WaitForSeconds(_waitForLeapEnd);
+        yield return new WaitForSeconds(_waitAfterLeap);
         _leapCollider.enabled = false;
         _hasLeaped = false;
     }
@@ -189,8 +195,8 @@ public class EnemyAI : MonoBehaviour
     private void SearchWalkPoint()
     {
         // Calculate random point in range
-        float randomZ = Random.Range(-_DestinationPointRange, _DestinationPointRange);
-        float randomX = Random.Range(-_DestinationPointRange, _DestinationPointRange);
+        float randomZ = Random.Range(-_PatrolingPointRange, _PatrolingPointRange);
+        float randomX = Random.Range(-_PatrolingPointRange, _PatrolingPointRange);
 
         _moveDestination = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
@@ -237,11 +243,21 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void Flee()
+    private IEnumerator Flee() // Request specification about fleeing behaviour
     {
-        _directionToPlayer = transform.position - _playerTransform.position;
-        Vector3 newPosition = transform.position + _directionToPlayer;
-        _agent.SetDestination(newPosition);
+        if (!_isFleeing)
+        {
+            _isFleeing = true; 
+
+            // Current Fleeing behaviour
+            _directionToPlayer = transform.position - _playerTransform.position; 
+            Vector3 newPosition = transform.position + _directionToPlayer;
+            _agent.SetDestination(newPosition);
+            // -------------------------
+
+            yield return new WaitForSeconds(_fleeingDuration);
+            _isFleeing = false;
+        }
     }
 
     private void ResetAttack()
@@ -249,12 +265,12 @@ public class EnemyAI : MonoBehaviour
         _alreadyAttacked = false;
     }
 
-    public void TakeDamage(int damage) // PLACE HOLDER
-    {
-        _health -= damage;
+    //public void TakeDamage(int damage) // PLACE HOLDER
+    //{
+    //    _health -= damage;
 
-        if (_health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
-    }
+    //    if (_health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+    //}
 
     private void DestroyEnemy()
     {
