@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour, IAttackable<Unit>
 {
-    [SerializeField] protected int Damage;
-    [SerializeField] protected bool Stunning = false;
+    [SerializeField] protected int _damage;
+    [SerializeField] protected bool _stunning = false;
 
     void IAttackable<Unit>.Attack(Unit unit)
     {
-        unit.UnitHP -= Damage;
+        unit._unitHP -= _damage;
     }
 
     public virtual void OnTriggerEnter(Collider other)

@@ -169,18 +169,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1089423288}
-    - target: {fileID: 1928329611525411306, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: Camera
-      value: 
-      objectReference: {fileID: 1089423288}
-    - target: {fileID: 1928329611525411306, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 1089423288}
-    - target: {fileID: 1928329611525411306, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: groundMask.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626790, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_Name
       value: Player
@@ -228,10 +216,6 @@ PrefabInstance:
     - target: {fileID: 4153713904787626794, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: MainCamera
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: PlayerMovementCamera

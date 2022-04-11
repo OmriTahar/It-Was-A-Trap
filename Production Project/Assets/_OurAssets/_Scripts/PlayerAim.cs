@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerAim : MonoBehaviour
 {
     [SerializeField] Camera cam;
-    [SerializeField] GameObject Line;
-    [SerializeField] GameObject OutlinePrefab;
-    [SerializeField] float AbilityRange = 3f;
-    [SerializeField] float Distance = 5f;
+    [SerializeField] GameObject line;
+    [SerializeField] GameObject outlinePrefab;
+    [SerializeField] float abilityRange = 3f;
+    [SerializeField] float maxDistance = 5f;
 
     GameObject currentActiveAttack;
     [SerializeField] LayerMask groundMask;
@@ -16,7 +16,7 @@ public class PlayerAim : MonoBehaviour
 
     private void Awake()
     {
-        currentActiveAttack = Instantiate(OutlinePrefab);
+        currentActiveAttack = Instantiate(outlinePrefab);
 
         ToggleDraw();
     }
@@ -34,8 +34,8 @@ public class PlayerAim : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 100, groundMask))
         {
-            currentActiveAttack.transform.position = (hit.point - transform.position).magnitude < Distance ? 
-            hit.point : hit.point.normalized * Distance;
+            currentActiveAttack.transform.position = (hit.point - transform.position).magnitude < maxDistance ? 
+            hit.point : hit.point.normalized * maxDistance;
 
             print($"hit ground: {hit.point}");
         }
@@ -44,7 +44,7 @@ public class PlayerAim : MonoBehaviour
     public void ToggleDraw()
     {
         active = !active;
-        OutlinePrefab.SetActive(active);
+        outlinePrefab.SetActive(active);
         //Line.SetActive(active);
     }
 

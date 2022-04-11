@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    [SerializeField] internal int UnitHP;
-    [SerializeField] internal int UnitRange;
+    [SerializeField] internal int _unitHP;
+    [SerializeField] internal int _unitRange;
 
     public void RecieveDamage(IAttackable<Unit> enemy)
     {
