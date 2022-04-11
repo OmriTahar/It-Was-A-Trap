@@ -158,7 +158,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6208570823500875088, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
   m_PrefabInstance: {fileID: 737174677}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 737174678}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33a99d1b5c727bd4eadc39b88a970c0a, type: 3}
@@ -625,26 +625,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 399740694393486663, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.451
-      objectReference: {fileID: 0}
-    - target: {fileID: 6208570823500875088, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
-      propertyPath: ShootForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6208570823500875088, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
-      propertyPath: IsRangedEnemy
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6208570823500875088, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
-      propertyPath: ProjectilePrefab
-      value: 
-      objectReference: {fileID: 1523505521300276554, guid: 47fc2b8c80138d446aa62a84120d9ec6, type: 3}
-    - target: {fileID: 6208570823500875088, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
-      propertyPath: _fleeingDuration
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 6208570823500875088, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
       propertyPath: _playerTransform
       value: 
@@ -697,31 +677,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ranged Enemy (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 6208570823500875098, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
---- !u!1 &737174678 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6208570823500875098, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
-  m_PrefabInstance: {fileID: 737174677}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &737174679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 737174678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf57af5fb69ed4942813c86d31e160e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _projectilePrefab: {fileID: 1523505521300276554, guid: 47fc2b8c80138d446aa62a84120d9ec6, type: 3}
-  _poolStartSize: 20
 --- !u!1 &757455771
 GameObject:
   m_ObjectHideFlags: 0

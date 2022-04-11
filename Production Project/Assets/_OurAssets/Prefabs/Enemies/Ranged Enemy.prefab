@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 274877041845581961}
   - component: {fileID: 6208570823500875095}
   - component: {fileID: 6208570823500875088}
+  - component: {fileID: 737174679}
   m_Layer: 6
   m_Name: Ranged Enemy
   m_TagString: Untagged
@@ -197,7 +198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a99d1b5c727bd4eadc39b88a970c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 50
   _playerTransform: {fileID: 0}
   _groundLayer:
     serializedVersion: 2
@@ -205,24 +205,39 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  IsRangedEnemy: 0
-  IsLeapEnemy: 0
-  _moveDestination: {x: 0, y: 0, z: 0}
-  _isDestinationSet: 0
-  _DestinationPointRange: 20
-  _playerSightRange: 25
-  _isPlayerInSight: 0
   IsEnemyActivated: 0
-  ShootPoint: {fileID: 399740694393486663}
-  ShootForce: 12
+  IsRangedEnemy: 1
+  IsLeapEnemy: 0
   _attackRange: 15
   _timeBetweenAttacks: 2
   _isPlayerInAttackRange: 0
-  _alreadyAttacked: 0
-  EnemyProjectile: {fileID: 1523505521300276554, guid: 47fc2b8c80138d446aa62a84120d9ec6, type: 3}
-  _moveBackRange: 10
+  _isAlreadyAttacked: 0
+  ShootPoint: {fileID: 399740694393486663}
+  ShootForce: 30
+  ProjectilePrefab: {fileID: 1523505521300276554, guid: 47fc2b8c80138d446aa62a84120d9ec6, type: 3}
   _isPlayerTooClose: 0
+  _isFleeing: 0
+  _fleeingDuration: 3
+  _moveBackRange: 10
   _canFlee: 0
+  _leapPower: 0
+  _waitBeforeLeap: 0
+  _waitAfterLeap: 0
+  _hasLeaped: 0
+--- !u!114 &737174679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6208570823500875098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf57af5fb69ed4942813c86d31e160e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectilePrefab: {fileID: 1523505521300276554, guid: 47fc2b8c80138d446aa62a84120d9ec6, type: 3}
+  _poolStartSize: 20
 --- !u!1 &7000785927217020015
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +357,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8735365334575907965}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.855}
+  m_LocalPosition: {x: 0, y: 0.451, z: 0.855}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6208570823500875094}
