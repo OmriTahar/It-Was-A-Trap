@@ -231,7 +231,7 @@ public class EnemyAI : MonoBehaviour
             projectile.transform.rotation = Quaternion.identity;
 
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
-            rb.AddForce((_playerTransform.position - projectile.transform.position) * ShootForce, ForceMode.Impulse);
+            rb.AddForce((_playerTransform.position - projectile.transform.position).normalized * ShootForce, ForceMode.Impulse);
 
             _isAlreadyAttacked = true;
             Invoke(nameof(ResetAttack), _timeBetweenAttacks);

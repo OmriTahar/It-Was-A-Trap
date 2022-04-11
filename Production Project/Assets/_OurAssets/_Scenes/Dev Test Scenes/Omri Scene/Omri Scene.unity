@@ -625,9 +625,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 399740694393486663, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.451
+      objectReference: {fileID: 0}
     - target: {fileID: 6208570823500875088, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
       propertyPath: ShootForce
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6208570823500875088, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
       propertyPath: IsRangedEnemy

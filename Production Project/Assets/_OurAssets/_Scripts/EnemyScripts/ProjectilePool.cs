@@ -15,8 +15,10 @@ public class ProjectilePool : MonoBehaviour
         {
             GameObject projectile = Instantiate(_projectilePrefab);
             _projectilePool.Enqueue(projectile);
+
+            projectile.GetComponent<CarrotProjectile>().SetMe(this);
+
             projectile.SetActive(false);
-            projectile.transform.SetParent(transform);
         }
     }
 
