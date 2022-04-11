@@ -14,8 +14,12 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
 
     public virtual void OnTriggerEnter(Collider other)
     {
-        other.gameObject.GetComponent<Unit>().RecieveDamage(this);
-        Destroy(this);
+        if (other.gameObject.tag == "Player")
+        {
+            other.gameObject.GetComponent<Unit>().RecieveDamage(this);
+        }
+
+        //Destroy(gameObject);
     }
 
 }
