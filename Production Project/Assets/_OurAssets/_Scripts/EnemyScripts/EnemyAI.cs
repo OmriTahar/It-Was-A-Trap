@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour
     [Header("General Settings")]
     [SerializeField] Transform _playerTransform;
     [SerializeField] LayerMask _groundLayer, _playerLayer;
+    public bool IsEnemyActivated;
 
     [Header("Enemy TYPE")]
     public bool IsRangedEnemy;
@@ -22,18 +23,19 @@ public class EnemyAI : MonoBehaviour
     private bool _isDestinationSet;
     private float _PatrolingPointRange;
     private Vector3 _moveDestination;
-
-    [Header("Chasing")]
-    public bool IsEnemyActivated;
     //[SerializeField] bool _isPlayerInSight;
     //[SerializeField] float _playerSightRange;
 
-    [Header("Attacking")]
+    [Header("Attack Settings")]
+    [SerializeField] float _attackRange;
+    [SerializeField] float _timeBetweenAttacks;
+    [SerializeField] bool _isPlayerInAttackRange, _isAlreadyAttacked;
+
+    [Header("Ranged Attack")]
     [SerializeField] Transform ShootPoint;
     [SerializeField] float ShootForce;
-    [SerializeField] float _attackRange, _timeBetweenAttacks;
-    [SerializeField] bool _isPlayerInAttackRange, _alreadyAttacked;
-    public GameObject EnemyProjectile;
+    public GameObject ProjectilePrefab;
+    private ProjectilePool _projectilePool;
 
     [Header("Fleeing")]
     [SerializeField] bool _isPlayerTooClose;
@@ -70,6 +72,7 @@ public class EnemyAI : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _agent = GetComponent<NavMeshAgent>();
+        _projectilePool = GetComponent<ProjectilePool>();
 
         if (IsLeapEnemy)
         {
@@ -79,6 +82,7 @@ public class EnemyAI : MonoBehaviour
 
         LockEnemyType();
     }
+
 
     private void Update()
     {
@@ -211,19 +215,25 @@ public class EnemyAI : MonoBehaviour
 
     private void RangeAttack()
     {
-        // Make sure enemy doesn't move while attacking
-        _agent.SetDestination(transform.position);
-
+        _agent.SetDestination(transform.position); // Make sure enemy doesn't move while attacking
         transform.LookAt(_playerTransform);
 
-        if (!_alreadyAttacked)
+        if (!_isAlreadyAttacked)
         {
-            /// Attack code here
-            Rigidbody rb = Instantiate(EnemyProjectile, ShootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(ShootPoint.forward * ShootForce, ForceMode.Impulse);
-            rb.AddForce(ShootPoint.up * (ShootForce / 2), ForceMode.Impulse);
+            // ---------- OLD SHOOT CODE ----------
+            //Rigidbody rb = Instantiate(ProjectilePrefab, ShootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+            //rb.AddForce(ShootPoint.forward * ShootForce, ForceMode.Impulse);
+            //rb.AddForce(ShootPoint.up * (ShootForce / 2), ForceMode.Impulse);
+            // ------------------------------------
 
-            _alreadyAttacked = true;
+            GameObject projectile = _projectilePool.GetProjectileFromPool();
+            projectile.transform.position = ShootPoint.position;
+            projectile.transform.rotation = Quaternion.identity;
+
+            Rigidbody rb = projectile.GetComponent<Rigidbody>();
+            rb.AddForce((_playerTransform.position - projectile.transform.position) * ShootForce, ForceMode.Impulse);
+
+            _isAlreadyAttacked = true;
             Invoke(nameof(ResetAttack), _timeBetweenAttacks);
         }
     }
@@ -262,7 +272,7 @@ public class EnemyAI : MonoBehaviour
 
     private void ResetAttack()
     {
-        _alreadyAttacked = false;
+        _isAlreadyAttacked = false;
     }
 
     //public void TakeDamage(int damage) // PLACE HOLDER

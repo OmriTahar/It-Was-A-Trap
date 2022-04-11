@@ -19,7 +19,7 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
             other.gameObject.GetComponent<Unit>().RecieveDamage(this);
         }
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
 }
