@@ -165,6 +165,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1928329611525411306, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1089423288}
     - target: {fileID: 4153713904787626790, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_Name
       value: Player
@@ -212,10 +216,6 @@ PrefabInstance:
     - target: {fileID: 4153713904787626794, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: MainCamera
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: PlayerMovementCamera
@@ -530,18 +530,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 134291458}
     m_Modifications:
-    - target: {fileID: 77056239381677808, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -12.03275
-      objectReference: {fileID: 0}
     - target: {fileID: 77056239381677809, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 89799381}
-    - target: {fileID: 77056239723743883, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -12.03275
-      objectReference: {fileID: 0}
     - target: {fileID: 180299725938175916, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -614,7 +606,7 @@ GameObject:
   - component: {fileID: 1112561684}
   - component: {fileID: 1112561683}
   - component: {fileID: 1112561682}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
