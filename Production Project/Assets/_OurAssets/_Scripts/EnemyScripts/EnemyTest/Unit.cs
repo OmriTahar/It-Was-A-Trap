@@ -12,6 +12,7 @@ public class Unit : MonoBehaviour
 
     [SerializeField] Slider _myHealthSlider;
 
+
     private void Start()
     {
         _unitHP = _unitMaxHP;
@@ -23,14 +24,11 @@ public class Unit : MonoBehaviour
 
     public void RecieveDamage(IAttackable<Unit> enemy)
     {
-        print("Slider Value Before: " + _myHealthSlider.value + " Player Health: " + _unitHP);
-
         enemy.Attack(this);
 
         if (_myHealthSlider != null)
             _myHealthSlider.value = CalculateHealth();
 
-        print("Slider Value After: " + _myHealthSlider.value + " Player Health: " + _unitHP);
     }
 
 
@@ -38,4 +36,5 @@ public class Unit : MonoBehaviour
     {
         return _unitHP / _unitMaxHP;
     }
+
 }

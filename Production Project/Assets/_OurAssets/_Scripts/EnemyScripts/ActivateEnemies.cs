@@ -17,5 +17,7 @@ public class ActivateEnemies : MonoBehaviour
                 enemy.IsEnemyActivated = true;
             }
         }
+
+        Destroy(gameObject);
     }
 }

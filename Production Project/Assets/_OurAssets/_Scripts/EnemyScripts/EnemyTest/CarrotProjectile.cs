@@ -20,6 +20,7 @@ public class CarrotProjectile : Attack
         if (other.gameObject.tag == "Player")
         {
             other.gameObject.GetComponent<Unit>().RecieveDamage(this);
+            //PlayHitEffect(_hitEffect, _hitTransform);
         }
 
         _myCollider.isTrigger = false;

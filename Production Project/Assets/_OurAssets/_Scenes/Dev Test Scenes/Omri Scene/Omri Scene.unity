@@ -1039,6 +1039,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1847206532085420535, guid: ff979a8f3857ad545898c118865009e2, type: 3}
+      propertyPath: _leapPower
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847206532085420535, guid: ff979a8f3857ad545898c118865009e2, type: 3}
       propertyPath: _playerTransform
       value: 
       objectReference: {fileID: 4459864851264094600}
@@ -1046,6 +1050,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Leaper Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2133125792383201764, guid: ff979a8f3857ad545898c118865009e2, type: 3}
+      propertyPath: _hitEffect
+      value: 
+      objectReference: {fileID: 1255506708154246058, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff979a8f3857ad545898c118865009e2, type: 3}
 --- !u!1 &1326016187
@@ -1855,6 +1863,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 306363219331687872, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 306363219331687874, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1928329611525411306, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: cam
       value: 

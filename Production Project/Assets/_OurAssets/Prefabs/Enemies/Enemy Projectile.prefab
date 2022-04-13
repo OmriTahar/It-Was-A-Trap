@@ -127,5 +127,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 10
   _stunning: 0
+  _hitEffect: {fileID: 1255506708154246058, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
   _projectilePool: {fileID: 0}
   _decayTime: 3
