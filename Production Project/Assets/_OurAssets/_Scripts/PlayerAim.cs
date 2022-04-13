@@ -37,7 +37,7 @@ public class PlayerAim : MonoBehaviour
             currentActiveAttack.transform.position = (hit.point - transform.position).magnitude < maxDistance ? 
             hit.point : hit.point.normalized * maxDistance;
 
-            print($"hit ground: {hit.point}");
+            //print($"hit ground: {hit.point}");
         }
     }
 

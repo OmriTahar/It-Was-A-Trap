@@ -17,17 +17,13 @@ public class CarrotProjectile : Attack
 
     public override void OnTriggerEnter(Collider other)
     {
-
         if (other.gameObject.tag == "Player")
         {
             other.gameObject.GetComponent<Unit>().RecieveDamage(this);
-            _projectilePool.ReturnProjectileToPool(gameObject);
         }
-        else
-        {
-            _myCollider.isTrigger = false;
-            StartCoroutine(Decay());
-        }
+
+        _myCollider.isTrigger = false;
+        StartCoroutine(Decay());
     }
 
     private IEnumerator Decay()

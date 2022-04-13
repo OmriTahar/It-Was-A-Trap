@@ -11,9 +11,10 @@ public class Leap : Attack
     {
         if (other.gameObject.tag == "Player" && !_hasAttacked)
         {
+            _hasAttacked = true;
             other.gameObject.GetComponent<Unit>().RecieveDamage(this);
             print("Leaped player!");
-            _hasAttacked = true;
+            _hasAttacked = false;
         }
         else
         {

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 306363219331687872}
   m_Layer: 3
   m_Name: Penis
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,8 +167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8010685f363fda54a8e10ad747f5a91b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitHP: 50
+  _unitHP: 200
+  _unitMaxHP: 200
   _unitRange: 10
+  _myHealthSlider: {fileID: 0}
 --- !u!33 &4153713904787626795
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -572,7 +574,7 @@ GameObject:
   - component: {fileID: 4153713906352441136}
   m_Layer: 3
   m_Name: Joint
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
