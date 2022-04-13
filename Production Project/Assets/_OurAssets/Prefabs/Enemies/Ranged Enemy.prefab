@@ -39,13 +39,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6208570823500875094}
-  - component: {fileID: 2114601760455349149}
   - component: {fileID: 6208570823500875093}
   - component: {fileID: 6208570823500875092}
   - component: {fileID: 6208570823500875099}
   - component: {fileID: 274877041845581961}
   - component: {fileID: 6208570823500875095}
   - component: {fileID: 6208570823500875088}
+  - component: {fileID: 2114601760455349149}
   - component: {fileID: 737174679}
   m_Layer: 6
   m_Name: Ranged Enemy
@@ -71,20 +71,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2114601760455349149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6208570823500875098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8010685f363fda54a8e10ad747f5a91b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UnitHP: 1
-  UnitRange: 50
 --- !u!33 &6208570823500875093
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -224,6 +210,22 @@ MonoBehaviour:
   _waitBeforeLeap: 0
   _waitAfterLeap: 0
   _hasLeaped: 0
+--- !u!114 &2114601760455349149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6208570823500875098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8010685f363fda54a8e10ad747f5a91b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitHP: 0
+  _unitMaxHP: 0
+  _unitRange: 0
+  _myHealthSlider: {fileID: 0}
 --- !u!114 &737174679
 MonoBehaviour:
   m_ObjectHideFlags: 0

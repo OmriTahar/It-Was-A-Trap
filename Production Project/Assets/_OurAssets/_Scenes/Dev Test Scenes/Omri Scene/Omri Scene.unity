@@ -248,26 +248,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
-    - target: {fileID: 462980997254290175, guid: 9a14ae74a92f83341b2ffee8e1580e76, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 462980997254290175, guid: 9a14ae74a92f83341b2ffee8e1580e76, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 462980997254290175, guid: 9a14ae74a92f83341b2ffee8e1580e76, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 868518802}
-    - target: {fileID: 462980997254290175, guid: 9a14ae74a92f83341b2ffee8e1580e76, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 462980997254290175, guid: 9a14ae74a92f83341b2ffee8e1580e76, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 462980998371146224, guid: 9a14ae74a92f83341b2ffee8e1580e76, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -278,6 +258,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a14ae74a92f83341b2ffee8e1580e76, type: 3}
+--- !u!114 &104266061 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 462980997254290175, guid: 9a14ae74a92f83341b2ffee8e1580e76, type: 3}
+  m_PrefabInstance: {fileID: 104266060}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &104551960 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6208570823500875088, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
@@ -803,6 +794,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ranged Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6208570823500875098, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
 --- !u!1 &757455771
@@ -836,11 +831,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &868518802 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4153713904787626790, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-  m_PrefabInstance: {fileID: 306363220945230498}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &948491388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,6 +1052,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1847206532085420541, guid: ff979a8f3857ad545898c118865009e2, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133125792383201764, guid: ff979a8f3857ad545898c118865009e2, type: 3}
+      propertyPath: _damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208570823936465638, guid: ff979a8f3857ad545898c118865009e2, type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1873,6 +1871,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 306363219331687872, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1928329611525411306, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: cam
       value: 
@@ -1885,6 +1887,18 @@ PrefabInstance:
       propertyPath: UnitHP
       value: 5000
       objectReference: {fileID: 0}
+    - target: {fileID: 2971182695249097222, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: _unitHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971182695249097222, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: _unitMaxHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971182695249097222, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: _myHealthSlider
+      value: 
+      objectReference: {fileID: 104266061}
     - target: {fileID: 4153713904787626790, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_Name
       value: Player

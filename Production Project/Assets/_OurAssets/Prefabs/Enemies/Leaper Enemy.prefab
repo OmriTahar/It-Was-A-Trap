@@ -9,14 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1847206532085420529}
-  - component: {fileID: 5968199487607211834}
   - component: {fileID: 1847206532085420530}
   - component: {fileID: 1847206532085420531}
   - component: {fileID: 1847206532085420540}
   - component: {fileID: 5502081522304937006}
   - component: {fileID: 1847206532085420528}
-  - component: {fileID: 1847206532085420535}
   - component: {fileID: 6208570823936465638}
+  - component: {fileID: 1847206532085420535}
+  - component: {fileID: 5968199487607211834}
+  - component: {fileID: 2133125792383201764}
   m_Layer: 6
   m_Name: Leaper Enemy
   m_TagString: Untagged
@@ -41,20 +42,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5968199487607211834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1847206532085420541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8010685f363fda54a8e10ad747f5a91b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UnitHP: 1
-  UnitRange: 50
 --- !u!33 &1847206532085420530
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -156,6 +143,19 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
+--- !u!65 &6208570823936465638
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847206532085420541}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1847206532085420535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +184,7 @@ MonoBehaviour:
   _isAlreadyAttacked: 0
   ShootPoint: {fileID: 5334501406188710368}
   ShootForce: 12
+  ProjectilePrefab: {fileID: 0}
   _isPlayerTooClose: 0
   _isFleeing: 0
   _fleeingDuration: 0
@@ -193,19 +194,36 @@ MonoBehaviour:
   _waitBeforeLeap: 1.5
   _waitAfterLeap: 3
   _hasLeaped: 0
---- !u!65 &6208570823936465638
-BoxCollider:
+--- !u!114 &5968199487607211834
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847206532085420541}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8010685f363fda54a8e10ad747f5a91b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitHP: 0
+  _unitMaxHP: 0
+  _unitRange: 0
+  _myHealthSlider: {fileID: 0}
+--- !u!114 &2133125792383201764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847206532085420541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b82efad4246b648bf0690dfac6b1c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 10
+  _stunning: 0
 --- !u!1 &3363088848827885768
 GameObject:
   m_ObjectHideFlags: 0
