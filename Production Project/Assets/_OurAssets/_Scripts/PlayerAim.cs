@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class PlayerAim : MonoBehaviour
 {
-    [SerializeField] Camera cam;
-    [SerializeField] GameObject line;
-    [SerializeField] GameObject outlinePrefab;
-    [SerializeField] float abilityRange = 3f;
+    [SerializeField] Camera _cam;
+    [SerializeField] GameObject _outlinePrefab, _trapPrefab, _wallPrefab, _line;
     [SerializeField] float maxDistance = 5f;
 
     GameObject currentActiveAttack;
@@ -16,7 +14,7 @@ public class PlayerAim : MonoBehaviour
 
     private void Awake()
     {
-        currentActiveAttack = Instantiate(outlinePrefab);
+        currentActiveAttack = Instantiate(_outlinePrefab);
 
         ToggleDraw();
     }
@@ -30,7 +28,7 @@ public class PlayerAim : MonoBehaviour
     private void UpdateAim()
     {
         RaycastHit hit;
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit, 100, groundMask))
         {
@@ -44,7 +42,7 @@ public class PlayerAim : MonoBehaviour
     public void ToggleDraw()
     {
         active = !active;
-        outlinePrefab.SetActive(active);
+        _outlinePrefab.SetActive(active);
         //Line.SetActive(active);
     }
 

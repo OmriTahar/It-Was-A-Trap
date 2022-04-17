@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerData : MonoBehaviour
+public enum Weapon { Trap, Block}
+public class PlayerData : Unit
 {
     public static PlayerData Instance;
-
-    [SerializeField] int MaxHealth = 100, CurrentHealth;
+    [SerializeField] internal Weapon CurrentWeapon;
 
     private void Awake()
     {
@@ -17,12 +17,6 @@ public class PlayerData : MonoBehaviour
         }
         Instance = this;
 
-        CurrentHealth = MaxHealth;
-    }
-
-    public void TakeDamage(int damage)
-    {
-        CurrentHealth -= damage;
     }
 
 }

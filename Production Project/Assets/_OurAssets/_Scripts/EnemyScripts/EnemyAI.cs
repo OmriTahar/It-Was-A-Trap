@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : Unit
 {
-
     private NavMeshAgent _agent;
     private Rigidbody _rb;
 
@@ -27,7 +26,6 @@ public class EnemyAI : MonoBehaviour
     //[SerializeField] float _playerSightRange;
 
     [Header("Attack Settings")]
-    [SerializeField] float _attackRange;
     [SerializeField] float _timeBetweenAttacks;
     [SerializeField] bool _isPlayerInAttackRange, _isAlreadyAttacked;
 
@@ -108,7 +106,7 @@ public class EnemyAI : MonoBehaviour
 
         if (IsEnemyActivated)
         {
-            _isPlayerInAttackRange = Physics.CheckSphere(transform.position, _attackRange, _playerLayer);
+            _isPlayerInAttackRange = Physics.CheckSphere(transform.position, _unitRange, _playerLayer);
 
             if (IsRangedEnemy)
             {
@@ -292,6 +290,6 @@ public class EnemyAI : MonoBehaviour
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(transform.position, _moveBackRange);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _attackRange);
+        Gizmos.DrawWireSphere(transform.position, _unitRange);
     }
 }

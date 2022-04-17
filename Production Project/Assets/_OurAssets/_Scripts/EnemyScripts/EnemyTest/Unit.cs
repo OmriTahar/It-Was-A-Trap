@@ -5,13 +5,11 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
-
     [SerializeField] internal float _unitHP;
     [SerializeField] internal float _unitMaxHP;
     [SerializeField] internal float _unitRange;
 
     [SerializeField] Slider _myHealthSlider;
-
 
     private void Start()
     {
