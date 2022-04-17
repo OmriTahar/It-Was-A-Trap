@@ -4,24 +4,33 @@ using UnityEngine;
 
 public class PlayerAim : MonoBehaviour
 {
+    public static PlayerAim Instance;
     [SerializeField] Camera _cam;
-    [SerializeField] GameObject _outlinePrefab, _trapPrefab, _wallPrefab, _line;
-    [SerializeField] float maxDistance = 5f;
+    [SerializeField] GameObject _outlinePrefab, _line;
+    [SerializeField] LayerMask _groundMask;
+    [SerializeField] float _maxDistance = 5f;
+    [SerializeField] bool _active = false;
 
-    GameObject currentActiveAttack;
-    [SerializeField] LayerMask groundMask;
-    [SerializeField] bool active = false;
+    internal GameObject _outline;
 
     private void Awake()
     {
-        currentActiveAttack = Instantiate(_outlinePrefab);
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+        _outline = Instantiate(_outlinePrefab, transform);
         //remove this after we decide when we want aim to start V
         ToggleDraw();
     }
 
-    private void LateUpdate()
+    private void Update()
     {
-        if (active)
+        if (_active)
             UpdateAim();
     }
 
@@ -30,20 +39,32 @@ public class PlayerAim : MonoBehaviour
         RaycastHit hit;
         Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, 1000, groundMask))
+        if (Physics.Raycast(ray, out hit, 1000, _groundMask))
         {
-            currentActiveAttack.transform.position = (hit.point - transform.position).magnitude <= maxDistance ? 
-            hit.point : /*even if i normalize and multiply it doesnt seem work*/hit.point;
-
-            //print($"hit ground: {hit.point}\ndelta norm:{(hit.point - transform.position).normalized * maxDistance}");
+            _outline.transform.position = (hit.point - transform.position).magnitude <= _maxDistance ? 
+            hit.point : /*even if i normalize and multiply it doesnt seem work*/ hit.point;
+            //print($"delta norm:{(hit.point - transform.position).normalized}");
         }
     }
 
     public void ToggleDraw()
     {
-        active = !active;
-        _outlinePrefab.SetActive(active);
-        //Line.SetActive(active);
+        _active = !_active;
+        _outlinePrefab.SetActive(_active);
+        //_line.SetActive(active);
+        //switch (PlayerData.Instance.CurrentWeapon)
+        //{
+        //    case Weapon.Trap:
+        //        PlayerData.Instance._wallPrefab.SetActive(!active);
+        //        PlayerData.Instance._trapPrefab.SetActive(active);
+        //        break;
+        //    case Weapon.Wall:
+        //        PlayerData.Instance._trapPrefab.SetActive(!active);
+        //        PlayerData.Instance._wallPrefab.SetActive(active);
+        //        break;
+        //    default:
+        //        break;
+        //}
     }
 
 }

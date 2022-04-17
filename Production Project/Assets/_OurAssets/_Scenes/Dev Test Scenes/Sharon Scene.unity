@@ -237,18 +237,6 @@ PrefabInstance:
       propertyPath: PlayerMovementCamera
       value: 
       objectReference: {fileID: 1089423288}
-    - target: {fileID: 4153713906224450990, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4153713906736650210, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4153713906755511731, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 138
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
 --- !u!1 &101698176 stripped
