@@ -81,7 +81,6 @@ MonoBehaviour:
   IsEnemyActivated: 0
   IsRangedEnemy: 0
   IsLeapEnemy: 1
-  _attackRange: 10
   _timeBetweenAttacks: 2
   _isPlayerInAttackRange: 0
   _isAlreadyAttacked: 0
