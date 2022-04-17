@@ -15,7 +15,7 @@ public class PlayerAim : MonoBehaviour
     private void Awake()
     {
         currentActiveAttack = Instantiate(_outlinePrefab);
-
+        //remove this after we decide when we want aim to start V
         ToggleDraw();
     }
 
@@ -30,12 +30,12 @@ public class PlayerAim : MonoBehaviour
         RaycastHit hit;
         Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, 100, groundMask))
+        if (Physics.Raycast(ray, out hit, 1000, groundMask))
         {
-            currentActiveAttack.transform.position = (hit.point - transform.position).magnitude < maxDistance ? 
-            hit.point : hit.point.normalized * maxDistance;
+            currentActiveAttack.transform.position = (hit.point - transform.position).magnitude <= maxDistance ? 
+            hit.point : /*even if i normalize and multiply it doesnt seem work*/hit.point;
 
-            //print($"hit ground: {hit.point}");
+            //print($"hit ground: {hit.point}\ndelta norm:{(hit.point - transform.position).normalized * maxDistance}");
         }
     }
 

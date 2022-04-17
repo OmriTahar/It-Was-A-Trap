@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Unit : MonoBehaviour
 {
     [SerializeField] internal float _unitHP, _unitMaxHP, _unitRange;
-
     [SerializeField] Slider _myHealthSlider;
 
     private void Start()
@@ -26,7 +25,6 @@ public class Unit : MonoBehaviour
             _myHealthSlider.value = CalculateHealth();
 
     }
-
 
     float CalculateHealth()
     {
