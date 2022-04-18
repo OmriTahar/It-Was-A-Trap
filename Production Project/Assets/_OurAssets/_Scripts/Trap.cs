@@ -2,19 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trap : MonoBehaviour
+public class Trap : Attack
 {
-    int trapdmg = 50;
-    EnemyAI aI;
-    private void OnTriggerEnter(Collider other)
+    
+    
+    public override void  OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")
         {
-            aI._unitHP -= trapdmg;
-            if (aI._unitHP >= 0)
+           other.GetComponent<EnemyAI>()._unitHP -=_damage ;
+            if (other.GetComponent<EnemyAI>()._unitHP <= 0)
             {
-                Destroy(aI);
+                Destroy(other.gameObject);
+                Destroy(gameObject);
+                
             }
         }
+    }
+    private void OnDestroy()
+    {
+        PlayerData.Instance._trapAmmo++;
     }
 }

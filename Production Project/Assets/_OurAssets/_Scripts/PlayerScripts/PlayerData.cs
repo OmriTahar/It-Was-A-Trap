@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Weapon { Trap, Wall}
+public enum Weapon { Trap, Wall }
 public class PlayerData : Unit
 {
     public static PlayerData Instance;
     Queue<GameObject> activeTraps = new Queue<GameObject>();
     Queue<GameObject> activeWalls = new Queue<GameObject>();
     [SerializeField] internal GameObject _trapPrefab, _wallPrefab;
-    [SerializeField] int _wallAmmo, _trapAmmo, _maxTrapAmmo = 3, _maxWallAmmo = 3;
+    [SerializeField] internal int _wallAmmo, _trapAmmo, _maxTrapAmmo = 3, _maxWallAmmo = 3;
     [SerializeField] internal Weapon CurrentWeapon;
-    
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -31,6 +31,10 @@ public class PlayerData : Unit
         if (Input.GetKeyDown(KeyCode.Q))
         {
             SwitchWeaponPrefab();
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Attack();
         }
     }
 
