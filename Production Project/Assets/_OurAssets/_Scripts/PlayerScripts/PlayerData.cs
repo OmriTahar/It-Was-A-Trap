@@ -12,6 +12,7 @@ public class PlayerData : Unit
     [SerializeField] internal int _wallAmmo, _trapAmmo, _maxTrapAmmo = 3, _maxWallAmmo = 3;
     [SerializeField] internal Weapon CurrentWeapon;
 
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
