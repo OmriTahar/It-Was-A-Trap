@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 6208570823500875095}
   m_Layer: 6
   m_Name: Ranged Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a99d1b5c727bd4eadc39b88a970c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitHP: 0
-  _unitMaxHP: 0
+  _unitHP: 50
+  _unitMaxHP: 50
   _unitRange: 15
   _myHealthSlider: {fileID: 0}
   _playerTransform: {fileID: 0}
@@ -110,7 +110,6 @@ MonoBehaviour:
   IsEnemyActivated: 0
   IsRangedEnemy: 1
   IsLeapEnemy: 0
-  _attackRange: 15
   _timeBetweenAttacks: 2
   _isPlayerInAttackRange: 0
   _isAlreadyAttacked: 0

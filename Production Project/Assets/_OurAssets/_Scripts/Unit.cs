@@ -13,7 +13,7 @@ public class Unit : MonoBehaviour
         _unitHP = _unitMaxHP;
 
         if (_myHealthSlider != null)
-            _myHealthSlider.value = CalculateHealth();
+            _myHealthSlider.value = ChangeHealthUI();
 
     }
 
@@ -22,13 +22,27 @@ public class Unit : MonoBehaviour
         enemy.Attack(this);
 
         if (_myHealthSlider != null)
-            _myHealthSlider.value = CalculateHealth();
+            _myHealthSlider.value = ChangeHealthUI();
 
+        CheckDeath();
     }
 
-    float CalculateHealth()
+    float ChangeHealthUI()
     {
         return _unitHP / _unitMaxHP;
     }
 
+    void CheckDeath()
+    {
+        if (_unitHP <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        print("HP: " + _unitHP + ". Im dying!");
+        Destroy(gameObject);
+    }
 }

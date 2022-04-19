@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ActivateEnemies : MonoBehaviour
 {
@@ -16,8 +14,8 @@ public class ActivateEnemies : MonoBehaviour
                 print("activating enemies!");
                 enemy.IsEnemyActivated = true;
             }
-        }
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }
