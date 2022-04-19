@@ -242,7 +242,7 @@ public class FirstPersonController : MonoBehaviour
                 _isWalking = false;
             }
 
-            // All movement calculations shile sprint is active
+            // All movement calculations while sprint is active
             if (EnableSprint && Input.GetKey(SprintKey) && _sprintRemaining > 0f && !_isSprintCooldown)
             {
                 targetVelocity = transform.TransformDirection(targetVelocity) * SprintSpeed;
@@ -518,13 +518,13 @@ public class FirstPersonControllerEditor : Editor
         #endregion
 
         //Sets any changes from the prefab
-        if (GUI.changed) 
+        if (GUI.changed)
         {
             EditorUtility.SetDirty(_firstPersonController_EditorRef);
             Undo.RecordObject(_firstPersonController_EditorRef, "FPC Change");
             _serializedObject.ApplyModifiedProperties();
         }
-    } 
+    }
 }
 
 #endif
