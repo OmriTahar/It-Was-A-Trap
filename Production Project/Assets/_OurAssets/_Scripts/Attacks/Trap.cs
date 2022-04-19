@@ -25,6 +25,7 @@ public class Trap : Attack
     private IEnumerator Decay()
     {
         yield return new WaitForSeconds(_decayTime);
+
         Destroy(gameObject);
     }
 
@@ -41,6 +42,7 @@ public class Trap : Attack
 
     private void OnDestroy()
     {
-        PlayerData.Instance._trapAmmo++;
+        PlayerData.Instance._currentTrapAmount++;
     }
+
 }

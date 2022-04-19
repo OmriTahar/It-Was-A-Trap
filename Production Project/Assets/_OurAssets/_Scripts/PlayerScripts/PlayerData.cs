@@ -6,12 +6,11 @@ public enum Weapon { Trap, Wall }
 public class PlayerData : Unit
 {
     public static PlayerData Instance;
-    Queue<GameObject> activeTraps = new Queue<GameObject>();
-    Queue<GameObject> activeWalls = new Queue<GameObject>();
+    internal Queue<GameObject> activeTraps = new Queue<GameObject>();
+    internal Queue<GameObject> activeWalls = new Queue<GameObject>();
     [SerializeField] internal GameObject _trapPrefab, _wallPrefab;
-    [SerializeField] internal int _wallAmmo, _trapAmmo, _maxTrapAmmo = 3, _maxWallAmmo = 3;
+    [SerializeField] internal int _maxTrapAmmo = 3, _maxWallAmmo = 3, _currentWallAmount, _currentTrapAmount;
     [SerializeField] internal Weapon CurrentWeapon;
-
 
     private void Awake()
     {
@@ -23,8 +22,8 @@ public class PlayerData : Unit
 
         Instance = this;
 
-        _wallAmmo = _maxWallAmmo;
-        _trapAmmo = _maxTrapAmmo;
+        _currentWallAmount = _maxWallAmmo;
+        _currentTrapAmount = _maxTrapAmmo;
     }
 
     private void Update()
@@ -44,35 +43,27 @@ public class PlayerData : Unit
         switch (CurrentWeapon)
         {
             case Weapon.Trap:
-                if (_trapAmmo <= 0)
+
+                if (activeTraps.Count == _maxTrapAmmo)
                 {
                     GameObject firstTrap = activeTraps.Dequeue();
                     Destroy(firstTrap);
-                    if (_trapAmmo < _maxTrapAmmo)
-                    {
-                        _trapAmmo++;
-                    }
                 }
-
                 GameObject trap = Instantiate(_trapPrefab, PlayerAim.Instance._outline.transform.position, Quaternion.identity);
-                _trapAmmo--;
                 activeTraps.Enqueue(trap);
+                _currentTrapAmount--;
                 break;
 
             case Weapon.Wall:
-                if (_wallAmmo <= 0)
+
+                if (activeWalls.Count == _maxWallAmmo)
                 {
                     GameObject firstWall = activeWalls.Dequeue();
                     Destroy(firstWall);
-                    if (_wallAmmo < _maxWallAmmo)
-                    {
-                        _wallAmmo++;
-                    }
                 }
-
                 GameObject wall = Instantiate(_wallPrefab, PlayerAim.Instance._outline.transform.position, Quaternion.identity);
-                _wallAmmo--;
                 activeWalls.Enqueue(wall);
+                _currentWallAmount--;
                 break;
             default:
                 break;
