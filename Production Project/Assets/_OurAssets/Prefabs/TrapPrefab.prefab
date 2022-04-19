@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6748396656139543187
 Transform:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   _damage: 10
   _stunning: 0
   _hitParticle: {fileID: 3929031335700610076}
-  _decayTime: 2
+  _decayTime: 1
   _stunDuration: 2
 --- !u!1001 &2876337382657318838
 PrefabInstance:

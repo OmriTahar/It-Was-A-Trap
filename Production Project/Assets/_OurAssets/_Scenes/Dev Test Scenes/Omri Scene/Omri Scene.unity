@@ -427,7 +427,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 183
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -780,10 +780,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1847206532085420535, guid: ff979a8f3857ad545898c118865009e2, type: 3}
-      propertyPath: _leapPower
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1847206532085420535, guid: ff979a8f3857ad545898c118865009e2, type: 3}
       propertyPath: _playerTransform
       value: 
       objectReference: {fileID: 4459864851264094600}
@@ -795,10 +791,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2133125792383201764, guid: ff979a8f3857ad545898c118865009e2, type: 3}
-      propertyPath: _hitEffect
-      value: 
-      objectReference: {fileID: 1255506708154246058, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff979a8f3857ad545898c118865009e2, type: 3}
 --- !u!1 &1326016187

@@ -18,10 +18,10 @@ public class EnemyAI : Unit
     public bool IsRangedEnemy;
     public bool IsLeapEnemy;
 
-    [Header("Patroling")]
+    //[Header("Patroling")]
     private bool _isDestinationSet;
-    private float _PatrolingPointRange;
     private Vector3 _moveDestination;
+    private float _PatrolingPointRange;
     //[SerializeField] bool _isPlayerInSight;
     //[SerializeField] float _playerSightRange;
 
@@ -123,42 +123,44 @@ public class EnemyAI : Unit
         if (!IsEnemyActivated)
         {
             print("Enemy: " + name + " is not activated.");
-            //Patroling();
+            _agent.SetDestination(transform.position); // Make sure enemy doesn't move while attacking
         }
-
-        if (IsEnemyActivated && !_isPlayerInAttackRange && !_isFleeing)
+        else
         {
-            print("Chasing");
-            ChasePlayer();
-        }
-
-        if (IsRangedEnemy)
-        {
-
-            if (IsEnemyActivated && _isPlayerTooClose && _canFlee)
+            if (IsEnemyActivated && !_isPlayerInAttackRange && !_isFleeing)
             {
-                print("fleeing");
-                StartCoroutine(Flee());
+                print("Chasing");
+                ChasePlayer();
             }
 
-            if (IsEnemyActivated && (!_isPlayerTooClose && _isPlayerInAttackRange || _isPlayerTooClose && !_canFlee))
+            if (IsRangedEnemy)
             {
-                print("Attacking");
-                RangeAttack();
-            }
+
+                if (IsEnemyActivated && _isPlayerTooClose && _canFlee)
+                {
+                    print("fleeing");
+                    StartCoroutine(Flee());
+                }
+
+                if (IsEnemyActivated && (!_isPlayerTooClose && _isPlayerInAttackRange || _isPlayerTooClose && !_canFlee))
+                {
+                    print("Attacking");
+                    RangeAttack();
+                }
 
 
-        }
-        else if (IsLeapEnemy)
-        {
-            if (IsEnemyActivated && _isPlayerInAttackRange && !_hasLeaped)
-            {
-                print("Leaping");
-                StartCoroutine(Leap());
             }
-            else if (IsEnemyActivated && _isPlayerInAttackRange && _hasLeaped)
+            else if (IsLeapEnemy)
             {
-                print("Recharging Leap");
+                if (IsEnemyActivated && _isPlayerInAttackRange && !_hasLeaped)
+                {
+                    print("Leaping");
+                    StartCoroutine(Leap());
+                }
+                else if (IsEnemyActivated && _isPlayerInAttackRange && _hasLeaped)
+                {
+                    print("Recharging Leap");
+                }
             }
         }
     }
@@ -263,7 +265,11 @@ public class EnemyAI : Unit
             _agent.SetDestination(newPosition);
             // -------------------------
 
-            yield return new WaitForSeconds(_fleeingDuration);
+            if (IsEnemyActivated)
+            {
+                yield return new WaitForSeconds(_fleeingDuration);
+            }
+
             _isFleeing = false;
         }
     }
