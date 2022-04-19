@@ -312,6 +312,10 @@ PrefabInstance:
       propertyPath: _trapPrefab
       value: 
       objectReference: {fileID: 3265388038745949489, guid: f26bde5316fda87468affb6a084135f5, type: 3}
+    - target: {fileID: 3713159152969866624, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: _wallPrefab
+      value: 
+      objectReference: {fileID: 6670106066988666373, guid: 17a6c0180e9f52045a1e2a0c17b4d59c, type: 3}
     - target: {fileID: 4153713904787626790, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_Name
       value: Player
@@ -747,6 +751,10 @@ PrefabInstance:
     - target: {fileID: 1847206532085420535, guid: ff979a8f3857ad545898c118865009e2, type: 3}
       propertyPath: _unitMaxHP
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847206532085420535, guid: ff979a8f3857ad545898c118865009e2, type: 3}
+      propertyPath: IsEnemyActivated
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1847206532085420535, guid: ff979a8f3857ad545898c118865009e2, type: 3}
       propertyPath: _playerTransform
