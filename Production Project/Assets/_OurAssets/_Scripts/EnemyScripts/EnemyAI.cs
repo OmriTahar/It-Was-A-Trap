@@ -122,8 +122,8 @@ public class EnemyAI : Unit
     {
         if (!IsEnemyActivated)
         {
-            print("Patroling");
-            Patroling();
+            print("Enemy: " + name + " is not activated.");
+            //Patroling();
         }
 
         if (IsEnemyActivated && !_isPlayerInAttackRange && !_isFleeing)
