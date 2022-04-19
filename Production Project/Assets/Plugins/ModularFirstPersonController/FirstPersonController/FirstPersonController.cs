@@ -120,14 +120,14 @@ public class FirstPersonController : MonoBehaviour
             SprintBarBG.gameObject.SetActive(true);
             SprintBarFill.gameObject.SetActive(true);
 
-            float screenWidth = Screen.width;
-            float screenHeight = Screen.height;
+            //float screenWidth = Screen.width;
+            //float screenHeight = Screen.height;
 
-            _sprintBarWidth = screenWidth * SprintBarWidthPercent;
-            _sprintBarHeight = screenHeight * SprintBarHeightPercent;
+            //_sprintBarWidth = screenWidth * SprintBarWidthPercent;
+            //_sprintBarHeight = screenHeight * SprintBarHeightPercent;
 
-            SprintBarBG.rectTransform.sizeDelta = new Vector3(_sprintBarWidth, _sprintBarHeight, 0f);
-            SprintBarFill.rectTransform.sizeDelta = new Vector3(_sprintBarWidth - 2, _sprintBarHeight - 2, 0f);
+            //SprintBarBG.rectTransform.sizeDelta = new Vector3(_sprintBarWidth, _sprintBarHeight, 0f);
+            //SprintBarFill.rectTransform.sizeDelta = new Vector3(_sprintBarWidth - 2, _sprintBarHeight - 2, 0f);
 
             if (HideBarWhenFull)
             {
