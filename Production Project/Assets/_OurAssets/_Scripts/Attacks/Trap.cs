@@ -5,7 +5,7 @@ using UnityEngine;
 public class Trap : Attack
 {
     [SerializeField] GameObject _hitParticle;
-    [SerializeField] float _decayTime;
+    [SerializeField] float _decayTime; // Should always be longer than stun duration!
     [SerializeField] float _stunDuration = 2f;
 
     private bool _wasActivated = false;
@@ -36,19 +36,24 @@ public class Trap : Attack
     private IEnumerator Decay()
     {
         yield return new WaitForSeconds(_decayTime);
-
         Destroy(gameObject);
     }
 
     private IEnumerator StunEnemy(EnemyAI enemyAI)
     {
         enemyAI.IsEnemyActivated = false;
+        enemyAI.IsStunned = true;
         print("Im stunned!");
 
-        yield return new WaitForSeconds(_stunDuration);
-        enemyAI.IsEnemyActivated = true;
-        print("Im freeeeeee!");
+        if (enemyAI.gameObject.activeSelf && enemyAI.gameObject != null)
+        {
+            yield return new WaitForSeconds(_stunDuration);
 
+            enemyAI.IsEnemyActivated = true;
+            enemyAI.IsStunned = false;
+            print("Im freeeeeee!");
+        }
+        
     }
 
     private void OnDestroy()

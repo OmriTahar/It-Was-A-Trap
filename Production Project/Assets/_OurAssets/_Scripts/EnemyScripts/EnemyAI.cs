@@ -9,10 +9,14 @@ public class EnemyAI : Unit
     private NavMeshAgent _agent;
     private Rigidbody _rb;
 
-    [Header("General Settings")]
+    [Header("General Settings & References")]
     [SerializeField] Transform _playerTransform;
     [SerializeField] LayerMask _groundLayer, _playerLayer;
     public bool IsEnemyActivated;
+
+    [Header("Stun Settings")]
+    public bool IsStunned;
+    [SerializeField] ParticleSystem _stunEffect;
 
     [Header("Enemy TYPE")]
     public bool IsRangedEnemy;
@@ -28,11 +32,11 @@ public class EnemyAI : Unit
     [Header("Attack Settings")]
     [SerializeField] float _timeBetweenAttacks;
     [SerializeField] bool _isPlayerInAttackRange, _isAlreadyAttacked;
+    public GameObject AttackPrefab;
 
     [Header("Ranged Attack")]
     [SerializeField] Transform ShootPoint;
     [SerializeField] float ShootForce;
-    public GameObject ProjectilePrefab;
     private ProjectilePool _projectilePool;
 
     [Header("Fleeing")]
@@ -48,8 +52,6 @@ public class EnemyAI : Unit
     [SerializeField] float _waitBeforeLeap;
     [SerializeField] float _waitAfterLeap;
     [SerializeField] bool _hasLeaped = false;
-    private BoxCollider _leapCollider;
-
 
     #region Jumping (Currently Not Used)
 
@@ -72,11 +74,11 @@ public class EnemyAI : Unit
         _agent = GetComponent<NavMeshAgent>();
         _projectilePool = GetComponent<ProjectilePool>();
 
-        if (IsLeapEnemy)
-        {
-            _leapCollider = GetComponent<BoxCollider>();
-            _leapCollider.enabled = false;
-        }
+        //if (IsLeapEnemy)
+        //{
+        //    _leapCollider = GetComponent<BoxCollider>();
+        //    _leapCollider.enabled = false;
+        //}
 
         LockEnemyType();
     }
@@ -120,6 +122,16 @@ public class EnemyAI : Unit
 
     private void EnemyStateMachine()
     {
+
+        if (IsStunned && _stunEffect != null && !_stunEffect.isPlaying)
+        {
+            _stunEffect.Play();
+            print("Effect is playing!");
+        }
+        else if (!IsStunned && _stunEffect.isPlaying)
+            _stunEffect.Stop();
+
+
         if (!IsEnemyActivated)
         {
             print("Enemy: " + name + " is not activated.");
@@ -174,11 +186,13 @@ public class EnemyAI : Unit
 
         yield return new WaitForSeconds(_waitBeforeLeap);
 
-        _leapCollider.enabled = true;
+        AttackPrefab.SetActive(true);
+        //_leapCollider.enabled = true;
         _rb.AddForce((_playerTransform.position - transform.position) * _leapPower, ForceMode.Impulse);
 
         yield return new WaitForSeconds(_waitAfterLeap);
-        _leapCollider.enabled = false;
+        AttackPrefab.SetActive(false);
+        //_leapCollider.enabled = false;
         _hasLeaped = false;
     }
 
@@ -265,11 +279,7 @@ public class EnemyAI : Unit
             _agent.SetDestination(newPosition);
             // -------------------------
 
-            if (IsEnemyActivated)
-            {
-                yield return new WaitForSeconds(_fleeingDuration);
-            }
-
+            yield return new WaitForSeconds(_fleeingDuration);
             _isFleeing = false;
         }
     }

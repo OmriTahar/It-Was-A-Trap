@@ -112,7 +112,7 @@ MonoBehaviour:
   _damage: 10
   _stunning: 0
   _hitParticle: {fileID: 3929031335700610076}
-  _decayTime: 1
+  _decayTime: 3
   _stunDuration: 2
 --- !u!1001 &2876337382657318838
 PrefabInstance:

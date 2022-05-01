@@ -573,6 +573,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &922276449 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7423034896221652465, guid: ff979a8f3857ad545898c118865009e2, type: 3}
+  m_PrefabInstance: {fileID: 1251190801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &948491388
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,6 +785,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1847206532085420535, guid: ff979a8f3857ad545898c118865009e2, type: 3}
+      propertyPath: AttackPrefab
+      value: 
+      objectReference: {fileID: 922276449}
+    - target: {fileID: 1847206532085420535, guid: ff979a8f3857ad545898c118865009e2, type: 3}
       propertyPath: _playerTransform
       value: 
       objectReference: {fileID: 4459864851264094600}
@@ -952,6 +961,10 @@ PrefabInstance:
     - target: {fileID: 6208570823500875098, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
       propertyPath: m_Name
       value: Ranged Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208570823500875098, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
