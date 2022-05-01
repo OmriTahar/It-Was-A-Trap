@@ -6,12 +6,13 @@ public class PlayerAim : MonoBehaviour
 {
     public static PlayerAim Instance;
     [SerializeField] Camera _cam;
-    [SerializeField] GameObject _outlinePrefab, _line;
+    [SerializeField] GameObject _outlinePrefab, _line, _trapOutline, _WallOutline;
     [SerializeField] LayerMask _groundMask;
     [SerializeField] float _maxDistance = 5f;
     [SerializeField] bool _active = false;
-
+    internal bool _canShoot = true;
     internal GameObject _outline;
+    GameObject _currentAttackOutline;
 
     private void Awake()
     {
@@ -23,7 +24,9 @@ public class PlayerAim : MonoBehaviour
 
         Instance = this;
 
+        _currentAttackOutline = _trapOutline;
         _outline = Instantiate(_outlinePrefab, transform);
+        //_outline = Instantiate(_currentAttackOutline, transform);
         //remove this after we decide when we want aim to start V
         ToggleDraw();
     }
@@ -45,6 +48,10 @@ public class PlayerAim : MonoBehaviour
             hit.point : /*even if i normalize and multiply it doesnt seem work*/ hit.point;
             //print($"delta norm:{(hit.point - transform.position).normalized}");
         }
+        else
+        {
+            _canShoot = false;
+        }
     }
 
     public void ToggleDraw()
@@ -52,19 +59,6 @@ public class PlayerAim : MonoBehaviour
         _active = !_active;
         _outlinePrefab.SetActive(_active);
         //_line.SetActive(active);
-        //switch (PlayerData.Instance.CurrentWeapon)
-        //{
-        //    case Weapon.Trap:
-        //        PlayerData.Instance._wallPrefab.SetActive(!active);
-        //        PlayerData.Instance._trapPrefab.SetActive(active);
-        //        break;
-        //    case Weapon.Wall:
-        //        PlayerData.Instance._trapPrefab.SetActive(!active);
-        //        PlayerData.Instance._wallPrefab.SetActive(active);
-        //        break;
-        //    default:
-        //        break;
-        //}
     }
 
 }

@@ -49,9 +49,14 @@ public class PlayerData : Unit
                     GameObject firstTrap = activeTraps.Dequeue();
                     Destroy(firstTrap);
                 }
-                GameObject trap = Instantiate(_trapPrefab, PlayerAim.Instance._outline.transform.position, Quaternion.identity);
-                activeTraps.Enqueue(trap);
-                _currentTrapAmount--;
+
+                if (PlayerAim.Instance._canShoot)
+                {
+                    GameObject trap = Instantiate(_trapPrefab, PlayerAim.Instance._outline.transform.position, Quaternion.identity);
+                    activeTraps.Enqueue(trap);
+                    _currentTrapAmount--;
+                }
+
                 break;
 
             case Weapon.Wall:
@@ -61,9 +66,14 @@ public class PlayerData : Unit
                     GameObject firstWall = activeWalls.Dequeue();
                     Destroy(firstWall);
                 }
-                GameObject wall = Instantiate(_wallPrefab, PlayerAim.Instance._outline.transform.position, Quaternion.identity);
-                activeWalls.Enqueue(wall);
-                _currentWallAmount--;
+
+                if (PlayerAim.Instance._canShoot)
+                {
+                    GameObject wall = Instantiate(_wallPrefab, PlayerAim.Instance._outline.transform.position, Quaternion.identity);
+                    activeWalls.Enqueue(wall);
+                    _currentWallAmount--;
+                }
+
                 break;
             default:
                 break;
