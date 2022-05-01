@@ -1,16 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public enum Weapon { Trap, Wall }
+
 public class PlayerData : Unit
 {
     public static PlayerData Instance;
     internal Queue<GameObject> activeTraps = new Queue<GameObject>();
     internal Queue<GameObject> activeWalls = new Queue<GameObject>();
     [SerializeField] internal GameObject _trapPrefab, _wallPrefab;
-    [SerializeField] internal int _maxTrapAmmo = 3, _maxWallAmmo = 3, _currentWallAmount, _currentTrapAmount;
+    [SerializeField] internal int _maxTrapAmmo = 3, _maxWallAmmo = 3, _currentCoverAmount, _currentTrapAmount;
     [SerializeField] internal Weapon CurrentWeapon;
+
+    [Header("UI")]
+    public TextMeshProUGUI CurrentAmmoUI;
+    public Image CurrentWeaponImage;
+    [SerializeField] Sprite _coverImage;
+    [SerializeField] Sprite _trapImage;
 
     private void Awake()
     {
@@ -22,7 +31,7 @@ public class PlayerData : Unit
 
         Instance = this;
 
-        _currentWallAmount = _maxWallAmmo;
+        _currentCoverAmount = _maxWallAmmo;
         _currentTrapAmount = _maxTrapAmmo;
     }
 
@@ -31,11 +40,14 @@ public class PlayerData : Unit
         if (Input.GetKeyDown(KeyCode.Q))
         {
             SwitchWeaponPrefab();
+            UpdateUI();
         }
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Attack();
+            UpdateUI();
         }
+
     }
 
     void Attack()
@@ -71,7 +83,7 @@ public class PlayerData : Unit
                 {
                     GameObject wall = Instantiate(_wallPrefab, PlayerAim.Instance._outline.transform.position, Quaternion.identity);
                     activeWalls.Enqueue(wall);
-                    _currentWallAmount--;
+                    _currentCoverAmount--;
                 }
 
                 break;
@@ -99,4 +111,22 @@ public class PlayerData : Unit
         }
     }
 
+    public void UpdateUI()
+    {
+        switch (CurrentWeapon)
+        {
+            case Weapon.Trap:
+                CurrentWeaponImage.sprite = _trapImage;
+                CurrentAmmoUI.text = _currentTrapAmount.ToString();
+                break;
+            case Weapon.Wall:
+                CurrentWeaponImage.sprite = _coverImage;
+                CurrentAmmoUI.text = _currentCoverAmount.ToString();
+                break;
+            default:
+                CurrentWeaponImage.sprite = _trapImage;
+                CurrentAmmoUI.text = _currentTrapAmount.ToString();
+                break;
+        }
+    }
 }
