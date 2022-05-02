@@ -53,7 +53,7 @@ public class PlayerAim : MonoBehaviour
             {
                 distanceVector.y = -1;
                 _outline.transform.position = transform.position + distanceVector.normalized * _maxDistance;
-                //normalized prolly change the Y axis so it's not really flat
+                _outline.transform.position = new Vector3(_outline.transform.position.x, hit.point.y, _outline.transform.position.z);
             }
         }
         else
