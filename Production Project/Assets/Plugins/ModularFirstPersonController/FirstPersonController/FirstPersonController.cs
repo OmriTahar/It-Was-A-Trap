@@ -189,7 +189,7 @@ public class FirstPersonController : MonoBehaviour
             if (UseSprintBar && !UnlimitedSprint)
             {
                 float sprintRemainingPercent = _sprintRemaining / SprintDuration;
-                SprintBarFill.transform.localScale = new Vector3(sprintRemainingPercent, 1f, 1f);
+                SprintBarFill.fillAmount = sprintRemainingPercent;
             }
         }
 

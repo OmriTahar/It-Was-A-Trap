@@ -83,7 +83,6 @@ public class EnemyAI : Unit
         LockEnemyType();
     }
 
-
     private void Update()
     {
         PlayerDetaction();

@@ -6,43 +6,33 @@ using UnityEngine.UI;
 public class Unit : MonoBehaviour
 {
     [SerializeField] internal float _unitHP, _unitMaxHP, _unitRange;
-    [SerializeField] Slider _myHealthSlider;
+    [SerializeField] Image _healthBarBG, _healthBar;
 
-    private void Start()
+    private void Awake()
     {
         _unitHP = _unitMaxHP;
 
-        if (_myHealthSlider != null)
-            _myHealthSlider.value = ChangeHealthUI();
-
+        if (_healthBar)
+            _healthBar.fillAmount = _unitHP / _unitMaxHP;
     }
 
     public void RecieveDamage(IAttackable<Unit> enemy)
     {
         enemy.Attack(this);
 
-        if (_myHealthSlider != null)
-            _myHealthSlider.value = ChangeHealthUI();
+        if (_healthBar)
+            _healthBar.fillAmount = _unitHP / _unitMaxHP;
 
         CheckDeath();
-    }
-
-    float ChangeHealthUI()
-    {
-        return _unitHP / _unitMaxHP;
     }
 
     void CheckDeath()
     {
         if (_unitHP <= 0)
         {
-            Die();
+            print($"{gameObject.name} died");
+            Destroy(gameObject);
         }
     }
 
-    void Die()
-    {
-        print("HP: " + _unitHP + ". Im dying!");
-        Destroy(gameObject);
-    }
 }

@@ -44,9 +44,17 @@ public class PlayerAim : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 1000, _groundMask))
         {
-            _outline.transform.position = (hit.point - transform.position).magnitude <= _maxDistance ? 
-            hit.point : /*even if i normalize and multiply it doesnt seem work*/ hit.point;
-            //print($"delta norm:{(hit.point - transform.position).normalized}");
+            Vector3 distanceVector;
+            if ((distanceVector = (hit.point - transform.position)).magnitude <= _maxDistance)
+            {
+                _outline.transform.position = hit.point;
+            }
+            else
+            {
+                distanceVector.y = -1;
+                _outline.transform.position = transform.position + distanceVector.normalized * _maxDistance;
+                //normalized prolly change the Y axis so it's not really flat
+            }
         }
         else
         {

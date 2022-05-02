@@ -100,7 +100,8 @@ MonoBehaviour:
   _unitHP: 50
   _unitMaxHP: 50
   _unitRange: 15
-  _myHealthSlider: {fileID: 0}
+  _healthBarBG: {fileID: 0}
+  _healthBar: {fileID: 0}
   _playerTransform: {fileID: 0}
   _groundLayer:
     serializedVersion: 2

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using TMPro;
 
 public enum Weapon { Trap, Wall }
-
 public class PlayerData : Unit
 {
     public static PlayerData Instance;
@@ -47,7 +46,6 @@ public class PlayerData : Unit
             Attack();
             UpdateUI();
         }
-
     }
 
     void Attack()
