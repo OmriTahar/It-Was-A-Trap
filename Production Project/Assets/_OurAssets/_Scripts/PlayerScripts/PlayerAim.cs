@@ -55,6 +55,7 @@ public class PlayerAim : MonoBehaviour
                 _outline.transform.position = transform.position + distanceVector.normalized * _maxDistance;
                 _outline.transform.position = new Vector3(_outline.transform.position.x, hit.point.y, _outline.transform.position.z);
             }
+            //Debug.DrawLine(ray.origin, hit.point, Color.red);
         }
         else
         {

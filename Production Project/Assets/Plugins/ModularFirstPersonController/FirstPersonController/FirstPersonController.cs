@@ -34,6 +34,7 @@ public class FirstPersonController : MonoBehaviour
     #region Movement
 
     public bool PlayerCanMove = true;
+    public bool SharonsMovement = false;
     public float WalkSpeed = 5f;
     public float MaxVelocityChange = 10f;
 
@@ -283,16 +284,23 @@ public class FirstPersonController : MonoBehaviour
                     _sprintBarCanvasGroup.alpha -= 3 * Time.deltaTime;
                 }
 
-                targetVelocity = transform.TransformDirection(targetVelocity) * WalkSpeed;
+                if (!SharonsMovement)
+                {
+                    targetVelocity = transform.TransformDirection(targetVelocity) * WalkSpeed;
 
-                // Apply a force that attempts to reach our target velocity
-                Vector3 velocity = _rb.velocity;
-                Vector3 velocityChange = (targetVelocity - velocity);
-                velocityChange.x = Mathf.Clamp(velocityChange.x, -MaxVelocityChange, MaxVelocityChange);
-                velocityChange.z = Mathf.Clamp(velocityChange.z, -MaxVelocityChange, MaxVelocityChange);
-                velocityChange.y = 0;
+                    // Apply a force that attempts to reach our target velocity
+                    Vector3 velocity = _rb.velocity;
+                    Vector3 velocityChange = (targetVelocity - velocity);
+                    velocityChange.x = Mathf.Clamp(velocityChange.x, -MaxVelocityChange, MaxVelocityChange);
+                    velocityChange.z = Mathf.Clamp(velocityChange.z, -MaxVelocityChange, MaxVelocityChange);
+                    velocityChange.y = 0;
 
-                _rb.AddForce(velocityChange, ForceMode.VelocityChange);
+                    _rb.AddForce(velocityChange, ForceMode.VelocityChange);
+                }
+                else
+                {
+                    //Sharon is trying something here, please ignore the BreakPoint.
+                }
             }
         }
 
@@ -301,17 +309,37 @@ public class FirstPersonController : MonoBehaviour
 
     private void CameraInput()
     {
-        Ray cameraRay = PlayerMovementCamera.ScreenPointToRay(Input.mousePosition);
-        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-        float rayLength;
 
-        if (groundPlane.Raycast(cameraRay, out rayLength))
+        if (!SharonsMovement)
         {
-            Vector3 pointToLook = cameraRay.GetPoint(rayLength);
-            transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+            Ray cameraRay = PlayerMovementCamera.ScreenPointToRay(Input.mousePosition);
+            Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+            float rayLength;
 
-            Debug.DrawLine(cameraRay.origin, pointToLook, Color.cyan);
+            if (groundPlane.Raycast(cameraRay, out rayLength))
+            {
+                Vector3 pointToLook = cameraRay.GetPoint(rayLength);
+                transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+
+                Debug.DrawLine(cameraRay.origin, pointToLook, Color.cyan);
+            }
         }
+        else
+        {           
+            //Sharon is trying something here, please ignore the BreakPoint.
+
+            RaycastHit hit;
+            Ray camRay = PlayerMovementCamera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(camRay, out hit))
+            {
+                Vector3 pointToLook = camRay.GetPoint(hit.point.magnitude);
+                transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+
+                Debug.DrawLine(camRay.origin, hit.point, Color.yellow);
+            }
+        }
+
     }
 
     private void CheckGround() // Sets _isGrounded based on a raycast sent straigth down from the player object
@@ -420,8 +448,10 @@ public class FirstPersonControllerEditor : Editor
         GUILayout.Label("Movement", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
         EditorGUILayout.Space();
 
+        _firstPersonController_EditorRef.SharonsMovement = EditorGUILayout.ToggleLeft(new GUIContent("Sharons Movement", "Movement which i think fits better"), _firstPersonController_EditorRef.SharonsMovement);
         _firstPersonController_EditorRef.PlayerCanMove = EditorGUILayout.ToggleLeft(new GUIContent("Enable Player Movement", "Determines if the player is allowed to move."), _firstPersonController_EditorRef.PlayerCanMove);
 
+        GUI.enabled = _firstPersonController_EditorRef.SharonsMovement;
         GUI.enabled = _firstPersonController_EditorRef.PlayerCanMove;
         _firstPersonController_EditorRef.WalkSpeed = EditorGUILayout.Slider(new GUIContent("Walk Speed", "Determines how fast the player will move while walking."), _firstPersonController_EditorRef.WalkSpeed, .1f, _firstPersonController_EditorRef.SprintSpeed);
         GUI.enabled = true;
@@ -525,6 +555,7 @@ public class FirstPersonControllerEditor : Editor
             _serializedObject.ApplyModifiedProperties();
         }
     }
+
 }
 
 #endif
