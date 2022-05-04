@@ -51,8 +51,6 @@ public class PlayerAim : MonoBehaviour
 
     private void Update()
     {
-        print("Interaction distance: " + _interactionDistance);
-
         if (_active)
         {
             UpdateAim();
