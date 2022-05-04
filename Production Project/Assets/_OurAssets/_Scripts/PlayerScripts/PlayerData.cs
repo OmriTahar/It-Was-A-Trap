@@ -96,13 +96,9 @@ public class PlayerData : Unit
         {
             case Weapon.Trap:
                 CurrentWeapon = Weapon.Wall;
-                Instance._trapPrefab.SetActive(false);
-                Instance._wallPrefab.SetActive(true);
                 break;
             case Weapon.Wall:
                 CurrentWeapon = Weapon.Trap;
-                Instance._wallPrefab.SetActive(false);
-                Instance._trapPrefab.SetActive(true);
                 break;
             default:
                 break;
