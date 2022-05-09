@@ -43,7 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f575c7752d40546a6cebf673dbf8f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerGO: {fileID: 0}
   CurrentSave:
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 0}
-  PlayerGO: {fileID: 0}
+    lastUsedWeapon: 0
+    health: 0
+    bunnyCount: 0
+  AutoLoad: 0
