@@ -58,7 +58,7 @@ public class Trap : Attack
 
     private void OnDestroy()
     {
-        PlayerData.Instance._currentTrapAmount++;
+        PlayerData.Instance.currentTrapAmount++;
     }
 
 }

@@ -10,9 +10,9 @@ public class PlayerData : Unit
     public static PlayerData Instance;
     internal Queue<GameObject> activeTraps = new Queue<GameObject>();
     internal Queue<GameObject> activeWalls = new Queue<GameObject>();
-    [SerializeField] internal GameObject _trapPrefab, _wallPrefab;
-    [SerializeField] internal int _maxTrapAmmo = 3, _maxWallAmmo = 3, _currentCoverAmount, _currentTrapAmount;
-    [SerializeField] internal Weapon CurrentWeapon;
+    public int maxTrapAmmo = 3, maxWallAmmo = 3, currentCoverAmount, currentTrapAmount, bunnyCount;
+    public GameObject trapPrefab, wallPrefab;
+    public Weapon currentWeapon;
 
     [Header("UI")]
     public TextMeshProUGUI CurrentAmmoUI;
@@ -30,8 +30,8 @@ public class PlayerData : Unit
 
         Instance = this;
 
-        _currentCoverAmount = _maxWallAmmo;
-        _currentTrapAmount = _maxTrapAmmo;
+        currentCoverAmount = maxWallAmmo;
+        currentTrapAmount = maxTrapAmmo;
     }
 
     private void Update()
@@ -50,11 +50,11 @@ public class PlayerData : Unit
 
     void Attack()
     {
-        switch (CurrentWeapon)
+        switch (currentWeapon)
         {
             case Weapon.Trap:
 
-                if (activeTraps.Count == _maxTrapAmmo)
+                if (activeTraps.Count == maxTrapAmmo)
                 {
                     GameObject firstTrap = activeTraps.Dequeue();
                     Destroy(firstTrap);
@@ -62,16 +62,16 @@ public class PlayerData : Unit
 
                 if (PlayerAim.Instance._canShoot)
                 {
-                    GameObject trap = Instantiate(_trapPrefab, PlayerAim.Instance._outline.transform.position, Quaternion.identity);
+                    GameObject trap = Instantiate(trapPrefab, PlayerAim.Instance._outline.transform.position, Quaternion.identity);
                     activeTraps.Enqueue(trap);
-                    _currentTrapAmount--;
+                    currentTrapAmount--;
                 }
 
                 break;
 
             case Weapon.Wall:
 
-                if (activeWalls.Count == _maxWallAmmo)
+                if (activeWalls.Count == maxWallAmmo)
                 {
                     GameObject firstWall = activeWalls.Dequeue();
                     Destroy(firstWall);
@@ -79,9 +79,9 @@ public class PlayerData : Unit
 
                 if (PlayerAim.Instance._canShoot)
                 {
-                    GameObject wall = Instantiate(_wallPrefab, PlayerAim.Instance._outline.transform.position, Quaternion.identity);
+                    GameObject wall = Instantiate(wallPrefab, PlayerAim.Instance._outline.transform.position, Quaternion.identity);
                     activeWalls.Enqueue(wall);
-                    _currentCoverAmount--;
+                    currentCoverAmount--;
                 }
 
                 break;
@@ -92,13 +92,13 @@ public class PlayerData : Unit
 
     void SwitchWeaponPrefab()
     {
-        switch (CurrentWeapon)
+        switch (currentWeapon)
         {
             case Weapon.Trap:
-                CurrentWeapon = Weapon.Wall;
+                currentWeapon = Weapon.Wall;
                 break;
             case Weapon.Wall:
-                CurrentWeapon = Weapon.Trap;
+                currentWeapon = Weapon.Trap;
                 break;
             default:
                 break;
@@ -107,19 +107,19 @@ public class PlayerData : Unit
 
     public void UpdateUI()
     {
-        switch (CurrentWeapon)
+        switch (currentWeapon)
         {
             case Weapon.Trap:
                 CurrentWeaponImage.sprite = _trapImage;
-                CurrentAmmoUI.text = _currentTrapAmount.ToString();
+                CurrentAmmoUI.text = currentTrapAmount.ToString();
                 break;
             case Weapon.Wall:
                 CurrentWeaponImage.sprite = _coverImage;
-                CurrentAmmoUI.text = _currentCoverAmount.ToString();
+                CurrentAmmoUI.text = currentCoverAmount.ToString();
                 break;
             default:
                 CurrentWeaponImage.sprite = _trapImage;
-                CurrentAmmoUI.text = _currentTrapAmount.ToString();
+                CurrentAmmoUI.text = currentTrapAmount.ToString();
                 break;
         }
     }

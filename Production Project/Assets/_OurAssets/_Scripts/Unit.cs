@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
-    [SerializeField] internal float _unitHP, _unitMaxHP, _unitRange;
+    public int _unitHP, _unitMaxHP;
+    public float _unitRange;
+
     [SerializeField] Image _healthBarBG, _healthBar;
 
     private void Awake()

@@ -6,11 +6,12 @@ using System.IO;
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager Instance;
-    public SaveFile CurrentSave;
-    string Path;
-    [SerializeField] bool AutoLoad = false;
 
     [SerializeField] GameObject PlayerGO;
+    public SaveFile CurrentSave;
+    public bool AutoLoad = false;
+    PlayerData playerData;
+    string Path;
 
     private void Awake()
     {
@@ -20,9 +21,10 @@ public class SaveManager : MonoBehaviour
             return;
         }
 
-        Path = Application.dataPath + "/Resources/Save.txt";
-
         Instance = this;
+
+        Path = Application.dataPath + "/Resources/Save.txt";
+        playerData = PlayerGO.GetComponent<PlayerData>();
 
         if (File.Exists(Path) && AutoLoad)
         {
@@ -30,10 +32,10 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    [ContextMenu("Save ME! >:(")]
-    public void SaveGame()
+    [ContextMenu("Save")]
+    public void SaveGame(Transform newSpawnPoint)
     {
-        CurrentSave = new SaveFile(PlayerGO);
+        CurrentSave = new SaveFile(newSpawnPoint, playerData);
 
         string savedString = JsonUtility.ToJson(CurrentSave);
 
@@ -49,7 +51,7 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    [ContextMenu("Load Save.")]
+    [ContextMenu("Load")]
     public void LoadGame()
     {
         string savedData = File.ReadAllText(Path);
@@ -58,6 +60,9 @@ public class SaveManager : MonoBehaviour
 
         PlayerGO.transform.position = CurrentSave.position;
         PlayerGO.transform.rotation = CurrentSave.rotation;
+        playerData._unitHP = CurrentSave.health;
+        playerData.bunnyCount = CurrentSave.bunnyCount;
+        playerData.currentWeapon = CurrentSave.lastUsedWeapon;
     }
 
 }

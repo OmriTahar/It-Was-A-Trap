@@ -633,12 +633,13 @@ MonoBehaviour:
   _unitRange: 10
   _healthBarBG: {fileID: 2665982451079235125}
   _healthBar: {fileID: 7619921889908682446}
-  _trapPrefab: {fileID: 3265388038745949489, guid: f26bde5316fda87468affb6a084135f5, type: 3}
-  _wallPrefab: {fileID: 6670106066988666373, guid: 17a6c0180e9f52045a1e2a0c17b4d59c, type: 3}
-  _maxTrapAmmo: 3
-  _maxWallAmmo: 3
-  _currentCoverAmount: 0
-  _currentTrapAmount: 0
+  maxTrapAmmo: 3
+  maxWallAmmo: 3
+  currentCoverAmount: 0
+  currentTrapAmount: 0
+  bunnyCount: 0
+  trapPrefab: {fileID: 3265388038745949489, guid: f26bde5316fda87468affb6a084135f5, type: 3}
+  wallPrefab: {fileID: 6670106066988666373, guid: 17a6c0180e9f52045a1e2a0c17b4d59c, type: 3}
   CurrentWeapon: 0
   CurrentAmmoUI: {fileID: 1332991381}
   CurrentWeaponImage: {fileID: 1537970317}
