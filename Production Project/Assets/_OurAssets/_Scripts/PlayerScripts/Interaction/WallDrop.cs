@@ -5,16 +5,16 @@ using UnityEngine;
 public class WallDrop : Interactable
 {
 
-    [SerializeField] GameObject _wallToDrop;
+    [SerializeField] IWall _wallToDrop;
 
     private void Start()
     {
-        _wallToDrop.SetActive(false);
+        _wallToDrop._isActivated = false;
     }
 
     public override void OnInteraction()
     {
-        _wallToDrop.SetActive(true);
+        _wallToDrop._isActivated = true;
         Destroy(gameObject);
     }
 }

@@ -6,16 +6,11 @@ public class IWall : Attack
 {
 
     [Header("Wall Settings")]
-    [SerializeField] bool _isActivated = false;
+    public bool _isActivated = false;
     [SerializeField] bool _isTouchedGround = false;
     [SerializeField] float _dropSpeed = 5f;
     bool _hasAttacked = false;
 
-
-    private void OnEnable()
-    {
-        _isActivated = true;
-    }
 
     void Update()
     {
