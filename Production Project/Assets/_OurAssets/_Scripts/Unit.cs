@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class Unit : MonoBehaviour
 {
     [Header("Unit Settings")]
-    public int _unitHP;
-    public int _unitMaxHP;
+    public float _unitHP;
+    public float _unitMaxHP;
     public float _unitRange;
     [SerializeField] Image _healthBarBG, _healthBar;
 

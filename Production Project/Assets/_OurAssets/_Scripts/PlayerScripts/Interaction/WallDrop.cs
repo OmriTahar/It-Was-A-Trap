@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoverInteract : Interactable
+public class WallDrop : Interactable
 {
 
-    [SerializeField] GameObject _coverToDrop;
+    [SerializeField] GameObject _wallToDrop;
 
     private void Start()
     {
-        _coverToDrop.SetActive(false);
+        _wallToDrop.SetActive(false);
     }
 
     public override void OnInteraction()
     {
-        _coverToDrop.SetActive(true);
+        _wallToDrop.SetActive(true);
         Destroy(gameObject);
     }
 }

@@ -8,7 +8,8 @@ public class SaveFile
     public Vector3 position;
     public Quaternion rotation;
     public Weapon lastUsedWeapon;
-    public int health, bunnyCount;
+    public int bunnyCount;
+    public float health;
 
     public SaveFile()
     {
