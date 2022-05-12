@@ -169,9 +169,10 @@ GameObject:
   - component: {fileID: 6799706072690335697}
   - component: {fileID: 5813124054303146504}
   - component: {fileID: 7638979540531146815}
+  - component: {fileID: 1577372198}
   m_Layer: 0
   m_Name: DropWall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,7 +185,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4276733980143532665}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 23.558, y: 6.44, z: -0.6421193}
+  m_LocalPosition: {x: 23.558, y: 1, z: -0.6421193}
   m_LocalScale: {x: 4, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 966815675028671044}
@@ -262,9 +263,24 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 5
   m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_AngularDrag: 0
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 2
+--- !u!114 &1577372198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4276733980143532665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee239bae852b5384387d7cfbc9a5e6c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isActivated: 0
+  _isTouchedGround: 0
+  _dropSpeed: 5

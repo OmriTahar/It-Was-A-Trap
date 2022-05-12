@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
-    public int _unitHP, _unitMaxHP;
+    [Header("Unit Settings")]
+    public int _unitHP;
+    public int _unitMaxHP;
     public float _unitRange;
-
     [SerializeField] Image _healthBarBG, _healthBar;
 
     private void Awake()
@@ -23,7 +24,10 @@ public class Unit : MonoBehaviour
         enemy.Attack(this);
 
         if (_healthBar)
+        {
             _healthBar.fillAmount = _unitHP / _unitMaxHP;
+            print("Fill Amount: " + _healthBar.fillAmount);
+        }
 
         CheckDeath();
     }

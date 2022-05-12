@@ -7,7 +7,10 @@ using TMPro;
 public enum Weapon { Trap, Wall }
 public class PlayerData : Unit
 {
+
     public static PlayerData Instance;
+
+    [Header("Weapon Settings")]
     internal Queue<GameObject> activeTraps = new Queue<GameObject>();
     internal Queue<GameObject> activeWalls = new Queue<GameObject>();
     public int maxTrapAmmo = 3, maxWallAmmo = 3, currentCoverAmount, currentTrapAmount, bunnyCount;
@@ -20,8 +23,11 @@ public class PlayerData : Unit
     [SerializeField] Sprite _coverImage;
     [SerializeField] Sprite _trapImage;
 
+
     private void Awake()
     {
+        #region Singelton
+
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -29,6 +35,8 @@ public class PlayerData : Unit
         }
 
         Instance = this;
+
+        #endregion
 
         currentCoverAmount = maxWallAmmo;
         currentTrapAmount = maxTrapAmmo;

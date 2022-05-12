@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour, IAttackable<Unit>
 {
+    [Header("Attack Settings")]
     [SerializeField] protected int _damage;
     [SerializeField] protected bool _stunning = false;
 

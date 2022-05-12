@@ -32,6 +32,9 @@ public class PlayerAim : MonoBehaviour
 
     private void Awake()
     {
+
+        #region Singelton
+
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -40,13 +43,15 @@ public class PlayerAim : MonoBehaviour
 
         Instance = this;
 
-        _currentAttackOutline = _trapOutline;
-        _outline = Instantiate(_outlinePrefab, transform);
-        //_outline = Instantiate(_currentAttackOutline, transform);
-        //remove this after we decide when we want aim to start V
-        ToggleDraw();
+        #endregion
 
         _canInteractText.SetActive(false);
+
+        _currentAttackOutline = _trapOutline;
+        _outline = Instantiate(_outlinePrefab, transform);
+        //_outline = Instantiate(_currentAttackOutline, transform); -> remove this after we decide when we want aim to start V
+
+        ToggleDraw();
     }
 
     private void Update()
