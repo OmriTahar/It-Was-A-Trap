@@ -19,7 +19,7 @@ public class FirstPersonController : MonoBehaviour
 
     #region General
 
-    private Rigidbody _rb;
+    [SerializeField] internal Rigidbody _rb;
 
     #endregion
 
@@ -97,7 +97,6 @@ public class FirstPersonController : MonoBehaviour
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
         _standingScale = transform.localScale;
 
         if (!UnlimitedSprint)
@@ -450,6 +449,7 @@ public class FirstPersonControllerEditor : Editor
 
         _firstPersonController_EditorRef.SharonsMovement = EditorGUILayout.ToggleLeft(new GUIContent("Sharons Movement", "Movement which i think fits better"), _firstPersonController_EditorRef.SharonsMovement);
         _firstPersonController_EditorRef.PlayerCanMove = EditorGUILayout.ToggleLeft(new GUIContent("Enable Player Movement", "Determines if the player is allowed to move."), _firstPersonController_EditorRef.PlayerCanMove);
+        _firstPersonController_EditorRef._rb = (Rigidbody)EditorGUILayout.ObjectField(new GUIContent("RigidBody", "Place Moving RigidBody"), _firstPersonController_EditorRef._rb, typeof(Rigidbody), true);
 
         GUI.enabled = _firstPersonController_EditorRef.SharonsMovement;
         GUI.enabled = _firstPersonController_EditorRef.PlayerCanMove;
