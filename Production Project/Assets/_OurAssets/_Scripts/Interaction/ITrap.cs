@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class ITrap : Attack
     [SerializeField] bool _isTouchedGround = false;
     [SerializeField] float _dropSpeed = 5f;
     [SerializeField] float _waitBeforeKillBunny = 1f;
+    [SerializeField] float _waitBeforeDestroyTrap = 3f;
 
     void Update()
     {
@@ -17,13 +19,15 @@ public class ITrap : Attack
             transform.position += new Vector3(0, -1, 0) * _dropSpeed * Time.deltaTime;
     }
 
-     
+    
+
     public override void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Ground")
         {
             _isTouchedGround = true;
             print("Touched Ground!");
+            StartCoroutine(Decay());
         }
 
         if (other.gameObject.tag == "Enemy")
@@ -39,5 +43,9 @@ public class ITrap : Attack
         Destroy(gameObject);
     }
 
-
+    IEnumerator Decay()
+    {
+        yield return new WaitForSeconds(_waitBeforeDestroyTrap);
+        Destroy(gameObject);
+    }
 }
