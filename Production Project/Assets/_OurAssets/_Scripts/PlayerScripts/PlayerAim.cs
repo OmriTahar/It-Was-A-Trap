@@ -26,7 +26,7 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] GameObject _canInteractText;
     private Interactable _currentInteractable;
 
-    internal bool _canShoot = true;
+    internal bool _clearToShoot = true;
     internal GameObject _outline;
     GameObject _currentAttackOutline;
 
@@ -90,7 +90,7 @@ public class PlayerAim : MonoBehaviour
         }
         else
         {
-            _canShoot = false;
+            _clearToShoot = false;
         }
 
         InteractionCheck(hit, ray);

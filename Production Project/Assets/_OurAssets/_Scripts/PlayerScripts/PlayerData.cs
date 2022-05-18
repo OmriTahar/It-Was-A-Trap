@@ -7,22 +7,24 @@ using TMPro;
 public enum Weapon { Trap, Wall }
 public class PlayerData : Unit
 {
-
     public static PlayerData Instance;
 
     [Header("Weapon Settings")]
     internal Queue<GameObject> activeTraps = new Queue<GameObject>();
     internal Queue<GameObject> activeWalls = new Queue<GameObject>();
-    public int maxTrapAmmo = 3, maxWallAmmo = 3, currentCoverAmount, currentTrapAmount, bunnyCount;
     public GameObject trapPrefab, wallPrefab;
+    public int maxTrapAmmo = 3, maxWallAmmo = 3, currentCoverAmount, currentTrapAmount;
+    public float timeBetweenShots;
     public Weapon currentWeapon;
 
     [Header("UI")]
     public TextMeshProUGUI CurrentAmmoUI;
-    public Image CurrentWeaponImage;
+    public Image CurrentWeaponUI;
     [SerializeField] Sprite _coverImage;
     [SerializeField] Sprite _trapImage;
 
+    internal int bunnyCount;
+    private bool canShoot = true;
 
     private void Awake()
     {
@@ -51,8 +53,11 @@ public class PlayerData : Unit
         }
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Attack();
-            UpdateUI();
+            if (canShoot)
+            {
+                Attack();
+                UpdateUI();
+            }
         }
     }
 
@@ -68,7 +73,7 @@ public class PlayerData : Unit
                     Destroy(firstTrap);
                 }
 
-                if (PlayerAim.Instance._canShoot)
+                if (PlayerAim.Instance._clearToShoot)
                 {
                     GameObject trap = Instantiate(trapPrefab, PlayerAim.Instance._outline.transform.position, Quaternion.identity);
                     activeTraps.Enqueue(trap);
@@ -85,7 +90,7 @@ public class PlayerData : Unit
                     Destroy(firstWall);
                 }
 
-                if (PlayerAim.Instance._canShoot)
+                if (PlayerAim.Instance._clearToShoot)
                 {
                     GameObject wall = Instantiate(wallPrefab, PlayerAim.Instance._outline.transform.position, Quaternion.identity);
                     activeWalls.Enqueue(wall);
@@ -96,6 +101,8 @@ public class PlayerData : Unit
             default:
                 break;
         }
+
+        StartCoroutine(WaitToShoot());
     }
 
     void SwitchWeaponPrefab()
@@ -108,8 +115,6 @@ public class PlayerData : Unit
             case Weapon.Wall:
                 currentWeapon = Weapon.Trap;
                 break;
-            default:
-                break;
         }
     }
 
@@ -118,18 +123,25 @@ public class PlayerData : Unit
         switch (currentWeapon)
         {
             case Weapon.Trap:
-                CurrentWeaponImage.sprite = _trapImage;
+                CurrentWeaponUI.sprite = _trapImage;
                 CurrentAmmoUI.text = currentTrapAmount.ToString();
                 break;
             case Weapon.Wall:
-                CurrentWeaponImage.sprite = _coverImage;
+                CurrentWeaponUI.sprite = _coverImage;
                 CurrentAmmoUI.text = currentCoverAmount.ToString();
                 break;
             default:
-                CurrentWeaponImage.sprite = _trapImage;
+                CurrentWeaponUI.sprite = _trapImage;
                 CurrentAmmoUI.text = currentTrapAmount.ToString();
                 break;
         }
+    }
+
+    IEnumerator WaitToShoot()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(timeBetweenShots);
+        canShoot = true;
     }
 
 }
