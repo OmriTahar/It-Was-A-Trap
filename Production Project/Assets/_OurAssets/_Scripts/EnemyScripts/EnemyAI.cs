@@ -185,14 +185,21 @@ public class EnemyAI : Unit
 
         yield return new WaitForSeconds(_waitBeforeLeap);
 
-        AttackPrefab.SetActive(true);
-        //_leapCollider.enabled = true;
-        _rb.AddForce((_playerTransform.position - transform.position) * _leapPower, ForceMode.Impulse);
+        if (!IsStunned)
+        {
+            AttackPrefab.SetActive(true);
+            //_leapCollider.enabled = true;
+            _rb.AddForce((_playerTransform.position - transform.position) * _leapPower, ForceMode.Impulse);
+        }
 
         yield return new WaitForSeconds(_waitAfterLeap);
-        AttackPrefab.SetActive(false);
-        //_leapCollider.enabled = false;
-        _hasLeaped = false;
+
+        if (!IsStunned)
+        {
+            AttackPrefab.SetActive(false);
+            //_leapCollider.enabled = false;
+            _hasLeaped = false;
+        }
     }
 
     private void Patroling()

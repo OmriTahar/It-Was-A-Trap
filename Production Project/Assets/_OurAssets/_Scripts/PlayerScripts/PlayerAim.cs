@@ -12,7 +12,8 @@ public class PlayerAim : MonoBehaviour
     [Header("Aim Refrences")]
     [SerializeField] Camera _cam;
     [SerializeField] GameObject _outlinePrefab;
-    [SerializeField] LayerMask _groundMask;
+    [SerializeField] LayerMask obstacleMask;
+    [SerializeField] LayerMask groundMask;
 
     [Header("Aim Settings")]
     [SerializeField] float _maxDistance = 5f;
@@ -26,9 +27,8 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] GameObject _canInteractText;
     private Interactable _currentInteractable;
 
-    internal bool _clearToShoot = true;
-    internal GameObject _outline;
-    GameObject _currentAttackOutline;
+    internal bool clearToShoot = true;
+    internal GameObject outline;
 
     private void Awake()
     {
@@ -45,8 +45,7 @@ public class PlayerAim : MonoBehaviour
 
         #endregion
 
-        _outline = Instantiate(_outlinePrefab, transform);
-        //_outline = Instantiate(_currentAttackOutline, transform); -> remove this after we decide when we want aim to start V
+        outline = Instantiate(_outlinePrefab, transform);
 
         ToggleDraw();
     }
@@ -65,38 +64,35 @@ public class PlayerAim : MonoBehaviour
 
     private void UpdateAim()
     {
-        RaycastHit hit;
-        Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit _hit;
+        Ray _ray = _cam.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, 1000, _groundMask))
+        if (Physics.Raycast(_ray, out _hit, 1000, groundMask))
         {
+            clearToShoot = !Physics.CheckBox(_hit.point, new Vector3(1.25f, .25f, 1.25f), Quaternion.identity, obstacleMask);
+
             Vector3 distanceVector;
-            if ((distanceVector = (hit.point - transform.position)).magnitude <= _maxDistance)
+
+            if ((distanceVector = (_hit.point - transform.position)).magnitude <= _maxDistance)
             {
-                _outline.transform.position = hit.point;
+                outline.transform.position = _hit.point;
             }
             else
             {
                 distanceVector.y = -1;
-                _outline.transform.position = transform.position + distanceVector.normalized * _maxDistance;
-                _outline.transform.position = new Vector3(_outline.transform.position.x, hit.point.y, _outline.transform.position.z);
+                outline.transform.position = transform.position + distanceVector.normalized * _maxDistance;
+                outline.transform.position = new Vector3(outline.transform.position.x, _hit.point.y, outline.transform.position.z);
             }
 
-            //Debug.DrawLine(ray.origin, hit.point, Color.red);
-        }
-        else
-        {
-            //_clearToShoot = false;
         }
 
-        InteractionCheck(hit, ray);
+        InteractionCheck(_hit, _ray);
     }
 
     public void ToggleDraw()
     {
         _canAim = !_canAim;
         _outlinePrefab.SetActive(_canAim);
-        //_line.SetActive(active);
     }
 
     private void InteractionCheck(RaycastHit hit, Ray ray)

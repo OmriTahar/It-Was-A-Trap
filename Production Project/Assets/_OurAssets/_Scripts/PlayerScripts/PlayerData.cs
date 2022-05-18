@@ -23,7 +23,6 @@ public class PlayerData : Unit
     [SerializeField] Sprite _coverImage;
     [SerializeField] Sprite _trapImage;
 
-    internal Quaternion shotRotation = Quaternion.identity;
     private bool canShoot = true;
     internal int bunnyCount;
 
@@ -62,18 +61,6 @@ public class PlayerData : Unit
             }
         }
 
-        if (Input.GetAxis("Mouse ScrollWheel") > 0)
-        {
-            shotRotation = new Quaternion(0, shotRotation.y + 15, 0, 0);
-            print(shotRotation);
-        }
-
-        if (Input.GetAxis("Mouse ScrollWheel") < 0)
-        {
-            shotRotation = new Quaternion(0, shotRotation.y - 15, 0, 0);
-            print(shotRotation);
-        }
-
     }
 
     void Attack()
@@ -81,7 +68,7 @@ public class PlayerData : Unit
         switch (currentWeapon)
         {
             case Weapon.Trap:
-                if (PlayerAim.Instance._clearToShoot)
+                if (PlayerAim.Instance.clearToShoot)
                 {
                     if (activeTraps.Count == maxTrapAmmo)
                     {
@@ -89,14 +76,14 @@ public class PlayerData : Unit
                         Destroy(firstTrap);
                     }
 
-                    GameObject trap = Instantiate(trapPrefab, PlayerAim.Instance._outline.transform.position, shotRotation);
+                    GameObject trap = Instantiate(trapPrefab, PlayerAim.Instance.outline.transform.position, Quaternion.identity);
                     activeTraps.Enqueue(trap);
                     currentTrapAmount--;
                 }
                 break;
 
             case Weapon.Wall:
-                if (PlayerAim.Instance._clearToShoot)
+                if (PlayerAim.Instance.clearToShoot)
                 {
                     if (activeWalls.Count == maxWallAmmo)
                     {
@@ -104,7 +91,10 @@ public class PlayerData : Unit
                         Destroy(firstWall);
                     }
 
-                    GameObject wall = Instantiate(wallPrefab, PlayerAim.Instance._outline.transform.position, shotRotation);
+                    GameObject wall = Instantiate(wallPrefab, PlayerAim.Instance.outline.transform.position, Quaternion.identity);
+
+                    Vector3 rotateWallTo = new Vector3(transform.position.x, wall.transform.position.y, transform.position.z);
+                    wall.transform.LookAt(rotateWallTo);
                     activeWalls.Enqueue(wall);
                     currentCoverAmount--;
                 }
@@ -129,8 +119,6 @@ public class PlayerData : Unit
             default:
                 break;
         }
-
-        shotRotation = Quaternion.identity;
     }
 
     private void UpdateUI()

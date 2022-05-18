@@ -151,7 +151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1481188892
 RectTransform:
   m_ObjectHideFlags: 0
@@ -823,14 +823,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cam: {fileID: 0}
   _outlinePrefab: {fileID: 5421727990649748736, guid: 2601fd1832bd8ae47bdc1dc9be8e2b01, type: 3}
-  _line: {fileID: 0}
-  _trapOutline: {fileID: 0}
-  _WallOutline: {fileID: 0}
-  _groundMask:
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 1800
+  groundMask:
     serializedVersion: 2
     m_Bits: 128
   _maxDistance: 10
-  _active: 0
+  _canAim: 0
   _interactableLayers:
     serializedVersion: 2
     m_Bits: 256
