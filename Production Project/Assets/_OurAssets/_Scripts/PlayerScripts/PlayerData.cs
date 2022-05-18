@@ -23,8 +23,9 @@ public class PlayerData : Unit
     [SerializeField] Sprite _coverImage;
     [SerializeField] Sprite _trapImage;
 
-    internal int bunnyCount;
+    internal Quaternion shotRotation = Quaternion.identity;
     private bool canShoot = true;
+    internal int bunnyCount;
 
     private void Awake()
     {
@@ -51,6 +52,7 @@ public class PlayerData : Unit
             SwitchWeaponPrefab();
             UpdateUI();
         }
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (canShoot)
@@ -59,6 +61,19 @@ public class PlayerData : Unit
                 UpdateUI();
             }
         }
+
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            shotRotation = new Quaternion(0, shotRotation.y + 15, 0, 0);
+            print(shotRotation);
+        }
+
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            shotRotation = new Quaternion(0, shotRotation.y - 15, 0, 0);
+            print(shotRotation);
+        }
+
     }
 
     void Attack()
@@ -66,37 +81,33 @@ public class PlayerData : Unit
         switch (currentWeapon)
         {
             case Weapon.Trap:
-
-                if (activeTraps.Count == maxTrapAmmo)
-                {
-                    GameObject firstTrap = activeTraps.Dequeue();
-                    Destroy(firstTrap);
-                }
-
                 if (PlayerAim.Instance._clearToShoot)
                 {
-                    GameObject trap = Instantiate(trapPrefab, PlayerAim.Instance._outline.transform.position, Quaternion.identity);
+                    if (activeTraps.Count == maxTrapAmmo)
+                    {
+                        GameObject firstTrap = activeTraps.Dequeue();
+                        Destroy(firstTrap);
+                    }
+
+                    GameObject trap = Instantiate(trapPrefab, PlayerAim.Instance._outline.transform.position, shotRotation);
                     activeTraps.Enqueue(trap);
                     currentTrapAmount--;
                 }
-
                 break;
 
             case Weapon.Wall:
-
-                if (activeWalls.Count == maxWallAmmo)
-                {
-                    GameObject firstWall = activeWalls.Dequeue();
-                    Destroy(firstWall);
-                }
-
                 if (PlayerAim.Instance._clearToShoot)
                 {
-                    GameObject wall = Instantiate(wallPrefab, PlayerAim.Instance._outline.transform.position, Quaternion.identity);
+                    if (activeWalls.Count == maxWallAmmo)
+                    {
+                        GameObject firstWall = activeWalls.Dequeue();
+                        Destroy(firstWall);
+                    }
+
+                    GameObject wall = Instantiate(wallPrefab, PlayerAim.Instance._outline.transform.position, shotRotation);
                     activeWalls.Enqueue(wall);
                     currentCoverAmount--;
                 }
-
                 break;
             default:
                 break;
@@ -105,7 +116,7 @@ public class PlayerData : Unit
         StartCoroutine(WaitToShoot());
     }
 
-    void SwitchWeaponPrefab()
+    private void SwitchWeaponPrefab()
     {
         switch (currentWeapon)
         {
@@ -115,10 +126,14 @@ public class PlayerData : Unit
             case Weapon.Wall:
                 currentWeapon = Weapon.Trap;
                 break;
+            default:
+                break;
         }
+
+        shotRotation = Quaternion.identity;
     }
 
-    public void UpdateUI()
+    private void UpdateUI()
     {
         switch (currentWeapon)
         {

@@ -11,12 +11,12 @@ public class PlayerAim : MonoBehaviour
 
     [Header("Aim Refrences")]
     [SerializeField] Camera _cam;
-    [SerializeField] GameObject _outlinePrefab, _line, _trapOutline, _WallOutline;
+    [SerializeField] GameObject _outlinePrefab;
     [SerializeField] LayerMask _groundMask;
 
     [Header("Aim Settings")]
     [SerializeField] float _maxDistance = 5f;
-    [SerializeField] bool _active = false;
+    [SerializeField] bool _canAim = false;
 
     [Header("Interaction")]
     [SerializeField] LayerMask _interactableLayers;
@@ -45,9 +45,6 @@ public class PlayerAim : MonoBehaviour
 
         #endregion
 
-        _canInteractText.SetActive(false);
-
-        _currentAttackOutline = _trapOutline;
         _outline = Instantiate(_outlinePrefab, transform);
         //_outline = Instantiate(_currentAttackOutline, transform); -> remove this after we decide when we want aim to start V
 
@@ -56,14 +53,13 @@ public class PlayerAim : MonoBehaviour
 
     private void Update()
     {
-        if (_active)
+        if (_canAim)
         {
             UpdateAim();
 
             if (Input.GetKeyDown(KeyCode.F) && _canInteract)
-            {
                 Interact();
-            }
+
         }
     }
 
@@ -90,7 +86,7 @@ public class PlayerAim : MonoBehaviour
         }
         else
         {
-            _clearToShoot = false;
+            //_clearToShoot = false;
         }
 
         InteractionCheck(hit, ray);
@@ -98,8 +94,8 @@ public class PlayerAim : MonoBehaviour
 
     public void ToggleDraw()
     {
-        _active = !_active;
-        _outlinePrefab.SetActive(_active);
+        _canAim = !_canAim;
+        _outlinePrefab.SetActive(_canAim);
         //_line.SetActive(active);
     }
 
