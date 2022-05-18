@@ -1645,7 +1645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626794, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.92387956
       objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626794, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1653,7 +1653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626794, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.38268343
       objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626794, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1665,16 +1665,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626794, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626794, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: _rb
-      value: 
-      objectReference: {fileID: 306363220945230503}
+      propertyPath: SharonsMovement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: PlayerMovementCamera
       value: 
@@ -1684,11 +1684,6 @@ PrefabInstance:
 --- !u!1 &306363220945230499 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4153713904787626790, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-  m_PrefabInstance: {fileID: 306363220945230498}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &306363220945230503 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 4153713904787626797, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
   m_PrefabInstance: {fileID: 306363220945230498}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4360238408050912375

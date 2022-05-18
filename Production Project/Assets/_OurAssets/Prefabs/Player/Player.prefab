@@ -850,6 +850,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90ba6530d9bfda47abb4610956b2f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rb: {fileID: 4153713904787626797}
+  _GFXBody: {fileID: 4153713906352441136}
   PlayerMovementCamera: {fileID: 0}
   CameraCanMove: 1
   IsCursorLocked: 0

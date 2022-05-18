@@ -20,6 +20,7 @@ public class FirstPersonController : MonoBehaviour
     #region General
 
     [SerializeField] internal Rigidbody _rb;
+    [SerializeField] internal Transform _GFXBody;
 
     #endregion
 
@@ -283,23 +284,17 @@ public class FirstPersonController : MonoBehaviour
                     _sprintBarCanvasGroup.alpha -= 3 * Time.deltaTime;
                 }
 
-                if (!SharonsMovement)
-                {
-                    targetVelocity = transform.TransformDirection(targetVelocity) * WalkSpeed;
+                targetVelocity = transform.TransformDirection(targetVelocity) * WalkSpeed;
 
-                    // Apply a force that attempts to reach our target velocity
-                    Vector3 velocity = _rb.velocity;
-                    Vector3 velocityChange = (targetVelocity - velocity);
-                    velocityChange.x = Mathf.Clamp(velocityChange.x, -MaxVelocityChange, MaxVelocityChange);
-                    velocityChange.z = Mathf.Clamp(velocityChange.z, -MaxVelocityChange, MaxVelocityChange);
-                    velocityChange.y = 0;
+                // Apply a force that attempts to reach our target velocity
+                Vector3 velocity = _rb.velocity;
+                Vector3 velocityChange = (targetVelocity - velocity);
+                velocityChange.x = Mathf.Clamp(velocityChange.x, -MaxVelocityChange, MaxVelocityChange);
+                velocityChange.z = Mathf.Clamp(velocityChange.z, -MaxVelocityChange, MaxVelocityChange);
+                velocityChange.y = 0;
 
-                    _rb.AddForce(velocityChange, ForceMode.VelocityChange);
-                }
-                else
-                {
-                    //Sharon is trying something here, please ignore the BreakPoint.
-                }
+                _rb.AddForce(velocityChange, ForceMode.VelocityChange);
+
             }
         }
 
@@ -325,16 +320,16 @@ public class FirstPersonController : MonoBehaviour
         }
         else
         {           
-            //Sharon is trying something here, please ignore the BreakPoint.
-
             RaycastHit hit;
             Ray camRay = PlayerMovementCamera.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(camRay, out hit))
             {
-                Vector3 pointToLook = camRay.GetPoint(hit.point.magnitude);
-                transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
-
+                if (hit.collider.CompareTag("Ground"))
+                {
+                    Vector3 pointToLook = camRay.GetPoint(hit.point.magnitude);
+                    _GFXBody.LookAt(new Vector3(pointToLook.x, _GFXBody.position.y, pointToLook.z));
+                }
                 Debug.DrawLine(camRay.origin, hit.point, Color.yellow);
             }
         }
@@ -450,6 +445,7 @@ public class FirstPersonControllerEditor : Editor
         _firstPersonController_EditorRef.SharonsMovement = EditorGUILayout.ToggleLeft(new GUIContent("Sharons Movement", "Movement which i think fits better"), _firstPersonController_EditorRef.SharonsMovement);
         _firstPersonController_EditorRef.PlayerCanMove = EditorGUILayout.ToggleLeft(new GUIContent("Enable Player Movement", "Determines if the player is allowed to move."), _firstPersonController_EditorRef.PlayerCanMove);
         _firstPersonController_EditorRef._rb = (Rigidbody)EditorGUILayout.ObjectField(new GUIContent("RigidBody", "Place Moving RigidBody"), _firstPersonController_EditorRef._rb, typeof(Rigidbody), true);
+        _firstPersonController_EditorRef._GFXBody = (Transform)EditorGUILayout.ObjectField(new GUIContent("Transform", "Place Players' Graphic Transform"), _firstPersonController_EditorRef._GFXBody, typeof(Transform), true);
 
         GUI.enabled = _firstPersonController_EditorRef.SharonsMovement;
         GUI.enabled = _firstPersonController_EditorRef.PlayerCanMove;
