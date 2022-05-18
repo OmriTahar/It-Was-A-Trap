@@ -325,11 +325,9 @@ public class FirstPersonController : MonoBehaviour
 
             if (Physics.Raycast(camRay, out hit))
             {
-                if (hit.collider.CompareTag("Ground"))
-                {
-                    Vector3 pointToLook = camRay.GetPoint(hit.point.magnitude);
-                    _GFXBody.LookAt(new Vector3(pointToLook.x, _GFXBody.position.y, pointToLook.z));
-                }
+                //Vector3 pointToLook = camRay.GetPoint(hit.point.magnitude);
+                //_GFXBody.LookAt(new Vector3(pointToLook.x, _GFXBody.position.y, pointToLook.z));
+                _GFXBody.LookAt(new Vector3(hit.point.x, _GFXBody.position.y, hit.point.z));
                 Debug.DrawLine(camRay.origin, hit.point, Color.yellow);
             }
         }

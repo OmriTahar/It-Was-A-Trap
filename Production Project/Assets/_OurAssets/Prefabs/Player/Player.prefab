@@ -856,7 +856,7 @@ MonoBehaviour:
   CameraCanMove: 1
   IsCursorLocked: 0
   PlayerCanMove: 1
-  SharonsMovement: 0
+  SharonsMovement: 1
   WalkSpeed: 7
   MaxVelocityChange: 10
   EnableSprint: 1

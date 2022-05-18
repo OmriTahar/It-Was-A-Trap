@@ -1672,10 +1672,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: SharonsMovement
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: PlayerMovementCamera
       value: 
       objectReference: {fileID: 2032137546}
