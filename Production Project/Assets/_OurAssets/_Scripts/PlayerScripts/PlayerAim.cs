@@ -30,6 +30,10 @@ public class PlayerAim : MonoBehaviour
     internal bool clearToShoot = true;
     internal GameObject outline;
 
+    //for gizmos can delete later
+    Vector3 gizmoSize = new Vector3(2.5f, 0.5f, 2.5f);
+    Vector3 gizmoPos;
+
     private void Awake()
     {
 
@@ -62,6 +66,17 @@ public class PlayerAim : MonoBehaviour
         }
     }
 
+    //for gizmos can delete later
+    private void OnDrawGizmos()
+    {
+        if (clearToShoot)
+            Gizmos.color = new Color(0, 1, 0, .2f);
+        else
+            Gizmos.color = new Color(1, 0, 0, .2f);
+
+        Gizmos.DrawCube(gizmoPos, gizmoSize);
+    }
+
     private void UpdateAim()
     {
         RaycastHit _hit;
@@ -84,6 +99,8 @@ public class PlayerAim : MonoBehaviour
                 outline.transform.position = new Vector3(outline.transform.position.x, _hit.point.y, outline.transform.position.z);
             }
 
+            //for gizmos can delete later
+            gizmoPos = outline.transform.position;
         }
 
         InteractionCheck(_hit, _ray);
