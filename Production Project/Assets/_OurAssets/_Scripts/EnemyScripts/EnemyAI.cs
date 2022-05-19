@@ -13,6 +13,7 @@ public class EnemyAI : Unit
     [SerializeField] Transform _playerTransform;
     [SerializeField] LayerMask _groundLayer, _playerLayer;
     public bool IsEnemyActivated;
+    public float SlerpCurve = 30f;
 
     [Header("Stun Settings")]
     public bool IsStunned;
@@ -120,7 +121,7 @@ public class EnemyAI : Unit
         if (IsStunned && _stunEffect != null && !_stunEffect.isPlaying)
         {
             _stunEffect.Play();
-            print("Effect is playing!");
+            Stunned();
         }
         else if (!IsStunned && _stunEffect.isPlaying)
             _stunEffect.Stop();
@@ -195,6 +196,7 @@ public class EnemyAI : Unit
 
     private void ChasePlayer()
     {
+        //var destination = Vector3.Slerp(transform.position, _playerTransform.forward, SlerpCurve); ---- Flank attemp
         _agent.SetDestination(_playerTransform.position);
     }
 
@@ -247,6 +249,13 @@ public class EnemyAI : Unit
             yield return new WaitForSeconds(_fleeingDuration);
             _isFleeing = false;
         }
+    }
+
+    private void Stunned()
+    {
+        _rb.freezeRotation = true;
+        _rb.Sleep(); // Freeze Position
+        _agent.SetDestination(transform.position);
     }
 
     private void ResetAttack()
