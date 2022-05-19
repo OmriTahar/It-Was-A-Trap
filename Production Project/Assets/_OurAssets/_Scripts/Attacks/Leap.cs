@@ -13,18 +13,20 @@ public class Leap : Attack
         gameObject.SetActive(false);
     }
 
+    private void OnEnable()
+    {
+        _myCollider.enabled = true;
+    }
+
     public override void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player" && !_hasAttacked)
         {
             _hasAttacked = true;
             other.gameObject.GetComponent<Unit>().RecieveDamage(this);
-            print("Leaped player!");
+
             _hasAttacked = false;
-        }
-        else
-        {
-            print("Else!");
+            _myCollider.enabled = false;
         }
     }
 }

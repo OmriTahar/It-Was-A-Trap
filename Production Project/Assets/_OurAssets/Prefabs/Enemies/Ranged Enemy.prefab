@@ -52,7 +52,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6208570823500875094
 Transform:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   _playerTransform: {fileID: 0}
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 128
   _playerLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -129,6 +129,7 @@ MonoBehaviour:
   _waitBeforeLeap: 0
   _waitAfterLeap: 0
   _hasLeaped: 0
+  _leaperJumpPower: 3
 --- !u!33 &6208570823500875093
 MeshFilter:
   m_ObjectHideFlags: 0

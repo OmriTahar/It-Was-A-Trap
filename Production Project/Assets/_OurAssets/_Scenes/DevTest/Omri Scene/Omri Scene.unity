@@ -811,6 +811,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2040211201}
     m_Modifications:
+    - target: {fileID: 1847206532085420528, guid: ff979a8f3857ad545898c118865009e2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847206532085420528, guid: ff979a8f3857ad545898c118865009e2, type: 3}
+      propertyPath: m_BaseOffset
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1847206532085420529, guid: ff979a8f3857ad545898c118865009e2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -856,9 +864,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1847206532085420535, guid: ff979a8f3857ad545898c118865009e2, type: 3}
+      propertyPath: _waitBeforeLeap
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847206532085420535, guid: ff979a8f3857ad545898c118865009e2, type: 3}
       propertyPath: _playerTransform
       value: 
       objectReference: {fileID: 4459864851264094600}
+    - target: {fileID: 1847206532085420535, guid: ff979a8f3857ad545898c118865009e2, type: 3}
+      propertyPath: _groundLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 1847206532085420541, guid: ff979a8f3857ad545898c118865009e2, type: 3}
       propertyPath: m_Name
       value: Leaper Enemy
@@ -1024,6 +1040,10 @@ PrefabInstance:
     - target: {fileID: 6208570823500875098, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
       propertyPath: m_Name
       value: Ranged Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208570823500875098, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a79fc2e15239a6640862df5d1bfa3db5, type: 3}
@@ -1870,10 +1890,6 @@ PrefabInstance:
     - target: {fileID: 4559250629087863121, guid: 41fa60a93ed02a64a990dd00baa10939, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4559250629087863126, guid: 41fa60a93ed02a64a990dd00baa10939, type: 3}
-      propertyPath: EnemiesToActivate.Array.size
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4559250629087863126, guid: 41fa60a93ed02a64a990dd00baa10939, type: 3}
       propertyPath: EnemiesToActivate.Array.data[0]

@@ -86,6 +86,7 @@ MonoBehaviour:
   _waitBeforeLeap: 1.5
   _waitAfterLeap: 3
   _hasLeaped: 0
+  _leaperJumpPower: 30
 --- !u!33 &1847206532085420530
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -478,12 +479,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4639441105559106387, guid: d371a393a0033eb4bb05b8984b165081, type: 3}
+      propertyPath: m_Height
+      value: 2.0439744
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639441105559106387, guid: d371a393a0033eb4bb05b8984b165081, type: 3}
       propertyPath: m_Radius
-      value: 0.6
+      value: 0.96158195
       objectReference: {fileID: 0}
     - target: {fileID: 4639441105559106387, guid: d371a393a0033eb4bb05b8984b165081, type: 3}
       propertyPath: m_Center.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639441105559106387, guid: d371a393a0033eb4bb05b8984b165081, type: 3}
+      propertyPath: m_Center.z
+      value: -0.48239255
       objectReference: {fileID: 0}
     - target: {fileID: 4639441105559106387, guid: d371a393a0033eb4bb05b8984b165081, type: 3}
       propertyPath: m_IsTrigger

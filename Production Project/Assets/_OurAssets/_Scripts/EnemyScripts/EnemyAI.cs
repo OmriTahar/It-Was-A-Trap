@@ -22,13 +22,6 @@ public class EnemyAI : Unit
     public bool IsRangedEnemy;
     public bool IsLeapEnemy;
 
-    //[Header("Patroling")]
-    private bool _isDestinationSet;
-    private Vector3 _moveDestination;
-    private float _PatrolingPointRange;
-    //[SerializeField] bool _isPlayerInSight;
-    //[SerializeField] float _playerSightRange;
-
     [Header("Attack Settings")]
     [SerializeField] float _timeBetweenAttacks;
     [SerializeField] bool _isPlayerInAttackRange, _isAlreadyAttacked;
@@ -52,8 +45,16 @@ public class EnemyAI : Unit
     [SerializeField] float _waitBeforeLeap;
     [SerializeField] float _waitAfterLeap;
     [SerializeField] bool _hasLeaped = false;
+    [SerializeField] float _leaperJumpPower = 3f;
 
-    #region Jumping (Currently Not Used)
+    #region UnUsedVariables
+
+    //[Header("Patroling")]
+    private bool _isDestinationSet;
+    private Vector3 _moveDestination;
+    private float _PatrolingPointRange;
+    //[SerializeField] bool _isPlayerInSight;
+    //[SerializeField] float _playerSightRange;
 
     //[Header("Jump Settings")]
     //[SerializeField] Transform _groundCheck;
@@ -73,12 +74,6 @@ public class EnemyAI : Unit
         _rb = GetComponent<Rigidbody>();
         _agent = GetComponent<NavMeshAgent>();
         _projectilePool = GetComponent<ProjectilePool>();
-
-        //if (IsLeapEnemy)
-        //{
-        //    _leapCollider = GetComponent<BoxCollider>();
-        //    _leapCollider.enabled = false;
-        //}
 
         LockEnemyType();
     }
@@ -134,39 +129,38 @@ public class EnemyAI : Unit
         if (!IsEnemyActivated)
         {
             print("Enemy: " + name + " is not activated.");
-            _agent.SetDestination(transform.position); // Make sure enemy doesn't move while attacking
+            _agent.SetDestination(transform.position); // Make sure enemy doesn't move
         }
         else
         {
             if (IsEnemyActivated && !_isPlayerInAttackRange && !_isFleeing)
             {
-                print("Chasing");
                 ChasePlayer();
+                print("Chasing");
             }
 
             if (IsRangedEnemy)
             {
-
                 if (IsEnemyActivated && _isPlayerTooClose && _canFlee)
                 {
-                    print("fleeing");
                     StartCoroutine(Flee());
+                    print("fleeing");
                 }
 
                 if (IsEnemyActivated && (!_isPlayerTooClose && _isPlayerInAttackRange || _isPlayerTooClose && !_canFlee))
                 {
-                    print("Attacking");
                     RangeAttack();
+                    print("Attacking");
                 }
-
-
             }
             else if (IsLeapEnemy)
             {
+                transform.LookAt(_playerTransform);
+
                 if (IsEnemyActivated && _isPlayerInAttackRange && !_hasLeaped)
                 {
-                    print("Leaping");
                     StartCoroutine(Leap());
+                    print("Leaping!");
                 }
                 else if (IsEnemyActivated && _isPlayerInAttackRange && _hasLeaped)
                 {
@@ -179,53 +173,24 @@ public class EnemyAI : Unit
     private IEnumerator Leap()
     {
         _hasLeaped = true;
-
         _agent.SetDestination(transform.position);
-        transform.LookAt(_playerTransform);
 
         yield return new WaitForSeconds(_waitBeforeLeap);
-
         if (!IsStunned)
         {
             AttackPrefab.SetActive(true);
-            //_leapCollider.enabled = true;
+
+            _rb.AddForce(new Vector3(0, _leaperJumpPower, 0f), ForceMode.Impulse);
             _rb.AddForce((_playerTransform.position - transform.position) * _leapPower, ForceMode.Impulse);
+            print("LEAPING!");
         }
 
         yield return new WaitForSeconds(_waitAfterLeap);
-
         if (!IsStunned)
         {
             AttackPrefab.SetActive(false);
-            //_leapCollider.enabled = false;
             _hasLeaped = false;
         }
-    }
-
-    private void Patroling()
-    {
-        if (!_isDestinationSet) SearchWalkPoint();
-
-        if (_isDestinationSet)
-            _agent.SetDestination(_moveDestination);
-
-        Vector3 distanceToWalkPoint = transform.position - _moveDestination;
-
-        // Destination reached
-        if (distanceToWalkPoint.magnitude < 1f)
-            _isDestinationSet = false;
-    }
-
-    private void SearchWalkPoint()
-    {
-        // Calculate random point in range
-        float randomZ = Random.Range(-_PatrolingPointRange, _PatrolingPointRange);
-        float randomX = Random.Range(-_PatrolingPointRange, _PatrolingPointRange);
-
-        _moveDestination = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-        if (Physics.Raycast(_moveDestination, -transform.up, 2f, _groundLayer))
-            _isDestinationSet = true;
     }
 
     private void ChasePlayer()
@@ -240,12 +205,6 @@ public class EnemyAI : Unit
 
         if (!_isAlreadyAttacked)
         {
-            // ---------- OLD SHOOT CODE ----------
-            //Rigidbody rb = Instantiate(ProjectilePrefab, ShootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
-            //rb.AddForce(ShootPoint.forward * ShootForce, ForceMode.Impulse);
-            //rb.AddForce(ShootPoint.up * (ShootForce / 2), ForceMode.Impulse);
-            // ------------------------------------
-
             GameObject projectile = _projectilePool.GetProjectileFromPool();
             projectile.transform.position = ShootPoint.position;
             projectile.transform.rotation = Quaternion.identity;
@@ -295,13 +254,6 @@ public class EnemyAI : Unit
         _isAlreadyAttacked = false;
     }
 
-    //public void TakeDamage(int damage) // PLACE HOLDER
-    //{
-    //    _health -= damage;
-
-    //    if (_health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
-    //}
-
     private void DestroyEnemy()
     {
         Destroy(gameObject);
@@ -314,4 +266,33 @@ public class EnemyAI : Unit
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _unitRange);
     }
+
+    #region UnusedMethods
+    private void Patroling()
+    {
+        if (!_isDestinationSet) SearchWalkPoint();
+
+        if (_isDestinationSet)
+            _agent.SetDestination(_moveDestination);
+
+        Vector3 distanceToWalkPoint = transform.position - _moveDestination;
+
+        // Destination reached
+        if (distanceToWalkPoint.magnitude < 1f)
+            _isDestinationSet = false;
+    }
+
+    private void SearchWalkPoint()
+    {
+        // Calculate random point in range
+        float randomZ = Random.Range(-_PatrolingPointRange, _PatrolingPointRange);
+        float randomX = Random.Range(-_PatrolingPointRange, _PatrolingPointRange);
+
+        _moveDestination = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+        if (Physics.Raycast(_moveDestination, -transform.up, 2f, _groundLayer))
+            _isDestinationSet = true;
+    }
+
+    #endregion
 }

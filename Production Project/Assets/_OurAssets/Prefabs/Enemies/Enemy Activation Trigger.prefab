@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4559250629087863123}
   - component: {fileID: 4559250629087863122}
   - component: {fileID: 4559250629087863126}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy Activation Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -108,4 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98ede8ca04e9e34d9b2aee1a0d49d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemiesToActivate: []
+  EnemiesToActivate:
+  - {fileID: 0}
+  - {fileID: 0}
