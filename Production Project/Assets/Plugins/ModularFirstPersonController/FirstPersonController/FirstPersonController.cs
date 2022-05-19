@@ -514,18 +514,18 @@ public class FirstPersonControllerEditor : Editor
 
         #region Crouch
 
-        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
-        GUILayout.Label("Crouch", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
-        EditorGUILayout.Space();
+        //EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        //GUILayout.Label("Crouch", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+        //EditorGUILayout.Space();
 
-        _firstPersonController_EditorRef.EnableCrouch = EditorGUILayout.ToggleLeft(new GUIContent("Enable Crouch", "Determines if the player is allowed to crouch."), _firstPersonController_EditorRef.EnableCrouch);
+        //_firstPersonController_EditorRef.EnableCrouch = EditorGUILayout.ToggleLeft(new GUIContent("Enable Crouch", "Determines if the player is allowed to crouch."), _firstPersonController_EditorRef.EnableCrouch);
 
-        GUI.enabled = _firstPersonController_EditorRef.EnableCrouch;
-        _firstPersonController_EditorRef.HoldToCrouch = EditorGUILayout.ToggleLeft(new GUIContent("Hold To Crouch", "Requires the player to hold the crouch key instead if pressing to crouch and uncrouch."), _firstPersonController_EditorRef.HoldToCrouch);
-        _firstPersonController_EditorRef.CrouchKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Crouch Key", "Determines what key is used to crouch."), _firstPersonController_EditorRef.CrouchKey);
-        _firstPersonController_EditorRef.CrouchHeight = EditorGUILayout.Slider(new GUIContent("Crouch Height", "Determines the y scale of the player object when crouched."), _firstPersonController_EditorRef.CrouchHeight, .1f, 1);
-        _firstPersonController_EditorRef.CrouchSpeedReduction = EditorGUILayout.Slider(new GUIContent("Speed Reduction", "Determines the percent 'Walk Speed' is reduced by. 1 being no reduction, and .5 being half."), _firstPersonController_EditorRef.CrouchSpeedReduction, .1f, 1);
-        GUI.enabled = true;
+        //GUI.enabled = _firstPersonController_EditorRef.EnableCrouch;
+        //_firstPersonController_EditorRef.HoldToCrouch = EditorGUILayout.ToggleLeft(new GUIContent("Hold To Crouch", "Requires the player to hold the crouch key instead if pressing to crouch and uncrouch."), _firstPersonController_EditorRef.HoldToCrouch);
+        //_firstPersonController_EditorRef.CrouchKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Crouch Key", "Determines what key is used to crouch."), _firstPersonController_EditorRef.CrouchKey);
+        //_firstPersonController_EditorRef.CrouchHeight = EditorGUILayout.Slider(new GUIContent("Crouch Height", "Determines the y scale of the player object when crouched."), _firstPersonController_EditorRef.CrouchHeight, .1f, 1);
+        //_firstPersonController_EditorRef.CrouchSpeedReduction = EditorGUILayout.Slider(new GUIContent("Speed Reduction", "Determines the percent 'Walk Speed' is reduced by. 1 being no reduction, and .5 being half."), _firstPersonController_EditorRef.CrouchSpeedReduction, .1f, 1);
+        //GUI.enabled = true;
 
         #endregion
 
