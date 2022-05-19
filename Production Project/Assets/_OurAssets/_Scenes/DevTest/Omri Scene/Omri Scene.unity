@@ -1772,9 +1772,33 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: SprintSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: EnableCrouch
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: SprintCooldown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: SprintDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: PlayerMovementCamera
       value: 
       objectReference: {fileID: 2032137546}
+    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: SprintBarWidthPercent
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: SprintBarHeightPercent
+      value: 0.001
+      objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626797, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_Constraints
       value: 116

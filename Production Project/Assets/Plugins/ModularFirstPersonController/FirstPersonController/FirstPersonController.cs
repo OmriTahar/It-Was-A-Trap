@@ -48,23 +48,19 @@ public class FirstPersonController : MonoBehaviour
     public bool EnableSprint = true;
     public bool UnlimitedSprint = false;
     public KeyCode SprintKey = KeyCode.LeftShift;
-    public float SprintSpeed = 7f;
-    public float SprintDuration = 5f;
-    public float SprintCooldown = .5f;
+    public float SprintSpeed = 50f;
+    public float SprintDuration = 0.1f;
+    public float SprintCooldown = 3f;
 
     // Sprint Bar
     public bool UseSprintBar = true;
-    public bool HideBarWhenFull = true;
+    public bool HideBarWhenFull = false;
     public Image SprintBarBG;
     public Image SprintBarFill;
-    public float SprintBarWidthPercent = .3f;
-    public float SprintBarHeightPercent = .015f;
 
     private CanvasGroup _sprintBarCanvasGroup;
     private bool _isSprinting = false;
     private float _sprintRemaining;
-    private float _sprintBarWidth;
-    private float _sprintBarHeight;
     private bool _isSprintCooldown = false;
     private float _sprintCooldownReset;
 
@@ -120,19 +116,8 @@ public class FirstPersonController : MonoBehaviour
             SprintBarBG.gameObject.SetActive(true);
             SprintBarFill.gameObject.SetActive(true);
 
-            //float screenWidth = Screen.width;
-            //float screenHeight = Screen.height;
-
-            //_sprintBarWidth = screenWidth * SprintBarWidthPercent;
-            //_sprintBarHeight = screenHeight * SprintBarHeightPercent;
-
-            //SprintBarBG.rectTransform.sizeDelta = new Vector3(_sprintBarWidth, _sprintBarHeight, 0f);
-            //SprintBarFill.rectTransform.sizeDelta = new Vector3(_sprintBarWidth - 2, _sprintBarHeight - 2, 0f);
-
             if (HideBarWhenFull)
-            {
                 _sprintBarCanvasGroup.alpha = 0;
-            }
         }
         else
         {
@@ -261,9 +246,7 @@ public class FirstPersonController : MonoBehaviour
                     _isSprinting = true;
 
                     if (_isCrouched)
-                    {
                         Crouch();
-                    }
 
                     if (HideBarWhenFull && !UnlimitedSprint)
                     {
@@ -271,7 +254,7 @@ public class FirstPersonController : MonoBehaviour
                     }
                 }
 
-                _rb.AddForce(velocityChange, ForceMode.VelocityChange);
+                _rb.AddForce(velocityChange, ForceMode.Impulse);
             }
             // All movement calculations while walking
             else
@@ -293,7 +276,6 @@ public class FirstPersonController : MonoBehaviour
                 velocityChange.y = 0;
 
                 _rb.AddForce(velocityChange, ForceMode.VelocityChange);
-
             }
         }
 
@@ -394,6 +376,9 @@ public class FirstPersonControllerEditor : Editor
     FirstPersonController _firstPersonController_EditorRef;
     SerializedObject _serializedObject;
 
+    public float SprintMaxSpeed = 100f;
+    public float SprintMaxDuration = 10f;
+
     private void OnEnable()
     {
         _firstPersonController_EditorRef = (FirstPersonController)target;
@@ -459,11 +444,11 @@ public class FirstPersonControllerEditor : Editor
         GUI.enabled = _firstPersonController_EditorRef.EnableSprint;
         _firstPersonController_EditorRef.UnlimitedSprint = EditorGUILayout.ToggleLeft(new GUIContent("Unlimited Sprint", "Determines if 'Sprint Duration' is enabled. Turning this on will allow for unlimited sprint."), _firstPersonController_EditorRef.UnlimitedSprint);
         _firstPersonController_EditorRef.SprintKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Sprint Key", "Determines what key is used to sprint."), _firstPersonController_EditorRef.SprintKey);
-        _firstPersonController_EditorRef.SprintSpeed = EditorGUILayout.Slider(new GUIContent("Sprint Speed", "Determines how fast the player will move while sprinting."), _firstPersonController_EditorRef.SprintSpeed, _firstPersonController_EditorRef.WalkSpeed, 20f);
+        _firstPersonController_EditorRef.SprintSpeed = EditorGUILayout.Slider(new GUIContent("Sprint Speed", "Determines how fast the player will move while sprinting."), _firstPersonController_EditorRef.SprintSpeed, _firstPersonController_EditorRef.WalkSpeed, SprintMaxSpeed);
 
         GUI.enabled = !_firstPersonController_EditorRef.UnlimitedSprint;
-        _firstPersonController_EditorRef.SprintDuration = EditorGUILayout.Slider(new GUIContent("Sprint Duration", "Determines how long the player can sprint while unlimited sprint is disabled."), _firstPersonController_EditorRef.SprintDuration, 0.5f, 20f);
-        _firstPersonController_EditorRef.SprintCooldown = EditorGUILayout.Slider(new GUIContent("Sprint Cooldown", "Determines how long the recovery time is when the player runs out of sprint."), _firstPersonController_EditorRef.SprintCooldown, .1f, _firstPersonController_EditorRef.SprintDuration);
+        _firstPersonController_EditorRef.SprintDuration = EditorGUILayout.Slider(new GUIContent("Sprint Duration", "Determines how long the player can sprint while unlimited sprint is disabled."), _firstPersonController_EditorRef.SprintDuration, 0.1f, 30f);
+        _firstPersonController_EditorRef.SprintCooldown = EditorGUILayout.Slider(new GUIContent("Sprint Cooldown", "Determines how long the recovery time is when the player runs out of sprint."), _firstPersonController_EditorRef.SprintCooldown, .1f, 10f);
         GUI.enabled = true;
 
         _firstPersonController_EditorRef.UseSprintBar = EditorGUILayout.ToggleLeft(new GUIContent("Use Sprint Bar", "Determines if the default sprint bar will appear on screen."), _firstPersonController_EditorRef.UseSprintBar);
@@ -473,9 +458,9 @@ public class FirstPersonControllerEditor : Editor
         {
             EditorGUI.indentLevel++;
 
-            EditorGUILayout.BeginHorizontal();
-            _firstPersonController_EditorRef.HideBarWhenFull = EditorGUILayout.ToggleLeft(new GUIContent("Hide Full Bar", "Hides the sprint bar when sprint duration is full, and fades the bar in when sprinting. Disabling this will leave the bar on screen at all times when the sprint bar is enabled."), _firstPersonController_EditorRef.HideBarWhenFull);
-            EditorGUILayout.EndHorizontal();
+            //EditorGUILayout.BeginHorizontal();
+            //_firstPersonController_EditorRef.HideBarWhenFull = EditorGUILayout.ToggleLeft(new GUIContent("Hide Full Bar", "Hides the sprint bar when sprint duration is full, and fades the bar in when sprinting. Disabling this will leave the bar on screen at all times when the sprint bar is enabled."), _firstPersonController_EditorRef.HideBarWhenFull);
+            //EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel(new GUIContent("Bar BG", "Object to be used as sprint bar background."));
@@ -488,13 +473,13 @@ public class FirstPersonControllerEditor : Editor
             EditorGUILayout.EndHorizontal();
 
 
-            EditorGUILayout.BeginHorizontal();
-            _firstPersonController_EditorRef.SprintBarWidthPercent = EditorGUILayout.Slider(new GUIContent("Bar Width", "Determines the width of the sprint bar."), _firstPersonController_EditorRef.SprintBarWidthPercent, .1f, .5f);
-            EditorGUILayout.EndHorizontal();
+            //EditorGUILayout.BeginHorizontal();
+            //_firstPersonController_EditorRef.SprintBarWidthPercent = EditorGUILayout.Slider(new GUIContent("Bar Width", "Determines the width of the sprint bar."), _firstPersonController_EditorRef.SprintBarWidthPercent, .1f, .5f);
+            //EditorGUILayout.EndHorizontal();
 
-            EditorGUILayout.BeginHorizontal();
-            _firstPersonController_EditorRef.SprintBarHeightPercent = EditorGUILayout.Slider(new GUIContent("Bar Height", "Determines the height of the sprint bar."), _firstPersonController_EditorRef.SprintBarHeightPercent, .001f, .025f);
-            EditorGUILayout.EndHorizontal();
+            //EditorGUILayout.BeginHorizontal();
+            //_firstPersonController_EditorRef.SprintBarHeightPercent = EditorGUILayout.Slider(new GUIContent("Bar Height", "Determines the height of the sprint bar."), _firstPersonController_EditorRef.SprintBarHeightPercent, .001f, .025f);
+            //EditorGUILayout.EndHorizontal();
             EditorGUI.indentLevel--;
         }
         GUI.enabled = true;
