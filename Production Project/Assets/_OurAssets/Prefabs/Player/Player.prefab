@@ -778,7 +778,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &3713159152969866624
 MonoBehaviour:
@@ -862,19 +862,17 @@ MonoBehaviour:
   EnableSprint: 1
   UnlimitedSprint: 0
   SprintKey: 304
-  SprintSpeed: 15
-  SprintDuration: 0.5
-  SprintCooldown: 0.5
+  SprintSpeed: 50
+  SprintDuration: 0.1
+  SprintCooldown: 2
   UseSprintBar: 1
   HideBarWhenFull: 0
   SprintBarBG: {fileID: 4153713906224450992}
   SprintBarFill: {fileID: 4153713906736650212}
-  SprintBarWidthPercent: 0.3
-  SprintBarHeightPercent: 0.015
-  EnableJump: 1
+  EnableJump: 0
   JumpKey: 32
   JumpPower: 5
-  EnableCrouch: 1
+  EnableCrouch: 0
   HoldToCrouch: 1
   CrouchKey: 306
   CrouchHeight: 0.75

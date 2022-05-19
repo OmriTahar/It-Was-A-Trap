@@ -171,7 +171,7 @@ public class FirstPersonController : MonoBehaviour
             }
             else
             {
-               // Drain Sprint bar while sprinting
+                // Drain Sprint bar while sprinting
                 float sprintRemainingPercent = _sprintRemaining / SprintDuration;
                 SprintBarFill.fillAmount = sprintRemainingPercent;
 
