@@ -142,6 +142,7 @@ public class FirstPersonController : MonoBehaviour
                 if (!UnlimitedSprint)
                 {
                     _sprintRemaining -= 1 * Time.deltaTime;
+
                     if (_sprintRemaining <= 0)
                     {
                         _isSprinting = false;
@@ -160,22 +161,29 @@ public class FirstPersonController : MonoBehaviour
             if (_isSprintCooldown)
             {
                 SprintCooldown -= 1 * Time.deltaTime;
+
+                // Fill Sprint bar while on cooldown
+                float sprintCooldownPercent = _sprintRemaining / SprintCooldown;
+                SprintBarFill.fillAmount = sprintCooldownPercent;
+
                 if (SprintCooldown <= 0)
-                {
                     _isSprintCooldown = false;
-                }
             }
             else
             {
+               // Drain Sprint bar while sprinting
+                float sprintRemainingPercent = _sprintRemaining / SprintDuration;
+                SprintBarFill.fillAmount = sprintRemainingPercent;
+
                 SprintCooldown = _sprintCooldownReset;
             }
 
-            // Handles sprintBar 
-            if (UseSprintBar && !UnlimitedSprint)
-            {
-                float sprintRemainingPercent = _sprintRemaining / SprintDuration;
-                SprintBarFill.fillAmount = sprintRemainingPercent;
-            }
+            // --------- OLD METHOD: Handles sprintBar -------------
+            //if (UseSprintBar && !UnlimitedSprint)
+            //{
+            //    float sprintRemainingPercent = _sprintRemaining / SprintDuration;
+            //    SprintBarFill.fillAmount = sprintRemainingPercent;
+            //}
         }
 
         #endregion
