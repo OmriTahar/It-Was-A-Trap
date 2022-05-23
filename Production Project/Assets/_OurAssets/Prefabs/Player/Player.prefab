@@ -857,7 +857,7 @@ MonoBehaviour:
   IsCursorLocked: 0
   PlayerCanMove: 1
   SharonsMovement: 1
-  WalkSpeed: 7
+  WalkSpeed: 8.5
   MaxVelocityChange: 10
   EnableSprint: 1
   UnlimitedSprint: 0

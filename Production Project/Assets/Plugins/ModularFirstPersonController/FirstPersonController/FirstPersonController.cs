@@ -66,6 +66,14 @@ public class FirstPersonController : MonoBehaviour
 
     #endregion
 
+    #region NewSprint
+
+    public bool NewDash;
+    private bool _canDash = true;
+    private bool _hasDashed = false;
+
+    #endregion
+
     #region Jump
 
     public bool EnableJump = true;
@@ -167,11 +175,15 @@ public class FirstPersonController : MonoBehaviour
                 SprintBarFill.fillAmount = sprintCooldownPercent;
 
                 if (SprintCooldown <= 0)
+                {
                     _isSprintCooldown = false;
+                    //_hasDashed = false;
+                }
             }
             else
             {
                 // Drain Sprint bar while sprinting
+
                 float sprintRemainingPercent = _sprintRemaining / SprintDuration;
                 SprintBarFill.fillAmount = sprintRemainingPercent;
 
@@ -235,55 +247,68 @@ public class FirstPersonController : MonoBehaviour
                 _isWalking = false;
             }
 
-            // All movement calculations while sprint is active
-            if (EnableSprint && Input.GetKey(SprintKey) && _sprintRemaining > 0f && !_isSprintCooldown)
+            if (!NewDash)
             {
-                targetVelocity = transform.TransformDirection(targetVelocity) * SprintSpeed;
-
-                // Apply a force that attempts to reach our target velocity
-                Vector3 velocity = _rb.velocity;
-                Vector3 velocityChange = (targetVelocity - velocity);
-                velocityChange.x = Mathf.Clamp(velocityChange.x, -MaxVelocityChange, MaxVelocityChange);
-                velocityChange.z = Mathf.Clamp(velocityChange.z, -MaxVelocityChange, MaxVelocityChange);
-                velocityChange.y = 0;
-
-                // Player is only moving when valocity change != 0
-                // Makes sure fov change only happens during movement
-                if (velocityChange.x != 0 || velocityChange.z != 0)
+                // All movement calculations while sprint is active
+                if (EnableSprint && Input.GetKey(SprintKey) && _sprintRemaining > 0f && !_isSprintCooldown)
                 {
-                    _isSprinting = true;
+                    targetVelocity = transform.TransformDirection(targetVelocity) * SprintSpeed;
 
-                    if (_isCrouched)
-                        Crouch();
+                    // Apply a force that attempts to reach our target velocity
+                    Vector3 velocity = _rb.velocity;
+                    Vector3 velocityChange = (targetVelocity - velocity);
+                    velocityChange.x = Mathf.Clamp(velocityChange.x, -MaxVelocityChange, MaxVelocityChange);
+                    velocityChange.z = Mathf.Clamp(velocityChange.z, -MaxVelocityChange, MaxVelocityChange);
+                    velocityChange.y = 0;
 
-                    if (HideBarWhenFull && !UnlimitedSprint)
+                    // Player is only moving when valocity change != 0
+                    if (velocityChange.x != 0 || velocityChange.z != 0)
                     {
-                        _sprintBarCanvasGroup.alpha += 5 * Time.deltaTime;
-                    }
-                }
+                        _isSprinting = true;
+                        #region NotUsed
 
-                _rb.AddForce(velocityChange, ForceMode.Impulse);
+                        if (_isCrouched)
+                            Crouch();
+
+                        if (HideBarWhenFull && !UnlimitedSprint)
+                            _sprintBarCanvasGroup.alpha += 5 * Time.deltaTime;
+
+                        #endregion
+                    }
+
+                    _rb.AddForce(velocityChange, ForceMode.Impulse);
+                }
+                // All movement calculations while walking
+                else
+                {
+                    _isSprinting = false;
+
+                    if (HideBarWhenFull && _sprintRemaining == SprintDuration)
+                        _sprintBarCanvasGroup.alpha -= 3 * Time.deltaTime;
+
+                    targetVelocity = transform.TransformDirection(targetVelocity) * WalkSpeed;
+
+                    // Apply a force that attempts to reach our target velocity
+                    Vector3 velocity = _rb.velocity;
+                    Vector3 velocityChange = (targetVelocity - velocity);
+                    velocityChange.x = Mathf.Clamp(velocityChange.x, -MaxVelocityChange, MaxVelocityChange);
+                    velocityChange.z = Mathf.Clamp(velocityChange.z, -MaxVelocityChange, MaxVelocityChange);
+                    velocityChange.y = 0;
+
+                    _rb.AddForce(velocityChange, ForceMode.VelocityChange);
+                }
             }
-            // All movement calculations while walking
             else
             {
-                _isSprinting = false;
-
-                if (HideBarWhenFull && _sprintRemaining == SprintDuration)
+                if (EnableSprint && Input.GetKey(SprintKey) && _canDash)
                 {
-                    _sprintBarCanvasGroup.alpha -= 3 * Time.deltaTime;
+
                 }
+                // All movement calculations while walking
+                else
+                {
 
-                targetVelocity = transform.TransformDirection(targetVelocity) * WalkSpeed;
-
-                // Apply a force that attempts to reach our target velocity
-                Vector3 velocity = _rb.velocity;
-                Vector3 velocityChange = (targetVelocity - velocity);
-                velocityChange.x = Mathf.Clamp(velocityChange.x, -MaxVelocityChange, MaxVelocityChange);
-                velocityChange.z = Mathf.Clamp(velocityChange.z, -MaxVelocityChange, MaxVelocityChange);
-                velocityChange.y = 0;
-
-                _rb.AddForce(velocityChange, ForceMode.VelocityChange);
+                }
             }
         }
 
@@ -447,15 +472,17 @@ public class FirstPersonControllerEditor : Editor
         GUILayout.Label("Sprint", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
         EditorGUILayout.Space();
 
+        _firstPersonController_EditorRef.NewDash = EditorGUILayout.ToggleLeft(new GUIContent("New Dash", "more dashy than sprinty"), _firstPersonController_EditorRef.NewDash);
         _firstPersonController_EditorRef.EnableSprint = EditorGUILayout.ToggleLeft(new GUIContent("Enable Sprint", "Determines if the player is allowed to sprint."), _firstPersonController_EditorRef.EnableSprint);
 
+        GUI.enabled = _firstPersonController_EditorRef.NewDash;
         GUI.enabled = _firstPersonController_EditorRef.EnableSprint;
         _firstPersonController_EditorRef.UnlimitedSprint = EditorGUILayout.ToggleLeft(new GUIContent("Unlimited Sprint", "Determines if 'Sprint Duration' is enabled. Turning this on will allow for unlimited sprint."), _firstPersonController_EditorRef.UnlimitedSprint);
         _firstPersonController_EditorRef.SprintKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Sprint Key", "Determines what key is used to sprint."), _firstPersonController_EditorRef.SprintKey);
         _firstPersonController_EditorRef.SprintSpeed = EditorGUILayout.Slider(new GUIContent("Sprint Speed", "Determines how fast the player will move while sprinting."), _firstPersonController_EditorRef.SprintSpeed, _firstPersonController_EditorRef.WalkSpeed, SprintMaxSpeed);
 
         GUI.enabled = !_firstPersonController_EditorRef.UnlimitedSprint;
-        _firstPersonController_EditorRef.SprintDuration = EditorGUILayout.Slider(new GUIContent("Sprint Duration", "Determines how long the player can sprint while unlimited sprint is disabled."), _firstPersonController_EditorRef.SprintDuration, 0.1f, 30f);
+        _firstPersonController_EditorRef.SprintDuration = EditorGUILayout.Slider(new GUIContent("Sprint Duration", "Determines how long the player can sprint while unlimited sprint is disabled."), _firstPersonController_EditorRef.SprintDuration, 0.01f, 30f);
         _firstPersonController_EditorRef.SprintCooldown = EditorGUILayout.Slider(new GUIContent("Sprint Cooldown", "Determines how long the recovery time is when the player runs out of sprint."), _firstPersonController_EditorRef.SprintCooldown, .1f, 10f);
         GUI.enabled = true;
 
