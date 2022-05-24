@@ -16,7 +16,9 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] LayerMask groundMask;
 
     [Header("Aim Settings")]
-    [SerializeField] float _maxDistance = 5f;
+    [SerializeField] float maxDistance = 10f;
+    [SerializeField] float minDistance = 0.5f;
+    [SerializeField] float outLineHight = -1f;
     [SerializeField] bool _canAim = false;
 
     [Header("Interaction")]
@@ -88,15 +90,21 @@ public class PlayerAim : MonoBehaviour
 
             Vector3 distanceVector;
 
-            if ((distanceVector = (_hit.point - transform.position)).magnitude <= _maxDistance)
+            if ((distanceVector = (_hit.point - transform.position)).magnitude < minDistance || (_hit.point - transform.position).magnitude < 0)
             {
-                outline.transform.position = _hit.point;
+                distanceVector.y = -1;
+                outline.transform.position = transform.position + distanceVector.normalized * minDistance;
+                outline.transform.position = new Vector3(outline.transform.position.x, _hit.point.y, outline.transform.position.z);
+            }
+            else if ((distanceVector = (_hit.point - transform.position)).magnitude > maxDistance)
+            {
+                distanceVector.y = -1;
+                outline.transform.position = transform.position + distanceVector.normalized * maxDistance;
+                outline.transform.position = new Vector3(outline.transform.position.x, _hit.point.y, outline.transform.position.z);
             }
             else
             {
-                distanceVector.y = -1;
-                outline.transform.position = transform.position + distanceVector.normalized * _maxDistance;
-                outline.transform.position = new Vector3(outline.transform.position.x, _hit.point.y, outline.transform.position.z);
+                outline.transform.position = _hit.point;
             }
 
             //for gizmos can delete later

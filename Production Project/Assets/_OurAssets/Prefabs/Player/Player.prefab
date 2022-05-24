@@ -829,7 +829,9 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 128
-  _maxDistance: 10
+  maxDistance: 10
+  minDistance: 0.5
+  outLineHight: -1
   _canAim: 0
   _interactableLayers:
     serializedVersion: 2
@@ -869,6 +871,7 @@ MonoBehaviour:
   HideBarWhenFull: 0
   SprintBarBG: {fileID: 4153713906224450992}
   SprintBarFill: {fileID: 4153713906736650212}
+  NewDash: 0
   EnableJump: 0
   JumpKey: 32
   JumpPower: 5
