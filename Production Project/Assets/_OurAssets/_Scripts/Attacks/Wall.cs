@@ -4,16 +4,29 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    [SerializeField] int maxHP;
+    int currentHP;
+
+    private void Awake()
     {
-        if (other.tag == "Enemy")
-        {
-            StartCoroutine(CrushWall());
-        }
+        currentHP = maxHP;
     }
-    IEnumerator CrushWall()
+
+    private void Update()
     {
-        yield return new WaitForSeconds(5);
-        Destroy(gameObject);
+        if (currentHP <= 0)
+            Destroy(gameObject);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Attack"))
+            GetHit();
+    }
+
+    private void GetHit()
+    {
+        currentHP--;
+    }
+
 }

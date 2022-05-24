@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6748396656139543187}
+  - component: {fileID: 917684439415100771}
   - component: {fileID: 4517978028723594622}
   - component: {fileID: 1489745117341302390}
   - component: {fileID: 3115788867153083515}
   - component: {fileID: 4442331914426971674}
   - component: {fileID: 3481368531104073855}
-  - component: {fileID: 917684439415100771}
   m_Layer: 9
   m_Name: TrapPrefab
   m_TagString: Untagged
@@ -37,6 +37,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &917684439415100771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265388038745949489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc68a4fe1dbfa8444ad0fc600455c701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 10
+  _stunning: 0
+  _hitParticle: {fileID: 3929031335700610076}
+  _placementTime: 1
+  _decayTime: 6
+  _destroyAfterActivationTime: 2.5
+  _stunDuration: 2
 --- !u!33 &4517978028723594622
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4871,25 +4890,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &917684439415100771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3265388038745949489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc68a4fe1dbfa8444ad0fc600455c701, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 10
-  _stunning: 0
-  _hitParticle: {fileID: 3929031335700610076}
-  _placementTime: 1
-  _decayTime: 6
-  _destroyAfterActivationTime: 2.5
-  _stunDuration: 2
 --- !u!1001 &2876337382657318838
 PrefabInstance:
   m_ObjectHideFlags: 0
