@@ -5,12 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+
     public static MenuManager instance;
     [SerializeField] Menu[] menus;
+
     private void Awake()
     {
         instance = this;
     }
+
     public void OpenMenu(string menuName)
     {
         for (int i = 0; i < menus.Length; i++)
