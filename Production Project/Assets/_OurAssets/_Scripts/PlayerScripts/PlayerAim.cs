@@ -17,8 +17,7 @@ public class PlayerAim : MonoBehaviour
 
     [Header("Aim Settings")]
     [SerializeField] float maxDistance = 10f;
-    [SerializeField] float minDistance = 0.5f;
-    [SerializeField] float outLineHight = -1f;
+    [SerializeField] float minDistance = 2.2f;
     [SerializeField] bool _canAim = false;
 
     [Header("Interaction")]
@@ -86,19 +85,17 @@ public class PlayerAim : MonoBehaviour
 
         if (Physics.Raycast(_ray, out _hit, 1000, groundMask))
         {
-            clearToShoot = !Physics.CheckBox(_hit.point, new Vector3(1.25f, .25f, 1.25f), Quaternion.identity, obstacleMask);
-
             Vector3 distanceVector;
 
-            if ((distanceVector = (_hit.point - transform.position)).magnitude < minDistance || (_hit.point - transform.position).magnitude < 0)
+            if ((distanceVector = (_hit.point - transform.position)).magnitude < minDistance)
             {
-                distanceVector.y = -1;
+                distanceVector.y = 0;
                 outline.transform.position = transform.position + distanceVector.normalized * minDistance;
                 outline.transform.position = new Vector3(outline.transform.position.x, _hit.point.y, outline.transform.position.z);
             }
             else if ((distanceVector = (_hit.point - transform.position)).magnitude > maxDistance)
             {
-                distanceVector.y = -1;
+                distanceVector.y = 0;
                 outline.transform.position = transform.position + distanceVector.normalized * maxDistance;
                 outline.transform.position = new Vector3(outline.transform.position.x, _hit.point.y, outline.transform.position.z);
             }
@@ -106,6 +103,8 @@ public class PlayerAim : MonoBehaviour
             {
                 outline.transform.position = _hit.point;
             }
+
+            clearToShoot = !Physics.CheckBox(outline.transform.position, new Vector3(1.25f, .25f, 1.25f), Quaternion.identity, obstacleMask);
 
             //for gizmos can delete later
             gizmoPos = outline.transform.position;

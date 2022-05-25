@@ -830,8 +830,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   maxDistance: 10
-  minDistance: 0.5
-  outLineHight: -1
+  minDistance: 2.2
   _canAim: 0
   _interactableLayers:
     serializedVersion: 2

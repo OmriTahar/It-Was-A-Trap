@@ -1683,6 +1683,10 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 2032137546}
+    - target: {fileID: 1928329611525411306, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: outlineHight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626790, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_Name
       value: Player
