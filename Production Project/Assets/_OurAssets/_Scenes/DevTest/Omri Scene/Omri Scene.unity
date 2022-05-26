@@ -383,17 +383,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &406283234 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1577372198, guid: 1a04646fe235f8147b0d26bd2a3a8182, type: 3}
-  m_PrefabInstance: {fileID: 1177063642}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee239bae852b5384387d7cfbc9a5e6c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &426752788
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,14 +783,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall_Interact
       objectReference: {fileID: 0}
-    - target: {fileID: 6603938060385420953, guid: 1a04646fe235f8147b0d26bd2a3a8182, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8956432028868688414, guid: 1a04646fe235f8147b0d26bd2a3a8182, type: 3}
-      propertyPath: _wallToDrop
-      value: 
-      objectReference: {fileID: 406283234}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a04646fe235f8147b0d26bd2a3a8182, type: 3}
 --- !u!1001 &1251190801
@@ -1683,10 +1664,6 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 2032137546}
-    - target: {fileID: 1928329611525411306, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: outlineHight
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626790, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_Name
       value: Player

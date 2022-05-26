@@ -6,6 +6,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -45,32 +46,35 @@ public class FirstPersonController : MonoBehaviour
 
     #region Sprint
 
-    public bool EnableSprint = true;
+    public bool IsNewDash;
+    public bool EnableDash = true;
     public bool UnlimitedSprint = false;
-    public KeyCode SprintKey = KeyCode.LeftShift;
-    public float SprintSpeed = 50f;
-    public float SprintDuration = 0.1f;
-    public float SprintCooldown = 3f;
+
+    public KeyCode DashKey = KeyCode.LeftShift;
+    public float DashSpeed = 13.5f;
+    public float DashDuration = 0.15f;
+    public float DashCooldownTotalTime = 3f;
+    public float DashCooldownRemainingTime;
 
     // Sprint Bar
     public bool UseSprintBar = true;
     public bool HideBarWhenFull = false;
     public Image SprintBarBG;
-    public Image SprintBarFill;
-
+    public Image DashBarFill;
     private CanvasGroup _sprintBarCanvasGroup;
-    private bool _isSprinting = false;
+
+    Color32 _dashBarColor;
+    Color32 _dashRechargeColor;
+    Color32 _dashReadyColor;
+
+    private bool _canDash = true;
+    private bool _isDashing = false;
+    private bool _hasDashed = false;
+
+    // Old Dash Variables
     private float _sprintRemaining;
     private bool _isSprintCooldown = false;
     private float _sprintCooldownReset;
-
-    #endregion
-
-    #region NewSprint
-
-    public bool NewDash;
-    private bool _canDash = true;
-    private bool _hasDashed = false;
 
     #endregion
 
@@ -105,8 +109,8 @@ public class FirstPersonController : MonoBehaviour
 
         if (!UnlimitedSprint)
         {
-            _sprintRemaining = SprintDuration;
-            _sprintCooldownReset = SprintCooldown;
+            DashCooldownRemainingTime = DashCooldownTotalTime;
+            _sprintCooldownReset = DashCooldownTotalTime;
         }
     }
 
@@ -122,15 +126,20 @@ public class FirstPersonController : MonoBehaviour
         if (UseSprintBar)
         {
             SprintBarBG.gameObject.SetActive(true);
-            SprintBarFill.gameObject.SetActive(true);
+            DashBarFill.gameObject.SetActive(true);
 
             if (HideBarWhenFull)
                 _sprintBarCanvasGroup.alpha = 0;
+
+            //Recharge Color
+            //_dashBarColor = DashBarFill.GetComponent<Image>().color;
+            //_dashRechargeColor = new Color(255, 255, 0, 50);
+            //_dashReadyColor = new Color32(255, 255, 0, 255);
         }
         else
         {
             SprintBarBG.gameObject.SetActive(false);
-            SprintBarFill.gameObject.SetActive(false);
+            DashBarFill.gameObject.SetActive(false);
         }
 
         #endregion
@@ -143,59 +152,76 @@ public class FirstPersonController : MonoBehaviour
 
         #region Handle Sprint
 
-        if (EnableSprint)
+        if (EnableDash)
         {
-            if (_isSprinting)
+            if (IsNewDash)
             {
-                if (!UnlimitedSprint)
+                if (_hasDashed)
                 {
-                    _sprintRemaining -= 1 * Time.deltaTime;
+                    DashBarFill.fillAmount = 0;
+                    DashBarFill.GetComponent<Image>().color = new Color32(255, 255, 0, 30);
 
-                    if (_sprintRemaining <= 0)
+                    _isSprintCooldown = true;
+                }
+
+                if (_isSprintCooldown)
+                {
+                    DashCooldownRemainingTime -= Time.deltaTime;
+
+                    var dashCooldownPercentage = DashCooldownRemainingTime / DashCooldownTotalTime;
+                    DashBarFill.fillAmount = 1 - dashCooldownPercentage;
+
+                    if (DashCooldownRemainingTime <= 0)
                     {
-                        _isSprinting = false;
-                        _isSprintCooldown = true;
+                        DashCooldownRemainingTime = DashCooldownTotalTime;
+
+                        _canDash = true;
+                        _hasDashed = false;
+                        _isSprintCooldown = false;
+
+                        DashBarFill.GetComponent<Image>().color = new Color32(255, 255, 0, 255);
                     }
                 }
             }
             else
             {
-                // Regain sprint while not sprinting
-                _sprintRemaining = Mathf.Clamp(_sprintRemaining += 1 * Time.deltaTime, 0, SprintDuration);
-            }
-
-            // Handles sprint cooldown 
-            // When sprint remaining == 0 stops sprint ability until hitting cooldown
-            if (_isSprintCooldown)
-            {
-                SprintCooldown -= 1 * Time.deltaTime;
-
-                // Fill Sprint bar while on cooldown
-                float sprintCooldownPercent = _sprintRemaining / SprintCooldown;
-                SprintBarFill.fillAmount = sprintCooldownPercent;
-
-                if (SprintCooldown <= 0)
+                if (_isDashing)
                 {
-                    _isSprintCooldown = false;
-                    //_hasDashed = false;
+                    if (!UnlimitedSprint)
+                    {
+                        _sprintRemaining -= 1 * Time.deltaTime;
+
+                        if (_sprintRemaining <= 0)
+                        {
+                            _isDashing = false;
+                            _isSprintCooldown = true;
+                        }
+                    }
+                }
+                else
+                {
+                    // Regain sprint while not sprinting
+                    _sprintRemaining = Mathf.Clamp(_sprintRemaining += 1 * Time.deltaTime, 0, DashDuration);
+                }
+
+                // Handles sprint cooldown
+                // When sprint remaining == 0 stops sprint ability until hitting cooldown
+                if (_isSprintCooldown)
+                {
+                    // Fill Sprint bar while on cooldown
+                    float sprintCooldownPercent = _sprintRemaining / DashCooldownRemainingTime;
+                    DashBarFill.fillAmount = sprintCooldownPercent;
+                }
+
+                //---------OLD METHOD: Handles sprintBar -------------
+                if (UseSprintBar && !UnlimitedSprint)
+                {
+                    float sprintRemainingPercent = _sprintRemaining / DashDuration;
+                    DashBarFill.fillAmount = sprintRemainingPercent;
+
+                    DashCooldownRemainingTime = _sprintCooldownReset;
                 }
             }
-            else
-            {
-                // Drain Sprint bar while sprinting
-
-                float sprintRemainingPercent = _sprintRemaining / SprintDuration;
-                SprintBarFill.fillAmount = sprintRemainingPercent;
-
-                SprintCooldown = _sprintCooldownReset;
-            }
-
-            // --------- OLD METHOD: Handles sprintBar -------------
-            //if (UseSprintBar && !UnlimitedSprint)
-            //{
-            //    float sprintRemainingPercent = _sprintRemaining / SprintDuration;
-            //    SprintBarFill.fillAmount = sprintRemainingPercent;
-            //}
         }
 
         #endregion
@@ -247,12 +273,11 @@ public class FirstPersonController : MonoBehaviour
                 _isWalking = false;
             }
 
-            if (!NewDash)
+            if (IsNewDash)
             {
-                // All movement calculations while sprint is active
-                if (EnableSprint && Input.GetKey(SprintKey) && _sprintRemaining > 0f && !_isSprintCooldown)
+                if (EnableDash && Input.GetKeyDown(DashKey) && _canDash)
                 {
-                    targetVelocity = transform.TransformDirection(targetVelocity) * SprintSpeed;
+                    targetVelocity = transform.TransformDirection(targetVelocity) * DashSpeed;
 
                     // Apply a force that attempts to reach our target velocity
                     Vector3 velocity = _rb.velocity;
@@ -264,7 +289,44 @@ public class FirstPersonController : MonoBehaviour
                     // Player is only moving when valocity change != 0
                     if (velocityChange.x != 0 || velocityChange.z != 0)
                     {
-                        _isSprinting = true;
+                        _isDashing = true;
+                        StartCoroutine(Dash(velocityChange));
+                        _canDash = false;
+                        _hasDashed = true;
+                    }
+                }
+                else if (!_isDashing)
+                {
+                    targetVelocity = transform.TransformDirection(targetVelocity) * WalkSpeed;
+
+                    // Apply a force that attempts to reach our target velocity
+                    Vector3 velocity = _rb.velocity;
+                    Vector3 velocityChange = (targetVelocity - velocity);
+                    velocityChange.x = Mathf.Clamp(velocityChange.x, -MaxVelocityChange, MaxVelocityChange);
+                    velocityChange.z = Mathf.Clamp(velocityChange.z, -MaxVelocityChange, MaxVelocityChange);
+                    velocityChange.y = 0;
+
+                    _rb.AddForce(velocityChange, ForceMode.VelocityChange);
+                }
+            }
+            else
+            {
+                // All movement calculations while sprint is active
+                if (EnableDash && Input.GetKeyDown(DashKey) && _sprintRemaining > 0f && !_isSprintCooldown)
+                {
+                    targetVelocity = transform.TransformDirection(targetVelocity) * DashSpeed;
+
+                    // Apply a force that attempts to reach our target velocity
+                    Vector3 velocity = _rb.velocity;
+                    Vector3 velocityChange = (targetVelocity - velocity);
+                    velocityChange.x = Mathf.Clamp(velocityChange.x, -MaxVelocityChange, MaxVelocityChange);
+                    velocityChange.z = Mathf.Clamp(velocityChange.z, -MaxVelocityChange, MaxVelocityChange);
+                    velocityChange.y = 0;
+
+                    // Player is only moving when valocity change != 0
+                    if (velocityChange.x != 0 || velocityChange.z != 0)
+                    {
+                        _isDashing = true;
                         #region NotUsed
 
                         if (_isCrouched)
@@ -281,9 +343,7 @@ public class FirstPersonController : MonoBehaviour
                 // All movement calculations while walking
                 else
                 {
-                    _isSprinting = false;
-
-                    if (HideBarWhenFull && _sprintRemaining == SprintDuration)
+                    if (HideBarWhenFull && _sprintRemaining == DashDuration)
                         _sprintBarCanvasGroup.alpha -= 3 * Time.deltaTime;
 
                     targetVelocity = transform.TransformDirection(targetVelocity) * WalkSpeed;
@@ -298,21 +358,15 @@ public class FirstPersonController : MonoBehaviour
                     _rb.AddForce(velocityChange, ForceMode.VelocityChange);
                 }
             }
-            else
-            {
-                if (EnableSprint && Input.GetKey(SprintKey) && _canDash)
-                {
-
-                }
-                // All movement calculations while walking
-                else
-                {
-
-                }
-            }
         }
-
         #endregion
+    }
+
+    IEnumerator Dash(Vector3 dashVecolity)
+    {
+        _rb.AddForce(dashVecolity * DashSpeed, ForceMode.Impulse);
+        yield return new WaitForSeconds(DashDuration);
+        _isDashing = false;
     }
 
     private void CameraInput()
@@ -333,7 +387,7 @@ public class FirstPersonController : MonoBehaviour
             }
         }
         else
-        {           
+        {
             RaycastHit hit;
             Ray camRay = PlayerMovementCamera.ScreenPointToRay(Input.mousePosition);
 
@@ -409,8 +463,8 @@ public class FirstPersonControllerEditor : Editor
     FirstPersonController _firstPersonController_EditorRef;
     SerializedObject _serializedObject;
 
-    public float SprintMaxSpeed = 100f;
-    public float SprintMaxDuration = 10f;
+    public float DashMaxSpeed = 30f;
+    public float DashMaxDuration = 5f;
 
     private void OnEnable()
     {
@@ -462,7 +516,7 @@ public class FirstPersonControllerEditor : Editor
 
         GUI.enabled = _firstPersonController_EditorRef.SharonsMovement;
         GUI.enabled = _firstPersonController_EditorRef.PlayerCanMove;
-        _firstPersonController_EditorRef.WalkSpeed = EditorGUILayout.Slider(new GUIContent("Walk Speed", "Determines how fast the player will move while walking."), _firstPersonController_EditorRef.WalkSpeed, .1f, _firstPersonController_EditorRef.SprintSpeed);
+        _firstPersonController_EditorRef.WalkSpeed = EditorGUILayout.Slider(new GUIContent("Walk Speed", "Determines how fast the player will move while walking."), _firstPersonController_EditorRef.WalkSpeed, .1f, _firstPersonController_EditorRef.DashSpeed);
         GUI.enabled = true;
         EditorGUILayout.Space();
 
@@ -472,18 +526,18 @@ public class FirstPersonControllerEditor : Editor
         GUILayout.Label("Sprint", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
         EditorGUILayout.Space();
 
-        _firstPersonController_EditorRef.NewDash = EditorGUILayout.ToggleLeft(new GUIContent("New Dash", "more dashy than sprinty"), _firstPersonController_EditorRef.NewDash);
-        _firstPersonController_EditorRef.EnableSprint = EditorGUILayout.ToggleLeft(new GUIContent("Enable Sprint", "Determines if the player is allowed to sprint."), _firstPersonController_EditorRef.EnableSprint);
+        _firstPersonController_EditorRef.IsNewDash = EditorGUILayout.ToggleLeft(new GUIContent("New Dash", "more dashy than sprinty"), _firstPersonController_EditorRef.IsNewDash);
+        _firstPersonController_EditorRef.EnableDash = EditorGUILayout.ToggleLeft(new GUIContent("Enable Dash", "Determines if the player is allowed to sprint."), _firstPersonController_EditorRef.EnableDash);
 
-        GUI.enabled = _firstPersonController_EditorRef.NewDash;
-        GUI.enabled = _firstPersonController_EditorRef.EnableSprint;
-        _firstPersonController_EditorRef.UnlimitedSprint = EditorGUILayout.ToggleLeft(new GUIContent("Unlimited Sprint", "Determines if 'Sprint Duration' is enabled. Turning this on will allow for unlimited sprint."), _firstPersonController_EditorRef.UnlimitedSprint);
-        _firstPersonController_EditorRef.SprintKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Sprint Key", "Determines what key is used to sprint."), _firstPersonController_EditorRef.SprintKey);
-        _firstPersonController_EditorRef.SprintSpeed = EditorGUILayout.Slider(new GUIContent("Sprint Speed", "Determines how fast the player will move while sprinting."), _firstPersonController_EditorRef.SprintSpeed, _firstPersonController_EditorRef.WalkSpeed, SprintMaxSpeed);
+        GUI.enabled = _firstPersonController_EditorRef.IsNewDash;
+        GUI.enabled = _firstPersonController_EditorRef.EnableDash;
+        _firstPersonController_EditorRef.UnlimitedSprint = EditorGUILayout.ToggleLeft(new GUIContent("Unlimited Dash", "Determines if 'Sprint Duration' is enabled. Turning this on will allow for unlimited sprint."), _firstPersonController_EditorRef.UnlimitedSprint);
+        _firstPersonController_EditorRef.DashKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Dash Key", "Determines what key is used to sprint."), _firstPersonController_EditorRef.DashKey);
+        _firstPersonController_EditorRef.DashSpeed = EditorGUILayout.Slider(new GUIContent("Dash Speed", "Determines how fast the player will move while sprinting."), _firstPersonController_EditorRef.DashSpeed, _firstPersonController_EditorRef.WalkSpeed, DashMaxSpeed);
 
         GUI.enabled = !_firstPersonController_EditorRef.UnlimitedSprint;
-        _firstPersonController_EditorRef.SprintDuration = EditorGUILayout.Slider(new GUIContent("Sprint Duration", "Determines how long the player can sprint while unlimited sprint is disabled."), _firstPersonController_EditorRef.SprintDuration, 0.01f, 30f);
-        _firstPersonController_EditorRef.SprintCooldown = EditorGUILayout.Slider(new GUIContent("Sprint Cooldown", "Determines how long the recovery time is when the player runs out of sprint."), _firstPersonController_EditorRef.SprintCooldown, .1f, 10f);
+        _firstPersonController_EditorRef.DashDuration = EditorGUILayout.Slider(new GUIContent("Dash Duration", "Determines how long the player can sprint while unlimited sprint is disabled."), _firstPersonController_EditorRef.DashDuration, 0.01f, 5f);
+        _firstPersonController_EditorRef.DashCooldownRemainingTime = EditorGUILayout.Slider(new GUIContent("Dash Cooldown", "Determines how long the recovery time is when the player runs out of sprint."), _firstPersonController_EditorRef.DashCooldownRemainingTime, .1f, 5f);
         GUI.enabled = true;
 
         _firstPersonController_EditorRef.UseSprintBar = EditorGUILayout.ToggleLeft(new GUIContent("Use Sprint Bar", "Determines if the default sprint bar will appear on screen."), _firstPersonController_EditorRef.UseSprintBar);
@@ -504,7 +558,7 @@ public class FirstPersonControllerEditor : Editor
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel(new GUIContent("Bar", "Object to be used as sprint bar foreground."));
-            _firstPersonController_EditorRef.SprintBarFill = (Image)EditorGUILayout.ObjectField(_firstPersonController_EditorRef.SprintBarFill, typeof(Image), true);
+            _firstPersonController_EditorRef.DashBarFill = (Image)EditorGUILayout.ObjectField(_firstPersonController_EditorRef.DashBarFill, typeof(Image), true);
             EditorGUILayout.EndHorizontal();
 
 

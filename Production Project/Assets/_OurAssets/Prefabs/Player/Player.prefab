@@ -860,17 +860,18 @@ MonoBehaviour:
   SharonsMovement: 1
   WalkSpeed: 8.5
   MaxVelocityChange: 10
-  EnableSprint: 1
+  IsNewDash: 1
+  EnableDash: 1
   UnlimitedSprint: 0
-  SprintKey: 304
-  SprintSpeed: 50
-  SprintDuration: 0.1
-  SprintCooldown: 2
+  DashKey: 304
+  DashSpeed: 13.5
+  DashDuration: 0.15
+  DashCooldownTotalTime: 3
+  DashCooldownRemainingTime: 3
   UseSprintBar: 1
   HideBarWhenFull: 0
   SprintBarBG: {fileID: 4153713906224450992}
-  SprintBarFill: {fileID: 4153713906736650212}
-  NewDash: 0
+  DashBarFill: {fileID: 4153713906736650212}
   EnableJump: 0
   JumpKey: 32
   JumpPower: 5
@@ -1176,7 +1177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.99636734, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
