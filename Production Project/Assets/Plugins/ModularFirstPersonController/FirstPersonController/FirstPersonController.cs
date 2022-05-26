@@ -170,6 +170,7 @@ public class FirstPersonController : MonoBehaviour
                     if (DashCooldownRemainingTime <= 0)
                     {
                         DashCooldownRemainingTime = DashCooldownTotalTime;
+                        DashBarFill.fillAmount = 1;
 
                         _canDash = true;
                         _isSprintCooldown = false;
