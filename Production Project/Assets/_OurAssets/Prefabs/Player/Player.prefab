@@ -864,7 +864,7 @@ MonoBehaviour:
   EnableDash: 1
   UnlimitedSprint: 0
   DashKey: 304
-  DashSpeed: 13.5
+  DashSpeed: 60
   DashDuration: 0.15
   DashCooldownTotalTime: 3
   DashCooldownRemainingTime: 3

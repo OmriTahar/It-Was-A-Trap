@@ -44,32 +44,30 @@ public class FirstPersonController : MonoBehaviour
 
     #endregion
 
-    #region Sprint
+    #region Dash
 
+    // Dash Config
     public bool IsNewDash;
     public bool EnableDash = true;
     public bool UnlimitedSprint = false;
-
     public KeyCode DashKey = KeyCode.LeftShift;
-    public float DashSpeed = 13.5f;
+
+    // Dash Settings
+    public float DashSpeed = 60f;
     public float DashDuration = 0.15f;
     public float DashCooldownTotalTime = 3f;
     public float DashCooldownRemainingTime;
 
-    // Sprint Bar
+    private bool _canDash = true;
+    private bool _isDashing = false;
+
+    // Dash UI Bar
     public bool UseSprintBar = true;
     public bool HideBarWhenFull = false;
     public Image SprintBarBG;
     public Image DashBarFill;
     private CanvasGroup _sprintBarCanvasGroup;
-
-    Color32 _dashBarColor;
-    Color32 _dashRechargeColor;
-    Color32 _dashReadyColor;
-
-    private bool _canDash = true;
-    private bool _isDashing = false;
-    private bool _hasDashed = false;
+    private Color32 _dashBarColor;
 
     // Old Dash Variables
     private float _sprintRemaining;
@@ -128,13 +126,10 @@ public class FirstPersonController : MonoBehaviour
             SprintBarBG.gameObject.SetActive(true);
             DashBarFill.gameObject.SetActive(true);
 
+            _dashBarColor = DashBarFill.GetComponent<Image>().color;
+
             if (HideBarWhenFull)
                 _sprintBarCanvasGroup.alpha = 0;
-
-            //Recharge Color
-            //_dashBarColor = DashBarFill.GetComponent<Image>().color;
-            //_dashRechargeColor = new Color(255, 255, 0, 50);
-            //_dashReadyColor = new Color32(255, 255, 0, 255);
         }
         else
         {
@@ -156,10 +151,11 @@ public class FirstPersonController : MonoBehaviour
         {
             if (IsNewDash)
             {
-                if (_hasDashed)
+                if (!_canDash)
                 {
                     DashBarFill.fillAmount = 0;
-                    DashBarFill.GetComponent<Image>().color = new Color32(255, 255, 0, 30);
+                    _dashBarColor = new Color32(255, 255, 0, 30);
+                    DashBarFill.color = _dashBarColor;
 
                     _isSprintCooldown = true;
                 }
@@ -176,13 +172,14 @@ public class FirstPersonController : MonoBehaviour
                         DashCooldownRemainingTime = DashCooldownTotalTime;
 
                         _canDash = true;
-                        _hasDashed = false;
                         _isSprintCooldown = false;
 
-                        DashBarFill.GetComponent<Image>().color = new Color32(255, 255, 0, 255);
+                        _dashBarColor = new Color32(255, 255, 0, 255);
+                        DashBarFill.color = _dashBarColor;
                     }
                 }
             }
+            #region Old Dash UI Logic
             else
             {
                 if (_isDashing)
@@ -222,10 +219,12 @@ public class FirstPersonController : MonoBehaviour
                     DashCooldownRemainingTime = _sprintCooldownReset;
                 }
             }
+            #endregion
         }
 
         #endregion
 
+        #region Jump & Crouch & CheckGround (Not Used)
         if (EnableJump && Input.GetKeyDown(JumpKey) && _isGrounded)
             Jump();
 
@@ -249,8 +248,8 @@ public class FirstPersonController : MonoBehaviour
         }
 
         #endregion
-
         CheckGround();
+        #endregion
     }
 
     void FixedUpdate()
@@ -259,7 +258,6 @@ public class FirstPersonController : MonoBehaviour
 
         if (PlayerCanMove)
         {
-            // Calculate how fast we should be moving
             Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
             // Checks if player is walking and isGrounded
@@ -269,9 +267,7 @@ public class FirstPersonController : MonoBehaviour
                 _isWalking = true;
             }
             else
-            {
                 _isWalking = false;
-            }
 
             if (IsNewDash)
             {
@@ -286,13 +282,18 @@ public class FirstPersonController : MonoBehaviour
                     velocityChange.z = Mathf.Clamp(velocityChange.z, -MaxVelocityChange, MaxVelocityChange);
                     velocityChange.y = 0;
 
-                    // Player is only moving when valocity change != 0
-                    if (velocityChange.x != 0 || velocityChange.z != 0)
+                    // Dash while moving
+                    if (_rb.velocity.magnitude > 0)
                     {
-                        _isDashing = true;
                         StartCoroutine(Dash(velocityChange));
+                        _isDashing = true;
                         _canDash = false;
-                        _hasDashed = true;
+                    }
+                    else // If dashing without moving -> dash to a random location
+                    {
+                        StartCoroutine(Dash(new Vector3(UnityEngine.Random.Range(-1f, 1f), 0, UnityEngine.Random.Range(-1f, 1f))));
+                        _isDashing = true;
+                        _canDash = false;
                     }
                 }
                 else if (!_isDashing)
@@ -309,6 +310,7 @@ public class FirstPersonController : MonoBehaviour
                     _rb.AddForce(velocityChange, ForceMode.VelocityChange);
                 }
             }
+            #region Old Dash Logic
             else
             {
                 // All movement calculations while sprint is active
@@ -358,12 +360,14 @@ public class FirstPersonController : MonoBehaviour
                     _rb.AddForce(velocityChange, ForceMode.VelocityChange);
                 }
             }
+            #endregion
         }
         #endregion
     }
 
     IEnumerator Dash(Vector3 dashVecolity)
     {
+        dashVecolity = dashVecolity.normalized;
         _rb.AddForce(dashVecolity * DashSpeed, ForceMode.Impulse);
         yield return new WaitForSeconds(DashDuration);
         _isDashing = false;
@@ -371,7 +375,6 @@ public class FirstPersonController : MonoBehaviour
 
     private void CameraInput()
     {
-
         if (!SharonsMovement)
         {
             Ray cameraRay = PlayerMovementCamera.ScreenPointToRay(Input.mousePosition);
@@ -397,8 +400,9 @@ public class FirstPersonController : MonoBehaviour
                 Debug.DrawLine(camRay.origin, hit.point, Color.yellow);
             }
         }
-
     }
+
+    #region Jump & Crouch & CheckGround Methods
 
     private void CheckGround() // Sets _isGrounded based on a raycast sent straigth down from the player object
     {
@@ -412,9 +416,7 @@ public class FirstPersonController : MonoBehaviour
             _isGrounded = true;
         }
         else
-        {
             _isGrounded = false;
-        }
     }
 
     private void Jump()
@@ -427,9 +429,7 @@ public class FirstPersonController : MonoBehaviour
 
         // When crouched and using toggle system, will uncrouch for a jump
         if (_isCrouched && !HoldToCrouch)
-        {
             Crouch();
-        }
     }
 
     private void Crouch()
@@ -452,6 +452,8 @@ public class FirstPersonController : MonoBehaviour
             _isCrouched = true;
         }
     }
+
+    #endregion
 }
 
 
@@ -463,7 +465,7 @@ public class FirstPersonControllerEditor : Editor
     FirstPersonController _firstPersonController_EditorRef;
     SerializedObject _serializedObject;
 
-    public float DashMaxSpeed = 30f;
+    public float DashMaxSpeed = 100f;
     public float DashMaxDuration = 5f;
 
     private void OnEnable()
