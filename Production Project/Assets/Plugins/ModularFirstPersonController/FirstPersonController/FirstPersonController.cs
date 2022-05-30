@@ -99,6 +99,13 @@ public class FirstPersonController : MonoBehaviour
 
     #endregion
 
+    #region Animations
+
+    Animator _animator;
+    public ParticleSystem _dashEffect;
+
+    #endregion
+
     #endregion
 
     private void Awake()
@@ -110,6 +117,8 @@ public class FirstPersonController : MonoBehaviour
             DashCooldownRemainingTime = DashCooldownTotalTime;
             _sprintCooldownReset = DashCooldownTotalTime;
         }
+
+        _animator = GetComponent<Animator>();
     }
 
     void Start()
@@ -261,10 +270,28 @@ public class FirstPersonController : MonoBehaviour
         {
             Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
+            #region Animator
+
+            // ---- Animation Test -----
+
+            _animator.SetFloat("Velocity", targetVelocity.magnitude);
+
+            if (targetVelocity.z > 0)
+            {
+                _animator.SetBool("IsPressingForward", true);
+            }
+            else if (targetVelocity.z < 0)
+            {
+                _animator.SetBool("IsPressingForward", false);
+            }
+
+            // ---------------------------
+
+            #endregion
+
             // Checks if player is walking and isGrounded
             if (targetVelocity.x != 0 || targetVelocity.z != 0 && _isGrounded)
             {
-                // ------- INSERT WALK ANIMATION? ----------
                 _isWalking = true;
             }
             else
@@ -368,6 +395,9 @@ public class FirstPersonController : MonoBehaviour
 
     IEnumerator Dash(Vector3 dashVecolity)
     {
+        if (_dashEffect != null)
+            _dashEffect.Play();
+
         dashVecolity = dashVecolity.normalized;
         _rb.AddForce(dashVecolity * DashSpeed, ForceMode.Impulse);
         yield return new WaitForSeconds(DashDuration);
@@ -523,7 +553,7 @@ public class FirstPersonControllerEditor : Editor
         GUI.enabled = true;
         EditorGUILayout.Space();
 
-        #region Sprint
+        #region Dash
 
         EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
         GUILayout.Label("Sprint", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
@@ -532,6 +562,7 @@ public class FirstPersonControllerEditor : Editor
         _firstPersonController_EditorRef.IsNewDash = EditorGUILayout.ToggleLeft(new GUIContent("New Dash", "more dashy than sprinty"), _firstPersonController_EditorRef.IsNewDash);
         _firstPersonController_EditorRef.EnableDash = EditorGUILayout.ToggleLeft(new GUIContent("Enable Dash", "Determines if the player is allowed to sprint."), _firstPersonController_EditorRef.EnableDash);
 
+        _firstPersonController_EditorRef._dashEffect = (ParticleSystem)EditorGUILayout.ObjectField(new GUIContent("Dash Effect", "Effect is played the the player dashes"), _firstPersonController_EditorRef._dashEffect, typeof(ParticleSystem), true);
         GUI.enabled = _firstPersonController_EditorRef.IsNewDash;
         GUI.enabled = _firstPersonController_EditorRef.EnableDash;
         _firstPersonController_EditorRef.UnlimitedSprint = EditorGUILayout.ToggleLeft(new GUIContent("Unlimited Dash", "Determines if 'Sprint Duration' is enabled. Turning this on will allow for unlimited sprint."), _firstPersonController_EditorRef.UnlimitedSprint);
