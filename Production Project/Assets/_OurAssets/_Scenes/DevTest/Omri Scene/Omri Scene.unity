@@ -500,7 +500,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 183
+    m_Bits: 1207
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -1622,6 +1622,10 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 2032137546}
+    - target: {fileID: 1928329611525411306, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: obstacleMask.m_Bits
+      value: 5896
+      objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626790, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_Name
       value: Player
