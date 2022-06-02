@@ -9,10 +9,12 @@ public class ActivateEnemies : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            print("activating enemies!");
+
             foreach (var enemy in EnemiesToActivate)
             {
-                print("activating enemies!");
-                enemy.IsEnemyActivated = true;
+                if (enemy != null)
+                    enemy.IsEnemyActivated = true;
             }
 
             Destroy(gameObject);
