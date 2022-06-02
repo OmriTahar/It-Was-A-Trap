@@ -53,7 +53,7 @@ public class Trap : Attack
                 _wasActivated = true;
                 _myRenderer.material.color = _activatedColor;
 
-                var enemyAI = other.GetComponent<EnemyAI>();
+                var enemyAI = other.GetComponent<BaseEnemyAI>();
                 enemyAI.RecieveDamage(this);
                 StartCoroutine(StunEnemy(enemyAI));
 
@@ -77,7 +77,7 @@ public class Trap : Attack
         Destroy(gameObject);
     }
 
-    private IEnumerator StunEnemy(EnemyAI enemyAI)
+    private IEnumerator StunEnemy(BaseEnemyAI enemyAI)
     {
         enemyAI.IsEnemyActivated = false;
         enemyAI.IsStunned = true;

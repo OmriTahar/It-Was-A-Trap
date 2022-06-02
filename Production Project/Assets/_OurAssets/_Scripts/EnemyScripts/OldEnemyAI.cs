@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class EnemyAI : Unit
+public class OldEnemyAI : Unit
 {
     private NavMeshAgent _agent;
     private Rigidbody _rb;
@@ -18,10 +18,10 @@ public class EnemyAI : Unit
     public bool IsLeaper;
 
     [Header("Chase Settings")]
-    public float SlerpCurve;
+    [SerializeField] float SlerpCurve;
 
     [Header("General Attack Settings")]
-    public GameObject AttackPrefab;
+    [SerializeField] GameObject AttackPrefab;
     [SerializeField] float _timeBetweenAttacks;
 
     [Header("Leaper Settings")]
@@ -113,7 +113,7 @@ public class EnemyAI : Unit
         {
             if (!_isFleeing)
             {
-                _isPlayerInAttackRange = Physics.CheckSphere(transform.position, UnitAttackRange, _playerLayer);
+                _isPlayerInAttackRange = Physics.CheckSphere(transform.position, _unitAttackRange, _playerLayer);
 
                 if (IsRangedEnemy)
                 {
@@ -307,7 +307,7 @@ public class EnemyAI : Unit
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(transform.position, _startFleeFromPlayer_Range);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, UnitAttackRange);
+        Gizmos.DrawWireSphere(transform.position, _unitAttackRange);
     }
 
     #region UnusedMethods

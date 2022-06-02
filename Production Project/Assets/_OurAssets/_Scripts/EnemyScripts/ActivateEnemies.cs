@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ActivateEnemies : MonoBehaviour
 {
-    public List<EnemyAI> EnemiesToActivate = new List<EnemyAI>();
+    public List<BaseEnemyAI> EnemiesToActivate = new List<BaseEnemyAI>();
 
     private void OnTriggerEnter(Collider other)
     {

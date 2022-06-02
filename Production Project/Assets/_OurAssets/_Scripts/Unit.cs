@@ -6,17 +6,17 @@ using UnityEngine.UI;
 public class Unit : MonoBehaviour
 {
     [Header("Unit Settings")]
-    public float UnitHP;
-    public float UnitMaxHP;
-    public float UnitAttackRange;
+    public float _unitHP;
+    public float _unitMaxHP;
+    public float _unitAttackRange;
     [SerializeField] Image _healthBarBG, _healthBar;
 
     private void Awake()
     {
-        UnitHP = UnitMaxHP;
+        _unitHP = _unitMaxHP;
 
         if (_healthBar)
-            _healthBar.fillAmount = UnitHP / UnitMaxHP;
+            _healthBar.fillAmount = _unitHP / _unitMaxHP;
     }
 
     public void RecieveDamage(IAttackable<Unit> enemy)
@@ -25,7 +25,7 @@ public class Unit : MonoBehaviour
 
         if (_healthBar)
         {
-            _healthBar.fillAmount = UnitHP / UnitMaxHP;
+            _healthBar.fillAmount = _unitHP / _unitMaxHP;
             //print("Fill Amount: " + _healthBar.fillAmount);
         }
 
@@ -34,7 +34,7 @@ public class Unit : MonoBehaviour
 
     void CheckDeath()
     {
-        if (UnitHP <= 0)
+        if (_unitHP <= 0)
         {
             print($"{gameObject.name} died");
             Destroy(gameObject);
