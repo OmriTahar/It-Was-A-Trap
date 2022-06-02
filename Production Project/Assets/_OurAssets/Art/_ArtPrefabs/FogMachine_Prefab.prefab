@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 3867356037652670242}
   - component: {fileID: 6835667966850782929}
   m_Layer: 10
-  m_Name: Particle System
+  m_Name: Particle_Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
