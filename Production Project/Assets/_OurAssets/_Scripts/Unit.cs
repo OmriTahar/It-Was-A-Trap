@@ -26,7 +26,7 @@ public class Unit : MonoBehaviour
         if (_healthBar)
         {
             _healthBar.fillAmount = _unitHP / _unitMaxHP;
-            print("Fill Amount: " + _healthBar.fillAmount);
+            //print("Fill Amount: " + _healthBar.fillAmount);
         }
 
         CheckDeath();

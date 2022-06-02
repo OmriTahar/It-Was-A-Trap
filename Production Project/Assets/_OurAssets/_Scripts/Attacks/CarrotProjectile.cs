@@ -31,6 +31,7 @@ public class CarrotProjectile : Attack
     {
         yield return new WaitForSeconds(_decayTime);
         _projectilePool.ReturnProjectileToPool(gameObject);
+        _myCollider.isTrigger = true;
     }
 
     public void SetMe(ProjectilePool myPool) // Can also later be used to set Damage and other variables to the projectile
