@@ -1622,10 +1622,6 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 2032137546}
-    - target: {fileID: 1928329611525411306, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: obstacleMask.m_Bits
-      value: 5896
-      objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626790, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2004,10 +2000,6 @@ PrefabInstance:
     - target: {fileID: 4638757963801875477, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: m_Name
       value: Leaper_Prefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 4638757963801875477, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6467931333642665497, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: _playerTransform

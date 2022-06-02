@@ -32,7 +32,7 @@ public class SaveFile
     {
         position = spawnPoint.position;
         rotation = spawnPoint.rotation;
-        health = playerData._unitHP;
+        health = playerData.UnitHP;
         bunnyCount = playerData.bunnyCount;
         lastUsedWeapon = playerData.currentWeapon;
     }

@@ -60,7 +60,7 @@ public class SaveManager : MonoBehaviour
 
         PlayerGO.transform.position = CurrentSave.position;
         PlayerGO.transform.rotation = CurrentSave.rotation;
-        playerData._unitHP = CurrentSave.health;
+        playerData.UnitHP = CurrentSave.health;
         playerData.bunnyCount = CurrentSave.bunnyCount;
         playerData.currentWeapon = CurrentSave.lastUsedWeapon;
     }

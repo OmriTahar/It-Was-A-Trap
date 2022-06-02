@@ -9,46 +9,55 @@ public class EnemyAI : Unit
     private NavMeshAgent _agent;
     private Rigidbody _rb;
 
-    [Header("General Settings & References")]
+    [Header("General References")]
     [SerializeField] Transform _playerTransform;
     [SerializeField] LayerMask _groundLayer, _playerLayer;
-    public bool IsEnemyActivated;
-    public float SlerpCurve = 30f;
+
+    [Header("Enemy TYPE")]
+    public bool IsRangedEnemy;
+    public bool IsLeaper;
+
+    [Header("Chase Settings")]
+    public float SlerpCurve;
+
+    [Header("General Attack Settings")]
+    public GameObject AttackPrefab;
+    [SerializeField] float _timeBetweenAttacks;
+
+    [Header("Leaper Settings")]
+    [SerializeField] float _leapPower;
+    [SerializeField] float _waitBeforeLeap;
+    [SerializeField] float _waitAfterLeap;
+    [SerializeField] bool _hasLeaped = false;
+    [SerializeField] float _leaperJumpPower;
+
+    [Header("Ranged Attack Settings")]
+    [SerializeField] Transform _rangedShootPoint;
+    [SerializeField] float _rangedShootForce;
+    private ProjectilePool _rangedProjectilePool;
+
+    [Header("Fleeing")]
+    [SerializeField] float _startFleeFromPlayer_Range;
+    [SerializeField] float _fleeingDuration;
+    [SerializeField] float _fleeingDistance;
+    private Vector3 _directionToPlayer;
 
     [Header("Stun Settings")]
     public bool IsStunned;
     [SerializeField] ParticleSystem _stunEffect;
 
-    [Header("Enemy TYPE")]
-    public bool IsRangedEnemy;
-    public bool IsLeapEnemy;
-
-    [Header("Attack Settings")]
-    [SerializeField] float _timeBetweenAttacks;
-    [SerializeField] bool _isPlayerInAttackRange, _isAlreadyAttacked;
-    public GameObject AttackPrefab;
-
-    [Header("Ranged Attack")]
-    [SerializeField] Transform ShootPoint;
-    [SerializeField] float ShootForce;
-    private ProjectilePool _projectilePool;
-
-    [Header("Fleeing")]
+    [Header("Enemy Status")]
+    public bool IsEnemyActivated;
+    [SerializeField] bool _isPlayerInAttackRange;
+    [SerializeField] bool _isAlreadyAttacked;
     [SerializeField] bool _isPlayerTooClose;
-    [SerializeField] bool _isFleeing;
-    [SerializeField] float _fleeingDuration;
-    [SerializeField] float _moveBackRange;
     [SerializeField] bool _canFlee;
-    private Vector3 _directionToPlayer;
-
-    [Header("Leaper")]
-    [SerializeField] float _leapPower;
-    [SerializeField] float _waitBeforeLeap;
-    [SerializeField] float _waitAfterLeap;
-    [SerializeField] bool _hasLeaped = false;
-    [SerializeField] float _leaperJumpPower = 3f;
+    [SerializeField] bool _isFleeing;
 
     #region UnUsedVariables
+
+    // ---------- This was before manual enemy activation ----------
+    //_isPlayerInSight = Physics.CheckSphere(transform.position, _playerSightRange, _playerLayer);
 
     //[Header("Patroling")]
     private bool _isDestinationSet;
@@ -72,11 +81,10 @@ public class EnemyAI : Unit
 
     private void Awake()
     {
+        LockEnemyType();
         _rb = GetComponent<Rigidbody>();
         _agent = GetComponent<NavMeshAgent>();
-        _projectilePool = GetComponent<ProjectilePool>();
-
-        LockEnemyType();
+        _rangedProjectilePool = GetComponent<ProjectilePool>();
     }
 
     private void Update()
@@ -87,30 +95,33 @@ public class EnemyAI : Unit
 
     private void LockEnemyType()
     {
-        if (IsRangedEnemy || (IsRangedEnemy && IsLeapEnemy))
+        if (IsRangedEnemy || (IsRangedEnemy && IsLeaper))
         {
-            IsLeapEnemy = false;
+            IsRangedEnemy = true;
+            IsLeaper = false;
         }
-        else if (!IsRangedEnemy || (!IsRangedEnemy && !IsLeapEnemy))
+        else if (!IsRangedEnemy || (!IsRangedEnemy && !IsLeaper))
         {
-            IsLeapEnemy = true;
+            IsRangedEnemy = false;
+            IsLeaper = true;
         }
     }
 
     private void PlayerDetaction()
     {
-        //_isPlayerInSight = Physics.CheckSphere(transform.position, _playerSightRange, _playerLayer); // This was before manual enemy activation
-
         if (IsEnemyActivated)
         {
-            _isPlayerInAttackRange = Physics.CheckSphere(transform.position, _unitRange, _playerLayer);
-
-            if (IsRangedEnemy)
+            if (!_isFleeing)
             {
-                _isPlayerTooClose = Physics.CheckSphere(transform.position, _moveBackRange, _playerLayer);
+                _isPlayerInAttackRange = Physics.CheckSphere(transform.position, UnitAttackRange, _playerLayer);
 
-                if (_isPlayerTooClose)
-                    _canFlee = CanEnemyFlee();
+                if (IsRangedEnemy)
+                {
+                    _isPlayerTooClose = Physics.CheckSphere(transform.position, _startFleeFromPlayer_Range, _playerLayer);
+
+                    if (_isPlayerTooClose)
+                        _canFlee = CanEnemyFlee();
+                }
             }
         }
     }
@@ -118,57 +129,83 @@ public class EnemyAI : Unit
     private void EnemyStateMachine()
     {
 
-        if (IsStunned && _stunEffect != null && !_stunEffect.isPlaying)
-        {
-            _stunEffect.Play();
-            Stunned();
-        }
-        else if (!IsStunned && _stunEffect.isPlaying)
-            _stunEffect.Stop();
-
-
         if (!IsEnemyActivated)
         {
-            print("Enemy: " + name + " is not activated.");
+            print(name + " is not activated.");
             _agent.SetDestination(transform.position); // Make sure enemy doesn't move
         }
+
         else
         {
+            #region Stun
+
+            if (IsStunned && _stunEffect != null && !_stunEffect.isPlaying)
+            {
+                _stunEffect.Play();
+                Stunned();
+            }
+            else if (!IsStunned && _stunEffect.isPlaying)
+                _stunEffect.Stop();
+
+            #endregion
+
+            #region Chase
+
             if (IsEnemyActivated && !_isPlayerInAttackRange && !_isFleeing)
             {
                 ChasePlayer();
-                print("Chasing");
+                print(name + " is Chasing");
             }
+
+            #endregion
+
+            #region Ranged Enemy
 
             if (IsRangedEnemy)
             {
-                if (IsEnemyActivated && _isPlayerTooClose && _canFlee)
+                if (!_isFleeing)
                 {
-                    StartCoroutine(Flee());
-                    print("fleeing");
-                }
+                    if (IsEnemyActivated && _isPlayerTooClose && _canFlee)
+                    {
+                        StartCoroutine(Flee());
+                        print(name + " is Fleeing");
+                    }
 
-                if (IsEnemyActivated && (!_isPlayerTooClose && _isPlayerInAttackRange || _isPlayerTooClose && !_canFlee))
-                {
-                    RangeAttack();
-                    print("Attacking");
+                    if (IsEnemyActivated && (!_isPlayerTooClose && _isPlayerInAttackRange || _isPlayerTooClose && !_canFlee))
+                    {
+                        RangeAttack();
+                        print(name + " is Attacking");
+                    }
                 }
             }
-            else if (IsLeapEnemy)
+
+            #endregion
+
+            #region Leaper
+
+            else if (IsLeaper)
             {
                 transform.LookAt(_playerTransform);
 
                 if (IsEnemyActivated && _isPlayerInAttackRange && !_hasLeaped)
                 {
                     StartCoroutine(Leap());
-                    print("Leaping!");
+                    print(name + " is Leaping!");
                 }
                 else if (IsEnemyActivated && _isPlayerInAttackRange && _hasLeaped)
                 {
-                    print("Recharging Leap");
+                    print(name + " is Recharging Leap");
                 }
             }
+
+            #endregion
         }
+    }
+
+    private void ChasePlayer()
+    {
+        //var destination = Vector3.Slerp(transform.position, _playerTransform.forward, SlerpCurve); ---- Flank attemp
+        _agent.SetDestination(_playerTransform.position);
     }
 
     private IEnumerator Leap()
@@ -194,12 +231,6 @@ public class EnemyAI : Unit
         }
     }
 
-    private void ChasePlayer()
-    {
-        //var destination = Vector3.Slerp(transform.position, _playerTransform.forward, SlerpCurve); ---- Flank attemp
-        _agent.SetDestination(_playerTransform.position);
-    }
-
     private void RangeAttack()
     {
         _agent.SetDestination(transform.position); // Make sure enemy doesn't move while attacking
@@ -207,12 +238,12 @@ public class EnemyAI : Unit
 
         if (!_isAlreadyAttacked)
         {
-            GameObject projectile = _projectilePool.GetProjectileFromPool();
-            projectile.transform.position = ShootPoint.position;
+            GameObject projectile = _rangedProjectilePool.GetProjectileFromPool();
+            projectile.transform.position = _rangedShootPoint.position;
             projectile.transform.rotation = Quaternion.identity;
 
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
-            rb.AddForce((_playerTransform.position - projectile.transform.position).normalized * ShootForce, ForceMode.Impulse);
+            rb.AddForce((_playerTransform.position - projectile.transform.position).normalized * _rangedShootForce, ForceMode.Impulse);
 
             _isAlreadyAttacked = true;
             Invoke(nameof(ResetAttack), _timeBetweenAttacks);
@@ -221,34 +252,37 @@ public class EnemyAI : Unit
 
     private bool CanEnemyFlee()
     {
-        _directionToPlayer = transform.position - _playerTransform.position;
-        Vector3 newPosition = transform.position + _directionToPlayer;
+        _directionToPlayer = (transform.position - _playerTransform.position).normalized * 10;
+        Vector3 newFleePosition = transform.position + _directionToPlayer;
+        print("new Flee Position Check: " + newFleePosition);
 
-        if (_agent.CalculatePath(newPosition, new NavMeshPath()))
+        if (_agent.CalculatePath(newFleePosition, new NavMeshPath()))
         {
+            print(name + " CAN flee");
             return true;
         }
         else
         {
+            print(name + " can NOT flee");
             return false;
         }
     }
 
-    private IEnumerator Flee() // Request specification about fleeing behaviour
+    private IEnumerator Flee() 
     {
-        if (!_isFleeing)
-        {
-            _isFleeing = true;
+        _isFleeing = true;
 
-            // Current Fleeing behaviour
-            _directionToPlayer = transform.position - _playerTransform.position;
-            Vector3 newPosition = transform.position + _directionToPlayer;
-            _agent.SetDestination(newPosition);
-            // -------------------------
+        _directionToPlayer = (transform.position - _playerTransform.position).normalized * 10;
+        Vector3 newFleePosition = transform.position + _directionToPlayer;
 
-            yield return new WaitForSeconds(_fleeingDuration);
-            _isFleeing = false;
-        }
+        print("New Set Destination: " + newFleePosition);
+
+        _agent.SetDestination(newFleePosition);
+
+        yield return new WaitForSeconds(_fleeingDuration);
+
+        print("Finished FLEEING!");
+        _isFleeing = false;
     }
 
     private void Stunned()
@@ -271,9 +305,9 @@ public class EnemyAI : Unit
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.black;
-        Gizmos.DrawWireSphere(transform.position, _moveBackRange);
+        Gizmos.DrawWireSphere(transform.position, _startFleeFromPlayer_Range);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _unitRange);
+        Gizmos.DrawWireSphere(transform.position, UnitAttackRange);
     }
 
     #region UnusedMethods

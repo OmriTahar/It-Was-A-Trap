@@ -112,9 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a99d1b5c727bd4eadc39b88a970c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitHP: 50
-  _unitMaxHP: 50
-  _unitRange: 10
+  UnitHP: 50
+  UnitMaxHP: 50
+  UnitAttackRange: 7
   _healthBarBG: {fileID: 0}
   _healthBar: {fileID: 0}
   _playerTransform: {fileID: 0}
@@ -124,28 +124,29 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  IsEnemyActivated: 0
-  SlerpCurve: 30
-  IsStunned: 0
-  _stunEffect: {fileID: 8445725762746410008}
   IsRangedEnemy: 0
-  IsLeapEnemy: 1
-  _timeBetweenAttacks: 2
-  _isPlayerInAttackRange: 0
-  _isAlreadyAttacked: 0
+  IsLeaper: 0
+  SlerpCurve: 30
   AttackPrefab: {fileID: 2838331141537589791}
-  ShootPoint: {fileID: 0}
-  ShootForce: 12
-  _isPlayerTooClose: 0
-  _isFleeing: 0
-  _fleeingDuration: 0
-  _moveBackRange: 10
-  _canFlee: 0
+  _timeBetweenAttacks: 2
   _leapPower: 15
   _waitBeforeLeap: 1.5
   _waitAfterLeap: 3
   _hasLeaped: 0
   _leaperJumpPower: 30
+  _rangedShootPoint: {fileID: 0}
+  _rangedShootForce: 0
+  _startFleeFromPlayer_Range: 0
+  _fleeingDuration: 0
+  _fleeingDistance: 0
+  IsStunned: 0
+  _stunEffect: {fileID: 8445725762746410008}
+  IsEnemyActivated: 0
+  _isPlayerInAttackRange: 0
+  _isAlreadyAttacked: 0
+  _isPlayerTooClose: 0
+  _canFlee: 0
+  _isFleeing: 0
 --- !u!136 &6467931333642665490
 CapsuleCollider:
   m_ObjectHideFlags: 0
