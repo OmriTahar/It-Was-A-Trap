@@ -13,7 +13,7 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
 
     void IAttackable<Unit>.Attack(Unit unit)
     {
-        unit.UnitHP -= _damage;
+        unit._unitHP -= _damage;
     }
 
     public virtual void OnTriggerEnter(Collider other)
