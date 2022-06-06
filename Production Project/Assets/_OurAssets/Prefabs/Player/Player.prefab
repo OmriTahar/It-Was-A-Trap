@@ -795,9 +795,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b6ce79578fa2249b3e27bc04976fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitHP: 50
-  UnitMaxHP: 50
-  UnitAttackRange: 10
+  _unitHP: 50
+  _unitMaxHP: 50
+  _unitAttackRange: 10
   _healthBarBG: {fileID: 2665982451079235125}
   _healthBar: {fileID: 7619921889908682446}
   trapPrefab: {fileID: 3265388038745949489, guid: f26bde5316fda87468affb6a084135f5, type: 3}
@@ -867,7 +867,7 @@ MonoBehaviour:
   EnableDash: 1
   UnlimitedSprint: 0
   DashKey: 304
-  DashSpeed: 60
+  DashSpeed: 15
   DashDuration: 0.15
   DashCooldownTotalTime: 3
   DashCooldownRemainingTime: 3

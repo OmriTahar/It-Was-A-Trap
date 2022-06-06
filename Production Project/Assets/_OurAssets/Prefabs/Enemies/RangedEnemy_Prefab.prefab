@@ -372,7 +372,7 @@ MonoBehaviour:
   IsStunned: 0
   _stunEffect: {fileID: 2411109358881034486}
   _rangedShootPoint: {fileID: 4389780435512023250}
-  _rangedShootForce: 30
+  _rangedShootForce: 20
   _startFleeFromPlayer_Range: 7
   _fleeingDuration: 2
   _fleeingDistance: 2
