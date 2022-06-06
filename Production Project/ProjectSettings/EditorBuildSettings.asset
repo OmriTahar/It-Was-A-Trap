@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_OurAssets/_Scenes/Levels/Main Menu.unity
-    guid: b43ef4f30eb570e4495252d9ba74a104
+    path: Assets/_OurAssets/_Scenes/MainMenue.unity
+    guid: 3bec74069ae6e7943b479439e9307f89
   - enabled: 1
     path: Assets/_OurAssets/_Scenes/DevTest/Omri Scene/Omri Scene.unity
     guid: 977be45c6e0d3bf4095216dd760c0add
