@@ -26,17 +26,10 @@ public class RangedEnemyAI : BaseEnemyAI
     [SerializeField] bool _isFleeing;
 
 
-    private void Awake()
+    protected override void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
-        _agent = GetComponent<NavMeshAgent>();
+        base.Awake();
         _rangedProjectilePool = GetComponent<ProjectilePool>();
-    }
-
-    private void Update()
-    {
-        PlayerDetaction();
-        EnemyStateMachine();
     }
 
     protected override void PlayerDetaction()
@@ -89,8 +82,7 @@ public class RangedEnemyAI : BaseEnemyAI
 
     protected override void ChasePlayer()
     {
-        //var destination = Vector3.Slerp(transform.position, _playerTransform.forward, SlerpCurve); ---- Flank attemp
-        _agent.SetDestination(_playerTransform.position);
+        base.ChasePlayer();
     }
 
     private void RangeAttack()

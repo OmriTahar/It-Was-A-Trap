@@ -21,16 +21,10 @@ public class LeaperAI : BaseEnemyAI
     [SerializeField] bool _isPlayerTooClose;
     [SerializeField] bool _hasLeaped = false;
 
-    private void Awake()
-    {
-        _rb = GetComponent<Rigidbody>();
-        _agent = GetComponent<NavMeshAgent>();
-    }
 
-    private void Update()
+    protected override void Awake()
     {
-        PlayerDetaction();
-        EnemyStateMachine();
+        base.Awake();
     }
 
     protected override void PlayerDetaction()
@@ -76,16 +70,13 @@ public class LeaperAI : BaseEnemyAI
 
     protected override void ChasePlayer()
     {
-        //var destination = Vector3.Slerp(transform.position, _playerTransform.forward, SlerpCurve); ---- Flank attemp
-        _agent.SetDestination(_playerTransform.position);
+        base.ChasePlayer();
     }
 
     private void CreateLeapRange()
     {
         _directionToPlayer = (transform.position - _playerTransform.position).normalized * 3;
         _newDestination = transform.position + _directionToPlayer;
-
-        //var destination = Vector3.Slerp(transform.position, _playerTransform.forward, SlerpCurve); ---- Flank attemp
         _agent.SetDestination(_newDestination);
     }
 

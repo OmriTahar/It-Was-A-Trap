@@ -22,11 +22,46 @@ public class BaseEnemyAI : Unit
     public bool IsStunned;
     public ParticleSystem _stunEffect;
 
+    [Header("Avoidance Settings")]
+    [Tooltip("Ignores all other enemies with higher number. Lower value means higher imprortance.")]
+    [SerializeField][Range(1, 50)] protected int _enemyAvoidancePriority;
+    [Tooltip("Gives a random priority between 1 and 50.")]
+    [SerializeField] protected bool _randomPriority;
+    [SerializeField] protected int _MinRandomAvoidanceNumber;
+    [SerializeField] protected int _MaxRandomAvoidanceNumber;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _agent = GetComponent<NavMeshAgent>();
+        EnemyAvoidanceInit();
+    }
+
+    protected virtual void Update()
+    {
+        if (_playerTransform != null)
+        {
+            PlayerDetaction();
+            EnemyStateMachine();
+        }
+    }
+
+    protected virtual void EnemyAvoidanceInit()
+    {
+        if (_randomPriority)
+        {
+            if (_MinRandomAvoidanceNumber <= 0 || _MaxRandomAvoidanceNumber <= _MinRandomAvoidanceNumber)
+            {
+                _MinRandomAvoidanceNumber = 1;
+                _MaxRandomAvoidanceNumber = 50;
+            }
+            _enemyAvoidancePriority = Random.Range(_MinRandomAvoidanceNumber, _MaxRandomAvoidanceNumber);
+        }
+
+        if (_enemyAvoidancePriority <= 0)
+            _enemyAvoidancePriority = Random.Range(1, 50);
+
+        _agent.avoidancePriority = _enemyAvoidancePriority;
     }
 
     protected virtual void PlayerDetaction()
@@ -35,6 +70,7 @@ public class BaseEnemyAI : Unit
 
     protected virtual void EnemyStateMachine()
     {
+
         if (!IsEnemyActivated)
         {
             print(name + " is not activated.");
@@ -54,7 +90,8 @@ public class BaseEnemyAI : Unit
 
     protected virtual void ChasePlayer()
     {
-        _agent.SetDestination(_playerTransform.position);
+        if (_playerTransform != null)
+            _agent.SetDestination(_playerTransform.position);
     }
 
     protected virtual void Stunned()
