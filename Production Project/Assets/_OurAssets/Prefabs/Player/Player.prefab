@@ -814,7 +814,7 @@ GameObject:
   - component: {fileID: 4153713904787626797}
   - component: {fileID: 3713159152969866624}
   - component: {fileID: 1928329611525411306}
-  - component: {fileID: 4153713904787626796}
+  - component: {fileID: 6316639501833609123}
   - component: {fileID: 1479794148653548535}
   m_Layer: 3
   m_Name: Player
@@ -929,7 +929,7 @@ MonoBehaviour:
   _canInteract: 0
   _interactionDistance: 22
   _canInteractText: {fileID: 1481188891}
---- !u!114 &4153713904787626796
+--- !u!114 &6316639501833609123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -938,39 +938,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 4153713904787626790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d90ba6530d9bfda47abb4610956b2f44, type: 3}
+  m_Script: {fileID: 11500000, guid: d66003c41d8a8464a80f4515b49e6bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 4153713904787626797}
   _GFXBody: {fileID: 7706241371381761718}
   PlayerMovementCamera: {fileID: 0}
-  CameraCanMove: 1
-  IsCursorLocked: 0
+  IsCursorVisable: 1
   PlayerCanMove: 1
-  SharonsMovement: 1
   WalkSpeed: 8.5
-  MaxVelocityChange: 10
-  IsNewDash: 1
   EnableDash: 1
-  UnlimitedSprint: 0
   DashKey: 304
   DashSpeed: 60
   DashDuration: 0.15
   DashCooldownTotalTime: 3
-  DashCooldownRemainingTime: 3
-  UseSprintBar: 1
-  HideBarWhenFull: 0
-  SprintBarBG: {fileID: 4153713906224450992}
+  DashBarBG: {fileID: 4153713906224450992}
   DashBarFill: {fileID: 4153713906736650212}
-  EnableJump: 0
-  JumpKey: 32
-  JumpPower: 5
-  EnableCrouch: 0
-  HoldToCrouch: 1
-  CrouchKey: 306
-  CrouchHeight: 0.75
-  CrouchSpeedReduction: 0.5
-  _dashEffect: {fileID: 0}
 --- !u!95 &1479794148653548535
 Animator:
   serializedVersion: 3
@@ -1002,7 +985,7 @@ GameObject:
   - component: {fileID: 4153713906224450995}
   - component: {fileID: 4153713906224450992}
   m_Layer: 3
-  m_Name: StaminaBG
+  m_Name: StaminaBarBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1241,7 +1224,7 @@ GameObject:
   - component: {fileID: 4153713906736650215}
   - component: {fileID: 4153713906736650212}
   m_Layer: 3
-  m_Name: Stamina
+  m_Name: StaminaBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
