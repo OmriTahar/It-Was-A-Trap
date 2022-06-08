@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 3465845944777065645}
   - component: {fileID: 2967444137849473283}
   m_Layer: 3
-  m_Name: Dash_Image
+  m_Name: Dash_Flash Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -952,6 +952,10 @@ MonoBehaviour:
   DashSpeed: 60
   DashDuration: 0.15
   DashCooldownTotalTime: 3
+  _EnableDashFlashEffect: 1
+  _dashFlashImage: {fileID: 2967444137849473283}
+  _dashFlashColor: {r: 1, g: 1, b: 1, a: 0}
+  _dashFlashAlpha: 0.4
   DashBarBG: {fileID: 4153713906224450992}
   DashBarFill: {fileID: 4153713906736650212}
 --- !u!95 &1479794148653548535

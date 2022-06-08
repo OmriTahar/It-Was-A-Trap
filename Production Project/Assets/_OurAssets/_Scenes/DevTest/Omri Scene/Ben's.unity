@@ -3140,18 +3140,6 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 2032137546}
-    - target: {fileID: 3713159152969866624, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: _unitHP
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3713159152969866624, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: _unitMaxHP
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3713159152969866624, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: _unitAttackRange
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 4153713904787626790, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3200,7 +3188,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4153713904787626796, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+    - target: {fileID: 6316639501833609123, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: PlayerMovementCamera
       value: 
       objectReference: {fileID: 2032137546}

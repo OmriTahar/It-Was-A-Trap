@@ -40,6 +40,15 @@ public class FlashImage : MonoBehaviour
             yield return null;
         }
 
+        float flashOutDuration = secondsForOneFlash / 2;
+        for (float t = 0; t <= flashOutDuration; t += Time.deltaTime)
+        {
+            Color colorThisFrame = _image.color;
+            colorThisFrame.a = Mathf.Lerp(maxAlpha, 0, t / flashInDuration);
+            _image.color = colorThisFrame;
+            yield return null;
+        }
 
+        _image.color = new Color32(0, 0, 0, 0);
     }
 }

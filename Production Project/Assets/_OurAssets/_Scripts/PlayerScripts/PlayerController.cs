@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Dash
-    [Header("Dash")]
+    [Header("Dash Settings")]
     public bool EnableDash = true;
     public KeyCode DashKey = KeyCode.LeftShift;
 
@@ -42,9 +42,17 @@ public class PlayerController : MonoBehaviour
     private bool _isDashing = false;
     private bool _isDashCooldown = false;
 
+    [Header("Dash Effect")]
+    [SerializeField] bool _EnableDashFlashEffect;
+    [SerializeField] FlashImage _dashFlashImage;
+    [SerializeField] Color _dashFlashColor;
+    [Tooltip("How strong the alpha in the dash flash")]
+    [SerializeField][Range(0, 1)] float _dashFlashAlpha;
+
     [Header("Dash UI")]
     public Image DashBarBG;
     public Image DashBarFill;
+
     private Color32 _dashBarColorFull;
     private Color32 _dashBarColorCharge;
     #endregion
@@ -54,13 +62,13 @@ public class PlayerController : MonoBehaviour
     Animator _animator;
     #endregion
 
-    
+
     #endregion
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _dashCooldownRemainingTime = DashCooldownTotalTime;  
+        _dashCooldownRemainingTime = DashCooldownTotalTime;
     }
 
     void Start()
@@ -192,8 +200,12 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Dash(Vector3 dashVecolity)
     {
+        if (_EnableDashFlashEffect)
+            _dashFlashImage.StartFlash(DashDuration, _dashFlashAlpha, _dashFlashColor);
+
         dashVecolity = dashVecolity.normalized;
         _rb.AddForce(dashVecolity * DashSpeed, ForceMode.Impulse);
+
         yield return new WaitForSeconds(DashDuration);
         _isDashing = false;
     }
