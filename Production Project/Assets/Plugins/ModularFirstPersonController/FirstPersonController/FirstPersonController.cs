@@ -67,7 +67,11 @@ public class FirstPersonController : MonoBehaviour
     public Image SprintBarBG;
     public Image DashBarFill;
     private CanvasGroup _sprintBarCanvasGroup;
-    private Color32 _dashBarColor;
+    private Color32 _dashBarColorFull;
+    private Color32 _dashBarColorCharge;
+
+    // Dash Flash Effect
+    
 
     // Old Dash Variables
     private float _sprintRemaining;
@@ -135,10 +139,11 @@ public class FirstPersonController : MonoBehaviour
             SprintBarBG.gameObject.SetActive(true);
             DashBarFill.gameObject.SetActive(true);
 
-            _dashBarColor = DashBarFill.GetComponent<Image>().color;
-
             if (HideBarWhenFull)
                 _sprintBarCanvasGroup.alpha = 0;
+
+            _dashBarColorCharge = new Color32(255, 255, 0, 30);
+            _dashBarColorFull = new Color32(255, 255, 0, 255);
         }
         else
         {
@@ -163,9 +168,7 @@ public class FirstPersonController : MonoBehaviour
                 if (!_canDash)
                 {
                     DashBarFill.fillAmount = 0;
-                    _dashBarColor = new Color32(255, 255, 0, 30);
-                    DashBarFill.color = _dashBarColor;
-
+                    DashBarFill.color = _dashBarColorCharge;
                     _isSprintCooldown = true;
                 }
 
@@ -180,12 +183,10 @@ public class FirstPersonController : MonoBehaviour
                     {
                         DashCooldownRemainingTime = DashCooldownTotalTime;
                         DashBarFill.fillAmount = 1;
+                        DashBarFill.color = _dashBarColorFull;
 
                         _canDash = true;
                         _isSprintCooldown = false;
-
-                        _dashBarColor = new Color32(255, 255, 0, 255);
-                        DashBarFill.color = _dashBarColor;
                     }
                 }
             }
