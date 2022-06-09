@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum Menues { Main, Settings, Credits, Save, Load}
 public class MenuManager : MonoBehaviour
 {
-
     public static MenuManager instance;
     [SerializeField] Menu[] menus;
 

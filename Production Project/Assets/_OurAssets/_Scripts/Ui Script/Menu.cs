@@ -6,6 +6,7 @@ public class Menu : MonoBehaviour
 {
     public string _menuname;
     public bool open;
+
     public void Open()
     {
         open = true;
