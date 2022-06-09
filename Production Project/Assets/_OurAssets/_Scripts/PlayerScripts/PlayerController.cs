@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     #region General
     [Header("General Refrences")]
     [SerializeField] internal Rigidbody _rb;
-    [SerializeField] internal Transform _GFXBody;
+    [SerializeField] internal Transform _meshTransform;
     #endregion
 
     #region Camera
@@ -217,7 +217,7 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(camRay, out hit))
         {
-            _GFXBody.LookAt(new Vector3(hit.point.x, _GFXBody.position.y, hit.point.z));
+            _meshTransform.LookAt(new Vector3(hit.point.x, _meshTransform.position.y, hit.point.z));
             Debug.DrawLine(camRay.origin, hit.point, Color.yellow);
         }
     }

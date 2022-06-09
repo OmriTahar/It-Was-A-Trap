@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8956432028868688414}
   - component: {fileID: 1042006778}
   m_Layer: 8
-  m_Name: Rope
+  m_Name: Rope (Interactet with)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 7638979540531146815}
   - component: {fileID: 1577372198}
   m_Layer: 10
-  m_Name: DropWall
+  m_Name: Drop Wall (Activated)
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,8 +251,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2, y: 1.2, z: 1.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.2, y: 1.1073767, z: 1.2}
+  m_Center: {x: 0, y: 0.046311677, z: 0}
 --- !u!54 &7638979540531146815
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -284,5 +284,4 @@ MonoBehaviour:
   _damage: 10
   _stunning: 0
   _isActivated: 0
-  _isTouchedGround: 0
-  _dropSpeed: 5
+  _dropSpeed: 10

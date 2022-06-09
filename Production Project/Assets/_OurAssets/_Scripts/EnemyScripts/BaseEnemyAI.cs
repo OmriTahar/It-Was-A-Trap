@@ -25,7 +25,7 @@ public class BaseEnemyAI : Unit
     [Header("Avoidance Settings")]
     [Tooltip("Ignores all other enemies with higher number. Lower value means higher imprortance.")]
     [SerializeField][Range(1, 50)] protected int _enemyAvoidancePriority;
-    [Tooltip("Gives a random priority between 1 and 50.")]
+    [Tooltip("Gives a random priority between a given Min & Max values.")]
     [SerializeField] protected bool _randomPriority;
     [SerializeField] protected int _MinRandomAvoidanceNumber;
     [SerializeField] protected int _MaxRandomAvoidanceNumber;

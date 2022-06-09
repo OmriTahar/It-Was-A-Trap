@@ -20,24 +20,25 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] float minDistance = 2.2f;
     [SerializeField] bool _canAim = false;
 
-    [Header("Interaction")]
-    [SerializeField] LayerMask _interactableLayers;
-    [SerializeField] bool _isAllowedToInteract;
-    [SerializeField] bool _canInteract;
-    [SerializeField] float _interactionDistance = 22f;
-    [SerializeField] GameObject _canInteractText;
-    private Interactable _currentInteractable;
-
     internal bool clearToShoot = true;
     internal GameObject outline;
 
-    //for gizmos can delete later
+    [Header("Interaction")]
+    [SerializeField] LayerMask _interactableLayers;
+    [SerializeField] bool _isAllowedToInteract;
+    [SerializeField] float _interactionDistance = 22f;
+    [SerializeField] GameObject _canInteractUIText;
+
+    private Interactable _currentInteractable;
+    bool _canInteract;
+
+    // For gizmos can delete later
     Vector3 gizmoSize = new Vector3(2.5f, 0.5f, 2.5f);
     Vector3 gizmoPos;
 
+
     private void Awake()
     {
-
         #region Singelton
 
         if (Instance != null && Instance != this)
@@ -51,7 +52,6 @@ public class PlayerAim : MonoBehaviour
         #endregion
 
         outline = Instantiate(_outlinePrefab, transform);
-
         ToggleDraw();
     }
 
@@ -63,19 +63,7 @@ public class PlayerAim : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.F) && _canInteract)
                 Interact();
-
         }
-    }
-
-    //for gizmos can delete later
-    private void OnDrawGizmos()
-    {
-        if (clearToShoot)
-            Gizmos.color = new Color(0, 1, 0, .2f);
-        else
-            Gizmos.color = new Color(1, 0, 0, .2f);
-
-        Gizmos.DrawCube(gizmoPos, gizmoSize);
     }
 
     private void UpdateAim()
@@ -127,13 +115,13 @@ public class PlayerAim : MonoBehaviour
             {
                 _canInteract = true;
                 _currentInteractable = hit.collider.GetComponent<Interactable>();
-                _canInteractText.SetActive(true);
+                _canInteractUIText.SetActive(true);
             }
             else
             {
                 _canInteract = false;
                 _currentInteractable = null;
-                _canInteractText.SetActive(false);
+                _canInteractUIText.SetActive(false);
             }
         }
     }
@@ -145,4 +133,15 @@ public class PlayerAim : MonoBehaviour
             _currentInteractable.OnInteraction();
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        if (clearToShoot)
+            Gizmos.color = new Color(0, 1, 0, .2f);
+        else
+            Gizmos.color = new Color(1, 0, 0, .2f);
+
+        Gizmos.DrawCube(gizmoPos, gizmoSize);
+    }
+
 }

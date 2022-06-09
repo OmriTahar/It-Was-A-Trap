@@ -7,8 +7,9 @@ public class IWall : Attack
 
     [Header("Wall Settings")]
     public bool _isActivated = false;
-    [SerializeField] bool _isTouchedGround = false;
     [SerializeField] float _dropSpeed = 5f;
+
+    bool _isTouchedGround = false;
     bool _hasAttacked = false;
 
 
@@ -23,13 +24,11 @@ public class IWall : Attack
         if (collision.gameObject.tag == "Ground")
         {
             _isTouchedGround = true;
-            print("Touched Ground!");
         }
-        else if (!_isTouchedGround && collision.gameObject.tag == "Player" && !_hasAttacked)
+        else if (!_isTouchedGround && collision.gameObject.tag == "Player" && !_hasAttacked) // Ensures wall only hit player once
         {
             _hasAttacked = true;
             collision.gameObject.GetComponent<Unit>().RecieveDamage(this);
-            print("Wall Fall Damage!");
         }
     }
 }
