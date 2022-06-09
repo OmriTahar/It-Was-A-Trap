@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 77056239381677809}
   m_Layer: 0
   m_Name: Isomatric Camera (Scene Cam)
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24,14 +24,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77056239381677811}
-  m_LocalRotation: {x: 0.2762187, y: 0.3505488, z: -0.10901375, w: 0.88822}
-  m_LocalPosition: {x: -11.2501135, y: 12.342305, z: -12.03275}
+  m_LocalRotation: {x: 0.30070576, y: 0, z: 0, w: 0.953717}
+  m_LocalPosition: {x: 21, y: 12.471527, z: -20.533041}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 77056239665144535}
   m_Father: {fileID: 180299725938175916}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 46.064, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
 --- !u!114 &77056239381677809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ GameObject:
   m_Layer: 0
   m_Name: Main Camera (Player Movement Cam)
   m_TagString: MainCamera
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -181,13 +181,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77056239723743884}
-  m_LocalRotation: {x: 0.2762187, y: 0.3505488, z: -0.10901375, w: 0.88822}
-  m_LocalPosition: {x: -11.2501135, y: 12.342305, z: -12.03275}
+  m_LocalRotation: {x: 0.30070576, y: -0, z: -0, w: 0.953717}
+  m_LocalPosition: {x: 21, y: 12.471527, z: -20.533041}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 180299725938175916}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 34.549, y: 0, z: 0}
 --- !u!20 &77056239723743882
 Camera:
   m_ObjectHideFlags: 0

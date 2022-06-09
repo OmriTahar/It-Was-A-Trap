@@ -142,6 +142,7 @@ public class PlayerAim : MonoBehaviour
             Gizmos.color = new Color(1, 0, 0, .2f);
 
         Gizmos.DrawCube(gizmoPos, gizmoSize);
+
     }
 
 }

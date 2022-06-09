@@ -18,8 +18,8 @@ public class PlayerData : Unit
     public Weapon currentWeapon;
 
     [Header("UI")]
-    public TextMeshProUGUI CurrentAmmoUI;
-    public Image CurrentWeaponUI;
+    public TextMeshProUGUI CurrentAmmoAmount_Text;
+    public Image CurrentWeapon_ImageSlot;
     [SerializeField] Sprite _coverImage;
     [SerializeField] Sprite _trapImage;
 
@@ -126,16 +126,16 @@ public class PlayerData : Unit
         switch (currentWeapon)
         {
             case Weapon.Trap:
-                CurrentWeaponUI.sprite = _trapImage;
-                CurrentAmmoUI.text = currentTrapAmount.ToString();
+                CurrentWeapon_ImageSlot.sprite = _trapImage;
+                CurrentAmmoAmount_Text.text = currentTrapAmount.ToString();
                 break;
             case Weapon.Wall:
-                CurrentWeaponUI.sprite = _coverImage;
-                CurrentAmmoUI.text = currentCoverAmount.ToString();
+                CurrentWeapon_ImageSlot.sprite = _coverImage;
+                CurrentAmmoAmount_Text.text = currentCoverAmount.ToString();
                 break;
             default:
-                CurrentWeaponUI.sprite = _trapImage;
-                CurrentAmmoUI.text = currentTrapAmount.ToString();
+                CurrentWeapon_ImageSlot.sprite = _trapImage;
+                CurrentAmmoAmount_Text.text = currentTrapAmount.ToString();
                 break;
         }
     }

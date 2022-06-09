@@ -52,8 +52,9 @@ MonoBehaviour:
   _damage: 10
   _stunning: 0
   _hitParticle: {fileID: 3929031335700610076}
+  _trapPool: {fileID: 0}
   _placementTime: 1
-  _decayTime: 6
+  _decayTime: 5
   _destroyAfterActivationTime: 2.5
   _stunDuration: 2
 --- !u!33 &4517978028723594622

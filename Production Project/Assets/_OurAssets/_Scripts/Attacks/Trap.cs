@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class Trap : Attack
 {
+
     [Header("Refrences")]
     [SerializeField] GameObject _hitParticle;
+    [SerializeField] TrapsPool _trapPool;
 
     [Header("Settings")]
     [SerializeField] float _placementTime = 1f;                
     [SerializeField] float _decayTime = 6f;
     [SerializeField] float _destroyAfterActivationTime = 2.5f;  // Should always be longer than stun duration!
+
+    [Header("Stun Settings")]
     [SerializeField] float _stunDuration = 2f;
 
     private Collider _myCollider;
+    private Renderer _myRenderer;
     private bool _isPlaced = false;
     private bool _wasActivated = false;
-    private Renderer _myRenderer;
+    private Color _placedColor = Color.red;
     private Color _activatedColor = Color.blue;
+
 
     private void Awake()
     {
@@ -28,26 +34,27 @@ public class Trap : Attack
         _myRenderer.enabled = false;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         StartCoroutine(PlaceTrap());
     }
 
-    private IEnumerator PlaceTrap()
+    public IEnumerator PlaceTrap()
     {
         yield return new WaitForSeconds(_placementTime);
 
         _isPlaced = true;
         _myCollider.enabled = true;
         _myRenderer.enabled = true;
+
+        StartCoroutine(NewDecay());
     }
+
 
     public override void OnTriggerEnter(Collider other)
     {
         if (_isPlaced)
         {
-            StartCoroutine(Decay());
-
             if (other.tag == "Enemy" && !_wasActivated)
             {
                 _wasActivated = true;
@@ -55,6 +62,8 @@ public class Trap : Attack
 
                 var enemyAI = other.GetComponent<BaseEnemyAI>();
                 enemyAI.RecieveDamage(this);
+
+
                 StartCoroutine(StunEnemy(enemyAI));
 
                 _hitParticle.SetActive(true);
@@ -63,18 +72,32 @@ public class Trap : Attack
         }
     }
 
-    private IEnumerator Decay()
+    public IEnumerator NewDecay()
     {
+        print("Decay started.");
         yield return new WaitForSeconds(_decayTime);
+        _trapPool.ReturnTrapToPool(gameObject);
+    }
 
-        if (!_wasActivated)
-            Destroy(gameObject);
+    private void OnDisable()
+    {
+        _isPlaced = false;
+        _myCollider.enabled = false;
+        _myRenderer.enabled = false;
+
+        _hitParticle.SetActive(false);
+        _myRenderer.material.color = _placedColor;
     }
 
     private IEnumerator DestroyAfterActivation()
     {
         yield return new WaitForSeconds(_destroyAfterActivationTime);
-        Destroy(gameObject);
+        _trapPool.ReturnTrapToPool(gameObject);
+    }
+
+    public void SetMe(TrapsPool myPool) // Can also later be used to set Damage and other variables to the projectile
+    {
+        _trapPool = myPool;
     }
 
     private IEnumerator StunEnemy(BaseEnemyAI enemyAI)
@@ -94,8 +117,16 @@ public class Trap : Attack
         }
     }
 
-    private void OnDestroy()
-    {
-        PlayerData.Instance.currentTrapAmount++;
-    }
+    //private IEnumerator Decay()
+    //{
+    //    yield return new WaitForSeconds(_decayTime);
+
+    //    if (!_wasActivated)
+    //        Destroy(gameObject);
+    //}
+
+    //private void OnDestroy()
+    //{
+    //    PlayerData.Instance.currentTrapAmount++;
+    //}
 }

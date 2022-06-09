@@ -30,8 +30,8 @@ public class ProjectilePool : MonoBehaviour
         }
         else
         {
-            GameObject projectile = Instantiate(_projectilePrefab);
-            return projectile;
+            print("Pool is currently empty");
+            return null;
         }
     }
 
