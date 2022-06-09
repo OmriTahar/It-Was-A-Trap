@@ -551,9 +551,17 @@ PrefabInstance:
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2838946777403148608, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
+      propertyPath: _randomPriority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2838946777403148608, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: _playerTransform
       value: 
       objectReference: {fileID: 4459864851264094600}
+    - target: {fileID: 2838946777403148608, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
+      propertyPath: _enemyAvoidancePriority
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2838946777403148626, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: avoidancePriority
       value: 50
@@ -629,9 +637,17 @@ PrefabInstance:
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2838946777403148608, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
+      propertyPath: _randomPriority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2838946777403148608, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: _playerTransform
       value: 
       objectReference: {fileID: 4459864851264094600}
+    - target: {fileID: 2838946777403148608, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
+      propertyPath: _enemyAvoidancePriority
+      value: 32
+      objectReference: {fileID: 0}
     - target: {fileID: 2838946777403148626, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: avoidancePriority
       value: 50
@@ -1015,9 +1031,17 @@ PrefabInstance:
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2838946777403148608, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
+      propertyPath: _randomPriority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2838946777403148608, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: _playerTransform
       value: 
       objectReference: {fileID: 4459864851264094600}
+    - target: {fileID: 2838946777403148608, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
+      propertyPath: _enemyAvoidancePriority
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2838946777403148626, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: avoidancePriority
       value: 50
@@ -1926,9 +1950,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 2040211201}
     m_Modifications:
     - target: {fileID: 2838946777403148608, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
+      propertyPath: _randomPriority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2838946777403148608, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: _playerTransform
       value: 
       objectReference: {fileID: 4459864851264094600}
+    - target: {fileID: 2838946777403148608, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
+      propertyPath: _enemyAvoidancePriority
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2838946777403148626, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
+      propertyPath: m_Radius
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2838946777403148627, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2400,6 +2436,10 @@ PrefabInstance:
     - target: {fileID: 8020574770979397839, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
       propertyPath: m_Name
       value: RangedEnemy_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020574770979397839, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
