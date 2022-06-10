@@ -315,7 +315,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 8020574770979397839}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1.5
+  m_Radius: 2.5
   m_Speed: 7
   m_Acceleration: 8
   avoidancePriority: 50
@@ -371,6 +371,10 @@ MonoBehaviour:
   _timeBetweenAttacks: 2
   IsStunned: 0
   _stunEffect: {fileID: 2411109358881034486}
+  _enemyAvoidancePriority: 50
+  _randomPriority: 1
+  _MinRandomAvoidanceNumber: 30
+  _MaxRandomAvoidanceNumber: 50
   _rangedShootPoint: {fileID: 4389780435512023250}
   _rangedShootForce: 30
   _startFleeFromPlayer_Range: 7

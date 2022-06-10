@@ -902,7 +902,7 @@ GameObject:
   - component: {fileID: 4360238409370284862}
   - component: {fileID: 4360238409370284858}
   m_Layer: 10
-  m_Name: Trap Trigger Collider
+  m_Name: Trap Collider (Activated)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1000,8 +1000,7 @@ MonoBehaviour:
   _damage: 100
   _stunning: 0
   _isActivated: 0
-  _isTouchedGround: 0
-  _dropSpeed: 5
+  _dropSpeed: 10
   _waitBeforeKillBunny: 1
   _waitBeforeDestroyTrap: 3
 --- !u!54 &4360238409370284858
@@ -1035,7 +1034,7 @@ GameObject:
   - component: {fileID: 4360238409477377858}
   - component: {fileID: 4360238409477377859}
   m_Layer: 8
-  m_Name: Activation Rope
+  m_Name: Rope (Interact with)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1344,7 +1343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4360238409905937621}
   m_Layer: 10
-  m_Name: Spikes
+  m_Name: Spikes (Mesh)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

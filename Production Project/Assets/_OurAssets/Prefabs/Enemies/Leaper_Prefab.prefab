@@ -91,10 +91,10 @@ NavMeshAgent:
   m_GameObject: {fileID: 2838946777403148639}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1.5
+  m_Radius: 2
   m_Speed: 7
   m_Acceleration: 8
-  avoidancePriority: 50
+  avoidancePriority: 40
   m_AngularSpeed: 120
   m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
@@ -133,6 +133,10 @@ MonoBehaviour:
   _timeBetweenAttacks: 2
   IsStunned: 0
   _stunEffect: {fileID: 833865905655255892}
+  _enemyAvoidancePriority: 40
+  _randomPriority: 1
+  _MinRandomAvoidanceNumber: 10
+  _MaxRandomAvoidanceNumber: 30
   _leapPower: 15
   _waitBeforeLeap: 1.5
   _waitAfterLeap: 3
