@@ -177,7 +177,7 @@ PrefabInstance:
     - target: {fileID: 8020574770979397837, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
       propertyPath: _playerTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 615491304}
     - target: {fileID: 8020574770979397839, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
       propertyPath: m_Name
       value: RangedEnemy_Prefab (4)
@@ -260,7 +260,7 @@ PrefabInstance:
     - target: {fileID: 2838946777403148608, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: _playerTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 615491304}
     - target: {fileID: 2838946777403148627, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -326,7 +326,7 @@ PrefabInstance:
     - target: {fileID: 2838946777403148608, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: _playerTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 615491304}
     - target: {fileID: 2838946777403148627, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -459,7 +459,7 @@ PrefabInstance:
     - target: {fileID: 2838946777403148608, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: _playerTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 615491304}
     - target: {fileID: 2838946777403148627, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1212,7 +1212,7 @@ PrefabInstance:
     - target: {fileID: 8020574770979397837, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
       propertyPath: _playerTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 615491304}
     - target: {fileID: 8020574770979397839, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
       propertyPath: m_Name
       value: RangedEnemy_Prefab (3)
@@ -1289,7 +1289,7 @@ PrefabInstance:
     - target: {fileID: 8020574770979397837, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
       propertyPath: _playerTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 615491304}
     - target: {fileID: 8020574770979397839, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
       propertyPath: m_Name
       value: RangedEnemy_Prefab (1)
@@ -1699,7 +1699,7 @@ PrefabInstance:
     - target: {fileID: 8020574770979397837, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
       propertyPath: _playerTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 615491304}
     - target: {fileID: 8020574770979397839, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
       propertyPath: m_Name
       value: RangedEnemy_Prefab (2)
@@ -2008,7 +2008,7 @@ PrefabInstance:
     - target: {fileID: 2838946777403148608, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: _playerTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 615491304}
     - target: {fileID: 2838946777403148627, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -2293,7 +2293,7 @@ PrefabInstance:
     - target: {fileID: 2838946777403148608, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: _playerTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 615491304}
     - target: {fileID: 2838946777403148627, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -2417,7 +2417,7 @@ PrefabInstance:
     - target: {fileID: 8020574770979397837, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
       propertyPath: _playerTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 615491304}
     - target: {fileID: 8020574770979397839, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
       propertyPath: m_Name
       value: RangedEnemy_Prefab (5)
@@ -3005,10 +3005,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 134291458}
     m_Modifications:
+    - target: {fileID: 77056239381677808, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 77056239381677808, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.471528
+      objectReference: {fileID: 0}
+    - target: {fileID: 77056239381677808, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -23.783041
+      objectReference: {fileID: 0}
     - target: {fileID: 77056239381677809, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 615491304}
+    - target: {fileID: 77056239723743883, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 77056239723743883, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.471528
+      objectReference: {fileID: 0}
+    - target: {fileID: 77056239723743883, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -23.783041
+      objectReference: {fileID: 0}
     - target: {fileID: 180299725938175916, guid: ecdd3f3be0e8a6243bed41c6622c47d5, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3072,7 +3096,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1961995115909999445, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1961995115909999445, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3080,7 +3104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1961995115909999445, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.15
+      value: -7.4
       objectReference: {fileID: 0}
     - target: {fileID: 1961995115909999445, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3196,7 +3220,7 @@ PrefabInstance:
     - target: {fileID: 2838946777403148608, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: _playerTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 615491304}
     - target: {fileID: 2838946777403148627, guid: 8536bd6eb1b715048ab5dddeab514dc6, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3683,7 +3707,7 @@ PrefabInstance:
     - target: {fileID: 8020574770979397837, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
       propertyPath: _playerTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 615491304}
     - target: {fileID: 8020574770979397839, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
       propertyPath: m_Name
       value: RangedEnemy_Prefab

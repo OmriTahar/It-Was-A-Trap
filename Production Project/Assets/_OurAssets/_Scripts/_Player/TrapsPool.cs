@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class TrapsPool : MonoBehaviour
 {
+
     [SerializeField] GameObject _trapPrefab;
     public Queue<GameObject> TrapPoolQueue = new Queue<GameObject>();
     [SerializeField] int _poolStartSize = 20;
+
 
     void Start()
     {

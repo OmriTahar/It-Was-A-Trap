@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class WallsPool : MonoBehaviour
 {
+
     [SerializeField] GameObject _wallPrefab;
-    public Queue<GameObject> WallPoolQueue = new Queue<GameObject>();
+    public Queue<GameObject> WallQueue = new Queue<GameObject>();
     [SerializeField] int _poolStartSize = 20;
+
 
     void Start()
     {
         for (int i = 0; i < _poolStartSize; i++)
         {
             GameObject wall = Instantiate(_wallPrefab);
-            WallPoolQueue.Enqueue(wall);
+            WallQueue.Enqueue(wall);
             wall.GetComponent<Wall>().SetMe(this);
             wall.SetActive(false);
         }
@@ -21,9 +23,9 @@ public class WallsPool : MonoBehaviour
 
     public GameObject GetProjectileFromPool()
     {
-        if (WallPoolQueue.Count > 0)
+        if (WallQueue.Count > 0)
         {
-            GameObject wall = WallPoolQueue.Dequeue();
+            GameObject wall = WallQueue.Dequeue();
             wall.SetActive(true);
             return wall;
         }
@@ -36,7 +38,7 @@ public class WallsPool : MonoBehaviour
 
     public void ReturnWallToPool(GameObject wall)
     {
-        WallPoolQueue.Enqueue(wall);
+        WallQueue.Enqueue(wall);
         wall.SetActive(false);
     }
 }

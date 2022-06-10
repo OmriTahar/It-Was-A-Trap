@@ -86,7 +86,7 @@ public class LeaperAI : BaseEnemyAI
         _agent.SetDestination(transform.position);
 
         yield return new WaitForSeconds(_waitBeforeLeap);
-        if (!IsStunned)
+        if (!IsStunned && _playerTransform != null)
         {
             AttackPrefab.SetActive(true);
             _rb.AddForce((_playerTransform.position - transform.position) * _leapPower, ForceMode.Impulse);
@@ -94,7 +94,7 @@ public class LeaperAI : BaseEnemyAI
         }
 
         yield return new WaitForSeconds(_waitAfterLeap);
-        if (!IsStunned)
+        if (!IsStunned && _playerTransform != null)
         {
             AttackPrefab.SetActive(false);
             _hasLeaped = false;

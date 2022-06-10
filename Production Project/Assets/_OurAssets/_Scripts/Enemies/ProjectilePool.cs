@@ -9,6 +9,7 @@ public class ProjectilePool : MonoBehaviour
     [SerializeField] Queue<GameObject> _projectilePool = new Queue<GameObject>();
     [SerializeField] int _poolStartSize = 20;
 
+
     void Start()
     {
         for (int i = 0; i < _poolStartSize; i++)

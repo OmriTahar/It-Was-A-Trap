@@ -266,6 +266,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5b4c4d1769c97f4597dd04a8913d4c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _unitHP: 50
+  _unitMaxHP: 50
+  _unitAttackRange: 10
+  _healthBarBG: {fileID: 2800947985970176614}
+  _healthBar: {fileID: 2800947985808060790}
   _currentWeapon: 0
   _isAlreadyAttacked: 0
   _timeBetweenAttacks: 0.5

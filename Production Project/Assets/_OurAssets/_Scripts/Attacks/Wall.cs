@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
+
     [SerializeField] int maxHP;
-    private int currentHP;
+    private int CurrentHP;
     private WallsPool _wallPool;
+
 
     private void Awake()
     {
-        currentHP = maxHP;
+        RestartWall();
     }
 
     private void Update()
     {
-        if (currentHP <= 0)
-            _wallPool.ReturnWallToPool(gameObject);
+        if (CurrentHP <= 0)
+            ReturnMySelfToPool(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -27,7 +29,7 @@ public class Wall : MonoBehaviour
 
     private void GetHit()
     {
-        currentHP--;
+        CurrentHP--;
     }
 
     public void SetMe(WallsPool myPool) // Can also later be used to set Damage and other variables to the projectile
@@ -35,8 +37,14 @@ public class Wall : MonoBehaviour
         _wallPool = myPool;
     }
 
-    public void ReturnToPool()
+    public void ReturnMySelfToPool(GameObject returningObject)
     {
-        _wallPool.ReturnWallToPool(gameObject);
+        _wallPool.ReturnWallToPool(returningObject);
+        RestartWall();
+    }
+
+    public void RestartWall()
+    {
+        CurrentHP = maxHP;
     }
 }

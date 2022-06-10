@@ -6,7 +6,7 @@ using TMPro;
 
 public enum WeaponType { Trap, Wall }
 
-public class NewPlayerData : MonoBehaviour
+public class NewPlayerData : Unit
 {
     public static NewPlayerData Instance;
 
@@ -49,16 +49,12 @@ public class NewPlayerData : MonoBehaviour
         UpdateUI();
 
         if (Input.GetKeyDown(KeyCode.Q))
-        {
             SwitchWeaponPrefab();
-        }
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (canShoot)
-            {
                 Attack();
-            }
         }
     }
 
@@ -83,10 +79,10 @@ public class NewPlayerData : MonoBehaviour
 
                 if (PlayerAim.Instance.clearToShoot && !_isAlreadyAttacked)
                 {
-                    if (_wallsPool.WallPoolQueue.Count <= 0)
+                    if (_wallsPool.WallQueue.Count <= 0)
                     {
                         GameObject firstWall = _activeWallsQueue.Dequeue();
-                        firstWall.GetComponent<Wall>().ReturnToPool();
+                        firstWall.GetComponent<Wall>().ReturnMySelfToPool(firstWall);
                     }
 
                     GameObject wall = _wallsPool.GetProjectileFromPool();
@@ -105,8 +101,6 @@ public class NewPlayerData : MonoBehaviour
             default:
                 break;
         }
-
-        //StartCoroutine(WaitToShoot());
     }
 
     private void SwitchWeaponPrefab()
@@ -134,7 +128,7 @@ public class NewPlayerData : MonoBehaviour
                 break;
             case WeaponType.Wall:
                 CurrentWeapon_ImageSlot.sprite = _coverImage;
-                CurrentAmmoAmount_Text.text = _wallsPool.WallPoolQueue.Count.ToString();
+                CurrentAmmoAmount_Text.text = _wallsPool.WallQueue.Count.ToString();
                 break;
             default:
                 CurrentWeapon_ImageSlot.sprite = _trapImage;
@@ -147,12 +141,4 @@ public class NewPlayerData : MonoBehaviour
     {
         _isAlreadyAttacked = false;
     }
-
-    //IEnumerator WaitToShoot()
-    //{
-    //    canShoot = false;
-    //    yield return new WaitForSeconds(timeBetweenShots);
-    //    canShoot = true;
-    //}
-
 }
