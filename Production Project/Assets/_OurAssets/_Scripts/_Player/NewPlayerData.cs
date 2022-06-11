@@ -1,24 +1,18 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
+using UnityEngine;
 using TMPro;
 
 public enum WeaponType { Trap, Wall }
-
 public class NewPlayerData : Unit
 {
     public static NewPlayerData Instance;
 
     [Header("Weapon Settings")]
-    [SerializeField] WeaponType _currentWeapon;
-    [SerializeField] bool _isAlreadyAttacked;
+    [SerializeField][ReadOnlyInspector] WeaponType _currentWeapon;
+    [SerializeField][ReadOnlyInspector] bool canShoot = true;
     [SerializeField] float _timeBetweenAttacks;
-
-    [Header("Weapon Pools")]
-    [SerializeField] TrapsPool _trapsPool;
-    [SerializeField] WallsPool _wallsPool;
-    private Queue<GameObject> _activeWallsQueue = new Queue<GameObject>();
 
     [Header("UI")]
     public TextMeshProUGUI CurrentAmmoAmount_Text;
@@ -26,7 +20,11 @@ public class NewPlayerData : Unit
     [SerializeField] Sprite _coverImage;
     [SerializeField] Sprite _trapImage;
 
-    private bool canShoot = true;
+    //weapon pools
+    private Queue<GameObject> _activeWallsQueue = new Queue<GameObject>();
+    private TrapsPool _trapsPool;
+    private WallsPool _wallsPool;
+
     internal int bunnyCount;
 
     private void Awake()
@@ -42,6 +40,11 @@ public class NewPlayerData : Unit
         Instance = this;
 
         #endregion
+
+        if ((_trapsPool = gameObject.GetComponent<TrapsPool>()) == null)
+            Debug.Log("TrapPool Script is missing from Player");
+        if ((_wallsPool = gameObject.GetComponent<WallsPool>()) == null)
+            Debug.Log("WallPool Script is missing from Player");
     }
 
     private void Update()
@@ -64,20 +67,20 @@ public class NewPlayerData : Unit
         {
             case WeaponType.Trap:
 
-                if (PlayerAim.Instance.clearToShoot && !_isAlreadyAttacked)
+                if (PlayerAim.Instance.clearToShoot && canShoot)
                 {
                     GameObject trap = _trapsPool.GetProjectileFromPool();
                     trap.transform.position = PlayerAim.Instance.outline.transform.position;
                     trap.transform.rotation = Quaternion.identity;
 
-                    _isAlreadyAttacked = true;
+                    canShoot = false;
                     Invoke(nameof(ResetAttack), _timeBetweenAttacks);
                 }
                 break;
 
             case WeaponType.Wall:
 
-                if (PlayerAim.Instance.clearToShoot && !_isAlreadyAttacked)
+                if (PlayerAim.Instance.clearToShoot && canShoot)
                 {
                     if (_wallsPool.WallQueue.Count <= 0)
                     {
@@ -94,7 +97,7 @@ public class NewPlayerData : Unit
 
                     _activeWallsQueue.Enqueue(wall);
 
-                    _isAlreadyAttacked = true;
+                    canShoot = false;
                     Invoke(nameof(ResetAttack), _timeBetweenAttacks);
                 }
                 break;
@@ -139,6 +142,6 @@ public class NewPlayerData : Unit
 
     private void ResetAttack()
     {
-        _isAlreadyAttacked = false;
+        canShoot = true;
     }
 }

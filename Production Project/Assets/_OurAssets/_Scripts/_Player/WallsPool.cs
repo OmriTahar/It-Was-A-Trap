@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class WallsPool : MonoBehaviour
 {
-
     [SerializeField] GameObject _wallPrefab;
     public Queue<GameObject> WallQueue = new Queue<GameObject>();
-    [SerializeField] int _poolStartSize = 20;
-
+    [SerializeField] int _poolStartSize = 3;
 
     void Start()
     {

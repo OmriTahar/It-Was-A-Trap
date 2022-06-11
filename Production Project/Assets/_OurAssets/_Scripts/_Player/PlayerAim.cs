@@ -6,7 +6,6 @@ using TMPro;
 
 public class PlayerAim : MonoBehaviour
 {
-
     public static PlayerAim Instance;
 
     [Header("Aim Refrences")]
@@ -35,7 +34,6 @@ public class PlayerAim : MonoBehaviour
     // For gizmos can delete later
     Vector3 gizmoSize = new Vector3(2.5f, 0.5f, 2.5f);
     Vector3 gizmoPos;
-
 
     private void Awake()
     {
@@ -144,5 +142,4 @@ public class PlayerAim : MonoBehaviour
         Gizmos.DrawCube(gizmoPos, gizmoSize);
 
     }
-
 }
