@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class PlayerAim : MonoBehaviour
 {
@@ -19,9 +17,6 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] float minDistance = 2.2f;
     [SerializeField] bool _canAim = false;
 
-    internal bool clearToShoot = true;
-    internal GameObject outline;
-
     [Header("Interaction")]
     [SerializeField] LayerMask _interactableLayers;
     [SerializeField] bool _isAllowedToInteract;
@@ -29,6 +24,7 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] GameObject _canInteractUIText;
 
     private Interactable _currentInteractable;
+    internal GameObject outline;
     bool _canInteract;
 
     // For gizmos can delete later
@@ -90,7 +86,7 @@ public class PlayerAim : MonoBehaviour
                 outline.transform.position = _hit.point;
             }
 
-            clearToShoot = !Physics.CheckBox(outline.transform.position, new Vector3(1.25f, .25f, 1.25f), Quaternion.identity, obstacleMask);
+            NewPlayerData.Instance.clearToShoot = !Physics.CheckBox(outline.transform.position, new Vector3(1.25f, .25f, 1.25f), Quaternion.identity, obstacleMask);
 
             //for gizmos can delete later
             gizmoPos = outline.transform.position;
@@ -134,12 +130,15 @@ public class PlayerAim : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (clearToShoot)
-            Gizmos.color = new Color(0, 1, 0, .2f);
-        else
-            Gizmos.color = new Color(1, 0, 0, .2f);
+        if (Application.isPlaying)
+        {
+            if (NewPlayerData.Instance.clearToShoot)
+                Gizmos.color = new Color(0, 1, 0, .2f);
+            else
+                Gizmos.color = new Color(1, 0, 0, .2f);
 
-        Gizmos.DrawCube(gizmoPos, gizmoSize);
-
+            Gizmos.DrawCube(gizmoPos, gizmoSize);
+        }
     }
+
 }

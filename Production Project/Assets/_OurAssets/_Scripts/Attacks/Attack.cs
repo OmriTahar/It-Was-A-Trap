@@ -7,7 +7,7 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
     [Header("Attack Settings")]
     [SerializeField] protected int _damage;
     [SerializeField] protected bool _stunning = false;
-
+    [SerializeField] protected float _stunDuration = 2f;
     //[SerializeField] protected GameObject _hitEffect;
     //protected Transform _hitTransform;
 
@@ -19,9 +19,7 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
     public virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
-        {
             other.gameObject.GetComponent<Unit>().RecieveDamage(this);
-        }
     }
 
     //public virtual void PlayHitEffect(GameObject hitEffect, Vector3 hitTransform)
