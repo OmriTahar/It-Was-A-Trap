@@ -329,7 +329,7 @@ MonoBehaviour:
   WalkSpeed: 8.5
   EnableDash: 1
   DashKey: 304
-  DashSpeed: 60
+  DashSpeed: 15
   DashDuration: 0.15
   DashCooldownTotalTime: 3
   _EnableDashFlashEffect: 0

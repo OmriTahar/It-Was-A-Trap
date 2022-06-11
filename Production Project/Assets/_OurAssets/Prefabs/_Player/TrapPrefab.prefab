@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc68a4fe1dbfa8444ad0fc600455c701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
+  _damage: 1
   _stunning: 0
   _hitParticle: {fileID: 3929031335700610076}
   _trapPool: {fileID: 0}
