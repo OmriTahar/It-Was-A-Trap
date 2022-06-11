@@ -1,44 +1,59 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TrapsPool : MonoBehaviour
 {
-
-    [SerializeField] GameObject _trapPrefab;
-    public Queue<GameObject> TrapPoolQueue = new Queue<GameObject>();
-    [SerializeField] int _poolStartSize = 20;
-
+    public static Queue<GameObject> ReadyToFireTrapsQueue = new Queue<GameObject>();
+    public static Queue<GameObject> ActiveTrapsQueue = new Queue<GameObject>();
+    [SerializeField] private GameObject _trapPrefab;
+    [SerializeField] private int _poolStartSize = 5;
 
     void Start()
     {
         for (int i = 0; i < _poolStartSize; i++)
         {
             GameObject trap = Instantiate(_trapPrefab);
-            TrapPoolQueue.Enqueue(trap);
-            trap.GetComponent<Trap>().SetMe(this);
             trap.SetActive(false);
         }
+
+        ActiveTrapsQueue.Clear();
     }
 
-    public GameObject GetProjectileFromPool()
+    public static GameObject GetProjectileFromPool()
     {
-        if (TrapPoolQueue.Count > 0)
+        if (ReadyToFireTrapsQueue.Count > 0)
         {
-            GameObject projectile = TrapPoolQueue.Dequeue();
+            GameObject projectile = ReadyToFireTrapsQueue.Dequeue();
+            projectile.SetActive(true);
+            return projectile;
+        }
+        else if (ReadyToFireTrapsQueue.Count <= 0 && ActiveTrapsQueue.Count > 0)
+        {
+            ForcePullProjectile();
+
+            GameObject projectile = ReadyToFireTrapsQueue.Dequeue();
             projectile.SetActive(true);
             return projectile;
         }
         else
         {
-            print("Pool is currently empty");
+            Debug.LogError("Pools are empty, F in chat");
             return null;
         }
     }
 
-    public void ReturnTrapToPool(GameObject trap)
+    private static void ForcePullProjectile()
     {
-        TrapPoolQueue.Enqueue(trap);
-        trap.SetActive(false);
+        GameObject projectile;
+
+        for (int i = 0; i < ActiveTrapsQueue.Count; i++)
+        {
+            if ((projectile = ActiveTrapsQueue.Dequeue()).activeSelf)
+            {
+                projectile.SetActive(false);
+                break;
+            }
+        }
     }
+
 }

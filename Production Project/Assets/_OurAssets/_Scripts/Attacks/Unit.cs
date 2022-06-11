@@ -6,12 +6,11 @@ using UnityEngine.UI;
 public class Unit : MonoBehaviour
 {
     [Header("Unit Settings")]
-    public float _unitHP;
-    public float _unitMaxHP;
-    public float _unitAttackRange;
+    [SerializeField][ReadOnlyInspector] internal float _unitHP = 0;
+    [SerializeField] protected float _unitMaxHP, _unitAttackRange;
     [SerializeField] Image _healthBarBG, _healthBar;
 
-    private void Awake()
+    private void Start()
     {
         _unitHP = _unitMaxHP;
 

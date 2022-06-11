@@ -1,44 +1,59 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WallsPool : MonoBehaviour
 {
-
-    [SerializeField] GameObject _wallPrefab;
-    public Queue<GameObject> WallQueue = new Queue<GameObject>();
-    [SerializeField] int _poolStartSize = 20;
-
+    public static Queue<GameObject> ReadyToFireWallsQueue = new Queue<GameObject>();
+    public static Queue<GameObject> ActiveWallsQueue = new Queue<GameObject>();
+    [SerializeField] private GameObject _wallPrefab;
+    [SerializeField] private int _poolStartSize = 3;
 
     void Start()
     {
         for (int i = 0; i < _poolStartSize; i++)
         {
             GameObject wall = Instantiate(_wallPrefab);
-            WallQueue.Enqueue(wall);
-            wall.GetComponent<Wall>().SetMe(this);
             wall.SetActive(false);
         }
+
+        ActiveWallsQueue.Clear();
     }
 
-    public GameObject GetProjectileFromPool()
+    public static GameObject GetWallFromPool()
     {
-        if (WallQueue.Count > 0)
+        if (ReadyToFireWallsQueue.Count > 0)
         {
-            GameObject wall = WallQueue.Dequeue();
+            GameObject wall = ReadyToFireWallsQueue.Dequeue();
+            wall.SetActive(true);
+            return wall;
+        }
+        else if (ReadyToFireWallsQueue.Count <= 0 && ActiveWallsQueue.Count > 0)
+        {
+            ForcePullWall();
+
+            GameObject wall = ReadyToFireWallsQueue.Dequeue();
             wall.SetActive(true);
             return wall;
         }
         else
         {
-            print("Pool is currently empty");
+            Debug.LogError("Pools are empty, F in chat");
             return null;
         }
     }
 
-    public void ReturnWallToPool(GameObject wall)
+    private static void ForcePullWall()
     {
-        WallQueue.Enqueue(wall);
-        wall.SetActive(false);
+        GameObject wall;
+
+        for (int i = 0; i < ActiveWallsQueue.Count; i++)
+        {
+            if ((wall = ActiveWallsQueue.Dequeue()).activeSelf)
+            {
+                wall.SetActive(false);
+                break;
+            }
+        }
     }
+
 }

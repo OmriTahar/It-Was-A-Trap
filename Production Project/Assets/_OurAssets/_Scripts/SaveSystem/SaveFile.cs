@@ -7,7 +7,7 @@ public class SaveFile
 {
     public Vector3 position;
     public Quaternion rotation;
-    public Weapon lastUsedWeapon;
+    public WeaponType lastUsedWeapon;
     public int bunnyCount;
     public float health;
 
@@ -28,7 +28,7 @@ public class SaveFile
         rotation = spawnPoint.rotation;
     }
 
-    public SaveFile(Transform spawnPoint, PlayerData playerData)
+    public SaveFile(Transform spawnPoint, NewPlayerData playerData)
     {
         position = spawnPoint.position;
         rotation = spawnPoint.rotation;

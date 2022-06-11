@@ -62,7 +62,6 @@ public class PlayerController : MonoBehaviour
     Animator _animator;
     #endregion
 
-
     #endregion
 
     private void Awake()
