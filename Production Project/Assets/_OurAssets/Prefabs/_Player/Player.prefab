@@ -266,18 +266,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5b4c4d1769c97f4597dd04a8913d4c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitHP: 40
+  _unitHP: 0
   _unitMaxHP: 40
   _unitAttackRange: 10
   _healthBarBG: {fileID: 2800947985970176614}
   _healthBar: {fileID: 2800947985808060790}
-  _currentWeapon: 0
-  _isAlreadyAttacked: 0
+  currentWeapon: 0
+  canShoot: 1
+  clearToShoot: 1
   _timeBetweenAttacks: 0.5
-  _trapsPool: {fileID: 1961995115909999448}
-  _wallsPool: {fileID: 1961995115909999451}
-  CurrentAmmoAmount_Text: {fileID: 2494603746153702890}
-  CurrentWeapon_ImageSlot: {fileID: 2494603746475106546}
+  _currentAmmoAmountText: {fileID: 2494603746153702890}
+  _currentWeaponImage: {fileID: 2494603746475106546}
   _coverImage: {fileID: 21300000, guid: eee7d5040509dea49a3c9b5b25569e9b, type: 3}
   _trapImage: {fileID: 21300000, guid: 3694afe6d8f3b894f9f46d36e15980b6, type: 3}
 --- !u!114 &4061210518604259733
@@ -739,7 +738,7 @@ GameObject:
   - component: {fileID: 2494603746153702889}
   - component: {fileID: 2494603746153702890}
   m_Layer: 3
-  m_Name: Text_Ammo Amount
+  m_Name: CurrentAmmoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -873,7 +872,7 @@ GameObject:
   - component: {fileID: 2494603746475106545}
   - component: {fileID: 2494603746475106546}
   m_Layer: 3
-  m_Name: Weapon Image Slot
+  m_Name: WeaponImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3450,7 +3449,7 @@ GameObject:
   - component: {fileID: 1575726342417058600}
   - component: {fileID: 5928409967190478775}
   m_Layer: 3
-  m_Name: Text_Ammo
+  m_Name: AmmoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
