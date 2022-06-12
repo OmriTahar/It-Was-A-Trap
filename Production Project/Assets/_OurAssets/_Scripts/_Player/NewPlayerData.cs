@@ -66,7 +66,8 @@ public class NewPlayerData : Unit
             case WeaponType.Wall:
 
                 GameObject wall = WallsPool.GetWallFromPool();
-                wall.transform.position = PlayerAim.Instance.outline.transform.position;
+                Vector3 spawnPos = new Vector3(PlayerAim.Instance.outline.transform.position.x, PlayerAim.Instance.outline.transform.position.y + wall.transform.localScale.y / 2, PlayerAim.Instance.outline.transform.position.z);
+                wall.transform.position = spawnPos;
                 wall.transform.rotation = Quaternion.identity;
 
                 Vector3 rotateWallTo = new Vector3(transform.position.x, wall.transform.position.y, transform.position.z);
