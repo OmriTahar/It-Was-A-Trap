@@ -251,6 +251,7 @@ GameObject:
   - component: {fileID: 8020574770979397826}
   - component: {fileID: 4136424347696906498}
   - component: {fileID: 8020574770979397837}
+  - component: {fileID: 254986942225880776}
   m_Layer: 6
   m_Name: RangedEnemy_Prefab
   m_TagString: Enemy
@@ -385,6 +386,25 @@ MonoBehaviour:
   _isPlayerTooClose: 0
   _canFlee: 0
   _isFleeing: 0
+--- !u!95 &254986942225880776
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8020574770979397839}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1298796173069160255
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class BaseEnemyAI : Unit
 {
     protected NavMeshAgent _agent;
     protected Rigidbody _rb;
+    protected Animator _animator;
 
     [Header("General References")]
     [SerializeField] protected Transform _playerTransform;
@@ -34,6 +35,8 @@ public class BaseEnemyAI : Unit
     {
         _rb = GetComponent<Rigidbody>();
         _agent = GetComponent<NavMeshAgent>();
+        _animator = GetComponent<Animator>();
+
         EnemyAvoidanceInit();
     }
 
@@ -44,6 +47,8 @@ public class BaseEnemyAI : Unit
             PlayerDetaction();
             EnemyStateMachine();
         }
+
+        _animator.SetFloat("Velocity", _agent.velocity.magnitude);
     }
 
     protected virtual void EnemyAvoidanceInit()
@@ -85,6 +90,10 @@ public class BaseEnemyAI : Unit
             }
             else if (!IsStunned && _stunEffect.isPlaying)
                 _stunEffect.Stop();
+
+
+            // Animator Test
+            
         }
     }
 
