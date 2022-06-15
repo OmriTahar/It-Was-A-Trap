@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 8020574770979397837}
   - component: {fileID: 254986942225880776}
   m_Layer: 6
-  m_Name: RangedEnemy_Prefab
+  m_Name: Shooty_Prefab
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
