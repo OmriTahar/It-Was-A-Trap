@@ -5,9 +5,9 @@ using UnityEngine;
 using TMPro;
 
 public enum WeaponType { Trap, Wall }
-public class NewPlayerData : Unit
+public class PlayerData : Unit
 {
-    public static NewPlayerData Instance;
+    public static PlayerData Instance;
 
     [Header("Weapon Settings")]
     [SerializeField][ReadOnlyInspector] internal WeaponType currentWeapon;
@@ -55,7 +55,7 @@ public class NewPlayerData : Unit
         {
             case WeaponType.Trap:
 
-                GameObject trap = TrapsPool.GetProjectileFromPool();
+                GameObject trap = TrapsPool.GetTrapFromPool();
                 trap.transform.position = PlayerAim.Instance.outline.transform.position;
                 trap.transform.rotation = Quaternion.identity;
 

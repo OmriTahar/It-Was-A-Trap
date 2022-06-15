@@ -19,7 +19,7 @@ public class TrapsPool : MonoBehaviour
         ActiveTrapsQueue.Clear();
     }
 
-    public static GameObject GetProjectileFromPool()
+    public static GameObject GetTrapFromPool()
     {
         if (ReadyToFireTrapsQueue.Count > 0)
         {
@@ -44,13 +44,13 @@ public class TrapsPool : MonoBehaviour
 
     private static void ForcePullProjectile()
     {
-        GameObject projectile;
+        GameObject activeTrap;
 
         for (int i = 0; i < ActiveTrapsQueue.Count; i++)
         {
-            if ((projectile = ActiveTrapsQueue.Dequeue()).activeSelf)
+            if ((activeTrap = ActiveTrapsQueue.Dequeue()).activeSelf)
             {
-                projectile.SetActive(false);
+                activeTrap.SetActive(false);
                 break;
             }
         }

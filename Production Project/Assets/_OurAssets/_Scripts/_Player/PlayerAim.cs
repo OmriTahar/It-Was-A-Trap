@@ -86,7 +86,7 @@ public class PlayerAim : MonoBehaviour
                 outline.transform.position = _hit.point;
             }
 
-            NewPlayerData.Instance.clearToShoot = !Physics.CheckBox(outline.transform.position, new Vector3(1.25f, .25f, 1.25f), Quaternion.identity, obstacleMask);
+            PlayerData.Instance.clearToShoot = !Physics.CheckBox(outline.transform.position, new Vector3(1.25f, .25f, 1.25f), Quaternion.identity, obstacleMask);
 
             //for gizmos can delete later
             gizmoPos = outline.transform.position;
@@ -132,7 +132,7 @@ public class PlayerAim : MonoBehaviour
     {
         if (Application.isPlaying)
         {
-            if (NewPlayerData.Instance.clearToShoot)
+            if (PlayerData.Instance.clearToShoot)
                 Gizmos.color = new Color(0, 1, 0, .2f);
             else
                 Gizmos.color = new Color(1, 0, 0, .2f);

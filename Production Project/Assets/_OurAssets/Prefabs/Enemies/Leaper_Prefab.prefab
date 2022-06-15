@@ -139,7 +139,7 @@ MonoBehaviour:
   _MinRandomAvoidanceNumber: 10
   _MaxRandomAvoidanceNumber: 30
   _leapPower: 15
-  _waitBeforeLeap: 1.5
+  _waitBeforeLeap: 1
   _waitAfterLeap: 3
   _playerIsTooCloseRange: 3
   _maxLeapDistance: 12

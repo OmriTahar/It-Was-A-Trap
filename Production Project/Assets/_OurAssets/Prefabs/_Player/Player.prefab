@@ -337,6 +337,8 @@ MonoBehaviour:
   _dashFlashAlpha: 0.4
   DashBarBG: {fileID: 1961995117148618191}
   DashBarFill: {fileID: 1961995116634253211}
+  _dashBarColorFull: {r: 1, g: 1, b: 0, a: 100}
+  _dashBarColorCharge: {r: 1, g: 1, b: 0, a: 0.29803923}
 --- !u!95 &3897817183611794312
 Animator:
   serializedVersion: 3
@@ -367,7 +369,7 @@ GameObject:
   - component: {fileID: 1961995116623779276}
   - component: {fileID: 1961995116623779277}
   m_Layer: 3
-  m_Name: SprintBar
+  m_Name: DashBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

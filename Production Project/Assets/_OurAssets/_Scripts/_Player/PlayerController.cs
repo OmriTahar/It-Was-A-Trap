@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("General Refrences")]
     [SerializeField] internal Rigidbody _rb;
     [SerializeField] internal Transform _meshTransform;
+    private Animator _animator;
     #endregion
 
     #region Camera
@@ -22,17 +23,11 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     public bool PlayerCanMove = true;
     public float WalkSpeed = 5f;
-
-    private float _maxVelocityChange = 10f;
-    //private bool _isWalking = false;
     #endregion
 
     #region Dash
     [Header("Dash Settings")]
-    public bool EnableDash = true;
     public KeyCode DashKey = KeyCode.LeftShift;
-
-    // Dash Settings
     public float DashSpeed = 60f;
     public float DashDuration = 0.15f;
     public float DashCooldownTotalTime = 3f;
@@ -40,26 +35,13 @@ public class PlayerController : MonoBehaviour
     private float _dashCooldownRemainingTime;
     private bool _canDash = true;
     private bool _isDashing = false;
-    private bool _isDashCooldown = false;
-
-    [Header("Dash Effect")]
-    [SerializeField] bool _EnableDashFlashEffect;
-    [SerializeField] FlashImage _dashFlashImage;
-    [SerializeField] Color _dashFlashColor;
-    [Tooltip("How strong the alpha in the dash flash")]
-    [SerializeField][Range(0, 1)] float _dashFlashAlpha;
+    private WaitForSeconds _dashDurationCoroutine;
 
     [Header("Dash UI")]
     public Image DashBarBG;
     public Image DashBarFill;
-
-    private Color32 _dashBarColorFull;
-    private Color32 _dashBarColorCharge;
-    #endregion
-
-    #region Animation
-    [Header("Animation")]
-    Animator _animator;
+    [SerializeField] private Color _dashBarColorFull = new Color(1, 1, 0, 1);
+    [SerializeField] private Color _dashBarColorCharge = new Color(1,1,0,0.3f);
     #endregion
 
     #endregion
@@ -68,12 +50,11 @@ public class PlayerController : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _dashCooldownRemainingTime = DashCooldownTotalTime;
-    }
 
-    void Start()
-    {
         Cursor.visible = IsCursorVisable;
-        DashUISetup();
+        DashBarBG.gameObject.SetActive(true);
+        DashBarFill.gameObject.SetActive(true);
+        _dashDurationCoroutine = new WaitForSeconds(DashDuration);
     }
 
     private void Update()
@@ -89,31 +70,22 @@ public class PlayerController : MonoBehaviour
 
     private void HandleDashUI()
     {
-        if (EnableDash)
+        if (!_canDash)
         {
-            if (!_canDash)
+            DashBarFill.fillAmount = 0;
+            DashBarFill.color = _dashBarColorCharge;
+
+            _dashCooldownRemainingTime -= Time.deltaTime;
+            var dashCooldownPercentage = _dashCooldownRemainingTime / DashCooldownTotalTime;
+            DashBarFill.fillAmount = 1 - dashCooldownPercentage;
+
+            if (_dashCooldownRemainingTime <= 0)
             {
-                DashBarFill.fillAmount = 0;
-                DashBarFill.color = _dashBarColorCharge;
-                _isDashCooldown = true;
-            }
+                _dashCooldownRemainingTime = DashCooldownTotalTime;
+                DashBarFill.fillAmount = 1;
+                DashBarFill.color = _dashBarColorFull;
 
-            if (_isDashCooldown)
-            {
-                _dashCooldownRemainingTime -= Time.deltaTime;
-
-                var dashCooldownPercentage = _dashCooldownRemainingTime / DashCooldownTotalTime;
-                DashBarFill.fillAmount = 1 - dashCooldownPercentage;
-
-                if (_dashCooldownRemainingTime <= 0)
-                {
-                    _dashCooldownRemainingTime = DashCooldownTotalTime;
-                    DashBarFill.fillAmount = 1;
-                    DashBarFill.color = _dashBarColorFull;
-
-                    _canDash = true;
-                    _isDashCooldown = false;
-                }
+                _canDash = true;
             }
         }
     }
@@ -122,90 +94,40 @@ public class PlayerController : MonoBehaviour
     {
         if (PlayerCanMove)
         {
-            Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            Vector3 playerVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            _animator.SetFloat("Velocity", playerVelocity.magnitude);
 
-            #region Animator
-
-            _animator.SetFloat("Velocity", targetVelocity.magnitude);
-
-            //if (targetVelocity.z > 0)
-            //{
-            //    _animator.SetBool("IsPressingForward", true);
-            //}
-            //else if (targetVelocity.z < 0)
-            //{
-            //    _animator.SetBool("IsPressingForward", false);
-            //}
-
-            #endregion
-
-
-            // Checks if player is walking
-            //if (targetVelocity.x != 0 || targetVelocity.z != 0)
-            //    _isWalking = true;
-            //else
-            //    _isWalking = false;
-
-
-            if (EnableDash && Input.GetKeyDown(DashKey) && _canDash) // Dash Logic
+            if (Input.GetKeyDown(DashKey) && _canDash) // Dash Logic
             {
-                targetVelocity = transform.TransformDirection(targetVelocity) * DashSpeed;
-
-                // Apply a force that attempts to reach our target velocity
-                Vector3 velocity = _rb.velocity;
-                Vector3 velocityChange = (targetVelocity - velocity);
-                velocityChange.x = Mathf.Clamp(velocityChange.x, -_maxVelocityChange, _maxVelocityChange);
-                velocityChange.z = Mathf.Clamp(velocityChange.z, -_maxVelocityChange, _maxVelocityChange);
-                velocityChange.y = 0;
-
-                // Dash while moving
-                if (_rb.velocity.magnitude > 0)
+                if (_rb.velocity.magnitude > 0) // Dash while moving
                 {
-                    StartCoroutine(Dash(velocityChange));
-                    _isDashing = true;
-                    _canDash = false;
+                    StartCoroutine(Dash(playerVelocity));
                 }
                 else // If dashing without moving -> dash to a random location
                 {
                     StartCoroutine(Dash(new Vector3(UnityEngine.Random.Range(-1f, 1f), 0, UnityEngine.Random.Range(-1f, 1f))));
-                    _isDashing = true;
-                    _canDash = false;
                 }
             }
-            else if (!_isDashing) // Walk Logic
+
+            else if (!_isDashing) // Moving (not dashing) Logic
             {
-                targetVelocity = transform.TransformDirection(targetVelocity) * WalkSpeed;
-
-                // Apply a force that attempts to reach our target velocity
+                playerVelocity = transform.TransformDirection(playerVelocity) * WalkSpeed;
                 Vector3 velocity = _rb.velocity;
-                Vector3 velocityChange = (targetVelocity - velocity);
-                velocityChange.x = Mathf.Clamp(velocityChange.x, -_maxVelocityChange, _maxVelocityChange);
-                velocityChange.z = Mathf.Clamp(velocityChange.z, -_maxVelocityChange, _maxVelocityChange);
-                velocityChange.y = 0;
-
+                Vector3 velocityChange = (playerVelocity - velocity);
                 _rb.AddForce(velocityChange, ForceMode.VelocityChange);
             }
         }
     }
 
-    private void DashUISetup()
-    {
-        DashBarBG.gameObject.SetActive(true);
-        DashBarFill.gameObject.SetActive(true);
-
-        _dashBarColorCharge = new Color32(255, 255, 0, 30);
-        _dashBarColorFull = new Color32(255, 255, 0, 255);
-    }
-
     IEnumerator Dash(Vector3 dashVecolity)
     {
-        if (_EnableDashFlashEffect)
-            _dashFlashImage.StartFlash(DashDuration, _dashFlashAlpha, _dashFlashColor);
+        _canDash = false;
+        _isDashing = true;
 
         dashVecolity = dashVecolity.normalized;
         _rb.AddForce(dashVecolity * DashSpeed, ForceMode.Impulse);
 
-        yield return new WaitForSeconds(DashDuration);
+        yield return _dashDurationCoroutine;
         _isDashing = false;
     }
 

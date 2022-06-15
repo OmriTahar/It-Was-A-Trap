@@ -10,7 +10,7 @@ public class SaveManager : MonoBehaviour
     [SerializeField] GameObject PlayerGO;
     public SaveFile CurrentSave;
     public bool AutoLoad = false;
-    NewPlayerData playerData;
+    PlayerData playerData;
     string Path;
 
     private void Awake()
@@ -24,7 +24,7 @@ public class SaveManager : MonoBehaviour
         Instance = this;
 
         Path = Application.dataPath + "/Resources/Save.txt";
-        playerData = PlayerGO.GetComponent<NewPlayerData>();
+        playerData = PlayerGO.GetComponent<PlayerData>();
 
         if (File.Exists(Path) && AutoLoad)
         {

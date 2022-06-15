@@ -28,7 +28,7 @@ public class SaveFile
         rotation = spawnPoint.rotation;
     }
 
-    public SaveFile(Transform spawnPoint, NewPlayerData playerData)
+    public SaveFile(Transform spawnPoint, PlayerData playerData)
     {
         position = spawnPoint.position;
         rotation = spawnPoint.rotation;

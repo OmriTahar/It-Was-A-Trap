@@ -12,6 +12,7 @@ public class LeaperAI : BaseEnemyAI
     [SerializeField] float _waitBeforeLeap;
     [SerializeField] float _waitAfterLeap;
     [SerializeField] float _playerIsTooCloseRange;
+    [Tooltip("Cancles the leap if the player flee beyond this range.")]
     [SerializeField] float _maxLeapDistance;
 
     private Vector3 _directionToPlayer;
