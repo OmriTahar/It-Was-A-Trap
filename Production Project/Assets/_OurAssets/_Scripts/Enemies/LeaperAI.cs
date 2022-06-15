@@ -12,6 +12,7 @@ public class LeaperAI : BaseEnemyAI
     [SerializeField] float _waitBeforeLeap;
     [SerializeField] float _waitAfterLeap;
     [SerializeField] float _playerIsTooCloseRange;
+    [SerializeField] float _maxLeapDistance;
 
     private Vector3 _directionToPlayer;
     private Vector3 _newDestination;
@@ -20,11 +21,25 @@ public class LeaperAI : BaseEnemyAI
     [SerializeField] bool _isPlayerInAttackRange;
     [SerializeField] bool _isPlayerTooClose;
     [SerializeField] bool _hasLeaped = false;
+    [SerializeField] bool _isMovingBackwards;
+
+    private WaitForSeconds _waitBeforeLeapCoroutine;
+    private WaitForSeconds _startLeapLogicCorutine = new WaitForSeconds(0.3f);
+    private WaitForSeconds _waitAfterLeapCoroutine;
 
 
     protected override void Awake()
     {
         base.Awake();
+
+        _waitBeforeLeapCoroutine = new WaitForSeconds(_waitBeforeLeap);
+        _waitAfterLeapCoroutine = new WaitForSeconds(_waitAfterLeap);
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        _animator.SetBool("isMovingBackwards", _isMovingBackwards);
     }
 
     protected override void PlayerDetaction()
@@ -44,26 +59,22 @@ public class LeaperAI : BaseEnemyAI
         {
             transform.LookAt(_playerTransform);
 
-            if (!_isPlayerInAttackRange)
+            if (!_hasLeaped)
             {
-                ChasePlayer();
-                print(name + " is Chasing");
-            }
-            else if (_isPlayerInAttackRange && _isPlayerTooClose)
-            {
-                CreateLeapRange();
-            }
+                if (!_isPlayerInAttackRange)
+                {
+                    _isMovingBackwards = false;
+                    ChasePlayer();
+                }
+                else if (_isPlayerInAttackRange && _isPlayerTooClose)
+                {
+                    CreateLeapRange();
+                }
 
-
-            if (!_isPlayerTooClose && _isPlayerInAttackRange && !_hasLeaped)
-            {
-                StartCoroutine(Leap());
-                print(name + " is Leaping!");
-            }
-
-            if (_hasLeaped)
-            {
-                print(name + " is Recharging Leap");
+                if (!_isPlayerTooClose && _isPlayerInAttackRange)
+                {
+                    StartCoroutine(Leap());
+                }
             }
         }
     }
@@ -85,18 +96,28 @@ public class LeaperAI : BaseEnemyAI
         _hasLeaped = true;
         _agent.SetDestination(transform.position);
 
-        yield return new WaitForSeconds(_waitBeforeLeap);
-        if (!IsStunned && _playerTransform != null)
+        yield return _waitBeforeLeapCoroutine;
+        if ((_playerTransform.position - transform.position).magnitude <= _maxLeapDistance)
         {
-            AttackPrefab.SetActive(true);
-            _rb.AddForce((_playerTransform.position - transform.position) * _leapPower, ForceMode.Impulse);
-            print("LEAPING!");
-        }
+            _animator.SetTrigger("Leap");
 
-        yield return new WaitForSeconds(_waitAfterLeap);
-        if (!IsStunned && _playerTransform != null)
+            yield return _startLeapLogicCorutine;
+            if (!IsStunned && _playerTransform != null)
+            {
+                AttackPrefab.SetActive(true);
+                _rb.AddForce((_playerTransform.position - transform.position) * _leapPower, ForceMode.Impulse);
+                _isMovingBackwards = true;
+            }
+
+            yield return _waitAfterLeapCoroutine;
+            if (!IsStunned && _playerTransform != null)
+            {
+                AttackPrefab.SetActive(false);
+                _hasLeaped = false;
+            }
+        }
+        else // Leap distance is too long
         {
-            AttackPrefab.SetActive(false);
             _hasLeaped = false;
         }
     }

@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public float WalkSpeed = 5f;
 
     private float _maxVelocityChange = 10f;
-    private bool _isWalking = false;
+    //private bool _isWalking = false;
     #endregion
 
     #region Dash
@@ -128,23 +128,23 @@ public class PlayerController : MonoBehaviour
 
             _animator.SetFloat("Velocity", targetVelocity.magnitude);
 
-            if (targetVelocity.z > 0)
-            {
-                _animator.SetBool("IsPressingForward", true);
-            }
-            else if (targetVelocity.z < 0)
-            {
-                _animator.SetBool("IsPressingForward", false);
-            }
+            //if (targetVelocity.z > 0)
+            //{
+            //    _animator.SetBool("IsPressingForward", true);
+            //}
+            //else if (targetVelocity.z < 0)
+            //{
+            //    _animator.SetBool("IsPressingForward", false);
+            //}
 
             #endregion
 
 
             // Checks if player is walking
-            if (targetVelocity.x != 0 || targetVelocity.z != 0)
-                _isWalking = true;
-            else
-                _isWalking = false;
+            //if (targetVelocity.x != 0 || targetVelocity.z != 0)
+            //    _isWalking = true;
+            //else
+            //    _isWalking = false;
 
 
             if (EnableDash && Input.GetKeyDown(DashKey) && _canDash) // Dash Logic

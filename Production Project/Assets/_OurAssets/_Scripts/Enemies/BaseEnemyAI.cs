@@ -48,7 +48,10 @@ public class BaseEnemyAI : Unit
             EnemyStateMachine();
         }
 
-        _animator.SetFloat("Velocity", _agent.velocity.magnitude);
+        if (_animator != null)
+        {
+            _animator.SetFloat("Velocity", _agent.velocity.magnitude);
+        }
     }
 
     protected virtual void EnemyAvoidanceInit()
@@ -78,7 +81,6 @@ public class BaseEnemyAI : Unit
 
         if (!IsEnemyActivated)
         {
-            print(name + " is not activated.");
             _agent.SetDestination(transform.position); // Make sure enemy doesn't move
         }
         else
@@ -91,9 +93,6 @@ public class BaseEnemyAI : Unit
             else if (!IsStunned && _stunEffect.isPlaying)
                 _stunEffect.Stop();
 
-
-            // Animator Test
-            
         }
     }
 

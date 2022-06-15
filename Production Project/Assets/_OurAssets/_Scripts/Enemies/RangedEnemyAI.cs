@@ -25,11 +25,13 @@ public class RangedEnemyAI : BaseEnemyAI
     [SerializeField] bool _canFlee;
     [SerializeField] bool _isFleeing;
 
+    private WaitForSeconds _fleeDurationCoroutine;
 
     protected override void Awake()
     {
         base.Awake();
         _rangedProjectilePool = GetComponent<ProjectilePool>();
+        _fleeDurationCoroutine = new WaitForSeconds(_fleeingDuration);
     }
 
     protected override void PlayerDetaction()
@@ -53,28 +55,22 @@ public class RangedEnemyAI : BaseEnemyAI
 
         if (IsEnemyActivated)
         {
-            #region Chase
 
             if (!_isPlayerInAttackRange && !_isFleeing)
             {
                 ChasePlayer();
-                print(name + " is Chasing");
             }
-
-            #endregion
 
             if (!_isFleeing)
             {
                 if (IsEnemyActivated && _isPlayerTooClose && _canFlee)
                 {
                     StartCoroutine(Flee());
-                    print(name + " is Fleeing");
                 }
 
                 if (IsEnemyActivated && (!_isPlayerTooClose && _isPlayerInAttackRange || _isPlayerTooClose && !_canFlee))
                 {
                     RangeAttack();
-                    print(name + " is Attacking");
                 }
             }
         }
@@ -108,16 +104,13 @@ public class RangedEnemyAI : BaseEnemyAI
     {
         _directionToPlayer = (transform.position - _playerTransform.position).normalized * 10;
         Vector3 newFleePosition = transform.position + _directionToPlayer;
-        print("new Flee Position Check: " + newFleePosition);
 
         if (_agent.CalculatePath(newFleePosition, new NavMeshPath()))
         {
-            print(name + " CAN flee");
             return true;
         }
         else
         {
-            print(name + " can NOT flee");
             return false;
         }
     }
@@ -125,17 +118,11 @@ public class RangedEnemyAI : BaseEnemyAI
     private IEnumerator Flee()
     {
         _isFleeing = true;
-
         _directionToPlayer = (transform.position - _playerTransform.position).normalized * 10;
         Vector3 newFleePosition = transform.position + _directionToPlayer;
-
-        print("New Set Destination: " + newFleePosition);
-
         _agent.SetDestination(newFleePosition);
 
-        yield return new WaitForSeconds(_fleeingDuration);
-
-        print("Finished FLEEING!");
+        yield return _fleeDurationCoroutine;
         _isFleeing = false;
     }
 

@@ -142,9 +142,11 @@ MonoBehaviour:
   _waitBeforeLeap: 1.5
   _waitAfterLeap: 3
   _playerIsTooCloseRange: 3
+  _maxLeapDistance: 12
   _isPlayerInAttackRange: 0
   _isPlayerTooClose: 0
   _hasLeaped: 0
+  _isMovingBackwards: 0
 --- !u!95 &4158529393150689974
 Animator:
   serializedVersion: 3
