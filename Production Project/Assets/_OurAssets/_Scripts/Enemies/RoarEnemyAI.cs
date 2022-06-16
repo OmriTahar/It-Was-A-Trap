@@ -8,6 +8,7 @@ public class RoarEnemyAI : BaseEnemyAI
 {
 
     private ShoutsPool _shoutsPool;
+
     [Header("Refrences")]
     [SerializeField] GameObject _attackZone;
 
@@ -16,6 +17,7 @@ public class RoarEnemyAI : BaseEnemyAI
     [SerializeField] float _shoutForce;
     [SerializeField] float _waitBeforeShout;
     [SerializeField] float _delayAfterStartingShoutAnimation;
+    [SerializeField] float _waitAfterShout = 1.2f;
 
     [Header("Fleeing")]
     [SerializeField] float _startFleeFromPlayer_Range;
@@ -23,6 +25,9 @@ public class RoarEnemyAI : BaseEnemyAI
 
     private Vector3 _directionToPlayer;
     private WaitForSeconds _fleeDurationCoroutine;
+    private WaitForSeconds _delayAfterStartingShoutAnimationCoroutine;
+    private WaitForSeconds _waitBeforeShoutCoroutine;
+    private WaitForSeconds _waitAfterShoutCoroutine;
 
     [Header("Enemy Status")]
     [SerializeField] bool _isPlayerInAttackRange;
@@ -33,11 +38,17 @@ public class RoarEnemyAI : BaseEnemyAI
 
     private bool _isShouting;
 
+
     protected override void Awake()
     {
         base.Awake();
+
         _shoutsPool = GetComponent<ShoutsPool>();
+
         _fleeDurationCoroutine = new WaitForSeconds(_fleeingDuration);
+        _delayAfterStartingShoutAnimationCoroutine = new WaitForSeconds(_delayAfterStartingShoutAnimation);
+        _waitBeforeShoutCoroutine = new WaitForSeconds(_waitBeforeShout);
+        _waitAfterShoutCoroutine = new WaitForSeconds(_waitAfterShout);
 
         _attackZone.SetActive(false);
     }
@@ -114,10 +125,10 @@ public class RoarEnemyAI : BaseEnemyAI
 
     IEnumerator Shout(Vector3 lockedPlayerPosition)
     {
-        yield return new WaitForSeconds(_waitBeforeShout);
+        yield return _waitBeforeShoutCoroutine;
         _animator.SetTrigger("Shout");
 
-        yield return new WaitForSeconds(_delayAfterStartingShoutAnimation);
+        yield return _delayAfterStartingShoutAnimationCoroutine;
         GameObject shout = _shoutsPool.GetShoutFromPool();
         shout.transform.position = _shoutShootPoint.position;
         shout.transform.rotation = Quaternion.identity;
@@ -128,7 +139,7 @@ public class RoarEnemyAI : BaseEnemyAI
         Rigidbody rb = shout.GetComponent<Rigidbody>();
         rb.AddForce((lockedPlayerPosition - shout.transform.position).normalized * _shoutForce, ForceMode.Impulse);
 
-        yield return new WaitForSeconds(1.2f);
+        yield return _waitAfterShoutCoroutine;
         _isShouting = false;
         _attackZone.SetActive(false);
 
