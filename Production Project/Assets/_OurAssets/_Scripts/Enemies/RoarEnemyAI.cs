@@ -6,16 +6,20 @@ using UnityEngine.UI;
 
 public class RoarEnemyAI : BaseEnemyAI
 {
-    [Header("Ranged Attack Settings")]
+
+    private ShoutsPool _shoutsPool;
+
+    [Header("Shout Attack Settings")]
     [SerializeField] Transform _shoutShootPoint;
     [SerializeField] float _shoutForce;
-    private ShoutsPool _shoutsPool;
+    [SerializeField] float _shoutAnimationDelay;
 
     [Header("Fleeing")]
     [SerializeField] float _startFleeFromPlayer_Range;
     [SerializeField] float _fleeingDuration;
-    [SerializeField] float _fleeingDistance;
+
     private Vector3 _directionToPlayer;
+    private WaitForSeconds _fleeDurationCoroutine;
 
     [Header("Enemy Status")]
     [SerializeField] bool _isPlayerInAttackRange;
@@ -24,7 +28,6 @@ public class RoarEnemyAI : BaseEnemyAI
     [SerializeField] bool _canFlee;
     [SerializeField] bool _isFleeing;
 
-    private WaitForSeconds _fleeDurationCoroutine;
 
     protected override void Awake()
     {
@@ -62,14 +65,17 @@ public class RoarEnemyAI : BaseEnemyAI
 
             if (!_isFleeing)
             {
-                if (IsEnemyActivated && _isPlayerTooClose && _canFlee)
+                if (_isPlayerTooClose && _canFlee)
                 {
                     StartCoroutine(Flee());
                 }
 
-                if (IsEnemyActivated && (!_isPlayerTooClose && _isPlayerInAttackRange || _isPlayerTooClose && !_canFlee))
+                if ((!_isPlayerTooClose && _isPlayerInAttackRange || _isPlayerTooClose && !_canFlee))
                 {
-                    RangeAttack();
+                    if (!_isAlreadyAttacked)
+                    {
+                        AttemptShout();
+                    }
                 }
             }
         }
@@ -80,23 +86,27 @@ public class RoarEnemyAI : BaseEnemyAI
         base.ChasePlayer();
     }
 
-    private void RangeAttack()
+    private void AttemptShout()
     {
+        _isAlreadyAttacked = true;
+
         _agent.SetDestination(transform.position); // Make sure enemy doesn't move while attacking
         transform.LookAt(_playerTransform);
 
-        if (!_isAlreadyAttacked)
-        {
-            GameObject shout = _shoutsPool.GetShoutFromPool();
-            shout.transform.position = _shoutShootPoint.position;
-            shout.transform.rotation = Quaternion.identity;
+        _animator.SetTrigger("Shout");
+        Invoke("Shout", _shoutAnimationDelay);
+    }
 
-            Rigidbody rb = shout.GetComponent<Rigidbody>();
-            rb.AddForce((_playerTransform.position - shout.transform.position).normalized * _shoutForce, ForceMode.Impulse);
+    private void Shout()
+    {
+        GameObject shout = _shoutsPool.GetShoutFromPool();
+        shout.transform.position = _shoutShootPoint.position;
+        shout.transform.rotation = Quaternion.identity;
 
-            _isAlreadyAttacked = true;
-            Invoke(nameof(ResetAttack), _timeBetweenAttacks);
-        }
+        Rigidbody rb = shout.GetComponent<Rigidbody>();
+        rb.AddForce((_playerTransform.position - shout.transform.position).normalized * _shoutForce, ForceMode.Impulse);
+
+        Invoke(("ResetAttack"), _timeBetweenAttacks);
     }
 
     private bool CanEnemyFlee()

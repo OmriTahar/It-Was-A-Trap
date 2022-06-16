@@ -373,11 +373,11 @@ MonoBehaviour:
   IsStunned: 0
   _stunEffect: {fileID: 2411109358881034486}
   _enemyAvoidancePriority: 50
-  _randomPriority: 1
+  _randomPriority: 0
   _MinRandomAvoidanceNumber: 30
   _MaxRandomAvoidanceNumber: 50
   _rangedShootPoint: {fileID: 4389780435512023250}
-  _rangedShootForce: 20
+  _rangedShootForce: 25
   _startFleeFromPlayer_Range: 7
   _fleeingDuration: 2
   _fleeingDistance: 2

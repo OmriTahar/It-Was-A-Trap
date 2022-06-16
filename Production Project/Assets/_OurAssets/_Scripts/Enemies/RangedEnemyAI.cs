@@ -7,16 +7,18 @@ using UnityEngine.UI;
 public class RangedEnemyAI : BaseEnemyAI
 {
 
+    private ProjectilePool _rangedProjectilePool;
+
     [Header("Ranged Attack Settings")]
     [SerializeField] Transform _rangedShootPoint;
     [SerializeField] float _rangedShootForce;
-    private ProjectilePool _rangedProjectilePool;
 
     [Header("Fleeing")]
     [SerializeField] float _startFleeFromPlayer_Range;
     [SerializeField] float _fleeingDuration;
-    [SerializeField] float _fleeingDistance;
+
     private Vector3 _directionToPlayer;
+    private WaitForSeconds _fleeDurationCoroutine;
 
     [Header("Enemy Status")]
     [SerializeField] bool _isPlayerInAttackRange;
@@ -25,7 +27,6 @@ public class RangedEnemyAI : BaseEnemyAI
     [SerializeField] bool _canFlee;
     [SerializeField] bool _isFleeing;
 
-    private WaitForSeconds _fleeDurationCoroutine;
 
     protected override void Awake()
     {
@@ -63,12 +64,12 @@ public class RangedEnemyAI : BaseEnemyAI
 
             if (!_isFleeing)
             {
-                if (IsEnemyActivated && _isPlayerTooClose && _canFlee)
+                if (_isPlayerTooClose && _canFlee)
                 {
                     StartCoroutine(Flee());
                 }
 
-                if (IsEnemyActivated && (!_isPlayerTooClose && _isPlayerInAttackRange || _isPlayerTooClose && !_canFlee))
+                if ((!_isPlayerTooClose && _isPlayerInAttackRange || _isPlayerTooClose && !_canFlee))
                 {
                     RangeAttack();
                 }

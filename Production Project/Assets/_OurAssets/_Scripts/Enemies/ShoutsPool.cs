@@ -36,9 +36,9 @@ public class ShoutsPool : MonoBehaviour
         }
     }
 
-    public void ReturnProjectileToPool(GameObject projectile)
+    public void ReturnProjectileToPool(GameObject shout)
     {
-        _shoutPoolQueue.Enqueue(projectile);
-        projectile.SetActive(false);
+        _shoutPoolQueue.Enqueue(shout);
+        shout.SetActive(false);
     }
 }

@@ -16,18 +16,28 @@ public class ShoutAttack : Attack
 
     public override void OnTriggerEnter(Collider other)
     {
+        print("Shout hurt somthing!");
+
         if (other.gameObject.tag == "Player")
         {
             other.gameObject.GetComponent<Unit>().RecieveDamage(this);
+            //_myCollider.isTrigger = false;
+            _shoutsPool.ReturnProjectileToPool(gameObject);
+
+            print("Shout hurt player!");
+
             //PlayHitEffect(_hitEffect, _hitTransform);
         }
+        else
+        {
+            StartCoroutine(Decay());
+        }
 
-        _myCollider.isTrigger = false;
-        StartCoroutine(Decay());
     }
 
     private IEnumerator Decay()
     {
+        _myCollider.isTrigger = false;
         yield return new WaitForSeconds(_decayTime);
         _shoutsPool.ReturnProjectileToPool(gameObject);
         _myCollider.isTrigger = true;
