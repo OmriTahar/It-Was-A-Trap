@@ -8,11 +8,14 @@ public class RoarEnemyAI : BaseEnemyAI
 {
 
     private ShoutsPool _shoutsPool;
+    [Header("Refrences")]
+    [SerializeField] GameObject _attackZone;
 
     [Header("Shout Attack Settings")]
     [SerializeField] Transform _shoutShootPoint;
     [SerializeField] float _shoutForce;
-    [SerializeField] float _shoutAnimationDelay;
+    [SerializeField] float _waitBeforeShout;
+    [SerializeField] float _delayAfterStartingShoutAnimation;
 
     [Header("Fleeing")]
     [SerializeField] float _startFleeFromPlayer_Range;
@@ -28,12 +31,15 @@ public class RoarEnemyAI : BaseEnemyAI
     [SerializeField] bool _canFlee;
     [SerializeField] bool _isFleeing;
 
+    private bool _isShouting;
 
     protected override void Awake()
     {
         base.Awake();
         _shoutsPool = GetComponent<ShoutsPool>();
         _fleeDurationCoroutine = new WaitForSeconds(_fleeingDuration);
+
+        _attackZone.SetActive(false);
     }
 
     protected override void PlayerDetaction()
@@ -58,23 +64,31 @@ public class RoarEnemyAI : BaseEnemyAI
         if (IsEnemyActivated)
         {
 
-            if (!_isPlayerInAttackRange && !_isFleeing)
+            if (_isShouting)
             {
-                ChasePlayer();
+                _agent.SetDestination(transform.position);
+                _rb.Sleep();
             }
-
-            if (!_isFleeing)
+            else
             {
-                if (_isPlayerTooClose && _canFlee)
+                if (!_isPlayerInAttackRange && !_isFleeing)
                 {
-                    StartCoroutine(Flee());
+                    ChasePlayer();
                 }
 
-                if ((!_isPlayerTooClose && _isPlayerInAttackRange || _isPlayerTooClose && !_canFlee))
+                if (!_isFleeing)
                 {
-                    if (!_isAlreadyAttacked)
+                    if (_isPlayerTooClose && _canFlee)
                     {
-                        AttemptShout();
+                        StartCoroutine(Flee());
+                    }
+
+                    if ((!_isPlayerTooClose && _isPlayerInAttackRange || _isPlayerTooClose && !_canFlee))
+                    {
+                        if (!_isAlreadyAttacked)
+                        {
+                            AttemptShout();
+                        }
                     }
                 }
             }
@@ -84,27 +98,39 @@ public class RoarEnemyAI : BaseEnemyAI
     protected override void ChasePlayer()
     {
         base.ChasePlayer();
+        transform.LookAt(_playerTransform);
     }
 
     private void AttemptShout()
     {
+        _isShouting = true;
         _isAlreadyAttacked = true;
 
-        _agent.SetDestination(transform.position); // Make sure enemy doesn't move while attacking
         transform.LookAt(_playerTransform);
+        _attackZone.SetActive(true);
 
-        _animator.SetTrigger("Shout");
-        Invoke("Shout", _shoutAnimationDelay);
+        StartCoroutine(Shout(_playerTransform.position));
     }
 
-    private void Shout()
+    IEnumerator Shout(Vector3 lockedPlayerPosition)
     {
+        yield return new WaitForSeconds(_waitBeforeShout);
+        _animator.SetTrigger("Shout");
+
+        yield return new WaitForSeconds(_delayAfterStartingShoutAnimation);
         GameObject shout = _shoutsPool.GetShoutFromPool();
         shout.transform.position = _shoutShootPoint.position;
         shout.transform.rotation = Quaternion.identity;
 
+        Vector3 rotateParticleTo = new Vector3(transform.position.x, shout.transform.position.y, transform.position.z);
+        shout.transform.LookAt(rotateParticleTo);
+
         Rigidbody rb = shout.GetComponent<Rigidbody>();
-        rb.AddForce((_playerTransform.position - shout.transform.position).normalized * _shoutForce, ForceMode.Impulse);
+        rb.AddForce((lockedPlayerPosition - shout.transform.position).normalized * _shoutForce, ForceMode.Impulse);
+
+        yield return new WaitForSeconds(1.2f);
+        _isShouting = false;
+        _attackZone.SetActive(false);
 
         Invoke(("ResetAttack"), _timeBetweenAttacks);
     }

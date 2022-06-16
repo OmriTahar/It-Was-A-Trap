@@ -10,7 +10,7 @@ public class BaseEnemyAI : Unit
     protected Rigidbody _rb;
     protected Animator _animator;
 
-    [Header("General References")]
+    [Header("General")]
     [SerializeField] protected Transform _playerTransform;
     [SerializeField] protected LayerMask _groundLayer, _playerLayer;
     public bool IsEnemyActivated;

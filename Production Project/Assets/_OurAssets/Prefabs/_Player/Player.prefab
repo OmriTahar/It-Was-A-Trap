@@ -302,7 +302,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 128
-  maxDistance: 10
+  maxDistance: 5
   minDistance: 2.2
   _canAim: 0
   _interactableLayers:

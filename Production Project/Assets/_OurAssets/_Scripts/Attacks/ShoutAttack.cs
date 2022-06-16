@@ -10,6 +10,7 @@ public class ShoutAttack : Attack
     [SerializeField] float _decayTime = 3f;
 
     private bool _alreadyAttacked;
+    private bool _stunnedPlayer;
 
     private void Start()
     {
@@ -27,17 +28,16 @@ public class ShoutAttack : Attack
 
             if (_causeStun)
             {
+                _stunnedPlayer = true;
                 StartCoroutine(StunPlayer(other));
-                StartCoroutine(Decay(_stunDuration));
+                StartCoroutine(Decay(_stunDuration + 0.1f));
             }
             else
-            {
                 _shoutsPool.ReturnProjectileToPool(gameObject);
-            }
         }
         else
         {
-            StartCoroutine(Decay(_decayTime));
+            StartCoroutine(Decay(_stunDuration * 2));
         }
 
     }
@@ -45,6 +45,7 @@ public class ShoutAttack : Attack
     private IEnumerator Decay(float decayTime)
     {
         yield return new WaitForSeconds(decayTime);
+        print("Shout decayed");
         _shoutsPool.ReturnProjectileToPool(gameObject);
     }
 

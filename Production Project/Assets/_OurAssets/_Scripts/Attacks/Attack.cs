@@ -14,7 +14,12 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
 
     protected Unit _attackedUnit;
     protected PlayerController _playerController;
+    protected WaitForSeconds _stunEndCoroutine;
 
+    void Awake()
+    {
+        _stunEndCoroutine = new WaitForSeconds(_stunDuration);
+    }
 
     void IAttackable<Unit>.Attack(Unit unit)
     {
@@ -37,14 +42,16 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
 
     protected IEnumerator StunPlayer(Collider other)
     {
-        _attackedUnit.IsStunned = true;
+        print("Stun start");
 
+        _attackedUnit.IsStunned = true;
         _playerController = other.gameObject.GetComponent<PlayerController>();
         _playerController.PlayerCanMove = false;
 
-        yield return new WaitForSeconds(_stunDuration);
+        yield return _stunEndCoroutine;
 
-        _playerController.PlayerCanMove = true;
+        print("Stun end");
         _attackedUnit.IsStunned = false;
+        _playerController.PlayerCanMove = true;
     }
 }
