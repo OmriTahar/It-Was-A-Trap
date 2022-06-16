@@ -9,6 +9,8 @@ public class ShoutAttack : Attack
     [SerializeField] ShoutsPool _shoutsPool;
     [SerializeField] float _decayTime = 3f;
 
+    private bool _alreadyAttacked;
+
     private void Start()
     {
         _myCollider = GetComponent<BoxCollider>();
@@ -16,31 +18,34 @@ public class ShoutAttack : Attack
 
     public override void OnTriggerEnter(Collider other)
     {
-        print("Shout hurt somthing!");
 
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && !_alreadyAttacked)
         {
-            other.gameObject.GetComponent<Unit>().RecieveDamage(this);
-            //_myCollider.isTrigger = false;
-            _shoutsPool.ReturnProjectileToPool(gameObject);
+            _alreadyAttacked = true;
+            _attackedUnit = other.gameObject.GetComponent<Unit>();
+            _attackedUnit.RecieveDamage(this);
 
-            print("Shout hurt player!");
-
-            //PlayHitEffect(_hitEffect, _hitTransform);
+            if (_causeStun)
+            {
+                StartCoroutine(StunPlayer(other));
+                StartCoroutine(Decay(_stunDuration));
+            }
+            else
+            {
+                _shoutsPool.ReturnProjectileToPool(gameObject);
+            }
         }
         else
         {
-            StartCoroutine(Decay());
+            StartCoroutine(Decay(_decayTime));
         }
 
     }
 
-    private IEnumerator Decay()
+    private IEnumerator Decay(float decayTime)
     {
-        _myCollider.isTrigger = false;
-        yield return new WaitForSeconds(_decayTime);
+        yield return new WaitForSeconds(decayTime);
         _shoutsPool.ReturnProjectileToPool(gameObject);
-        _myCollider.isTrigger = true;
     }
 
     public void SetMe(ShoutsPool myPool) // Can also later be used to set Damage and other variables to the projectile

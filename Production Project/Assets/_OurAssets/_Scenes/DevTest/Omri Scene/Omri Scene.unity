@@ -3246,10 +3246,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2032137546}
     - target: {fileID: 8446407416611106780, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: IsCursorVisable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8446407416611106780, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: PlayerMovementCamera
       value: 
       objectReference: {fileID: 2032137546}
@@ -3845,10 +3841,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Leo_Prefab
       objectReference: {fileID: 0}
-    - target: {fileID: 793604863163825218, guid: d6bf46cc0808e9c4ea061235ab89c2ee, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 793604863163825230, guid: d6bf46cc0808e9c4ea061235ab89c2ee, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3897,10 +3889,6 @@ PrefabInstance:
       propertyPath: _playerTransform
       value: 
       objectReference: {fileID: 4459864851264094600}
-    - target: {fileID: 2763713091600950493, guid: d6bf46cc0808e9c4ea061235ab89c2ee, type: 3}
-      propertyPath: _shoutAnimationDelay
-      value: 0.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6bf46cc0808e9c4ea061235ab89c2ee, type: 3}
 --- !u!1001 &8841616895716206843

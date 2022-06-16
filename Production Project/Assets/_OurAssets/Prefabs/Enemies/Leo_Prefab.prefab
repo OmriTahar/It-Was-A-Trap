@@ -142,6 +142,8 @@ MonoBehaviour:
   _unitAttackRange: 5
   _healthBarBG: {fileID: 0}
   _healthBar: {fileID: 0}
+  IsStunned: 0
+  _stunEffect: {fileID: 2879199814075557449}
   _playerTransform: {fileID: 0}
   _groundLayer:
     serializedVersion: 2
@@ -151,18 +153,16 @@ MonoBehaviour:
     m_Bits: 8
   IsEnemyActivated: 0
   AttackPrefab: {fileID: 1523505521300276554, guid: 48d36b8ce62a01748bfcff4ac7d51327, type: 3}
-  _timeBetweenAttacks: 2
-  IsStunned: 0
-  _stunEffect: {fileID: 2879199814075557449}
+  _timeBetweenAttacks: 3
   _enemyAvoidancePriority: 50
   _randomPriority: 0
   _MinRandomAvoidanceNumber: 30
   _MaxRandomAvoidanceNumber: 50
   _shoutShootPoint: {fileID: 3502551649914467759}
   _shoutForce: 20
+  _shoutAnimationDelay: 0.2
   _startFleeFromPlayer_Range: 3
   _fleeingDuration: 2
-  _fleeingDistance: 2
   _isPlayerInAttackRange: 0
   _isAlreadyAttacked: 0
   _isPlayerTooClose: 0

@@ -19,10 +19,6 @@ public class BaseEnemyAI : Unit
     [SerializeField] protected GameObject AttackPrefab;
     [SerializeField] protected float _timeBetweenAttacks;
 
-    [Header("Stun Settings")]
-    public bool IsStunned;
-    public ParticleSystem _stunEffect;
-
     [Header("Avoidance Settings")]
     [Tooltip("Ignores all other enemies with higher number. Lower value means higher imprortance.")]
     [SerializeField][Range(1, 50)] protected int _enemyAvoidancePriority;

@@ -48,12 +48,14 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
-        _dashCooldownRemainingTime = DashCooldownTotalTime;
-
         Cursor.visible = IsCursorVisable;
+
+        _animator = GetComponent<Animator>();
+
         DashBarBG.gameObject.SetActive(true);
         DashBarFill.gameObject.SetActive(true);
+
+        _dashCooldownRemainingTime = DashCooldownTotalTime;
         _dashDurationCoroutine = new WaitForSeconds(DashDuration);
     }
 
@@ -115,6 +117,23 @@ public class PlayerController : MonoBehaviour
                 Vector3 velocity = _rb.velocity;
                 Vector3 velocityChange = (playerVelocity - velocity);
                 _rb.AddForce(velocityChange, ForceMode.VelocityChange);
+            }
+
+            if (!PlayerData.Instance.IsStunned && PlayerData.Instance._stunEffect.isPlaying)
+            {
+                PlayerData.Instance._stunEffect.Stop();
+                print("stun Effect end");
+            }
+        }
+        else 
+        {
+            // Stun effect. Check conditions only if PlayerCanMove = false
+            if (PlayerData.Instance.IsStunned && PlayerData.Instance._stunEffect != null && !PlayerData.Instance._stunEffect.isPlaying)
+            {
+                _rb.Sleep();
+
+                PlayerData.Instance._stunEffect.Play();
+                print("stun Effect start");
             }
         }
     }

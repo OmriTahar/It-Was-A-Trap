@@ -10,6 +10,11 @@ public class Unit : MonoBehaviour
     [SerializeField] protected float _unitMaxHP, _unitAttackRange;
     [SerializeField] Image _healthBarBG, _healthBar;
 
+    [Header("Stun Settings")]
+    public bool IsStunned;
+    public ParticleSystem _stunEffect;
+
+
     private void Start()
     {
         _unitHP = _unitMaxHP;

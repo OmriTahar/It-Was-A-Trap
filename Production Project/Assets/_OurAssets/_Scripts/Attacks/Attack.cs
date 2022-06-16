@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour, IAttackable<Unit>
 {
+
     [Header("Attack Settings")]
     [SerializeField] protected int _damage;
-    [SerializeField] protected bool _stunning = false;
+
+    [Header("Stun Settings")]
+    [SerializeField] protected bool _causeStun = false;
     [SerializeField] protected float _stunDuration = 2f;
-    //[SerializeField] protected GameObject _hitEffect;
-    //protected Transform _hitTransform;
+
+    protected Unit _attackedUnit;
+    protected PlayerController _playerController;
+
 
     void IAttackable<Unit>.Attack(Unit unit)
     {
@@ -19,18 +24,27 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
     public virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
-            other.gameObject.GetComponent<Unit>().RecieveDamage(this);
+        {
+            _attackedUnit = other.gameObject.GetComponent<Unit>();
+            _attackedUnit.RecieveDamage(this);
+
+            if (_causeStun)
+            {
+                StartCoroutine(StunPlayer(other));
+            }
+        }
     }
 
-    //public virtual void PlayHitEffect(GameObject hitEffect, Vector3 hitTransform)
-    //{
-    //    if (_hitEffect != null)
-    //    {
-    //        Instantiate(hitEffect,hitTransform, hitTransform);
-    //        print("Instansiated Effect!");
+    protected IEnumerator StunPlayer(Collider other)
+    {
+        _attackedUnit.IsStunned = true;
 
-    //        //_hitEffect.transform.position = hitPosition;
-    //        //_hitEffect.SetActive(true);
-    //    }
-    //}
+        _playerController = other.gameObject.GetComponent<PlayerController>();
+        _playerController.PlayerCanMove = false;
+
+        yield return new WaitForSeconds(_stunDuration);
+
+        _playerController.PlayerCanMove = true;
+        _attackedUnit.IsStunned = false;
+    }
 }
