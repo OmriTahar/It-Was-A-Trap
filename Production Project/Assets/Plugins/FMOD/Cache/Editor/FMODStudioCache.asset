@@ -1,5 +1,25 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6372125992570016344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Plugins/FMOD/Resources/zzzz/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637909970646465265
+  FileSizes:
+  - Name: Desktop
+    Value: 334688
+  Exists: 1
 --- !u!114 &-5469664024033337003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19,7 +39,7 @@ MonoBehaviour:
     Data3: -655026031
     Data4: 805586706
   Banks:
-  - {fileID: 1156663852649696011}
+  - {fileID: -6372125992570016344}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -40,38 +60,18 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 3548775246890999024}
-  - {fileID: 1156663852649696011}
+  - {fileID: 7186020658753124484}
+  - {fileID: -6372125992570016344}
   EditorEvents:
   - {fileID: -5469664024033337003}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 1156663852649696011}
+  - {fileID: -6372125992570016344}
   StringsBanks:
-  - {fileID: 3548775246890999024}
-  cacheTime: 637909960335890068
+  - {fileID: 7186020658753124484}
+  cacheTime: 637909970646477835
   cacheVersion: 10
---- !u!114 &1156663852649696011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: ../../../New folder (3)/fmod/zzzz/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 637909960335880106
-  FileSizes:
-  - Name: Desktop
-    Value: 334688
-  Exists: 1
---- !u!114 &3548775246890999024
+--- !u!114 &7186020658753124484
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -83,10 +83,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: ../../../New folder (3)/fmod/zzzz/Build/Desktop/Master.strings.bank
+  Path: Assets/Plugins/FMOD/Resources/zzzz/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637909960335890068
+  lastModified: 637909970646477835
   FileSizes:
   - Name: Desktop
     Value: 770

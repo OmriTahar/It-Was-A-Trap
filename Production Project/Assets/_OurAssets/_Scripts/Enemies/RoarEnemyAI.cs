@@ -7,11 +7,10 @@ using UnityEngine.UI;
 public class RoarEnemyAI : BaseEnemyAI
 {
 
-    private ShoutsPool _shoutsPool;
-
     [Header("Refrences")]
     [SerializeField] GameObject _attackZone;
-
+    [SerializeField] ShoutAttack _shoutAttack;
+    
     [Header("Shout Attack Settings")]
     [SerializeField] Transform _shoutShootPoint;
     [SerializeField] float _shoutForce;
@@ -43,14 +42,15 @@ public class RoarEnemyAI : BaseEnemyAI
     {
         base.Awake();
 
-        _shoutsPool = GetComponent<ShoutsPool>();
+        _attackZone.SetActive(false);
 
+        #region Coroutines Cacheing
         _fleeDurationCoroutine = new WaitForSeconds(_fleeingDuration);
         _delayAfterStartingShoutAnimationCoroutine = new WaitForSeconds(_delayAfterStartingShoutAnimation);
         _waitBeforeShoutCoroutine = new WaitForSeconds(_waitBeforeShout);
         _waitAfterShoutCoroutine = new WaitForSeconds(_waitAfterShout);
+        #endregion
 
-        _attackZone.SetActive(false);
     }
 
     protected override void PlayerDetaction()
@@ -129,15 +129,17 @@ public class RoarEnemyAI : BaseEnemyAI
         _animator.SetTrigger("Shout");
 
         yield return _delayAfterStartingShoutAnimationCoroutine;
-        GameObject shout = _shoutsPool.GetShoutFromPool();
-        shout.transform.position = _shoutShootPoint.position;
-        shout.transform.rotation = Quaternion.identity;
+        _shoutAttack.ActivateShout();
 
-        Vector3 rotateParticleTo = new Vector3(transform.position.x, shout.transform.position.y, transform.position.z);
-        shout.transform.LookAt(rotateParticleTo);
+        //GameObject shout = _shoutsPool.GetShoutFromPool();
+        //shout.transform.position = _shoutShootPoint.position;
+        //shout.transform.rotation = Quaternion.identity;
 
-        Rigidbody rb = shout.GetComponent<Rigidbody>();
-        rb.AddForce((lockedPlayerPosition - shout.transform.position).normalized * _shoutForce, ForceMode.Impulse);
+        //Vector3 rotateParticleTo = new Vector3(transform.position.x, shout.transform.position.y, transform.position.z);
+        //shout.transform.LookAt(rotateParticleTo);
+
+        //Rigidbody rb = shout.GetComponent<Rigidbody>();
+        //rb.AddForce((lockedPlayerPosition - shout.transform.position).normalized * _shoutForce, ForceMode.Impulse);
 
         yield return _waitAfterShoutCoroutine;
         _isShouting = false;

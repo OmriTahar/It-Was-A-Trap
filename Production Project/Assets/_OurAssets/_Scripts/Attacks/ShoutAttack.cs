@@ -5,52 +5,86 @@ using UnityEngine;
 public class ShoutAttack : Attack
 {
 
-    private BoxCollider _myCollider;
-    [SerializeField] ShoutsPool _shoutsPool;
+    [Header("Refrences")]
+    public BoxCollider MyCollider;
+    public Renderer MyRenderer;
+
+    [Header("Settings")]
+    [SerializeField] float _activationTime = 3f;
     [SerializeField] float _decayTime = 3f;
 
-    private bool _alreadyAttacked;
-    private bool _stunnedPlayer;
+    [Header("Colors")]
+    [SerializeField] Color _chargeColor = new Color(100, 0, 0);
+    [SerializeField] Color _activationColor = new Color(255, 0, 0);
 
-    private void Start()
+    private bool _alreadyAttacked;
+    public bool ReadyToDetonate = false;
+
+
+    private void Awake()
     {
-        _myCollider = GetComponent<BoxCollider>();
+        MyCollider = GetComponent<BoxCollider>();
+        MyRenderer = GetComponent<Renderer>();
+
+        MyRenderer.material.color = _chargeColor;
     }
 
-    public override void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-
-        if (other.gameObject.tag == "Player" && !_alreadyAttacked)
+        if (other.gameObject.tag == "Player" && !_alreadyAttacked && ReadyToDetonate)
         {
             _alreadyAttacked = true;
+            ReadyToDetonate = false;
+
             _attackedUnit = other.gameObject.GetComponent<Unit>();
             _attackedUnit.RecieveDamage(this);
 
             if (_causeStun)
             {
-                _stunnedPlayer = true;
                 StartCoroutine(StunPlayer(other));
-                StartCoroutine(Decay(_stunDuration + 0.1f));
+                StartCoroutine(Decay(10f));
             }
             else
-                _shoutsPool.ReturnProjectileToPool(gameObject);
+                StartCoroutine(Decay(10));
+
         }
         else
         {
-            StartCoroutine(Decay(_stunDuration * 2));
+            StartCoroutine(Decay(10));
         }
+    }
 
+
+    public void ActivateShout()
+    {
+        StartCoroutine(ShoutCoroutine());
+    }
+
+    private IEnumerator ShoutCoroutine()
+    {
+        print("Changing color!");
+        MyRenderer.material.color = Color.Lerp(_chargeColor, _activationColor, _activationTime - Time.deltaTime);
+
+        yield return new WaitForSeconds(_activationTime);
+        print("Color Changed!");
+        ReadyToDetonate = true;
     }
 
     private IEnumerator Decay(float decayTime)
     {
         yield return new WaitForSeconds(decayTime);
+
         print("Shout decayed");
-        _shoutsPool.ReturnProjectileToPool(gameObject);
+
+        ReadyToDetonate = false;
+        _alreadyAttacked = false;
+
+        gameObject.SetActive(false);
+        MyRenderer.material.color = _chargeColor;
     }
 
-    public void SetMe(ShoutsPool myPool) // Can also later be used to set Damage and other variables to the projectile
-    {
-        _shoutsPool = myPool;
-    }
+    //public void SetMe(ShoutsPool myPool) // Can also later be used to set Damage and other variables to the projectile
+    //{
+    //    _shoutsPool = myPool;
+    //}
 }

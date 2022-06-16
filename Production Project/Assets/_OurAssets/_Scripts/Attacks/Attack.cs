@@ -42,15 +42,11 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
 
     protected IEnumerator StunPlayer(Collider other)
     {
-        print("Stun start");
-
         _attackedUnit.IsStunned = true;
         _playerController = other.gameObject.GetComponent<PlayerController>();
         _playerController.PlayerCanMove = false;
 
         yield return _stunEndCoroutine;
-
-        print("Stun end");
         _attackedUnit.IsStunned = false;
         _playerController.PlayerCanMove = true;
     }

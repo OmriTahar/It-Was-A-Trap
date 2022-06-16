@@ -16,7 +16,7 @@ public class ShoutsPool : MonoBehaviour
         {
             GameObject shout = Instantiate(_shoutPrefab);
             _shoutPoolQueue.Enqueue(shout);
-            shout.GetComponent<ShoutAttack>().SetMe(this);
+            //shout.GetComponent<ShoutAttack>().SetMe(this);
             shout.SetActive(false);
         }
     }

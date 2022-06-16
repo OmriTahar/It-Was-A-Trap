@@ -122,7 +122,6 @@ public class PlayerController : MonoBehaviour
             if (!PlayerData.Instance.IsStunned && PlayerData.Instance._stunEffect.isPlaying)
             {
                 PlayerData.Instance._stunEffect.Stop();
-                print("stun Effect end");
             }
         }
         else 
@@ -133,7 +132,6 @@ public class PlayerController : MonoBehaviour
                 _rb.Sleep();
 
                 PlayerData.Instance._stunEffect.Play();
-                print("stun Effect start");
             }
         }
     }
