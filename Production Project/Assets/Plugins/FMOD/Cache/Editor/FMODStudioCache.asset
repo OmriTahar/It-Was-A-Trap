@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/zzzz/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637909970646465265
+  lastModified: 637912363127349143
   FileSizes:
   - Name: Desktop
     Value: 334688
@@ -69,7 +69,7 @@ MonoBehaviour:
   - {fileID: -6372125992570016344}
   StringsBanks:
   - {fileID: 7186020658753124484}
-  cacheTime: 637909970646477835
+  cacheTime: 637912363127369140
   cacheVersion: 10
 --- !u!114 &7186020658753124484
 MonoBehaviour:
@@ -86,7 +86,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/zzzz/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637909970646477835
+  lastModified: 637912363127369140
   FileSizes:
   - Name: Desktop
     Value: 770
