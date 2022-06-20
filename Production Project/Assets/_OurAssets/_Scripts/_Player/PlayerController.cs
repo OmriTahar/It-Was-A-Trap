@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("General Refrences")]
     [SerializeField] internal Rigidbody _rb;
     [SerializeField] internal Transform _meshTransform;
+    [SerializeField] private GameObject _activeUpgradesWindow;
     private Animator _animator;
     #endregion
 
@@ -63,6 +64,14 @@ public class PlayerController : MonoBehaviour
     {
         CameraInput();
         HandleDashUI();
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+            if (_activeUpgradesWindow)
+                _activeUpgradesWindow.SetActive(true);
+        if (Input.GetKeyUp(KeyCode.Tab))
+            if (_activeUpgradesWindow)
+                _activeUpgradesWindow.SetActive(false);
+
     }
 
     void FixedUpdate()

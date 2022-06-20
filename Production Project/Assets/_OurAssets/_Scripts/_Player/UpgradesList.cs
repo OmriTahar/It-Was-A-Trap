@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum UpgradeName { }
 public class UpgradesList : MonoBehaviour
 {
     public static UpgradesList instance;
 
-    internal Dictionary<UpgradeName, GameObject> Upgrades;
+    internal Dictionary<UpgradeName, Upgrade> ActiveUpgrades;
 
     private void Awake()
     {
@@ -20,14 +19,5 @@ public class UpgradesList : MonoBehaviour
         instance = this;
     }
 
-    public void AddUpgrade(Upgrade upgrade)
-    {
-        Upgrades.Add(upgrade.myUpgrade, upgrade.gameObject);
-    }
-
-    public void RemoveUpgrade(Upgrade upgrade)
-    {
-        Upgrades.Remove(upgrade.myUpgrade);
-    }
 
 }

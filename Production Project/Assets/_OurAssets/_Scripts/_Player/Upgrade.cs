@@ -2,24 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Upgrade : MonoBehaviour
+public enum UpgradeName { MovementSpeed, HP, DashCooldown, Range, MaxTraps, MaxWalls }
+public abstract class Upgrade : MonoBehaviour
 {
-    [SerializeField] internal UpgradeName myUpgrade;
-    bool collected = false;
+    [SerializeField] protected UpgradeName myName;
+    [SerializeField] protected string myDescription;
+    [SerializeField] protected float bunniesToUnlock;
+    [SerializeField] protected float changeBy;
 
-    private void OnEnable()
+    internal bool unlocked = false;
+
+    protected abstract void ActivateUpgrade();
+
+    private void Unlock()
     {
-        if (collected)
+        if (!unlocked && PlayerData.Instance.bunnyCount >= bunniesToUnlock)
         {
-            Destroy(gameObject);
-            return;
+            unlocked = true;
+            UpgradesList.instance.ActiveUpgrades.Add(myName, this);
+            ActivateUpgrade();
         }
-        UpgradesList.instance.AddUpgrade(this);
-    }
-
-    private void OnDisable()
-    {
-        UpgradesList.instance.RemoveUpgrade(this);
     }
 
 }
