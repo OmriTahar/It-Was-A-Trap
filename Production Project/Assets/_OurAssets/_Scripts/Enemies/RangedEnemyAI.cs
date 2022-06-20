@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
+using UnityEngine;
 
 public class RangedEnemyAI : BaseEnemyAI
 {
@@ -16,9 +14,7 @@ public class RangedEnemyAI : BaseEnemyAI
     [Header("Fleeing")]
     [SerializeField] float _startFleeFromPlayer_Range;
     [SerializeField] float _fleeingDuration;
-
-    private Vector3 _directionToPlayer;
-    private WaitForSeconds _fleeDurationCoroutine;
+    [SerializeField] float _fleeDistance = 10f;
 
     [Header("Enemy Status")]
     [SerializeField] bool _isPlayerInAttackRange;
@@ -27,6 +23,8 @@ public class RangedEnemyAI : BaseEnemyAI
     [SerializeField] bool _canFlee;
     [SerializeField] bool _isFleeing;
 
+    private Vector3 _directionToPlayer;
+    private WaitForSeconds _fleeDurationCoroutine;
 
     protected override void Awake()
     {
@@ -56,30 +54,18 @@ public class RangedEnemyAI : BaseEnemyAI
 
         if (IsEnemyActivated)
         {
-
             if (!_isPlayerInAttackRange && !_isFleeing)
-            {
                 ChasePlayer();
-            }
 
             if (!_isFleeing)
             {
                 if (_isPlayerTooClose && _canFlee)
-                {
                     StartCoroutine(Flee());
-                }
 
                 if ((!_isPlayerTooClose && _isPlayerInAttackRange || _isPlayerTooClose && !_canFlee))
-                {
                     RangeAttack();
-                }
             }
         }
-    }
-
-    protected override void ChasePlayer()
-    {
-        base.ChasePlayer();
     }
 
     private void RangeAttack()
@@ -103,7 +89,7 @@ public class RangedEnemyAI : BaseEnemyAI
 
     private bool CanEnemyFlee()
     {
-        _directionToPlayer = (transform.position - _playerTransform.position).normalized * 10;
+        _directionToPlayer = (transform.position - _playerTransform.position).normalized * _fleeDistance;
         Vector3 newFleePosition = transform.position + _directionToPlayer;
 
         if (_agent.CalculatePath(newFleePosition, new NavMeshPath()))
@@ -119,7 +105,7 @@ public class RangedEnemyAI : BaseEnemyAI
     private IEnumerator Flee()
     {
         _isFleeing = true;
-        _directionToPlayer = (transform.position - _playerTransform.position).normalized * 10;
+        _directionToPlayer = (transform.position - _playerTransform.position).normalized * _fleeDistance;
         Vector3 newFleePosition = transform.position + _directionToPlayer;
         _agent.SetDestination(newFleePosition);
 
@@ -139,4 +125,5 @@ public class RangedEnemyAI : BaseEnemyAI
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, _unitAttackRange);
     }
+
 }

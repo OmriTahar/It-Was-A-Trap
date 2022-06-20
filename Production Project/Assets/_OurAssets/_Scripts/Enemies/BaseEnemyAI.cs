@@ -38,13 +38,13 @@ public class BaseEnemyAI : Unit
 
     protected virtual void Update()
     {
-        if (_playerTransform != null)
+        if (_playerTransform)
         {
             PlayerDetaction();
             EnemyStateMachine();
         }
 
-        if (_animator != null)
+        if (_animator)
         {
             _animator.SetFloat("Velocity", _agent.velocity.magnitude);
         }
@@ -54,9 +54,12 @@ public class BaseEnemyAI : Unit
     {
         if (_randomPriority)
         {
-            if (_MinRandomAvoidanceNumber <= 0 || _MaxRandomAvoidanceNumber <= _MinRandomAvoidanceNumber)
+            if (_MinRandomAvoidanceNumber <= 0)
             {
                 _MinRandomAvoidanceNumber = 1;
+            }
+            if (_MaxRandomAvoidanceNumber <= _MinRandomAvoidanceNumber)
+            {
                 _MaxRandomAvoidanceNumber = 50;
             }
             _enemyAvoidancePriority = Random.Range(_MinRandomAvoidanceNumber, _MaxRandomAvoidanceNumber);
@@ -74,21 +77,18 @@ public class BaseEnemyAI : Unit
 
     protected virtual void EnemyStateMachine()
     {
-
         if (!IsEnemyActivated)
-        {
-            _agent.SetDestination(transform.position); // Make sure enemy doesn't move
-        }
+            if (!_agent.SetDestination(transform.position))
+                _agent.SetDestination(transform.position);
         else
         {
-            if (IsStunned && _stunEffect != null && !_stunEffect.isPlaying)
+            if (IsStunned && (_stunEffect && !_stunEffect.isPlaying))
             {
                 _stunEffect.Play();
-                Stunned();
+                Stun();
             }
             else if (!IsStunned && _stunEffect.isPlaying)
                 _stunEffect.Stop();
-
         }
     }
 
@@ -98,16 +98,10 @@ public class BaseEnemyAI : Unit
             _agent.SetDestination(_playerTransform.position);
     }
 
-    protected virtual void Stunned()
+    protected virtual void Stun()
     {
-        _rb.freezeRotation = true;
-        _rb.Sleep();  // Freeze Position
+        _rb.Sleep();  // Freezes enemy
         _agent.SetDestination(transform.position);
-    }
-
-    protected virtual void DestroyEnemy()
-    {
-        Destroy(gameObject);
     }
 
     #region UnUsedVariables
@@ -162,4 +156,5 @@ public class BaseEnemyAI : Unit
     }
 
     #endregion
+
 }

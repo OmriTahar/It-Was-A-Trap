@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.UI;
 
 public class LeaperAI : BaseEnemyAI
 {
@@ -14,6 +11,7 @@ public class LeaperAI : BaseEnemyAI
     [SerializeField] float _playerIsTooCloseRange;
     [Tooltip("Cancles the leap if the player flee beyond this range.")]
     [SerializeField] float _maxLeapDistance;
+    [SerializeField] float _minLeapDistance = 3f;
 
     private Vector3 _directionToPlayer;
     private Vector3 _newDestination;
@@ -24,8 +22,8 @@ public class LeaperAI : BaseEnemyAI
     [SerializeField] bool _hasLeaped = false;
     [SerializeField] bool _isMovingBackwards;
 
-    private WaitForSeconds _waitBeforeLeapCoroutine;
     private WaitForSeconds _startLeapLogicCorutine = new WaitForSeconds(0.3f);
+    private WaitForSeconds _waitBeforeLeapCoroutine;
     private WaitForSeconds _waitAfterLeapCoroutine;
 
 
@@ -80,14 +78,9 @@ public class LeaperAI : BaseEnemyAI
         }
     }
 
-    protected override void ChasePlayer()
-    {
-        base.ChasePlayer();
-    }
-
     private void CreateLeapRange()
     {
-        _directionToPlayer = (transform.position - _playerTransform.position).normalized * 3;
+        _directionToPlayer = (transform.position - _playerTransform.position).normalized * _minLeapDistance;
         _newDestination = transform.position + _directionToPlayer;
         _agent.SetDestination(_newDestination);
     }
@@ -130,4 +123,5 @@ public class LeaperAI : BaseEnemyAI
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, _unitAttackRange);
     }
+
 }

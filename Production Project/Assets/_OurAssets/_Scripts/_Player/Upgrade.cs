@@ -13,7 +13,7 @@ public abstract class Upgrade : MonoBehaviour
     internal bool unlocked = false;
 
     protected abstract void ActivateUpgrade();
-
+    //call where??
     private void Unlock()
     {
         if (!unlocked && PlayerData.Instance.bunnyCount >= bunniesToUnlock)
