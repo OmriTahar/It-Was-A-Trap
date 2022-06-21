@@ -15,12 +15,15 @@ public class PlayerData : Unit
     [SerializeField] private Image _currentWeaponImage;
     [SerializeField] private Sprite _coverImage;
     [SerializeField] private Sprite _trapImage;
+    [SerializeField] private Sprite _trapOutlineSprite;
+    [SerializeField] private Sprite _wallOutlineSprite;
 
     [Header("Weapon Settings")]
     [SerializeField][ReadOnlyInspector] internal WeaponType currentWeapon;
     [SerializeField][ReadOnlyInspector] internal bool canShoot = true, clearToShoot = true;
     [SerializeField] private float _timeBetweenAttacks;
 
+    private SpriteRenderer _outlineRenderer;
     internal int bunnyCount = 0;
 
     private void Awake()
@@ -44,6 +47,8 @@ public class PlayerData : Unit
 
         if (_currentBunnyCountText)
             _currentBunnyCountText.text = $"X{bunnyCount}";
+
+        _outlineRenderer = PlayerAim.Instance.outline.transform.GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Update()
@@ -121,14 +126,20 @@ public class PlayerData : Unit
         switch (currentWeapon)
         {
             case WeaponType.Trap:
+                _outlineRenderer.sprite = _trapOutlineSprite;
+
                 _currentWeaponImage.sprite = _trapImage;
                 _currentAmmoAmountText.text = TrapsPool.ReadyToFireTrapsQueue.Count.ToString();
                 break;
             case WeaponType.Wall:
+                _outlineRenderer.sprite = _wallOutlineSprite;
+
                 _currentWeaponImage.sprite = _coverImage;
                 _currentAmmoAmountText.text = WallsPool.ReadyToFireWallsQueue.Count.ToString();
                 break;
             default:
+                _outlineRenderer.sprite = _trapOutlineSprite;
+
                 _currentWeaponImage.sprite = _trapImage;
                 _currentAmmoAmountText.text = TrapsPool.ReadyToFireTrapsQueue.Count.ToString();
                 break;

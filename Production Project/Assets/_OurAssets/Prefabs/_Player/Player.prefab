@@ -53,7 +53,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d66003c41d8a8464a80f4515b49e6bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rb: {fileID: 1961995115909999442}
   _meshTransform: {fileID: 2800947986253184769}
   PlayerMovementCamera: {fileID: 0}
   IsCursorVisable: 1
@@ -92,6 +91,8 @@ MonoBehaviour:
   _currentWeaponImage: {fileID: 0}
   _coverImage: {fileID: 21300000, guid: eee7d5040509dea49a3c9b5b25569e9b, type: 3}
   _trapImage: {fileID: 21300000, guid: 3694afe6d8f3b894f9f46d36e15980b6, type: 3}
+  _trapOutlineSprite: {fileID: 21300000, guid: 9d413a88aaaef4b4097ae9d6d9454101, type: 3}
+  _wallOutlineSprite: {fileID: 21300000, guid: e84aaa187d02cdf408f17feb184787fe, type: 3}
   currentWeapon: 0
   canShoot: 1
   clearToShoot: 1

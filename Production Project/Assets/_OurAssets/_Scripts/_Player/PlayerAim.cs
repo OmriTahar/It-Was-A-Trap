@@ -73,17 +73,17 @@ public class PlayerAim : MonoBehaviour
             {
                 distanceVector.y = 0;
                 outline.transform.position = transform.position + distanceVector.normalized * minDistance;
-                outline.transform.position = new Vector3(outline.transform.position.x, _hit.point.y, outline.transform.position.z);
+                outline.transform.position = new Vector3(outline.transform.position.x, _hit.point.y + .1f, outline.transform.position.z);
             }
             else if ((distanceVector = (_hit.point - transform.position)).magnitude > maxDistance)
             {
                 distanceVector.y = 0;
                 outline.transform.position = transform.position + distanceVector.normalized * maxDistance;
-                outline.transform.position = new Vector3(outline.transform.position.x, _hit.point.y, outline.transform.position.z);
+                outline.transform.position = new Vector3(outline.transform.position.x, _hit.point.y + .1f, outline.transform.position.z);
             }
             else
             {
-                outline.transform.position = _hit.point;
+                outline.transform.position = new Vector3(_hit.point.x, _hit.point.y + .1f, _hit.point.z) ;
             }
 
             PlayerData.Instance.clearToShoot = !Physics.CheckBox(outline.transform.position, new Vector3(1.25f, .25f, 1.25f), Quaternion.identity, obstacleMask);
