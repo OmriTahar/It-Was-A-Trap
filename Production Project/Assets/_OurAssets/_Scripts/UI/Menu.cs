@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
-    public string _menuname;
-    public bool open;
+    [SerializeField] internal MenuFunc myFunction;
 
     public void Open()
     {
-        open = true;
         gameObject.SetActive(true);
     }
+
     public void Close()
     {
-        open = false;
         gameObject.SetActive(false);
     }
+
 }

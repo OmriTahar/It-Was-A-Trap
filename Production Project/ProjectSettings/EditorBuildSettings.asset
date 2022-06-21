@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/_OurAssets/_Scenes/MainMenu.unity
     guid: 3bec74069ae6e7943b479439e9307f89
   - enabled: 1
-    path: Assets/_OurAssets/_Scenes/DevTest/Omri Scene/Omri Scene.unity
-    guid: 977be45c6e0d3bf4095216dd760c0add
+    path: Assets/_OurAssets/_Scenes/DevTest/Omri Scene/Ben's.unity
+    guid: 2de82baba56ed654a9745b914a1cf3d9
   m_configObjects: {}

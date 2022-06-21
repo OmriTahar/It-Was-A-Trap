@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using System.Collections;
+using UnityEngine;
 
-public enum Menues { Main, Settings, Credits, Save, Load}
+public enum MenuFunc { Main, Settings, Credits, Save, Load}
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager instance;
@@ -11,45 +11,40 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
+        if (instance && instance != this)
+            Destroy(gameObject);
+
         instance = this;
     }
 
-    public void OpenMenu(string menuName)
+    public void OpenMenu(MenuFunc func)
     {
         for (int i = 0; i < menus.Length; i++)
         {
-            if (menus[i]._menuname == menuName)
-            {
+            if (menus[i].myFunction == func)
                 menus[i].Open();
-            }
-            else if (menus[i].open)
-            {
-                CloseMenu(menus[i]);
-            }
-
+            else if (menus[i].isActiveAndEnabled)
+                menus[i].Close();
         }
     }
+
     public void OpenMenu(Menu menu)
     {
         for (int i = 0; i < menus.Length; i++)
-        {
-            if (menus[i].open)
-            {
-                CloseMenu(menus[i]);
-            }
-        }
+            if (menus[i].isActiveAndEnabled)
+                menus[i].Close();
+
         menu.Open();
     }
-    public void CloseMenu(Menu menu)
-    {
-        menu.Close();
-    }
+
     public void EndGame()
     {
         Application.Quit();
     }
+
     public void StartGame()
     {
         SceneManager.LoadScene(1);
     }
+
 }
