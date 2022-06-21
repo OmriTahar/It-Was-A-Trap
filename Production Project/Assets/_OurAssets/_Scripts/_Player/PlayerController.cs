@@ -8,10 +8,9 @@ public class PlayerController : MonoBehaviour
 
     #region General
     [Header("General Refrences")]
-    [SerializeField] internal Rigidbody _rb;
     [SerializeField] internal Transform _meshTransform;
-    [SerializeField] private GameObject _activeUpgradesWindow;
     private Animator _animator;
+    private Rigidbody _rb;
     #endregion
 
     #region Camera
@@ -37,10 +36,13 @@ public class PlayerController : MonoBehaviour
     private bool _canDash = true;
     private bool _isDashing = false;
     private WaitForSeconds _dashDurationCoroutine;
+    #endregion
 
-    [Header("Dash UI")]
-    public Image DashBarBG;
-    public Image DashBarFill;
+    #region UI
+    [Header("UI")]
+    [SerializeField] private GameObject _activeUpgradesWindow;
+    [SerializeField] private Image DashBarFill;
+    [SerializeField] private Image DashBarBG;
     [SerializeField] private Color _dashBarColorFull = new Color(1, 1, 0, 1);
     [SerializeField] private Color _dashBarColorCharge = new Color(1,1,0,0.3f);
     #endregion
@@ -52,6 +54,7 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = IsCursorVisable;
 
         _animator = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody>();
 
         DashBarBG.gameObject.SetActive(true);
         DashBarFill.gameObject.SetActive(true);

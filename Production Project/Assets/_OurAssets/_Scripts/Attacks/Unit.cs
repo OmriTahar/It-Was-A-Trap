@@ -14,7 +14,7 @@ public class Unit : MonoBehaviour
     public bool IsStunned;
     public ParticleSystem _stunEffect;
 
-    private void Start()
+    protected virtual void Start()
     {
         _unitHP = _unitMaxHP;
 
@@ -27,9 +27,7 @@ public class Unit : MonoBehaviour
         enemy.Attack(this);
 
         if (_healthBar)
-        {
             _healthBar.fillAmount = _unitHP / _unitMaxHP;
-        }
 
         CheckDeath();
     }
@@ -38,7 +36,10 @@ public class Unit : MonoBehaviour
     {
         if (_unitHP <= 0)
         {
-            print($"{gameObject.name} died");
+            if (this.CompareTag("Enemy"))
+                if (PlayerData.Instance != null)
+                    PlayerData.Instance.AddScore();
+
             Destroy(gameObject);
         }
     }

@@ -45,7 +45,8 @@ public class Trap : Attack
 
     public override void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        //checking if object isn't null as "TriggerEnter" can happen more then once, comparing to enemy tag and testing if it wasn't activated
+        if (other != null && other.tag == "Enemy" && _myRenderer.material.color != _activatedColor)
         {
             _myRenderer.material.color = _activatedColor;
 
@@ -99,7 +100,6 @@ public class Trap : Attack
 
     private void TrapEnemy(BaseEnemyAI enemyAI)
     {
-        //IsEnemyActivated should be removed and IsStunned = true should change him to IsEnemyActivated = false and vise verse
         if (enemyAI)
         {
             _trappededEnemy = enemyAI;

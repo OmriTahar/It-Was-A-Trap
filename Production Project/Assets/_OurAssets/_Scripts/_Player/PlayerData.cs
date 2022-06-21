@@ -9,18 +9,19 @@ public class PlayerData : Unit
 {
     public static PlayerData Instance;
 
+    [Header("UI")]
+    [SerializeField] private TextMeshProUGUI _currentAmmoAmountText;
+    [SerializeField] private TextMeshProUGUI _currentBunnyCountText;
+    [SerializeField] private Image _currentWeaponImage;
+    [SerializeField] private Sprite _coverImage;
+    [SerializeField] private Sprite _trapImage;
+
     [Header("Weapon Settings")]
     [SerializeField][ReadOnlyInspector] internal WeaponType currentWeapon;
     [SerializeField][ReadOnlyInspector] internal bool canShoot = true, clearToShoot = true;
     [SerializeField] private float _timeBetweenAttacks;
 
-    [Header("UI")]
-    [SerializeField] private TextMeshProUGUI _currentAmmoAmountText;
-    [SerializeField] private Image _currentWeaponImage;
-    [SerializeField] private Sprite _coverImage;
-    [SerializeField] private Sprite _trapImage;
-
-    internal int bunnyCount;
+    internal int bunnyCount = 0;
 
     private void Awake()
     {
@@ -37,6 +38,14 @@ public class PlayerData : Unit
         #endregion
     }
 
+    protected override void Start()
+    {
+        base.Start();
+
+        if (_currentBunnyCountText)
+            _currentBunnyCountText.text = $"X{bunnyCount}";
+    }
+
     private void Update()
     {
         UpdateUI();
@@ -47,6 +56,17 @@ public class PlayerData : Unit
         if (Input.GetKeyDown(KeyCode.Mouse0))
             if (canShoot && clearToShoot)
                 Attack();
+    }
+
+    public void AddScore()
+    {
+        bunnyCount++;
+
+        if (_currentBunnyCountText)
+            _currentBunnyCountText.text = $"X{bunnyCount}";
+
+        //if (UpgradesList.UpgradeList.Count > 0)
+            //AbilityEligabilityCheck();
     }
 
     private void Attack()
@@ -119,4 +139,28 @@ public class PlayerData : Unit
     {
         canShoot = true;
     }
+
+    private void AbilityEligabilityCheck()
+    {
+        foreach (var item in UpgradesList.UpgradeList)
+        {
+            print($"{item.Key}");
+            if (item.Key == item.Value.myName)
+            {
+                print("Key and Value match");
+                if (bunnyCount >= item.Value.bunniesToUnlock && !item.Value.unlocked)
+                {
+                    print("Unlocking ability");
+                    item.Value.Unlock();
+                    ActivateUIUnlockedSkill();
+                }
+            }
+        }
+    }
+
+    private void ActivateUIUnlockedSkill()
+    {
+        print("UI celebrating unlock");
+    }
+
 }
