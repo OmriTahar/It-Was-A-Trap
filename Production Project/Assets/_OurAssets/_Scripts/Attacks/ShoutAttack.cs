@@ -16,6 +16,9 @@ public class ShoutAttack : Attack
     [Header("Colors")]
     [SerializeField] Color _chargeColor = new Color(100, 0, 0);
     [SerializeField] Color _activationColor = new Color(255, 0, 0);
+    [SerializeField] float _colorLerpTotalDuration;
+    private float _colorLerpRemainingDuration;
+    private bool _isFinishedChangingColor;
 
     private bool _alreadyAttacked;
     public bool ReadyToDetonate = false;
@@ -27,6 +30,16 @@ public class ShoutAttack : Attack
         MyRenderer = GetComponent<Renderer>();
 
         MyRenderer.material.color = _chargeColor;
+        _colorLerpRemainingDuration = _colorLerpTotalDuration;
+    }
+
+    private void Update()
+    {
+        if (_colorLerpRemainingDuration <= 0 && !_isFinishedChangingColor)
+        {
+            _isFinishedChangingColor = true;
+            _colorLerpRemainingDuration = _colorLerpTotalDuration;
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -49,9 +62,7 @@ public class ShoutAttack : Attack
 
         }
         else
-        {
             StartCoroutine(Decay(10));
-        }
     }
 
 
@@ -62,10 +73,11 @@ public class ShoutAttack : Attack
 
     private IEnumerator ShoutCoroutine()
     {
+        _isFinishedChangingColor = false;
         print("Changing color!");
-        MyRenderer.material.color = Color.Lerp(_chargeColor, _activationColor, _activationTime - Time.deltaTime);
+        MyRenderer.material.color = Color.Lerp(_chargeColor, _activationColor, _colorLerpRemainingDuration -= Time.deltaTime);
 
-        yield return new WaitForSeconds(_activationTime);
+        yield return new WaitForSeconds(_colorLerpTotalDuration);
         print("Color Changed!");
         ReadyToDetonate = true;
     }
