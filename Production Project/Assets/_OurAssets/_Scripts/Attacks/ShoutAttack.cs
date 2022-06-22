@@ -30,6 +30,7 @@ public class ShoutAttack : Attack
         MyRenderer = GetComponent<Renderer>();
 
         MyRenderer.material.color = _chargeColor;
+
         _colorLerpRemainingDuration = _colorLerpTotalDuration;
     }
 
