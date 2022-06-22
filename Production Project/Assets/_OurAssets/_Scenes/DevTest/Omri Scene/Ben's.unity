@@ -8353,6 +8353,10 @@ PrefabInstance:
       propertyPath: _currentBunnyCountText
       value: 
       objectReference: {fileID: 1112721076}
+    - target: {fileID: 1961995115909999451, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: _wallPrefab
+      value: 
+      objectReference: {fileID: 6670106066988666373, guid: 9fed1bcd53e829a4a918b98d4774a581, type: 3}
     - target: {fileID: 4061210518604259733, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: _cam
       value: 
