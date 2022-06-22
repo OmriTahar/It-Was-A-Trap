@@ -60,7 +60,6 @@ public class PlayerAim : MonoBehaviour
         }
     }
 
-    //polish switch inside
     private void UpdateAim()
     {
         RaycastHit _hit;

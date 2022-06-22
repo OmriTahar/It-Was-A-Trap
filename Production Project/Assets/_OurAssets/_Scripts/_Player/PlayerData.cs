@@ -16,8 +16,9 @@ public class PlayerData : Unit
     [SerializeField] private Sprite _coverImage;
     [SerializeField] private Sprite _trapImage;
     [SerializeField] private Sprite _trapOutlineSprite;
-    //[SerializeField] private Sprite _trapOutlineOffSprite;
     [SerializeField] private Sprite _wallOutlineSprite;
+    //we will need the two below don't touch <3 (sharon)
+    //[SerializeField] private Sprite _trapOutlineOffSprite;
     //[SerializeField] private Sprite _wallOutlineOffSprite;
 
     [Header("Weapon Settings")]
