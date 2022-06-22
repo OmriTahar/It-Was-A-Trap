@@ -23,13 +23,13 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] float _interactionDistance = 22f;
     [SerializeField] GameObject _canInteractUIText;
 
+    [Header("Half of check box Scale")]
+    [SerializeField] private Vector3 _halfTrapCheckBoxScale = new Vector3(0.6f, 0.25f, 0.6f);
+    [SerializeField] private Vector3 _halfWallCheckBoxScale = new Vector3(1.75f, 0.25f, 0.3f);
+
     private Interactable _currentInteractable;
     internal GameObject outline;
     bool _canInteract;
-
-    // For gizmos can delete later
-    Vector3 gizmoSize = new Vector3(2.5f, 0.5f, 2.5f);
-    Vector3 gizmoPos;
 
     private void Awake()
     {
@@ -60,6 +60,7 @@ public class PlayerAim : MonoBehaviour
         }
     }
 
+    //polish switch inside
     private void UpdateAim()
     {
         RaycastHit _hit;
@@ -86,10 +87,22 @@ public class PlayerAim : MonoBehaviour
                 outline.transform.position = new Vector3(_hit.point.x, _hit.point.y + .1f, _hit.point.z) ;
             }
 
-            PlayerData.Instance.clearToShoot = !Physics.CheckBox(outline.transform.position, new Vector3(1.25f, .25f, 1.25f), Quaternion.identity, obstacleMask);
+            Vector3 rotateOutlineTo = new Vector3(transform.position.x, outline.transform.position.y, transform.position.z);
+            outline.transform.LookAt(rotateOutlineTo);
 
-            //for gizmos can delete later
-            gizmoPos = outline.transform.position;
+            switch (PlayerData.Instance.currentWeapon)
+            {
+                case WeaponType.Trap:
+                    PlayerData.Instance.clearToShoot = !Physics.CheckBox(outline.transform.position, _halfTrapCheckBoxScale, outline.transform.rotation, obstacleMask);
+                    break;
+                case WeaponType.Wall:
+                    PlayerData.Instance.clearToShoot = !Physics.CheckBox(outline.transform.position, _halfWallCheckBoxScale, outline.transform.rotation, obstacleMask);
+                    break;
+                default:
+                    PlayerData.Instance.clearToShoot = !Physics.CheckBox(outline.transform.position, _halfTrapCheckBoxScale, outline.transform.rotation, obstacleMask);
+                    break;
+            }
+
         }
 
         InteractionCheck(_hit, _ray);
@@ -137,7 +150,18 @@ public class PlayerAim : MonoBehaviour
             else
                 Gizmos.color = new Color(1, 0, 0, .2f);
 
-            Gizmos.DrawCube(gizmoPos, gizmoSize);
+            switch (PlayerData.Instance.currentWeapon)
+            {
+                case WeaponType.Trap:
+                    Gizmos.DrawCube(outline.transform.position, _halfTrapCheckBoxScale * 2);
+                    break;
+                case WeaponType.Wall:
+                    Gizmos.DrawCube(outline.transform.position, _halfWallCheckBoxScale * 2);
+                    break;
+                default:
+                    Gizmos.DrawCube(outline.transform.position, _halfTrapCheckBoxScale * 2);
+                    break;
+            }
         }
     }
 

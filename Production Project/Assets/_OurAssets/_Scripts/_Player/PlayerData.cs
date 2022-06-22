@@ -16,7 +16,9 @@ public class PlayerData : Unit
     [SerializeField] private Sprite _coverImage;
     [SerializeField] private Sprite _trapImage;
     [SerializeField] private Sprite _trapOutlineSprite;
+    //[SerializeField] private Sprite _trapOutlineOffSprite;
     [SerializeField] private Sprite _wallOutlineSprite;
+    //[SerializeField] private Sprite _wallOutlineOffSprite;
 
     [Header("Weapon Settings")]
     [SerializeField][ReadOnlyInspector] internal WeaponType currentWeapon;
@@ -25,6 +27,9 @@ public class PlayerData : Unit
 
     private SpriteRenderer _outlineRenderer;
     internal int bunnyCount = 0;
+
+    //for sharon to delete:
+    private Color orange = new Color(1, 0.5f, 0);
 
     private void Awake()
     {
@@ -84,6 +89,9 @@ public class PlayerData : Unit
                 trap.transform.position = PlayerAim.Instance.outline.transform.position;
                 trap.transform.rotation = Quaternion.identity;
 
+                Vector3 rotateTrapTo = new Vector3(transform.position.x, trap.transform.position.y, transform.position.z);
+                trap.transform.LookAt(rotateTrapTo);
+
                 canShoot = false;
                 Invoke("ResetAttack", _timeBetweenAttacks);
                 break;
@@ -112,9 +120,11 @@ public class PlayerData : Unit
         {
             case WeaponType.Trap:
                 currentWeapon = WeaponType.Wall;
+                _currentWeaponImage.sprite = _coverImage;
                 break;
             case WeaponType.Wall:
                 currentWeapon = WeaponType.Trap;
+                _currentWeaponImage.sprite = _trapImage;
                 break;
             default:
                 break;
@@ -127,23 +137,35 @@ public class PlayerData : Unit
         {
             case WeaponType.Trap:
                 _outlineRenderer.sprite = _trapOutlineSprite;
-
-                _currentWeaponImage.sprite = _trapImage;
                 _currentAmmoAmountText.text = TrapsPool.ReadyToFireTrapsQueue.Count.ToString();
+                IsClearUIChange(currentWeapon, clearToShoot, _outlineRenderer.color/*_outlineRenderer.sprite*/);
                 break;
             case WeaponType.Wall:
                 _outlineRenderer.sprite = _wallOutlineSprite;
-
-                _currentWeaponImage.sprite = _coverImage;
                 _currentAmmoAmountText.text = WallsPool.ReadyToFireWallsQueue.Count.ToString();
+                IsClearUIChange(currentWeapon, clearToShoot, _outlineRenderer.color/*_outlineRenderer.sprite*/);
                 break;
             default:
                 _outlineRenderer.sprite = _trapOutlineSprite;
-
-                _currentWeaponImage.sprite = _trapImage;
                 _currentAmmoAmountText.text = TrapsPool.ReadyToFireTrapsQueue.Count.ToString();
+                IsClearUIChange(currentWeapon, clearToShoot, _outlineRenderer.color/*_outlineRenderer.sprite*/);
                 break;
         }
+    }
+
+    private void IsClearUIChange(WeaponType currWeapon, bool clearnShot, Color myColor/*Sprite currentSprite*/)
+    {
+        if (clearnShot && myColor != Color.white/*currWeapon == WeaponType.Trap && currentSprite != _trapOutlineSprite*/)
+            _outlineRenderer.color = Color.white/*currentSprite = _trapOutlineSprite*/;
+
+        else if (!clearnShot && myColor != orange/*currWeapon == WeaponType.Trap && currentSprite != _trapOutlineOffSprite*/)
+            _outlineRenderer.color = orange/*currentSprite = _trapOutlineOffSprite*/;
+
+        else if (clearnShot && myColor != Color.white/*currWeapon == WeaponType.Wall && currentSprite != _wallOutlineSprite*/)
+            _outlineRenderer.color = Color.white/*currentSprite = _wallOutlineSprite*/;
+
+        else if (!clearnShot && myColor != orange/*currWeapon == WeaponType.Wall && currentSprite != _wallOutlineOffSprite*/)
+            _outlineRenderer.color = orange/*currentSprite = _wallOutlineOffSprite*/;
     }
 
     private void ResetAttack()

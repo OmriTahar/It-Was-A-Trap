@@ -126,6 +126,8 @@ MonoBehaviour:
   _isAllowedToInteract: 1
   _interactionDistance: 22
   _canInteractUIText: {fileID: 0}
+  _halfTrapCheckBoxScale: {x: 0.6, y: 0.25, z: 0.6}
+  _halfWallCheckBoxScale: {x: 1.75, y: 0.25, z: 0.3}
 --- !u!114 &1961995115909999448
 MonoBehaviour:
   m_ObjectHideFlags: 0
