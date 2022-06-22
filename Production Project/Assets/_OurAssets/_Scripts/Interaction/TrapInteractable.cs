@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrapDrop : Interactable
+public class TrapInteractable : Interactable
 {
 
-    [SerializeField] ITrap _trapToDrop;
+    [SerializeField] ITrap _trapToActivate;
 
     private void Start()
     {
-        _trapToDrop._isActivated = false;
+        _trapToActivate._isActivated = false;
     }
 
     public override void OnInteraction()
     {
-        _trapToDrop._isActivated = true;
+        _trapToActivate._isActivated = true;
         Destroy(gameObject);
     }
 }
