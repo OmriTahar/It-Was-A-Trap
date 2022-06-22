@@ -112,6 +112,7 @@ public class LeaperAI : BaseEnemyAI
         }
         else // Leap distance is too long
         {
+            //_animator.SetTrigger("CancleLeap");
             _hasLeaped = false;
         }
     }
