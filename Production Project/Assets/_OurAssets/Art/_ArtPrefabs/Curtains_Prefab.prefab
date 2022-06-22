@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3017642800362706572}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 6.47, z: 31.92}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 422584783694578398}
   m_Father: {fileID: 0}
@@ -96,7 +96,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 443313927188745328, guid: 762e8a19927f01a4fab0cafc6be4de47, type: 3}
       propertyPath: m_Name
-      value: curtain
+      value: Curtain_Mesh
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 762e8a19927f01a4fab0cafc6be4de47, type: 3}
