@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 7775914752105747278}
   - component: {fileID: 379424194}
   - component: {fileID: 379424195}
+  - component: {fileID: 5566147814293705911}
   m_Layer: 12
   m_Name: Light Pole Prefab
   m_TagString: Untagged
@@ -155,6 +156,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.7525911, y: 3.9498427, z: 1.5889964}
   m_Center: {x: 0.7425847, y: 1.9767169, z: 0.015689135}
+--- !u!114 &5566147814293705911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5763633377873565472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcdce4087bd558b4c8379914c9267a66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _myLight: {fileID: 4541227071258243371}
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  _activationRange: 0
 --- !u!1001 &632925080542141619
 PrefabInstance:
   m_ObjectHideFlags: 0
