@@ -4005,6 +4005,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2040211201}
     m_Modifications:
+    - target: {fileID: 4136424347696906498, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
+      propertyPath: _projectilePrefab
+      value: 
+      objectReference: {fileID: 8599702521198649755, guid: c3f7bf79690e16848bdcf1d41f2e5ed5, type: 3}
     - target: {fileID: 8020574770979397827, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -4059,7 +4063,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8020574770979397839, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}

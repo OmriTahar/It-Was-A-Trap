@@ -490,6 +490,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 268570146688484681, guid: 17cc6b9062ba40f4f95b4aa47ba2ae10, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.4245283
+      objectReference: {fileID: 0}
+    - target: {fileID: 268570146688484681, guid: 17cc6b9062ba40f4f95b4aa47ba2ae10, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.4245283
+      objectReference: {fileID: 0}
+    - target: {fileID: 268570146688484681, guid: 17cc6b9062ba40f4f95b4aa47ba2ae10, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.4245283
+      objectReference: {fileID: 0}
+    - target: {fileID: 268570146688484681, guid: 17cc6b9062ba40f4f95b4aa47ba2ae10, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.6509434
+      objectReference: {fileID: 0}
+    - target: {fileID: 268570146688484681, guid: 17cc6b9062ba40f4f95b4aa47ba2ae10, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.6509434
+      objectReference: {fileID: 0}
+    - target: {fileID: 268570146688484681, guid: 17cc6b9062ba40f4f95b4aa47ba2ae10, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.6509434
+      objectReference: {fileID: 0}
     - target: {fileID: 268570146821314217, guid: 17cc6b9062ba40f4f95b4aa47ba2ae10, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -592,7 +616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 268570146874101047, guid: 17cc6b9062ba40f4f95b4aa47ba2ae10, type: 3}
       propertyPath: m_Name
-      value: MenueCanvas
+      value: Menu Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 268570146926857270, guid: 17cc6b9062ba40f4f95b4aa47ba2ae10, type: 3}
       propertyPath: m_AnchorMax.y
@@ -705,6 +729,14 @@ PrefabInstance:
     - target: {fileID: 268570148018890658, guid: 17cc6b9062ba40f4f95b4aa47ba2ae10, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 268570148117747602, guid: 17cc6b9062ba40f4f95b4aa47ba2ae10, type: 3}
+      propertyPath: m_Name
+      value: Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914555560239800882, guid: 17cc6b9062ba40f4f95b4aa47ba2ae10, type: 3}
+      propertyPath: m_Name
+      value: Menu Manager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17cc6b9062ba40f4f95b4aa47ba2ae10, type: 3}

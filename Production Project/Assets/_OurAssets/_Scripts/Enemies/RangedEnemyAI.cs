@@ -75,12 +75,15 @@ public class RangedEnemyAI : BaseEnemyAI
 
         if (!_isAlreadyAttacked)
         {
-            GameObject projectile = _rangedProjectilePool.GetProjectileFromPool();
-            projectile.transform.position = _rangedShootPoint.position;
-            projectile.transform.rotation = Quaternion.identity;
+            GameObject carrot = _rangedProjectilePool.GetProjectileFromPool();
+            carrot.transform.position = _rangedShootPoint.position;
+            carrot.transform.rotation = Quaternion.identity;
 
-            Rigidbody rb = projectile.GetComponent<Rigidbody>();
-            rb.AddForce((_playerTransform.position - projectile.transform.position).normalized * _rangedShootForce, ForceMode.Impulse);
+            Rigidbody rb = carrot.GetComponent<Rigidbody>();
+            rb.AddForce((_playerTransform.position - carrot.transform.position).normalized * _rangedShootForce, ForceMode.Impulse);
+
+            Vector3 rotateCarrotTo = new Vector3(transform.position.x, carrot.transform.position.y, transform.position.z);
+            carrot.transform.LookAt(rotateCarrotTo);
 
             _isAlreadyAttacked = true;
             Invoke(nameof(ResetAttack), _timeBetweenAttacks);
