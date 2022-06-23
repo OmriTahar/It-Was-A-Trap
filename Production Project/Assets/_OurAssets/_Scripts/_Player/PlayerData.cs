@@ -99,7 +99,7 @@ public class PlayerData : Unit
 
             case WeaponType.Wall:
 
-                GameObject wall = WallsPool.GetWallFromPool();
+                GameObject wall = CoverPool.GetCoverFromPool();
                 Vector3 spawnPos = new Vector3(PlayerAim.Instance.outline.transform.position.x, PlayerAim.Instance.outline.transform.position.y + wall.transform.localScale.y / 2, PlayerAim.Instance.outline.transform.position.z);
                 wall.transform.position = spawnPos;
                 wall.transform.rotation = Quaternion.identity;
@@ -143,7 +143,7 @@ public class PlayerData : Unit
                 break;
             case WeaponType.Wall:
                 _outlineRenderer.sprite = _wallOutlineSprite;
-                _currentAmmoAmountText.text = WallsPool.ReadyToFireWallsQueue.Count.ToString();
+                _currentAmmoAmountText.text = CoverPool.ReadyToFireCoversQueue.Count.ToString();
                 IsClearUIChange(currentWeapon, clearToShoot, _outlineRenderer.color/*_outlineRenderer.sprite*/);
                 break;
             default:

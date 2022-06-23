@@ -7,13 +7,13 @@ public class Wall : MonoBehaviour
 
     private void OnEnable()
     {
-        WallsPool.ActiveWallsQueue.Enqueue(gameObject);
+        CoverPool.ActiveCoversQueue.Enqueue(gameObject);
         _currentHP = _maxHP;
     }
 
     private void OnDisable()
     {
-        WallsPool.ReadyToFireWallsQueue.Enqueue(gameObject);
+        CoverPool.ReadyToFireCoversQueue.Enqueue(gameObject);
     }
 
     private void Update()

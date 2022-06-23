@@ -44,7 +44,7 @@ public class ITrap : Attack
 
             if (_causeStun)
             {
-                StartCoroutine(StunPlayer(other));
+                StartCoroutine(StunPlayer(other, _attackedUnit));
             }
         }
     }

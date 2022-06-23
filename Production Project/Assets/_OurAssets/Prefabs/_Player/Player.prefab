@@ -9,15 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1961995115909999445}
-  - component: {fileID: 8446407416611106780}
-  - component: {fileID: 1961995115909999450}
-  - component: {fileID: 4061210518604259733}
-  - component: {fileID: 1961995115909999448}
-  - component: {fileID: 1961995115909999451}
-  - component: {fileID: 4459864851264094597}
-  - component: {fileID: 3897817183611794312}
   - component: {fileID: 1961995115909999446}
   - component: {fileID: 1961995115909999442}
+  - component: {fileID: 3897817183611794312}
+  - component: {fileID: 8446407416611106780}
+  - component: {fileID: 4061210518604259733}
+  - component: {fileID: 1961995115909999450}
+  - component: {fileID: 1961995115909999448}
+  - component: {fileID: 3572672173916460712}
+  - component: {fileID: 4459864851264094597}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -41,6 +41,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1961995115909999446
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961995115909999449}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1961995115909999442
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961995115909999449}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
+--- !u!95 &3897817183611794312
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961995115909999449}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 276e273a4e30fba47aac9783ba2f4895, type: 3}
+  m_Controller: {fileID: 9100000, guid: b91e814f3da6d9549a83a16719da132b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &8446407416611106780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,36 +116,6 @@ MonoBehaviour:
   DashBarBG: {fileID: 0}
   _dashBarColorFull: {r: 1, g: 1, b: 0, a: 100}
   _dashBarColorCharge: {r: 1, g: 1, b: 0, a: 0.29803923}
---- !u!114 &1961995115909999450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1961995115909999449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5b4c4d1769c97f4597dd04a8913d4c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _unitHP: 0
-  _unitMaxHP: 40
-  _unitAttackRange: 10
-  _healthBarBG: {fileID: 0}
-  _healthBar: {fileID: 0}
-  IsStunned: 0
-  _stunEffect: {fileID: 1008851786627677189}
-  _currentAmmoAmountText: {fileID: 0}
-  _currentBunnyCountText: {fileID: 0}
-  _currentWeaponImage: {fileID: 0}
-  _coverImage: {fileID: 21300000, guid: eee7d5040509dea49a3c9b5b25569e9b, type: 3}
-  _trapImage: {fileID: 21300000, guid: 3694afe6d8f3b894f9f46d36e15980b6, type: 3}
-  _trapOutlineSprite: {fileID: 21300000, guid: 9d413a88aaaef4b4097ae9d6d9454101, type: 3}
-  _wallOutlineSprite: {fileID: 21300000, guid: e84aaa187d02cdf408f17feb184787fe, type: 3}
-  currentWeapon: 0
-  canShoot: 1
-  clearToShoot: 1
-  _timeBetweenAttacks: 0.5
 --- !u!114 &4061210518604259733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +147,36 @@ MonoBehaviour:
   _canInteractUIText: {fileID: 0}
   _halfTrapCheckBoxScale: {x: 0.6, y: 0.25, z: 0.6}
   _halfWallCheckBoxScale: {x: 1.75, y: 0.25, z: 0.3}
+--- !u!114 &1961995115909999450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961995115909999449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b4c4d1769c97f4597dd04a8913d4c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitHP: 0
+  _unitMaxHP: 40
+  _unitAttackRange: 10
+  _healthBarBG: {fileID: 0}
+  _healthBar: {fileID: 0}
+  IsStunned: 0
+  _stunEffect: {fileID: 1008851786627677189}
+  _currentAmmoAmountText: {fileID: 0}
+  _currentBunnyCountText: {fileID: 0}
+  _currentWeaponImage: {fileID: 0}
+  _coverImage: {fileID: 21300000, guid: eee7d5040509dea49a3c9b5b25569e9b, type: 3}
+  _trapImage: {fileID: 21300000, guid: 3694afe6d8f3b894f9f46d36e15980b6, type: 3}
+  _trapOutlineSprite: {fileID: 21300000, guid: 9d413a88aaaef4b4097ae9d6d9454101, type: 3}
+  _wallOutlineSprite: {fileID: 21300000, guid: e84aaa187d02cdf408f17feb184787fe, type: 3}
+  currentWeapon: 0
+  canShoot: 1
+  clearToShoot: 1
+  _timeBetweenAttacks: 0.5
 --- !u!114 &1961995115909999448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _trapPrefab: {fileID: 3265388038745949489, guid: f26bde5316fda87468affb6a084135f5, type: 3}
   _poolStartSize: 5
---- !u!114 &1961995115909999451
+--- !u!114 &3572672173916460712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,10 +200,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1961995115909999449}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f9897962a12fe741831fda3f55e4760, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ec56bfa67e6b7647a65e0734afc09e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wallPrefab: {fileID: 6670106066988666373, guid: 17a6c0180e9f52045a1e2a0c17b4d59c, type: 3}
+  _wallPrefab: {fileID: 6670106066988666373, guid: 9fed1bcd53e829a4a918b98d4774a581, type: 3}
   _poolStartSize: 3
 --- !u!114 &4459864851264094597
 MonoBehaviour:
@@ -186,55 +235,6 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!95 &3897817183611794312
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1961995115909999449}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 276e273a4e30fba47aac9783ba2f4895, type: 3}
-  m_Controller: {fileID: 9100000, guid: b91e814f3da6d9549a83a16719da132b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!136 &1961995115909999446
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1961995115909999449}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1961995115909999442
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1961995115909999449}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 116
-  m_CollisionDetection: 0
 --- !u!1 &2800947984194788250
 GameObject:
   m_ObjectHideFlags: 0

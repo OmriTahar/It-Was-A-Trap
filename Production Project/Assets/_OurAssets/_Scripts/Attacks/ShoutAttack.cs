@@ -7,65 +7,46 @@ public class ShoutAttack : Attack
 
     [Header("Refrences")]
     public BoxCollider MyCollider;
-    public Renderer MyRenderer;
+    public MeshRenderer MyRenderer;
+    [SerializeField] ParticleSystem _attackEffect;
 
-    [Header("Settings")]
-    [SerializeField] float _activationTime = 3f;
-    [SerializeField] float _decayTime = 3f;
+    [Header("Shout Settings")]
+    [SerializeField] float _shoutFieldActiveDuration = 0.5f;
 
-    [Header("Colors")]
+    [Header("Colors Settings")]
+    [SerializeField] float _colorLerpTotalDuration;
     [SerializeField] Color _chargeColor = new Color(100, 0, 0);
     [SerializeField] Color _activationColor = new Color(255, 0, 0);
-    [SerializeField] float _colorLerpTotalDuration;
-    private float _colorLerpRemainingDuration;
-    private bool _isFinishedChangingColor;
 
+    private float _colorLerpElapsedTime = 0f;
     private bool _alreadyAttacked;
-    public bool ReadyToDetonate = false;
-
+    private bool _startAttackLogic = false;
 
     private void Awake()
     {
         MyCollider = GetComponent<BoxCollider>();
-        MyRenderer = GetComponent<Renderer>();
+        MyRenderer = GetComponent<MeshRenderer>();
 
         MyRenderer.material.color = _chargeColor;
-
-        _colorLerpRemainingDuration = _colorLerpTotalDuration;
-    }
-
-    private void Update()
-    {
-        if (_colorLerpRemainingDuration <= 0 && !_isFinishedChangingColor)
-        {
-            _isFinishedChangingColor = true;
-            _colorLerpRemainingDuration = _colorLerpTotalDuration;
-        }
+        MyRenderer.enabled = false;
+        MyCollider.enabled = false;
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player" && !_alreadyAttacked && ReadyToDetonate)
+        if (_startAttackLogic)
         {
-            _alreadyAttacked = true;
-            ReadyToDetonate = false;
-
-            _attackedUnit = other.gameObject.GetComponent<Unit>();
-            _attackedUnit.RecieveDamage(this);
-
-            if (_causeStun)
+            if (other.CompareTag("Player") && !_alreadyAttacked)
             {
-                StartCoroutine(StunPlayer(other));
-                StartCoroutine(Decay(10f));
+                _alreadyAttacked = true;
+                _attackedUnit = other.gameObject.GetComponent<Unit>();
+                _attackedUnit.RecieveDamage(this);
+
+                if (_causeStun)
+                    StartCoroutine(StunPlayer(other, _attackedUnit));
             }
-            else
-                StartCoroutine(Decay(10));
-
         }
-        else
-            StartCoroutine(Decay(10));
     }
-
 
     public void ActivateShout()
     {
@@ -74,30 +55,32 @@ public class ShoutAttack : Attack
 
     private IEnumerator ShoutCoroutine()
     {
-        _isFinishedChangingColor = false;
-        print("Changing color!");
-        MyRenderer.material.color = Color.Lerp(_chargeColor, _activationColor, _colorLerpRemainingDuration -= Time.deltaTime);
+        MyRenderer.enabled = true;
+        MyRenderer.material.color = _chargeColor;
 
-        yield return new WaitForSeconds(_colorLerpTotalDuration);
-        print("Color Changed!");
-        ReadyToDetonate = true;
+        while (_colorLerpElapsedTime < _colorLerpTotalDuration)
+        {
+            _colorLerpElapsedTime += Time.deltaTime;
+            MyRenderer.material.color = Color.Lerp(_chargeColor, _activationColor, _colorLerpElapsedTime / _colorLerpTotalDuration);
+            yield return null;
+        }
+        _colorLerpElapsedTime = 0f;
+
+        if (_attackEffect) _attackEffect.Play();
+        MyCollider.enabled = true;
+        MyRenderer.enabled = false;
+        _startAttackLogic = true;
+
+        StartCoroutine(ResetAttack());
     }
 
-    private IEnumerator Decay(float decayTime)
+    private IEnumerator ResetAttack()
     {
-        yield return new WaitForSeconds(decayTime);
+        yield return new WaitForSeconds(_shoutFieldActiveDuration);
 
-        print("Shout decayed");
-
-        ReadyToDetonate = false;
+        _startAttackLogic = false;
+        MyCollider.enabled = false;
         _alreadyAttacked = false;
-
-        gameObject.SetActive(false);
         MyRenderer.material.color = _chargeColor;
     }
-
-    //public void SetMe(ShoutsPool myPool) // Can also later be used to set Damage and other variables to the projectile
-    //{
-    //    _shoutsPool = myPool;
-    //}
 }

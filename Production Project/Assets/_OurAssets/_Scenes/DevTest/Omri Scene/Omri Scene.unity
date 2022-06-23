@@ -3468,7 +3468,8 @@ PrefabInstance:
       propertyPath: _activeUpgradesWindow
       value: 
       objectReference: {fileID: 882029646635646392}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1961995115909999451, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
 --- !u!4 &3487822308438971523 stripped
 Transform:
@@ -4142,10 +4143,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Leo_Prefab
       objectReference: {fileID: 0}
-    - target: {fileID: 793604863163825218, guid: d6bf46cc0808e9c4ea061235ab89c2ee, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 793604863163825230, guid: d6bf46cc0808e9c4ea061235ab89c2ee, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4195,12 +4192,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4459864851264094600}
     - target: {fileID: 3872723856123677922, guid: d6bf46cc0808e9c4ea061235ab89c2ee, type: 3}
-      propertyPath: _damage
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3872723856123677922, guid: d6bf46cc0808e9c4ea061235ab89c2ee, type: 3}
-      propertyPath: _colorLerpTotalDuration
-      value: 1
+      propertyPath: _stunDuration
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6bf46cc0808e9c4ea061235ab89c2ee, type: 3}

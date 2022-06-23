@@ -10,21 +10,19 @@ public class RoarEnemyAI : BaseEnemyAI
     [Header("Refrences")]
     [SerializeField] GameObject _attackZone;
     [SerializeField] ShoutAttack _shoutAttack;
-    
-    [Header("Shout Attack Settings")]
     [SerializeField] Transform _shoutShootPoint;
-    [SerializeField] float _shoutForce;
-    [SerializeField] float _waitBeforeShout;
-    [SerializeField] float _delayAfterStartingShoutAnimation;
-    [SerializeField] float _waitAfterShout = 1.2f;
+
+    [Header("Shout Attack Settings")]
+    [Tooltip("Cannot change while in editor runtime")]
+    [SerializeField] [Range(2,5)] float _waitAfterShout;
 
     [Header("Fleeing")]
     [SerializeField] float _startFleeFromPlayer_Range;
     [SerializeField] float _fleeingDuration;
 
     [Header("Enemy Status")]
-    [SerializeField] bool _isPlayerInAttackRange;
     [SerializeField] bool _isAlreadyAttacked;
+    [SerializeField] bool _isPlayerInAttackRange;
     [SerializeField] bool _isPlayerTooClose;
     [SerializeField] bool _canFlee;
     [SerializeField] bool _isFleeing;
@@ -32,19 +30,15 @@ public class RoarEnemyAI : BaseEnemyAI
     private bool _isShouting;
     private Vector3 _directionToPlayer;
     private WaitForSeconds _fleeDurationCoroutine;
-    private WaitForSeconds _delayAfterStartingShoutAnimationCoroutine;
-    private WaitForSeconds _waitBeforeShoutCoroutine;
     private WaitForSeconds _waitAfterShoutCoroutine;
 
 
     protected override void Awake()
     {
         base.Awake();
-        _attackZone.SetActive(false);
+        _attackZone.SetActive(true);
         #region Coroutines Cacheing
         _fleeDurationCoroutine = new WaitForSeconds(_fleeingDuration);
-        _delayAfterStartingShoutAnimationCoroutine = new WaitForSeconds(_delayAfterStartingShoutAnimation);
-        _waitBeforeShoutCoroutine = new WaitForSeconds(_waitBeforeShout);
         _waitAfterShoutCoroutine = new WaitForSeconds(_waitAfterShout);
         #endregion
     }
@@ -77,13 +71,14 @@ public class RoarEnemyAI : BaseEnemyAI
             }
             else
             {
-                if (!_isPlayerInAttackRange && !_isFleeing)
-                {
-                    ChasePlayer();
-                }
 
                 if (!_isFleeing)
                 {
+                    if (!_isPlayerInAttackRange)
+                    {
+                        ChasePlayer();
+                    }
+
                     if (_isPlayerTooClose && _canFlee)
                     {
                         StartCoroutine(Flee());
@@ -101,34 +96,36 @@ public class RoarEnemyAI : BaseEnemyAI
         }
     }
 
-    protected override void ChasePlayer()
-    {
-        base.ChasePlayer();
-        transform.LookAt(_playerTransform);
-    }
+    //protected override void ChasePlayer()
+    //{
+    //    var sqrDistance = (transform.position - _playerTransform.position).sqrMagnitude;
+
+    //    if (_playerTransform != null)
+    //    {
+    //        transform.LookAt(_playerTransform);
+    //        _agent.SetDestination(_playerTransform.position);
+    //        _agent.isStopped = (sqrDistance <= _unitAttackRange);
+    //    }
+    //}
 
     private void AttemptShout()
     {
-        _isShouting = true;
-        _isAlreadyAttacked = true;
-
         transform.LookAt(_playerTransform);
-        _attackZone.SetActive(true);
+
+        _isAlreadyAttacked = true;
+        _isShouting = true;
 
         StartCoroutine(Shout(_playerTransform.position));
     }
 
     IEnumerator Shout(Vector3 lockedPlayerPosition)
     {
-        yield return _waitBeforeShoutCoroutine;
         _animator.SetTrigger("Shout");
-
-        yield return _delayAfterStartingShoutAnimationCoroutine;
         _shoutAttack.ActivateShout();
 
         yield return _waitAfterShoutCoroutine;
         _isShouting = false;
-        _attackZone.SetActive(false);
+        transform.LookAt(_playerTransform);
 
         Invoke(("ResetAttack"), _timeBetweenAttacks);
     }
