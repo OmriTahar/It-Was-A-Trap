@@ -147,7 +147,7 @@ MonoBehaviour:
   _attackZone: {fileID: 6506498352068254472}
   _shoutAttack: {fileID: 3872723856123677922}
   _shoutShootPoint: {fileID: 3502551649914467759}
-  _waitAfterShout: 2
+  _waitAfterShout: 2.5
   _startFleeFromPlayer_Range: 3
   _fleeingDuration: 2
   _isAlreadyAttacked: 0
@@ -5128,7 +5128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 2
   _causeStun: 1
-  _stunDuration: 1
+  _stunDuration: 1.5
   MyCollider: {fileID: 3321762575361050220}
   MyRenderer: {fileID: 4146675497631581942}
   _attackEffect: {fileID: 7482968780817774958}

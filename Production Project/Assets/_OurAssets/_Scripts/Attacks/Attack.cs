@@ -44,13 +44,11 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
 
     protected IEnumerator StunPlayer(Collider other, Unit attackedUnit)
     {
-
         if (!_hasAlreadyStunned)
         {
-            _hasAlreadyStunned = true;
-
             print("Start player stun!");
 
+            _hasAlreadyStunned = true;
             attackedUnit.IsStunned = true;
 
             _playerController = other.gameObject.GetComponent<PlayerController>();
@@ -58,15 +56,11 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
         }
 
 
-        yield return _stunEndCoroutine;
-
+        yield return new WaitForSeconds(_stunDuration);
         print("Finished Stun!");
 
         attackedUnit.IsStunned = false;
-
         _playerController.PlayerCanMove = true;
-
-        //print("Finished stunning player");
         _hasAlreadyStunned = false;
     }
 }

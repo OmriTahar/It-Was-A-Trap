@@ -108,6 +108,12 @@ public class PlayerController : MonoBehaviour
     {
         if (PlayerCanMove)
         {
+            if (!PlayerData.Instance.IsStunned && PlayerData.Instance._stunEffect.isPlaying)
+            {
+                _animator.SetBool("IsStunned", false);
+                PlayerData.Instance._stunEffect.Stop();
+            }
+
             Vector3 playerVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             _animator.SetFloat("Velocity", playerVelocity.magnitude);
 
@@ -130,19 +136,16 @@ public class PlayerController : MonoBehaviour
                 Vector3 velocityChange = (playerVelocity - velocity);
                 _rb.AddForce(velocityChange, ForceMode.VelocityChange);
             }
-
-            if (!PlayerData.Instance.IsStunned && PlayerData.Instance._stunEffect.isPlaying)
-            {
-                PlayerData.Instance._stunEffect.Stop();
-            }
         }
         else 
         {
             // Stun effect. Check conditions only if PlayerCanMove = false
             if (PlayerData.Instance.IsStunned && PlayerData.Instance._stunEffect != null && !PlayerData.Instance._stunEffect.isPlaying)
             {
-                _rb.Sleep();
+                _animator.SetBool("IsStunned", true);
+                _animator.SetTrigger("StartStun");
 
+                _rb.Sleep();
                 PlayerData.Instance._stunEffect.Play();
             }
         }
