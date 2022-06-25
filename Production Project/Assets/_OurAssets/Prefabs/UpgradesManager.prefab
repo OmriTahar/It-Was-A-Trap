@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7798816552077514784}
-  - component: {fileID: 8899389732307198416}
-  - component: {fileID: 8812798519026241584}
-  - component: {fileID: 8000397384413909081}
-  - component: {fileID: 8026891222284781189}
-  - component: {fileID: 384209552347349542}
-  - component: {fileID: 1738991469531399784}
+  - component: {fileID: 6977453295582757482}
+  - component: {fileID: 5626458435858211480}
+  - component: {fileID: 684909524}
+  - component: {fileID: 684909523}
+  - component: {fileID: 684909522}
+  - component: {fileID: 684909521}
   m_Layer: 0
   m_Name: UpgradesManager
   m_TagString: Untagged
@@ -36,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8899389732307198416
+--- !u!114 &6977453295582757482
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,14 +45,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7798816552077514785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5574416b3f5000f40ae7872a1e4ab3be, type: 3}
+  m_Script: {fileID: 11500000, guid: b73f1e6e01f364049aa1d97e656aaf11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myName: 0
   myDescription: 
-  bunniesToUnlock: 5
+  bunniesToUnlock: 3
   changeBy: 0
---- !u!114 &8812798519026241584
+--- !u!114 &5626458435858211480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,14 +61,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7798816552077514785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40dd5044f5bce764482147063a218891, type: 3}
+  m_Script: {fileID: 11500000, guid: b73f1e6e01f364049aa1d97e656aaf11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myName: 1
   myDescription: 
-  bunniesToUnlock: 20
+  bunniesToUnlock: 6
   changeBy: 0
---- !u!114 &8000397384413909081
+--- !u!114 &684909524
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,14 +77,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7798816552077514785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e83d5064bbd85fe45ac2169b49b6be4b, type: 3}
+  m_Script: {fileID: 11500000, guid: b73f1e6e01f364049aa1d97e656aaf11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myName: 2
   myDescription: 
-  bunniesToUnlock: 15
+  bunniesToUnlock: 9
   changeBy: 0
---- !u!114 &8026891222284781189
+--- !u!114 &684909523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,14 +93,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7798816552077514785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40c6fdfb1869bb84aa5aaa01a75842a3, type: 3}
+  m_Script: {fileID: 11500000, guid: b73f1e6e01f364049aa1d97e656aaf11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myName: 3
   myDescription: 
-  bunniesToUnlock: 10
+  bunniesToUnlock: 12
   changeBy: 0
---- !u!114 &384209552347349542
+--- !u!114 &684909522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,26 +109,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 7798816552077514785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5b63d5e5280a7041b6f182f55b475d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myName: 5
-  myDescription: 
-  bunniesToUnlock: 25
-  changeBy: 0
---- !u!114 &1738991469531399784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7798816552077514785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eeabe04cbdf0b254f89a6b75556a3026, type: 3}
+  m_Script: {fileID: 11500000, guid: b73f1e6e01f364049aa1d97e656aaf11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myName: 4
   myDescription: 
-  bunniesToUnlock: 30
+  bunniesToUnlock: 15
+  changeBy: 0
+--- !u!114 &684909521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7798816552077514785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b73f1e6e01f364049aa1d97e656aaf11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myName: 5
+  myDescription: 
+  bunniesToUnlock: 18
   changeBy: 0

@@ -76,8 +76,7 @@ public class PlayerData : Unit
         if (_currentBunnyCountText)
             _currentBunnyCountText.text = $"X{bunnyCount}";
 
-        //if (UpgradesList.UpgradeList.Count > 0)
-            //AbilityEligabilityCheck();
+        AbilityEligabilityCheck();
     }
 
     private void Attack()
@@ -176,25 +175,22 @@ public class PlayerData : Unit
 
     private void AbilityEligabilityCheck()
     {
+        Upgrade unlockableUpgrade = null;
+
         foreach (var item in UpgradesList.UpgradeList)
+            if (item && bunnyCount >= item.bunniesToUnlock)
+                unlockableUpgrade = item;
+
+        if (unlockableUpgrade)
         {
-            print($"{item.Key}");
-            if (item.Key == item.Value.myName)
-            {
-                print("Key and Value match");
-                if (bunnyCount >= item.Value.bunniesToUnlock && !item.Value.unlocked)
-                {
-                    print("Unlocking ability");
-                    item.Value.Unlock();
-                    ActivateUIUnlockedSkill();
-                }
-            }
+            unlockableUpgrade.Unlock();
+            ActivateUIUnlockedSkill(unlockableUpgrade);
         }
     }
 
-    private void ActivateUIUnlockedSkill()
+    private void ActivateUIUnlockedSkill(Upgrade unlockedUpgrade)
     {
-        print("UI celebrating unlock");
+        print($"Congrats your {unlockedUpgrade.myName} has been upgraded");
     }
 
 }

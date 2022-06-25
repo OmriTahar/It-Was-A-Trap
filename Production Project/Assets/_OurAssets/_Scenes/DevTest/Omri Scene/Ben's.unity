@@ -4598,10 +4598,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpgradesManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7798816552077514785, guid: 0f8fe811a695d0b4bbf9181a2ceb0e6a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f8fe811a695d0b4bbf9181a2ceb0e6a, type: 3}
 --- !u!4 &905232106 stripped

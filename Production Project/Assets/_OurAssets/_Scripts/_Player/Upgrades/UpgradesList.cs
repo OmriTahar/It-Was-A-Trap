@@ -2,5 +2,5 @@ using System.Collections.Generic;
 
 public class UpgradesList
 {
-    public static Dictionary<UpgradeName, Upgrade> UpgradeList;
+    public static List<Upgrade> UpgradeList = new List<Upgrade>();
 }
