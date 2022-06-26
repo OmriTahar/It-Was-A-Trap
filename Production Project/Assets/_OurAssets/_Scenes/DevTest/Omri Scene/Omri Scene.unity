@@ -3436,10 +3436,6 @@ PrefabInstance:
       propertyPath: _currentBunnyCountText
       value: 
       objectReference: {fileID: 882029646635646396}
-    - target: {fileID: 1961995115909999451, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: _wallPrefab
-      value: 
-      objectReference: {fileID: 6670106066988666373, guid: 9fed1bcd53e829a4a918b98d4774a581, type: 3}
     - target: {fileID: 4061210518604259733, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: _cam
       value: 
@@ -3464,8 +3460,7 @@ PrefabInstance:
       propertyPath: _activeUpgradesWindow
       value: 
       objectReference: {fileID: 882029646635646392}
-    m_RemovedComponents:
-    - {fileID: 1961995115909999451, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
 --- !u!4 &3487822308438971523 stripped
 Transform:
