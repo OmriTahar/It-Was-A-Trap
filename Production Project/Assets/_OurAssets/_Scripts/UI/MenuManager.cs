@@ -7,6 +7,7 @@ public enum MenuFunc { Main, Settings, Credits, Save, Load}
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager instance;
+    [SerializeField] GameObject[] iconArray;
     [SerializeField] Menu[] menus;
 
     private void Awake()
@@ -45,6 +46,18 @@ public class MenuManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void OnHoverEnter(int buttonNum)
+    {
+        if (iconArray[buttonNum])
+            iconArray[buttonNum].gameObject.SetActive(true);
+    }
+
+    public void OnHoverExit(int buttonNum)
+    {
+        if (iconArray[buttonNum])
+            iconArray[buttonNum].gameObject.SetActive(false);
     }
 
 }
