@@ -408,10 +408,9 @@ MonoBehaviour:
   SwitchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: "C:/Users/\u05E2\u05DE\u05D9\u05EA/OneDrive/\u05E9\u05D5\u05DC\u05D7\u05DF
-    \u05D4\u05E2\u05D1\u05D5\u05D3\u05D4/It was a trap/It was a trap/It was a trap.fspro"
-  sourceBankPath: "C:/Users/\u05E2\u05DE\u05D9\u05EA/OneDrive/\u05E9\u05D5\u05DC\u05D7\u05DF
-    \u05D4\u05E2\u05D1\u05D5\u05D3\u05D4/It was a trap/It was a trap/Build"
+  sourceProjectPath: Assets/Plugins/FMOD/Resources/It was a trap 1/It was a trap/It
+    was a trap.fspro
+  sourceBankPath: Assets/Plugins/FMOD/Resources/It was a trap 1/It was a trap/Build
   SourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1

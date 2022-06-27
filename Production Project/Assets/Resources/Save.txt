@@ -1,1 +1,1 @@
-{"position":{"x":3.8500003814697267,"y":0.0,"z":-7.050000190734863},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"lastUsedWeapon":0,"bunnyCount":0,"health":40.0}
+{"position":{"x":3.8500003814697267,"y":0.0,"z":-7.050000190734863},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"lastUsedWeapon":0,"bunnyCount":0,"health":24.0}
