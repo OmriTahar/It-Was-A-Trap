@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{2aa01f8c-e460-4152-88b7-ed9be07fcf52}">
+		<property name="assetPath">
+			<value>y2mate.com - Reggaeton Mix 2020  Estrenos Reggaeton 2020 Lo Mas Nuevo Top 20 Canciones Ozuna Maluma Bad Bunny.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>5406.6155102040821</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{d2fb07ad-71fb-4e6a-b17b-e0ddfce1b26c}</destination>
+		</relationship>
+	</object>
+</objects>

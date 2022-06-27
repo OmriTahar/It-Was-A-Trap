@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{b28a5b57-57ac-4e65-8ac5-c5eba1b44bab}">
+		<property name="assetPath">
+			<value>Other/Wood, Crash &amp; Debris, Hard Impacts, Metal Details, Wood Break SND53109 2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.96534374999999994</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{d2fb07ad-71fb-4e6a-b17b-e0ddfce1b26c}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{255a31fb-eace-4be8-84ff-edc44f6fb035}">
+		<property name="assetPath">
+			<value>Other/Fight, Impact, Punch, Body SND14128.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.45948958333333334</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{d2fb07ad-71fb-4e6a-b17b-e0ddfce1b26c}</destination>
+		</relationship>
+	</object>
+</objects>

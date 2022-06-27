@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{3963b801-355d-4bb7-bdf3-ef54aacd588e}">
+		<property name="name">
+			<value>Stun</value>
+		</property>
+		<relationship name="folder">
+			<destination>{dbe328fe-ad6b-43bb-98f7-23e1b4cd9293}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{f706e479-3438-4b73-afa9-5506c70f3ea0}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{f706e479-3438-4b73-afa9-5506c70f3ea0}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Normal</value>
+			<value>Stun</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>0.56000000238418579</value>
+		</property>
+	</object>
+</objects>

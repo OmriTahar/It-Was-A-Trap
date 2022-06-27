@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{87d5a2ca-77a6-4d83-ab0b-51bad447f4a8}">
+		<property name="name">
+			<value>Stun Ver 2</value>
+		</property>
+		<relationship name="folder">
+			<destination>{dbe328fe-ad6b-43bb-98f7-23e1b4cd9293}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{bbc08c0f-2fb0-46b7-a820-b93643710ec6}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{bbc08c0f-2fb0-46b7-a820-b93643710ec6}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
