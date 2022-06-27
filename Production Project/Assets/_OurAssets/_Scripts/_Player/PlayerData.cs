@@ -52,7 +52,7 @@ public class PlayerData : Unit
         base.Start();
 
         if (_currentBunnyCountText)
-            _currentBunnyCountText.text = $"X{bunnyCount}";
+            _currentBunnyCountText.text = $"{bunnyCount}";
 
         _outlineRenderer = PlayerAim.Instance.outline.transform.GetComponentInChildren<SpriteRenderer>();
     }
@@ -74,7 +74,7 @@ public class PlayerData : Unit
         bunnyCount++;
 
         if (_currentBunnyCountText)
-            _currentBunnyCountText.text = $"X{bunnyCount}";
+            _currentBunnyCountText.text = $"{bunnyCount}";
 
         AbilityEligabilityCheck();
     }

@@ -756,6 +756,17 @@ Transform:
   m_Father: {fileID: 1343781241}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 70.961, z: 0}
+--- !u!114 &186984128 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8066690265848449018, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+  m_PrefabInstance: {fileID: 1112721071}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &200945740
 GameObject:
   m_ObjectHideFlags: 0
@@ -5469,17 +5480,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1112721076 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3422591295954788381, guid: c75338d96ae022944893afc1b294b91f, type: 3}
-  m_PrefabInstance: {fileID: 1112721071}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1112721077 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 425478615562492468, guid: c75338d96ae022944893afc1b294b91f, type: 3}
@@ -10023,11 +10023,7 @@ PrefabInstance:
     - target: {fileID: 1961995115909999450, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: _currentBunnyCountText
       value: 
-      objectReference: {fileID: 1112721076}
-    - target: {fileID: 1961995115909999451, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: _wallPrefab
-      value: 
-      objectReference: {fileID: 6670106066988666373, guid: 9fed1bcd53e829a4a918b98d4774a581, type: 3}
+      objectReference: {fileID: 186984128}
     - target: {fileID: 4061210518604259733, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: _cam
       value: 
@@ -10036,10 +10032,6 @@ PrefabInstance:
       propertyPath: _canInteractUIText
       value: 
       objectReference: {fileID: 907779928}
-    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: PlayEvent
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8446407416611106780, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: DashBarBG
       value: 
