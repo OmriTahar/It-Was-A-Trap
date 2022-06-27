@@ -1,13 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class ShoutAttack : Attack
 {
 
     [Header("Refrences")]
-    public BoxCollider MyCollider;
-    public MeshRenderer MyRenderer;
     [SerializeField] ParticleSystem _attackEffect;
 
     [Header("Shout Settings")]
@@ -18,13 +16,15 @@ public class ShoutAttack : Attack
     [SerializeField] Color _chargeColor = new Color(100, 0, 0);
     [SerializeField] Color _activationColor = new Color(255, 0, 0);
 
+    private Collider MyCollider;
+    private MeshRenderer MyRenderer;
     private float _colorLerpElapsedTime = 0f;
-    private bool _alreadyAttacked;
     private bool _startAttackLogic = false;
+    private bool _alreadyAttacked;
 
     private void Awake()
     {
-        MyCollider = GetComponent<BoxCollider>();
+        MyCollider = GetComponent<Collider>();
         MyRenderer = GetComponent<MeshRenderer>();
 
         MyRenderer.material.color = _chargeColor;
