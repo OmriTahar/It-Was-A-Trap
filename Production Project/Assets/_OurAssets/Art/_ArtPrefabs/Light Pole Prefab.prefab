@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 7775914752105747278}
   - component: {fileID: 379424195}
   - component: {fileID: 5566147814293705911}
+  - component: {fileID: 1895940654}
   m_Layer: 10
   m_Name: Light Pole Prefab
   m_TagString: Untagged
@@ -155,8 +156,23 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  _isAlwaysEnabled: 1
+  _capsuleCollider: {fileID: 1895940654}
+  _isAlwaysEnabled: 0
   _enabledRange: 10
+--- !u!136 &1895940654
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5763633377873565472}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 2.3315272
+  m_Height: 8.075251
+  m_Direction: 2
+  m_Center: {x: 0.7728143, y: -0.20000005, z: -6.56503}
 --- !u!1001 &632925080542141619
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -358,23 +374,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5955844245494493325, guid: c88a9addc511e4942b8af572a2cecae8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.21990258
+      value: 0.23349866
       objectReference: {fileID: 0}
     - target: {fileID: 5955844245494493325, guid: c88a9addc511e4942b8af572a2cecae8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0006645915
+      value: 0.0085603
       objectReference: {fileID: 0}
     - target: {fileID: 5955844245494493325, guid: c88a9addc511e4942b8af572a2cecae8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.94415677
+      value: 0.89000016
       objectReference: {fileID: 0}
     - target: {fileID: 5955844245494493325, guid: c88a9addc511e4942b8af572a2cecae8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.32949674
+      value: 0.4559603
       objectReference: {fileID: 0}
     - target: {fileID: 5955844245494493325, guid: c88a9addc511e4942b8af572a2cecae8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 38.476
+      value: 54.253
       objectReference: {fileID: 0}
     - target: {fileID: 6797051342764702143, guid: c88a9addc511e4942b8af572a2cecae8, type: 3}
       propertyPath: m_Layer

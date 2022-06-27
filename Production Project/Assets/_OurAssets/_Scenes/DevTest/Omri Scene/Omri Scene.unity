@@ -571,14 +571,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1711025571}
     m_Modifications:
-    - target: {fileID: 5566147814293705911, guid: bc691367a78d2be43a97ffd8bdc41529, type: 3}
-      propertyPath: _isAlwaysEnabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5566147814293705911, guid: bc691367a78d2be43a97ffd8bdc41529, type: 3}
-      propertyPath: _isAllwaysEnabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5763633377873565472, guid: bc691367a78d2be43a97ffd8bdc41529, type: 3}
       propertyPath: m_Name
       value: Light Pole Prefab
@@ -4148,7 +4140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 793604863163825230, guid: d6bf46cc0808e9c4ea061235ab89c2ee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.15
+      value: -12.11
       objectReference: {fileID: 0}
     - target: {fileID: 793604863163825230, guid: d6bf46cc0808e9c4ea061235ab89c2ee, type: 3}
       propertyPath: m_LocalRotation.w

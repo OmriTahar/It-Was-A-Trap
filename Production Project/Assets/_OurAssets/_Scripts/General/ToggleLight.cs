@@ -7,6 +7,7 @@ public class ToggleLight : MonoBehaviour
     [Header("Refrences")]
     [SerializeField] Light _myLight;
     [SerializeField] LayerMask _playerLayer;
+    [SerializeField] CapsuleCollider _capsuleCollider;
 
     [Header("Settings")]
     [Tooltip("If true: Light is allways ON")]
@@ -15,21 +16,45 @@ public class ToggleLight : MonoBehaviour
 
     private bool _isPlayerInRange;
 
-    private void FixedUpdate()
+    private void Awake()
     {
-        if (_isAlwaysEnabled) return;
-
-        _isPlayerInRange = Physics.CheckSphere(transform.position, _enabledRange, _playerLayer);
-
-        if (_isPlayerInRange)
-            _myLight.enabled = true;
-        else
+        if (!_isAlwaysEnabled)
+        {
             _myLight.enabled = false;
+        }
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnTriggerEnter(Collider other)
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, _enabledRange);
+        if (other.CompareTag("Player") && !_isAlwaysEnabled)
+        {
+            _myLight.enabled = true;
+        }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player") && !_isAlwaysEnabled)
+        {
+            _myLight.enabled = false;
+        }
+    }
+
+    //private void FixedUpdate()
+    //{
+    //    if (_isAlwaysEnabled) return;
+
+    //    _isPlayerInRange = Physics.CheckSphere(transform.position, _enabledRange, _playerLayer);
+
+    //    if (_isPlayerInRange)
+    //        _myLight.enabled = true;
+    //    else
+    //        _myLight.enabled = false;
+    //}
+
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.blue;
+    //    Gizmos.DrawWireSphere(transform.position, _enabledRange);
+    //}
 }
