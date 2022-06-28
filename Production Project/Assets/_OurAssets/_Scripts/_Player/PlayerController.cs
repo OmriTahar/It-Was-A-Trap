@@ -136,7 +136,9 @@ public class PlayerController : MonoBehaviour
                 Vector3 velocity = _rb.velocity;
                 Vector3 velocityChange = (playerVelocity - velocity);
                 _rb.AddForce(velocityChange, ForceMode.VelocityChange);
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Bunny/BunnyRunning", GetComponent<Transform>().position);
+
+                // ----- FMOD FUN -----
+                //FMODUnity.RuntimeManager.PlayOneShot("event:/Bunny/BunnyRunning", GetComponent<Transform>().position);  
             }
         }
         else 

@@ -3,11 +3,15 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using UnityEngine.AI;
 
 public enum WeaponType { Trap, Wall }
 public class PlayerData : Unit
 {
     public static PlayerData Instance;
+
+    [Header("NavMesh")]
+    [SerializeField] NavMeshSurface _navMeshSurface;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI _currentAmmoAmountText;
@@ -66,7 +70,15 @@ public class PlayerData : Unit
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
             if (canShoot && clearToShoot)
+            {
                 Attack();
+
+                if (_navMeshSurface)
+                {
+                    //_navMeshSurface.BuildNavMesh();
+                    print("Nav Mesh Update!");
+                }
+            }
     }
 
     public void AddScore()

@@ -75,7 +75,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2838946777403148639}
   serializedVersion: 2
-  m_Mass: 2
+  m_Mass: 1000
   m_Drag: 5
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -122,6 +122,8 @@ MonoBehaviour:
   _unitAttackRange: 5
   _healthBarBG: {fileID: 0}
   _healthBar: {fileID: 0}
+  IsStunned: 0
+  _stunEffect: {fileID: 833865905655255892}
   _playerTransform: {fileID: 0}
   _groundLayer:
     serializedVersion: 2
@@ -132,19 +134,22 @@ MonoBehaviour:
   IsEnemyActivated: 0
   AttackPrefab: {fileID: 6468441648287161683}
   _timeBetweenAttacks: 2
-  IsStunned: 0
-  _stunEffect: {fileID: 833865905655255892}
   _enemyAvoidancePriority: 1
   _randomPriority: 0
   _MinRandomAvoidanceNumber: 10
   _MaxRandomAvoidanceNumber: 30
-  _leapPower: 15
+  _leapPower: 7500
   _waitBeforeLeap: 1
   _waitAfterLeap: 3
   _playerIsTooCloseRange: 3
   _maxLeapDistance: 12
+  _minLeapDistance: 3
+  _playerShotsLayer:
+    serializedVersion: 2
+    m_Bits: 512
   _isPlayerInAttackRange: 0
   _isPlayerTooClose: 0
+  _isLeapPathBlocked: 0
   _hasLeaped: 0
   _isMovingBackwards: 0
 --- !u!95 &4158529393150689974

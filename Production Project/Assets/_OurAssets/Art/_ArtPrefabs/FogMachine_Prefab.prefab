@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 4865287360684758940}
   - component: {fileID: 4865287360684758942}
   - component: {fileID: 4865287360684758941}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Effect_Fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}

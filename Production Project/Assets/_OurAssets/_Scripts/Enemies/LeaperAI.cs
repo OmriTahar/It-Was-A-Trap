@@ -12,6 +12,7 @@ public class LeaperAI : BaseEnemyAI
     [Tooltip("Cancles the leap if the player flee beyond this range.")]
     [SerializeField] float _maxLeapDistance;
     [SerializeField] float _minLeapDistance = 3f;
+    [SerializeField] LayerMask _playerShotsLayer;
 
     private Vector3 _directionToPlayer;
     private Vector3 _newDestination;
@@ -19,12 +20,14 @@ public class LeaperAI : BaseEnemyAI
     [Header("Enemy Status")]
     [SerializeField] bool _isPlayerInAttackRange;
     [SerializeField] bool _isPlayerTooClose;
+    [SerializeField] bool _isLeapPathBlocked;
     [SerializeField] bool _hasLeaped = false;
     [SerializeField] bool _isMovingBackwards;
 
     private WaitForSeconds _startLeapLogicCorutine = new WaitForSeconds(0.3f);
     private WaitForSeconds _waitBeforeLeapCoroutine;
     private WaitForSeconds _waitAfterLeapCoroutine;
+    private bool _isLeapRayHitSomthing;
 
 
     protected override void Awake()
@@ -47,6 +50,29 @@ public class LeaperAI : BaseEnemyAI
         {
             _isPlayerInAttackRange = Physics.CheckSphere(transform.position, _unitAttackRange, _playerLayer);
             _isPlayerTooClose = Physics.CheckSphere(transform.position, _playerIsTooCloseRange, _playerLayer);
+
+            //_isLeapPathBlocked = Physics.Raycast(transform.position, transform.forward, _maxLeapDistance, _playerShotsLayer);
+
+            Ray ray = new Ray(transform.position, transform.forward);
+            RaycastHit hit;
+            Physics.Raycast(ray, out hit, _maxLeapDistance);
+
+            if (hit.collider != null && hit.collider.tag != "Player")
+            {
+                _isLeapPathBlocked = true;
+                print("Something else is in front of me!");
+                return;
+            }
+            else if (hit.collider != null && hit.collider.tag == "Player")
+            {
+                _isLeapPathBlocked = false;
+                print("Player is in front of me!");
+                return;
+            }
+            else
+            {
+                _isLeapPathBlocked = false;
+            }
         }
     }
 
@@ -60,7 +86,7 @@ public class LeaperAI : BaseEnemyAI
 
             if (!_hasLeaped)
             {
-                if (!_isPlayerInAttackRange)
+                if (!_isPlayerInAttackRange || _isLeapPathBlocked)
                 {
                     _isMovingBackwards = false;
                     ChasePlayer();
@@ -70,7 +96,7 @@ public class LeaperAI : BaseEnemyAI
                     CreateLeapRange();
                 }
 
-                if (!_isPlayerTooClose && _isPlayerInAttackRange)
+                if (_isPlayerInAttackRange && !_isPlayerTooClose && !_isLeapPathBlocked)
                 {
                     StartCoroutine(Leap());
                 }
@@ -91,7 +117,13 @@ public class LeaperAI : BaseEnemyAI
         _agent.SetDestination(transform.position);
 
         yield return _waitBeforeLeapCoroutine;
-        if ((_playerTransform.position - transform.position).magnitude <= _maxLeapDistance)
+
+        if (_isLeapPathBlocked)
+            print("Path is NOT clear");
+        else
+            print("Path IS clear");
+
+        if ((_playerTransform.position - transform.position).magnitude <= _maxLeapDistance && !_isLeapPathBlocked)
         {
             _animator.SetTrigger("Leap");
 
@@ -112,7 +144,6 @@ public class LeaperAI : BaseEnemyAI
         }
         else // Leap distance is too long
         {
-            //_animator.SetTrigger("CancleLeap");
             _hasLeaped = false;
         }
     }
@@ -123,6 +154,10 @@ public class LeaperAI : BaseEnemyAI
         Gizmos.DrawWireSphere(transform.position, _playerIsTooCloseRange);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, _unitAttackRange);
+
+        Gizmos.color = Color.yellow;
+        Vector3 direction = transform.TransformDirection(Vector3.forward) * _maxLeapDistance;
+        Gizmos.DrawRay(transform.position, direction);
     }
 
 }
