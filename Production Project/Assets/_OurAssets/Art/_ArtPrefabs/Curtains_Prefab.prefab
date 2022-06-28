@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2195613146665871368}
+  - component: {fileID: 1533227087}
+  - component: {fileID: 1533227088}
   m_Layer: 0
   m_Name: Curtains_Prefab
   m_TagString: Untagged
@@ -31,6 +33,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!95 &1533227087
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3017642800362706572}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d34fed71276d60b43a93ae75baf2b035, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1533227088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3017642800362706572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ae1dd54819df884d9442ea6d5ed2989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyActivationInStage: {fileID: 0}
+  _bunniesInStage: 0
+  _cameraBrain: {fileID: 0}
+  _playerCamera: {fileID: 0}
+  _curtainCamera: {fileID: 0}
+  _firstSwitchTransitionSpeed: 2
+  _secondSwitchTransitionSpeed: 2
+  _firstSwitchWaitDuration: 3
+  _focusOnCurtainWaitDuraion: 3
+  _switchBackWaitDurtaion: 3
 --- !u!1001 &140498037694182059
 PrefabInstance:
   m_ObjectHideFlags: 0
