@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class LeaperAI : BaseEnemyAI
 {
@@ -28,6 +29,7 @@ public class LeaperAI : BaseEnemyAI
     private WaitForSeconds _waitBeforeLeapCoroutine;
     private WaitForSeconds _waitAfterLeapCoroutine;
     private bool _isLeapRayHitSomthing;
+    private bool _canCreateLeapRange;
 
 
     protected override void Awake()
@@ -51,28 +53,10 @@ public class LeaperAI : BaseEnemyAI
             _isPlayerInAttackRange = Physics.CheckSphere(transform.position, _unitAttackRange, _playerLayer);
             _isPlayerTooClose = Physics.CheckSphere(transform.position, _playerIsTooCloseRange, _playerLayer);
 
-            //_isLeapPathBlocked = Physics.Raycast(transform.position, transform.forward, _maxLeapDistance, _playerShotsLayer);
+            if (_isPlayerTooClose)
+                _canCreateLeapRange = CanCreateLeapRange();
 
-            Ray ray = new Ray(transform.position, transform.forward);
-            RaycastHit hit;
-            Physics.Raycast(ray, out hit, _maxLeapDistance);
-
-            if (hit.collider != null && hit.collider.tag != "Player")
-            {
-                _isLeapPathBlocked = true;
-                print("Something else is in front of me!");
-                return;
-            }
-            else if (hit.collider != null && hit.collider.tag == "Player")
-            {
-                _isLeapPathBlocked = false;
-                print("Player is in front of me!");
-                return;
-            }
-            else
-            {
-                _isLeapPathBlocked = false;
-            }
+            CheckLeapPath();
         }
     }
 
@@ -91,16 +75,52 @@ public class LeaperAI : BaseEnemyAI
                     _isMovingBackwards = false;
                     ChasePlayer();
                 }
-                else if (_isPlayerInAttackRange && _isPlayerTooClose)
+                else if (_isPlayerTooClose && _canCreateLeapRange)
                 {
                     CreateLeapRange();
                 }
 
-                if (_isPlayerInAttackRange && !_isPlayerTooClose && !_isLeapPathBlocked)
+                if ((_isPlayerInAttackRange && !_isPlayerTooClose) || (_isPlayerTooClose && !_canCreateLeapRange))
                 {
-                    StartCoroutine(Leap());
+                    if (!_isLeapPathBlocked)
+                    {
+                        StartCoroutine(Leap());
+                    }
                 }
+
+                //if (_isPlayerInAttackRange && !_isPlayerTooClose && !_isLeapPathBlocked || _isPlayerInAttackRange && _isPlayerTooClose && !_canCreateLeapRange && ) // Sorry.
+                //{
+                //    StartCoroutine(Leap());
+                //}
             }
+        }
+    }
+
+    private void CheckLeapPath()
+    {
+        
+
+        Physics.BoxCast(transform.forward.normalized * _maxLeapDistance / 2, )
+
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
+        Physics.Raycast(ray, out hit, _maxLeapDistance);
+
+        if (hit.collider != null && hit.collider.tag != "Player")
+        {
+            _isLeapPathBlocked = true;
+            print("Something else is in front of me!");
+            return;
+        }
+        else if (hit.collider != null && hit.collider.tag == "Player")
+        {
+            _isLeapPathBlocked = false;
+            print("Player is in front of me!");
+            return;
+        }
+        else
+        {
+            _isLeapPathBlocked = false;
         }
     }
 
@@ -111,17 +131,31 @@ public class LeaperAI : BaseEnemyAI
         _agent.SetDestination(_newDestination);
     }
 
+    private bool CanCreateLeapRange()
+    {
+        _directionToPlayer = (transform.position - _playerTransform.position).normalized * _minLeapDistance;
+        _newDestination = transform.position + _directionToPlayer;
+
+        if (_agent.CalculatePath(_newDestination, new NavMeshPath()))
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+
     private IEnumerator Leap()
     {
         _hasLeaped = true;
         _agent.SetDestination(transform.position);
 
-        yield return _waitBeforeLeapCoroutine;
-
         if (_isLeapPathBlocked)
-            print("Path is NOT clear");
-        else
-            print("Path IS clear");
+        {
+            _hasLeaped = false;
+            yield break;
+        }
+
+        yield return _waitBeforeLeapCoroutine;
 
         if ((_playerTransform.position - transform.position).magnitude <= _maxLeapDistance && !_isLeapPathBlocked)
         {
@@ -142,7 +176,7 @@ public class LeaperAI : BaseEnemyAI
                 _hasLeaped = false;
             }
         }
-        else // Leap distance is too long
+        else // Leap distance is too long or path is blocked
         {
             _hasLeaped = false;
         }
