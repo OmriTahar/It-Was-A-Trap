@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
+public enum State { chasing, attacking, fleeing, creatingRange}
 public class BaseEnemyAI : Unit
 {
     protected NavMeshAgent _agent;
     protected Rigidbody _rb;
     protected Animator _animator;
+    [SerializeField][ReadOnlyInspector] protected State _myCurrentState;
 
     [Header("General")]
     [SerializeField] protected Transform _playerTransform;
@@ -95,7 +97,10 @@ public class BaseEnemyAI : Unit
     protected virtual void ChasePlayer()
     {
         if (_playerTransform != null)
+        {
             _agent.SetDestination(_playerTransform.position);
+            _myCurrentState = State.chasing;
+        }
     }
 
     protected virtual void Stun()

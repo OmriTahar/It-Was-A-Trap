@@ -124,6 +124,7 @@ MonoBehaviour:
   _healthBar: {fileID: 0}
   IsStunned: 0
   _stunEffect: {fileID: 833865905655255892}
+  _myCurrentState: 0
   _playerTransform: {fileID: 0}
   _groundLayer:
     serializedVersion: 2
@@ -292,19 +293,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4522166552252190310, guid: d371a393a0033eb4bb05b8984b165081, type: 3}
   m_PrefabInstance: {fileID: 550312129083885789}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &7271502899387128760
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6468441648287161683}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &4098776542294953117
 PrefabInstance:
   m_ObjectHideFlags: 0

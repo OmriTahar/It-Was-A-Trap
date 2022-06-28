@@ -68,6 +68,11 @@ public class LeaperAI : BaseEnemyAI
         {
             transform.LookAt(_playerTransform);
 
+            if (_isPlayerInAttackRange && _isLeapPathBlocked)
+            {
+                ChasePlayer();
+            }
+
             if (!_hasLeaped)
             {
                 if (!_isPlayerInAttackRange || _isLeapPathBlocked)
@@ -80,28 +85,17 @@ public class LeaperAI : BaseEnemyAI
                     CreateLeapRange();
                 }
 
-                if ((_isPlayerInAttackRange && !_isPlayerTooClose) || (_isPlayerTooClose && !_canCreateLeapRange))
+                if (((_isPlayerInAttackRange && !_isPlayerTooClose) || (_isPlayerTooClose && !_canCreateLeapRange)) && !_isLeapPathBlocked)
                 {
-                    if (!_isLeapPathBlocked)
-                    {
-                        StartCoroutine(Leap());
-                    }
+                    print("Starting Leap!");
+                    StartCoroutine(Leap());
                 }
-
-                //if (_isPlayerInAttackRange && !_isPlayerTooClose && !_isLeapPathBlocked || _isPlayerInAttackRange && _isPlayerTooClose && !_canCreateLeapRange && ) // Sorry.
-                //{
-                //    StartCoroutine(Leap());
-                //}
             }
         }
     }
 
     private void CheckLeapPath()
     {
-        
-
-        Physics.BoxCast(transform.forward.normalized * _maxLeapDistance / 2, )
-
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
         Physics.Raycast(ray, out hit, _maxLeapDistance);
@@ -126,6 +120,8 @@ public class LeaperAI : BaseEnemyAI
 
     private void CreateLeapRange()
     {
+        _myCurrentState = State.creatingRange;
+
         _directionToPlayer = (transform.position - _playerTransform.position).normalized * _minLeapDistance;
         _newDestination = transform.position + _directionToPlayer;
         _agent.SetDestination(_newDestination);
@@ -146,6 +142,8 @@ public class LeaperAI : BaseEnemyAI
 
     private IEnumerator Leap()
     {
+        _myCurrentState = State.attacking;
+
         _hasLeaped = true;
         _agent.SetDestination(transform.position);
 
@@ -157,12 +155,19 @@ public class LeaperAI : BaseEnemyAI
 
         yield return _waitBeforeLeapCoroutine;
 
+        if (_isLeapPathBlocked)
+        {
+            _hasLeaped = false;
+            yield break;
+        }
+
         if ((_playerTransform.position - transform.position).magnitude <= _maxLeapDistance && !_isLeapPathBlocked)
         {
             _animator.SetTrigger("Leap");
 
             yield return _startLeapLogicCorutine;
-            if (!IsStunned && _playerTransform != null)
+
+            if (!IsStunned && _playerTransform != null && !_isLeapPathBlocked)
             {
                 AttackPrefab.SetActive(true);
                 _rb.AddForce((_playerTransform.position - transform.position) * _leapPower, ForceMode.Impulse);
@@ -170,11 +175,12 @@ public class LeaperAI : BaseEnemyAI
             }
 
             yield return _waitAfterLeapCoroutine;
-            if (!IsStunned && _playerTransform != null)
+            if (!IsStunned && _playerTransform != null && !_isLeapPathBlocked)
             {
                 AttackPrefab.SetActive(false);
-                _hasLeaped = false;
             }
+
+            _hasLeaped = false;
         }
         else // Leap distance is too long or path is blocked
         {

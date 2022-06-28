@@ -58,7 +58,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 1.6, z: 0.2}
+  m_Size: {x: 2.45, y: 1.6, z: 0.2}
   m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!208 &1100024832794698948
 NavMeshObstacle:
@@ -70,7 +70,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 1, y: 0.8, z: 0.05}
+  m_Extents: {x: 1.5, y: 0.8, z: 0.05}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -142,6 +142,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e92be39317803ea4cb2ba5d23eedec66, type: 3}
       propertyPath: m_Name
       value: Cover Cards Mesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 2697106982888340193, guid: e92be39317803ea4cb2ba5d23eedec66, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269649281549136249, guid: e92be39317803ea4cb2ba5d23eedec66, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e92be39317803ea4cb2ba5d23eedec66, type: 3}
