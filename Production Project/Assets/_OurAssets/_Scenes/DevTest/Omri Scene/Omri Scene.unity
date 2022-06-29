@@ -2208,6 +2208,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1961995115909999448, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: _trapPrefab
+      value: 
+      objectReference: {fileID: 3265388038745949489, guid: f26bde5316fda87468affb6a084135f5, type: 3}
+    - target: {fileID: 1961995115909999448, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: _poolStartSize
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1961995115909999449, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_Name
       value: Player
