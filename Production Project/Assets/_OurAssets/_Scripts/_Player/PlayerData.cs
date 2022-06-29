@@ -11,6 +11,8 @@ public class PlayerData : Unit
     public static PlayerData Instance;
 
     [Header("UI")]
+    [SerializeField] private GameObject _gameOverScreen;
+    [SerializeField] private GameObject _pressToContinue;
     [SerializeField] private TextMeshProUGUI _currentAmmoAmountText;
     [SerializeField] private TextMeshProUGUI _currentBunnyCountText;
     [SerializeField] private Image _currentWeaponImage;
@@ -18,9 +20,6 @@ public class PlayerData : Unit
     [SerializeField] private Sprite _trapImage;
     [SerializeField] private Sprite _trapOutlineSprite;
     [SerializeField] private Sprite _wallOutlineSprite;
-    //we will need the two below don't touch <3 (sharon)
-    //[SerializeField] private Sprite _trapOutlineOffSprite;
-    //[SerializeField] private Sprite _wallOutlineOffSprite;
 
     [Header("Weapon Settings")]
     [SerializeField][ReadOnlyInspector] internal WeaponType currentWeapon;
@@ -29,7 +28,7 @@ public class PlayerData : Unit
 
     private SpriteRenderer _outlineRenderer;
     internal int bunnyCount = 0;
-
+    private bool deathKeyPress = false;
     //for sharon to delete:
     private Color orange = new Color(1, 0.5f, 0);
 
@@ -47,7 +46,7 @@ public class PlayerData : Unit
 
         #endregion
     }
-
+    //ondisable?
     protected override void Start()
     {
         base.Start();
@@ -67,9 +66,22 @@ public class PlayerData : Unit
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
             if (canShoot && clearToShoot)
-            {
                 Attack();
-            }
+
+        if (deathKeyPress && Input.anyKeyDown)
+        {
+            SaveManager.Instance.LoadGame();
+            _gameOverScreen.SetActive(false);
+            _pressToContinue.SetActive(false);
+        }
+
+    }
+
+    protected override void OnDeath()
+    {
+        //deathKeyPress = true;
+        //_gameOverScreen.SetActive(true);
+        //_pressToContinue.SetActive(true);
     }
 
     public void AddScore()
@@ -141,34 +153,34 @@ public class PlayerData : Unit
             case WeaponType.Trap:
                 _outlineRenderer.sprite = _trapOutlineSprite;
                 _currentAmmoAmountText.text = TrapsPool.ReadyToFireTrapsQueue.Count.ToString();
-                IsClearUIChange(currentWeapon, clearToShoot, _outlineRenderer.color/*_outlineRenderer.sprite*/);
+                IsClearUIChange(currentWeapon, clearToShoot, _outlineRenderer.color);
                 break;
             case WeaponType.Wall:
                 _outlineRenderer.sprite = _wallOutlineSprite;
                 _currentAmmoAmountText.text = CoverPool.ReadyToFireCoversQueue.Count.ToString();
-                IsClearUIChange(currentWeapon, clearToShoot, _outlineRenderer.color/*_outlineRenderer.sprite*/);
+                IsClearUIChange(currentWeapon, clearToShoot, _outlineRenderer.color);
                 break;
             default:
                 _outlineRenderer.sprite = _trapOutlineSprite;
                 _currentAmmoAmountText.text = TrapsPool.ReadyToFireTrapsQueue.Count.ToString();
-                IsClearUIChange(currentWeapon, clearToShoot, _outlineRenderer.color/*_outlineRenderer.sprite*/);
+                IsClearUIChange(currentWeapon, clearToShoot, _outlineRenderer.color);
                 break;
         }
     }
 
-    private void IsClearUIChange(WeaponType currWeapon, bool clearnShot, Color myColor/*Sprite currentSprite*/)
+    private void IsClearUIChange(WeaponType currWeapon, bool clearnShot, Color myColor)
     {
-        if (clearnShot && myColor != Color.white/*currWeapon == WeaponType.Trap && currentSprite != _trapOutlineSprite*/)
-            _outlineRenderer.color = Color.white/*currentSprite = _trapOutlineSprite*/;
+        if (clearnShot && myColor != Color.white)
+            _outlineRenderer.color = Color.white;
 
-        else if (!clearnShot && myColor != orange/*currWeapon == WeaponType.Trap && currentSprite != _trapOutlineOffSprite*/)
-            _outlineRenderer.color = orange/*currentSprite = _trapOutlineOffSprite*/;
+        else if (!clearnShot && myColor != orange)
+            _outlineRenderer.color = orange;
 
-        else if (clearnShot && myColor != Color.white/*currWeapon == WeaponType.Wall && currentSprite != _wallOutlineSprite*/)
-            _outlineRenderer.color = Color.white/*currentSprite = _wallOutlineSprite*/;
+        else if (clearnShot && myColor != Color.white)
+            _outlineRenderer.color = Color.white;
 
-        else if (!clearnShot && myColor != orange/*currWeapon == WeaponType.Wall && currentSprite != _wallOutlineOffSprite*/)
-            _outlineRenderer.color = orange/*currentSprite = _wallOutlineOffSprite*/;
+        else if (!clearnShot && myColor != orange)
+            _outlineRenderer.color = orange;
     }
 
     private void ResetAttack()

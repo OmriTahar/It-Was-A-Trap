@@ -32,14 +32,16 @@ public class Unit : MonoBehaviour
         CheckDeath();
     }
 
-    void CheckDeath()
+    protected virtual void OnDeath()
+    {
+        PlayerData.Instance.AddScore();
+    }
+
+    private void CheckDeath()
     {
         if (_unitHP <= 0)
         {
-            if (this.CompareTag("Enemy"))
-                if (PlayerData.Instance != null)
-                    PlayerData.Instance.AddScore();
-
+            OnDeath();
             Destroy(gameObject);
         }
     }
