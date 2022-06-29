@@ -92,7 +92,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2838946777403148639}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2
+  m_Radius: 1.5
   m_Speed: 7
   m_Acceleration: 8
   avoidancePriority: 40
@@ -145,9 +145,9 @@ MonoBehaviour:
   _playerIsTooCloseRange: 3
   _maxLeapDistance: 12
   _minLeapDistance: 3
-  _playerShotsLayer:
+  _leapPathObstacleLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 13832
   _isPlayerInAttackRange: 0
   _isPlayerTooClose: 0
   _isLeapPathBlocked: 0

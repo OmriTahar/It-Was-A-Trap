@@ -109,6 +109,21 @@ public class BaseEnemyAI : Unit
         _agent.SetDestination(transform.position);
     }
 
+    protected virtual bool HasReachedDestination()
+    {
+        if (!_agent.pathPending)
+        {
+            if (_agent.remainingDistance <= _agent.stoppingDistance)
+            {
+                if (!_agent.hasPath || _agent.velocity.sqrMagnitude == 0f)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     #region UnUsedVariables
 
     // ---------- This was before manual enemy activation ----------

@@ -13,7 +13,8 @@ public class LeaperAI : BaseEnemyAI
     [Tooltip("Cancles the leap if the player flee beyond this range.")]
     [SerializeField] float _maxLeapDistance;
     [SerializeField] float _minLeapDistance = 3f;
-    [SerializeField] LayerMask _playerShotsLayer;
+    [Tooltip("Player layer must be included even though he is not a leap path obstacle!")]
+    [SerializeField] LayerMask _leapPathObstacleLayers;
 
     private Vector3 _directionToPlayer;
     private Vector3 _newDestination;
@@ -98,18 +99,18 @@ public class LeaperAI : BaseEnemyAI
     {
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
-        Physics.Raycast(ray, out hit, _maxLeapDistance);
+        Physics.Raycast(ray, out hit, _maxLeapDistance, _leapPathObstacleLayers);
 
         if (hit.collider != null && hit.collider.tag != "Player")
         {
             _isLeapPathBlocked = true;
-            print("Something else is in front of me!");
+            print(hit.collider.name + " is in front of me!");
             return;
         }
         else if (hit.collider != null && hit.collider.tag == "Player")
         {
             _isLeapPathBlocked = false;
-            print("Player is in front of me!");
+            print("PLAYER is in front of me!");
             return;
         }
         else

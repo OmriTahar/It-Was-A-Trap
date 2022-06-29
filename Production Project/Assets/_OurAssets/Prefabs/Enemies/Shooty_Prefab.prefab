@@ -316,7 +316,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 8020574770979397839}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2.5
+  m_Radius: 2
   m_Speed: 7
   m_Acceleration: 8
   avoidancePriority: 50
@@ -362,6 +362,7 @@ MonoBehaviour:
   _healthBar: {fileID: 0}
   IsStunned: 0
   _stunEffect: {fileID: 2411109358881034486}
+  _myCurrentState: 0
   _playerTransform: {fileID: 0}
   _groundLayer:
     serializedVersion: 2
@@ -378,14 +379,21 @@ MonoBehaviour:
   _MaxRandomAvoidanceNumber: 50
   _rangedShootPoint: {fileID: 4389780435512023250}
   _rangedShootForce: 25
-  _startFleeFromPlayer_Range: 7
+  _throwPathObstacleLayers:
+    serializedVersion: 2
+    m_Bits: 13896
+  _startFleeFromPlayer_Range: 4.5
   _fleeingDuration: 2
   _fleeDistance: 10
   _isPlayerInAttackRange: 0
+  _isThrowPathBlocked: 0
   _isAlreadyAttacked: 0
   _isPlayerTooClose: 0
   _canFlee: 0
   _isFleeing: 0
+  _enteredAttack: 0
+  _indicator: {fileID: 0}
+  _isCreatingShotPath: 0
 --- !u!95 &254986942225880776
 Animator:
   serializedVersion: 3

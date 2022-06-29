@@ -10,9 +10,6 @@ public class PlayerData : Unit
 {
     public static PlayerData Instance;
 
-    [Header("NavMesh")]
-    [SerializeField] NavMeshSurface _navMeshSurface;
-
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI _currentAmmoAmountText;
     [SerializeField] private TextMeshProUGUI _currentBunnyCountText;
@@ -72,12 +69,6 @@ public class PlayerData : Unit
             if (canShoot && clearToShoot)
             {
                 Attack();
-
-                if (_navMeshSurface)
-                {
-                    //_navMeshSurface.BuildNavMesh();
-                    print("Nav Mesh Update!");
-                }
             }
     }
 
