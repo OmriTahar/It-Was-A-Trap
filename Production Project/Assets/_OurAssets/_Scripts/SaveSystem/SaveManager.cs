@@ -9,9 +9,9 @@ public class SaveManager : MonoBehaviour
 
     [SerializeField] GameObject PlayerGO;
     public SaveFile CurrentSave;
-    public bool AutoLoad = false;
-    PlayerData playerData;
-    string Path;
+
+    private PlayerData _playerData;
+    private string _save1, _save2, _save3;
 
     private void Awake()
     {
@@ -22,47 +22,49 @@ public class SaveManager : MonoBehaviour
         }
 
         Instance = this;
+        //DontDestroyOnLoad(gameObject);
 
-        Path = Application.dataPath + "/Resources/Save.txt";
-        playerData = PlayerGO.GetComponent<PlayerData>();
+        _save1 = Application.dataPath + "/Resources/Save.txt";
+        //_save2 = Application.dataPath + "/Resources/Save2.txt";
+        //_save3 = Application.dataPath + "/Resources/Save3.txt";
 
-        if (File.Exists(Path) && AutoLoad)
-        {
-            LoadGame();
-        }
+        _playerData = PlayerGO.GetComponent<PlayerData>();
     }
 
     [ContextMenu("Save")]
     public void SaveGame(Transform newSpawnPoint)
     {
-        CurrentSave = new SaveFile(newSpawnPoint, playerData);
+        CurrentSave = new SaveFile(newSpawnPoint, _playerData);
 
         string savedString = JsonUtility.ToJson(CurrentSave);
 
-        if (!File.Exists(Path))
+        if (!File.Exists(_save1))
         {
-            StreamWriter sW = File.CreateText(Path);
+            StreamWriter sW = File.CreateText(_save1);
             sW.Write(savedString);
             sW.Close();
         }
         else
         {
-            File.WriteAllText(Path, savedString);
+            File.WriteAllText(_save1, savedString);
         }
     }
 
     [ContextMenu("Load")]
     public void LoadGame()
     {
-        string savedData = File.ReadAllText(Path);
+        string savedData = null;
+
+        if (File.Exists(_save1))
+            savedData = File.ReadAllText(_save1);
 
         JsonUtility.FromJsonOverwrite(savedData, CurrentSave);
 
         PlayerGO.transform.position = CurrentSave.position;
         PlayerGO.transform.rotation = CurrentSave.rotation;
-        playerData._unitHP = CurrentSave.health;
-        playerData.bunnyCount = CurrentSave.bunnyCount;
-        playerData.currentWeapon = CurrentSave.lastUsedWeapon;
+        _playerData._unitHP = CurrentSave.health;
+        _playerData.bunnyCount = CurrentSave.bunnyCount;
+        _playerData.currentWeapon = CurrentSave.lastUsedWeapon;
     }
 
 }
