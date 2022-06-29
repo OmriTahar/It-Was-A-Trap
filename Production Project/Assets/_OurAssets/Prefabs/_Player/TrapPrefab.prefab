@@ -49,18 +49,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 1
-  _causeStun: 0
+  _causeStun: 1
   _stunDuration: 2
+  _animationDuration: 0.5
   _placementDelay: 1
   _decayTime: 5
   _destroyAfterActivationTime: 2.5
   _hitParticle: {fileID: 3929031335700610076}
-  _trapAnimator: {fileID: 5356186398045540334}
-  _actualTrapGameObject: {fileID: 611589502007564407}
-  _isActivated: 0
-  _waitBeforeKillBunny: 1
-  _waitBeforeDestroyTrap: 3
-  _animationDuration: 0.5
+  _graphicsGO: {fileID: 611589502007564407}
+  _animator: {fileID: 5356186398045540334}
 --- !u!65 &3115788867153083515
 BoxCollider:
   m_ObjectHideFlags: 0

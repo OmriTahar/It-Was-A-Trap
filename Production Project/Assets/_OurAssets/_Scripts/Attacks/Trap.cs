@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class Trap : Attack
 {
+    #region Variables
     [Header("Settings")]
+    [SerializeField] private float _animationDuration = 0.5f;
     [SerializeField] private float _placementDelay = 1f;
     [SerializeField] private float _decayTime = 5f;
     [SerializeField] private float _destroyAfterActivationTime = 2.5f;
@@ -12,18 +14,13 @@ public class Trap : Attack
     [SerializeField] private GameObject _hitParticle;
 
     [Header("Trap Refrences")]
-    [SerializeField] Animator _trapAnimator;
-    [SerializeField] GameObject _actualTrapGameObject;
-
-    [Header("Trap Settings")]
-    public bool _isActivated = false;
-    [SerializeField] float _waitBeforeKillBunny = 1f;
-    [SerializeField] float _waitBeforeDestroyTrap = 3f;
-    [SerializeField] float _animationDuration;
+    [SerializeField] private GameObject _graphicsGO;
+    [SerializeField] private Animator _animator;
 
     private BaseEnemyAI _trappededEnemy;
     private Collider _myCollider;
-    private bool _wasActivated = false;
+    private bool _activated = false;
+    #endregion
 
     private void Awake()
     {
@@ -32,36 +29,41 @@ public class Trap : Attack
 
     private void OnEnable()
     {
+        //Adds to active traps queue
         TrapsPool.ActiveTrapsQueue.Enqueue(gameObject);
+
+        //Basically Fire function
         StartCoroutine(PlaceTrap());
     }
 
     private void OnDisable()
     {
+        //if trapped enemy not null, release it
         if (_trappededEnemy)
-            UnTrapEnemy(_trappededEnemy);
+            UnTrapEnemy();
 
+        //Throw back to ammo queue
         TrapsPool.ReadyToFireTrapsQueue.Enqueue(gameObject);
 
+        //Deactivating Traps' related components
         _hitParticle.SetActive(false);
+        _graphicsGO.SetActive(false);
         _myCollider.enabled = false;
-        _wasActivated = false;
-
-        _actualTrapGameObject.SetActive(false);
+        _activated = false;
     }
 
     public override void OnTriggerEnter(Collider other)
     {
-        //checking if object isn't null as "TriggerEnter" can happen more then once, comparing to enemy tag and testing if it wasn't activated
-
-        if (other != null && other.tag == "Enemy" && !_wasActivated)
+        //checking if object isn't null as "TriggerEnter" can happen more then once, comparing to enemy tag and testing if trap not activated
+        if (other != null && other.tag == "Enemy" && !_activated)
         {
-            _wasActivated = true;
-            _trapAnimator.SetTrigger("CloseTrap");
+            _activated = true;
+
+            _animator.SetTrigger("CloseTrap");
 
             var enemyAI = other.GetComponent<BaseEnemyAI>();
+
             StartCoroutine(StunEnemy(enemyAI));
-            _hitParticle.SetActive(true);
 
             StartCoroutine(DestroyAfterActivation());
         }
@@ -69,13 +71,16 @@ public class Trap : Attack
 
     public IEnumerator PlaceTrap()
     {
+        //Can be deleted but its here as a safe measure
         _myCollider.enabled = false;
 
         yield return new WaitForSeconds(_placementDelay);
 
-        _actualTrapGameObject.SetActive(true);
+        //Turning trap graphics and collider
+        _graphicsGO.SetActive(true);
         _myCollider.enabled = true;
 
+        //Counting till death
         StartCoroutine(Decay());
     }
 
@@ -83,6 +88,7 @@ public class Trap : Attack
     {
         yield return new WaitForSeconds(_decayTime);
 
+        //if trap already turned off before reaching this code
         if (gameObject.activeSelf)
             gameObject.SetActive(false);
     }
@@ -91,45 +97,66 @@ public class Trap : Attack
     {
         yield return new WaitForSeconds(_destroyAfterActivationTime);
 
+        //if trap already turned off before reaching this code
         if (gameObject.activeSelf)
             gameObject.SetActive(false);
     }
 
     private IEnumerator StunEnemy(BaseEnemyAI enemyAI)
     {
+        //Locking and shutting down AI
         TrapEnemy(enemyAI);
+
+        //Waiting for Animation to finish
         yield return new WaitForSeconds(_animationDuration);
 
-        _trappededEnemy.RecieveDamage(this);
+        //Damage Trapped AI, if not null
+        if (_trappededEnemy)
+            _trappededEnemy.RecieveDamage(this);
 
-        yield return new WaitForSeconds(_stunDuration);
+        //Actual stun, _stunDuration = stun you want - animation
+        yield return new WaitForSeconds(_stunDuration - _animationDuration);
 
-        UnTrapEnemy(enemyAI);
+        //if enemy not dead, release from stun
+        UnTrapEnemy();
     }
 
     private void TrapEnemy(BaseEnemyAI enemyAI)
     {
-        if (enemyAI)
+        //if not null (died before reaching this code), and if trap cause stun
+        if (enemyAI && _causeStun)
         {
+            //Cache enemy instance
             _trappededEnemy = enemyAI;
-            _trappededEnemy.transform.position = transform.position;
+
+            //Moving enemy to middle of trap, with his Y
+            _trappededEnemy.transform.position = new Vector3(transform.position.x, _trappededEnemy.transform.position.y, transform.position.z);
+
+            //Activating Particles
+            _hitParticle.SetActive(true);
+
+            //Deactivating enemy
             _trappededEnemy.IsEnemyActivated = false;
             _trappededEnemy.IsStunned = true;
+
+            print($"Enemy: {_trappededEnemy.name} was trapped");
         }
     }
 
-    private void UnTrapEnemy(BaseEnemyAI enemyAI)
+    private void UnTrapEnemy()
     {
+        //if cached enemy not null
         if (_trappededEnemy)
         {
-
+            //Reactivating enemy
             _trappededEnemy.IsEnemyActivated = true;
             _trappededEnemy.IsStunned = false;
+
+            //Releasing enemy from cache
             _trappededEnemy = null;
-            print("Im freeeeeee!");
+
+            print($"Enemy: {_trappededEnemy.name} is now free");
         }
     }
-
-
 
 }

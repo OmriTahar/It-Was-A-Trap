@@ -360,10 +360,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1711025571}
     m_Modifications:
-    - target: {fileID: 1099480277158935384, guid: bc691367a78d2be43a97ffd8bdc41529, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 6.17
-      objectReference: {fileID: 0}
     - target: {fileID: 5763633377873565472, guid: bc691367a78d2be43a97ffd8bdc41529, type: 3}
       propertyPath: m_Name
       value: Light Pole Prefab
