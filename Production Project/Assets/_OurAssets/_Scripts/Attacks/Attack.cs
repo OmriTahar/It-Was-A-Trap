@@ -52,7 +52,7 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
             attackedUnit.IsStunned = true;
 
             _playerController = other.gameObject.GetComponent<PlayerController>();
-            _playerController.PlayerCanMove = false;
+            _playerController.IsAllowedToMove = false;
         }
 
 
@@ -60,7 +60,7 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
         print("Finished Stun!");
 
         attackedUnit.IsStunned = false;
-        _playerController.PlayerCanMove = true;
+        _playerController.IsAllowedToMove = true;
         _hasAlreadyStunned = false;
     }
 }

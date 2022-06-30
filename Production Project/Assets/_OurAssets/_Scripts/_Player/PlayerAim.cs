@@ -13,9 +13,9 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] LayerMask groundMask;
 
     [Header("Aim Settings")]
+    [SerializeField] bool _canAim = false;
     [SerializeField] float maxDistance = 10f;
     [SerializeField] float minDistance = 2.2f;
-    [SerializeField] bool _canAim = false;
 
     [Header("Interaction")]
     [SerializeField] LayerMask _interactableLayers;

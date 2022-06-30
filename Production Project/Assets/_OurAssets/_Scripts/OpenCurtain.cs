@@ -7,8 +7,10 @@ public class OpenCurtain : MonoBehaviour
 {
 
     [Header("Refrences")]
-    [SerializeField] ActivateEnemies _enemyActivationInStage;
-    [SerializeField][ReadOnlyInspector] int _bunniesInStage;
+    [SerializeField] PlayerController _playerController;
+    [Tooltip("Add every activiton trigger before the curtain to be precise. Example: Curtain_02 needs to recieve Activion Trigger 1+2")]
+    [SerializeField] List<ActivateEnemies> _enemyActivationTriggersList;
+    [SerializeField][ReadOnlyInspector] int _bunnyCountToOpen;
 
     [Header("Cameras")]
     [SerializeField] CinemachineBrain _cameraBrain;
@@ -20,9 +22,9 @@ public class OpenCurtain : MonoBehaviour
     [SerializeField] float _secondSwitchTransitionSpeed;
 
     [Header("Waiting Durtaions")]
-    [SerializeField] int _firstSwitchWaitDuration;
-    [SerializeField] int _focusOnCurtainWaitDuraion;
-    [SerializeField] int _switchBackWaitDurtaion;
+    [SerializeField] float _firstSwitchWaitDuration;
+    [SerializeField] float _focusOnCurtainWaitDuraion;
+    [SerializeField] float _switchBackWaitDurtaion;
 
     private Animator _animator;
     private bool _open = false;
@@ -34,12 +36,15 @@ public class OpenCurtain : MonoBehaviour
 
     private void Start()
     {
-        _bunniesInStage = _enemyActivationInStage.EnemiesToActivate.Count;
+        foreach (var enemyActivisionTrigger in _enemyActivationTriggersList)
+        {
+            _bunnyCountToOpen += enemyActivisionTrigger.EnemiesToActivate.Count;
+        }
     }
 
     void Update()
     {
-        if (PlayerData.Instance.bunnyCount >= _bunniesInStage && !_open)
+        if (!_open && PlayerData.Instance.bunnyCount >= _bunnyCountToOpen)
         {
             _open = true;
             StartCoroutine(Open());
@@ -48,6 +53,7 @@ public class OpenCurtain : MonoBehaviour
 
     IEnumerator Open()
     {
+        _playerController.IsAllowedToMove = false;
         FirstSwitch();
         yield return new WaitForSeconds(_firstSwitchWaitDuration);
 
@@ -58,7 +64,7 @@ public class OpenCurtain : MonoBehaviour
         SwitchBack();
 
         yield return new WaitForSeconds(_switchBackWaitDurtaion);
-        print("Finished Sequence.");
+        _playerController.IsAllowedToMove = true;
         enabled = false;
     }
 
@@ -69,6 +75,7 @@ public class OpenCurtain : MonoBehaviour
 
         _curtainCamera.SetActive(true);
         _playerCamera.SetActive(false);
+
     }
 
     void SwitchBack()

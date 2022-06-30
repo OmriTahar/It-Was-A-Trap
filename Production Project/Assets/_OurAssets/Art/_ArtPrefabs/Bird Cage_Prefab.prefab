@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4124886027914381322}
+  - component: {fileID: 2891625170051232672}
   m_Layer: 0
   m_Name: Bird Cage_Prefab
   m_TagString: Untagged
@@ -25,12 +26,25 @@ Transform:
   m_GameObject: {fileID: 7300556758814619366}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.863811, y: 0.25771332, z: 14.215967}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1696286383488250260}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2891625170051232672
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7300556758814619366}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.466877, y: 2.4849203, z: 1.4803457}
+  m_Center: {x: 0.058214188, y: 1.1395313, z: 0.008862972}
 --- !u!1001 &1153152432173962879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -105,21 +119,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 894429c529b3bc144bc7ef2559f0643a, type: 3}
   m_PrefabInstance: {fileID: 1153152432173962879}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3515767448645572634 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -6860581089845588379, guid: 894429c529b3bc144bc7ef2559f0643a, type: 3}
-  m_PrefabInstance: {fileID: 1153152432173962879}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &8048169423602145334
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3515767448645572634}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.18939258, y: 0.30340147, z: 0.18986645}
-  m_Center: {x: 0.0011015981, y: -0.000024460256, z: 0.0043546297}

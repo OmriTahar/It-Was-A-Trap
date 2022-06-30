@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
 
     #region Movement
     [Header("Movement")]
-    public bool PlayerCanMove = true;
+    public bool IsAllowedToMove = true;
     public float WalkSpeed = 5f;
     #endregion
 
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovementAndDash()
     {
-        if (PlayerCanMove)
+        if (IsAllowedToMove)
         {
             if (!PlayerData.Instance.IsStunned && PlayerData.Instance._stunEffect.isPlaying)
             {
