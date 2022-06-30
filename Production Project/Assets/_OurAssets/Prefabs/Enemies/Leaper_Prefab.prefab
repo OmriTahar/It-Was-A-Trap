@@ -431,10 +431,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7872855388333474398, guid: 2b4d633b1aa082e43bcadae4712ead87, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2b4d633b1aa082e43bcadae4712ead87, type: 3}
       propertyPath: m_Name
       value: Leaper_TPose
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2b4d633b1aa082e43bcadae4712ead87, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416536936033435989, guid: 2b4d633b1aa082e43bcadae4712ead87, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 8145136920215169916, guid: 2b4d633b1aa082e43bcadae4712ead87, type: 3}
+    - target: {fileID: 8416536936033435989, guid: 2b4d633b1aa082e43bcadae4712ead87, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 92f75ea7f43c1af4fabdad0952e51f4d, type: 2}
+    - target: {fileID: 8416536936033435989, guid: 2b4d633b1aa082e43bcadae4712ead87, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 92f75ea7f43c1af4fabdad0952e51f4d, type: 2}
     m_RemovedComponents:
     - {fileID: 5866666021909216657, guid: 2b4d633b1aa082e43bcadae4712ead87, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2b4d633b1aa082e43bcadae4712ead87, type: 3}
