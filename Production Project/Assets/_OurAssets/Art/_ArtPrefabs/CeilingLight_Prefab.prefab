@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1760876407641977161
 Transform:
@@ -61,7 +61,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3458092125254073921
 Transform:
@@ -146,6 +146,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1760876407641977161}
     m_Modifications:
+    - target: {fileID: 414824343096134862, guid: 3dc89f7846f46654e8dc1a25b8eb3294, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1662349413281436921, guid: 3dc89f7846f46654e8dc1a25b8eb3294, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -193,6 +197,34 @@ PrefabInstance:
     - target: {fileID: 2042955651399306819, guid: 3dc89f7846f46654e8dc1a25b8eb3294, type: 3}
       propertyPath: m_Name
       value: Light_Ceeling_Trio
+      objectReference: {fileID: 0}
+    - target: {fileID: 2042955651399306819, guid: 3dc89f7846f46654e8dc1a25b8eb3294, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661409762873450353, guid: 3dc89f7846f46654e8dc1a25b8eb3294, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403950934152247682, guid: 3dc89f7846f46654e8dc1a25b8eb3294, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262890730500394589, guid: 3dc89f7846f46654e8dc1a25b8eb3294, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749016473293704383, guid: 3dc89f7846f46654e8dc1a25b8eb3294, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5867060387155673065, guid: 3dc89f7846f46654e8dc1a25b8eb3294, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715766978848948451, guid: 3dc89f7846f46654e8dc1a25b8eb3294, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dc89f7846f46654e8dc1a25b8eb3294, type: 3}

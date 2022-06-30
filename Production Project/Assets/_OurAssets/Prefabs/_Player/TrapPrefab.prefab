@@ -31,8 +31,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3327330839442555410}
   - {fileID: 231686642026709709}
+  - {fileID: 3327330839442555410}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -154,7 +154,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.8
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -261,7 +261,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0, b: 0, a: 1}
+      maxColor: {r: 0.637104, g: 0.9716981, b: 0.94619125, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -704,7 +704,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
+    m_Position: {x: 0, y: 0.2, z: 0}
     m_Rotation: {x: -90, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
@@ -1523,7 +1523,7 @@ ParticleSystem:
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -1739,7 +1739,7 @@ ParticleSystem:
     orbitalY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4852,7 +4852,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 6f3ee94604d408c4f92f7bf2daf6d14d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6f3ee94604d408c4f92f7bf2daf6d14d, type: 3}
       propertyPath: m_LocalScale.x
@@ -5038,7 +5038,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 704743354459119012, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 704743354459119012, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
       propertyPath: m_LocalScale.x
@@ -5058,7 +5058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 704743354459119012, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.13
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 704743354459119012, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5109,6 +5109,34 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2801637512829269820, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
+      propertyPath: ShapeModule.arc.mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801637512829269820, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801637512829269820, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801637512829269820, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801637512829269820, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.94509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801637512829269820, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.972549
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801637512829269820, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.63529414
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801637512829269820, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -5127,6 +5155,10 @@ PrefabInstance:
     - target: {fileID: 2801637512829269820, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].value
       value: 0.41892242
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801637512829269820, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2801637512829269820, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].inSlope

@@ -84,12 +84,12 @@ public class BaseEnemyAI : Unit
                 _agent.SetDestination(transform.position);
         else
         {
-            if (IsStunned && (_stunEffect && !_stunEffect.isPlaying))
+            if (IsStunned && (_stunEffect != null && !_stunEffect.isPlaying))
             {
                 _stunEffect.Play();
                 Stun();
             }
-            else if (!IsStunned && _stunEffect.isPlaying)
+            else if (_stunEffect != null && !IsStunned && _stunEffect.isPlaying)
                 _stunEffect.Stop();
         }
     }
