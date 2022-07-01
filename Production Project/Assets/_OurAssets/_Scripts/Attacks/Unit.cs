@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,9 @@ public class Unit : MonoBehaviour
     [Header("Stun Settings")]
     public bool IsStunned;
     public ParticleSystem _stunEffect;
+
+    public static event Action OnBunnyKilled;
+
 
     protected virtual void Start()
     {
@@ -41,7 +45,12 @@ public class Unit : MonoBehaviour
     {
         if (_unitHP <= 0)
         {
-            OnDeath();
+            if (!CompareTag("Player"))
+            {
+                OnDeath();
+                OnBunnyKilled?.Invoke(); // Delegate attemp
+            }
+
             Destroy(gameObject);
         }
     }

@@ -26,12 +26,24 @@ public class OpenCurtain : MonoBehaviour
     [SerializeField] float _focusOnCurtainWaitDuraion;
     [SerializeField] float _switchBackWaitDurtaion;
 
+    [Header("Status")]
+    [SerializeField] bool _isOpen = false;
+
     private Animator _animator;
-    private bool _open = false;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+    }
+
+    private void OnEnable()
+    {
+        Unit.OnBunnyKilled += BunnyCountCheck;
+    }
+
+    private void OnDisable()
+    {
+        Unit.OnBunnyKilled -= BunnyCountCheck;
     }
 
     private void Start()
@@ -42,11 +54,11 @@ public class OpenCurtain : MonoBehaviour
         }
     }
 
-    void Update()
+    private void BunnyCountCheck()
     {
-        if (!_open && PlayerData.Instance.bunnyCount >= _bunnyCountToOpen)
+        if (!_isOpen && PlayerData.Instance.bunnyCount >= _bunnyCountToOpen)
         {
-            _open = true;
+            _isOpen = true;
             StartCoroutine(Open());
         }
     }

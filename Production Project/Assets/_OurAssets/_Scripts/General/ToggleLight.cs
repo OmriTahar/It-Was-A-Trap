@@ -12,7 +12,6 @@ public class ToggleLight : MonoBehaviour
     [Header("Settings")]
     [Tooltip("If true: Light is allways ON")]
     [SerializeField] bool _isAlwaysEnabled = true;
-    [SerializeField] float _enabledRange = 10f;
 
     private bool _isPlayerInRange;
 
@@ -40,21 +39,4 @@ public class ToggleLight : MonoBehaviour
         }
     }
 
-    //private void FixedUpdate()
-    //{
-    //    if (_isAlwaysEnabled) return;
-
-    //    _isPlayerInRange = Physics.CheckSphere(transform.position, _enabledRange, _playerLayer);
-
-    //    if (_isPlayerInRange)
-    //        _myLight.enabled = true;
-    //    else
-    //        _myLight.enabled = false;
-    //}
-
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.blue;
-    //    Gizmos.DrawWireSphere(transform.position, _enabledRange);
-    //}
 }
