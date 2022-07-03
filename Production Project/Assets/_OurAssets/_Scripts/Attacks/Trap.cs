@@ -79,6 +79,7 @@ public class Trap : Attack
         //Turning trap graphics and collider
         _graphicsGO.SetActive(true);
         _myCollider.enabled = true;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Magic/Magic Trap Box");
 
         //Counting till death
         StartCoroutine(Decay());
@@ -113,6 +114,7 @@ public class Trap : Attack
         //Damage Trapped AI, if not null
         if (_trappededEnemy)
             _trappededEnemy.RecieveDamage(this);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Magic/Magic Box Caught Enemy");
 
         //Actual stun, _stunDuration = stun you want - animation
         yield return new WaitForSeconds(_stunDuration - _animationDuration);

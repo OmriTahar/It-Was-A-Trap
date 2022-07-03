@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Image DashBarFill;
     [SerializeField] private Image DashBarBG;
     [SerializeField] private Color _dashBarColorFull = new Color(1, 1, 0, 1);
-    [SerializeField] private Color _dashBarColorCharge = new Color(1,1,0,0.3f);
+    [SerializeField] private Color _dashBarColorCharge = new Color(1, 1, 0, 0.3f);
     #endregion
 
     #endregion
@@ -120,9 +120,11 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(DashKey) && _canDash) // Dash Logic
             {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Magician Dash");
                 if (_rb.velocity.magnitude > 0) // Dash while moving
                 {
                     StartCoroutine(Dash(playerVelocity));
+
                 }
                 else // If dashing without moving -> dash to a random location
                 {
@@ -135,13 +137,10 @@ public class PlayerController : MonoBehaviour
                 playerVelocity = transform.TransformDirection(playerVelocity) * WalkSpeed;
                 Vector3 velocity = _rb.velocity;
                 Vector3 velocityChange = (playerVelocity - velocity);
-                _rb.AddForce(velocityChange, ForceMode.VelocityChange);
-
-                // ----- FMOD FUN -----
-                //FMODUnity.RuntimeManager.PlayOneShot("event:/Bunny/BunnyRunning", GetComponent<Transform>().position);  
+                _rb.AddForce(velocityChange, ForceMode.VelocityChange);                
             }
         }
-        else 
+        else
         {
             // Stun effect. Check conditions only if PlayerCanMove = false
             if (PlayerData.Instance.IsStunned && PlayerData.Instance._stunEffect != null && !PlayerData.Instance._stunEffect.isPlaying)

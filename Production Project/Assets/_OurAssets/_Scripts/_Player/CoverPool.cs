@@ -27,8 +27,9 @@ public class CoverPool : MonoBehaviour
         {
             GameObject cover = ReadyToFireCoversQueue.Dequeue();
             cover.SetActive(true);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Card");
             return cover;
-        }
+    }
         else if (ReadyToFireCoversQueue.Count <= 0 && ActiveCoversQueue.Count > 0)
         {
             ForcePullCover();
@@ -53,6 +54,7 @@ public class CoverPool : MonoBehaviour
             if ((cover = ActiveCoversQueue.Dequeue()).activeSelf)
             {
                 cover.SetActive(false);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Card");
                 break;
             }
         }

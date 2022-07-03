@@ -8,7 +8,7 @@ public class Wall : MonoBehaviour
     private void OnEnable()
     {
         CoverPool.ActiveCoversQueue.Enqueue(gameObject);
-        _currentHP = _maxHP;
+        _currentHP = _maxHP;  
     }
 
     private void OnDisable()
