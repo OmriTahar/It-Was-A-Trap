@@ -70,18 +70,18 @@ public class PlayerData : Unit
 
         if (deathKeyPress && Input.anyKeyDown)
         {
-            SaveManager.Instance.LoadGame();
             _gameOverScreen.SetActive(false);
             _pressToContinue.SetActive(false);
+            SaveManager.Instance.LoadGame();
         }
 
     }
 
     protected override void OnDeath()
     {
-        //deathKeyPress = true;
-        //_gameOverScreen.SetActive(true);
-        //_pressToContinue.SetActive(true);
+        deathKeyPress = true;
+        _gameOverScreen.SetActive(true);
+        _pressToContinue.SetActive(true);
     }
 
     public void AddScore()

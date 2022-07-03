@@ -17,8 +17,8 @@ GameObject:
   - component: {fileID: 1961995115909999450}
   - component: {fileID: 1961995115909999448}
   - component: {fileID: 3572672173916460712}
-  - component: {fileID: 4459864851264094597}
   - component: {fileID: 9146911878552684585}
+  - component: {fileID: 4459864851264094597}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -209,6 +209,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wallPrefab: {fileID: 6670106066988666373, guid: 9fed1bcd53e829a4a918b98d4774a581, type: 3}
   _poolStartSize: 3
+--- !u!114 &9146911878552684585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961995115909999449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+  ListenerNumber: -1
 --- !u!114 &4459864851264094597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,11 +238,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -1117951573
-      Data2: 1287822670
-      Data3: -1058472563
-      Data4: -878918436
-    Path: event:/GamePlay/New Event
+      Data1: 173456947
+      Data2: 1332272455
+      Data3: 1640723091
+      Data4: -1062520894
+    Path: event:/Player/Card
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -239,20 +253,6 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!114 &9146911878552684585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1961995115909999449}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
-  ListenerNumber: -1
 --- !u!1 &2800947984194788250
 GameObject:
   m_ObjectHideFlags: 0

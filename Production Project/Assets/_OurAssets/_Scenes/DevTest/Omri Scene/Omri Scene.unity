@@ -1946,6 +1946,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 425478615813745082, guid: c75338d96ae022944893afc1b294b91f, type: 3}
   m_PrefabInstance: {fileID: 882029646635646390}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &882029646635646396 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 498301354, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+  m_PrefabInstance: {fileID: 882029646635646390}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &882029646635646397 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 425478615562492468, guid: c75338d96ae022944893afc1b294b91f, type: 3}
@@ -1990,6 +1995,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &882029646635646401 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3330547206072591891, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+  m_PrefabInstance: {fileID: 882029646635646390}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1593222436674027658 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5679026912017937343, guid: d9824015da9815c4da9ca1569bc1786c, type: 3}
@@ -2271,6 +2281,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 882029646635646399}
     - target: {fileID: 1961995115909999450, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: _gameOverScreen
+      value: 
+      objectReference: {fileID: 882029646635646401}
+    - target: {fileID: 1961995115909999450, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: _pressToContinue
+      value: 
+      objectReference: {fileID: 882029646635646396}
+    - target: {fileID: 1961995115909999450, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: _currentWeaponImage
       value: 
       objectReference: {fileID: 882029646635646398}
@@ -2290,26 +2308,6 @@ PrefabInstance:
       propertyPath: _canInteractUIText
       value: 
       objectReference: {fileID: 882029646635646395}
-    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: EventReference.Path
-      value: event:/Player/Card
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: EventReference.Guid.Data1
-      value: 173456947
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: EventReference.Guid.Data2
-      value: 1332272455
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: EventReference.Guid.Data3
-      value: 1640723091
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: EventReference.Guid.Data4
-      value: -1062520894
-      objectReference: {fileID: 0}
     - target: {fileID: 8446407416611106780, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: DashBarBG
       value: 
