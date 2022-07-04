@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     {
         soundactive = true;
     }
+
     private void Awake()
     {
         Cursor.visible = IsCursorVisable;
@@ -81,7 +82,7 @@ public class PlayerController : MonoBehaviour
             if (_activeUpgradesWindow)
                 _activeUpgradesWindow.SetActive(false);
 
-        if (playfssound && !_isDashing && soundactive)
+        if (IsAllowedToMove && playfssound && !_isDashing && soundactive)
         {
             soundactive = false;
             FMODUnity.RuntimeManager.PlayOneShot("event:/Player/FootSteps Player");
@@ -156,6 +157,9 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            _rb.velocity = Vector3.zero;
+            _animator.SetFloat("Velocity", 0);
+
             // Stun effect. Check conditions only if PlayerCanMove = false
             if (PlayerData.Instance.IsStunned && PlayerData.Instance._stunEffect != null && !PlayerData.Instance._stunEffect.isPlaying)
             {

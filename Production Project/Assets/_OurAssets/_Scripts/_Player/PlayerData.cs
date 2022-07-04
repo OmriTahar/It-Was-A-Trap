@@ -9,6 +9,7 @@ public enum WeaponType { Trap, Wall }
 public class PlayerData : Unit
 {
     public static PlayerData Instance;
+    internal bool _isAllowedToShoot = true;
 
     [Header("UI")]
     [SerializeField] private GameObject _gameOverScreen;
@@ -62,31 +63,31 @@ public class PlayerData : Unit
 
     private void Update()
     {
-        UpdateUI();
-
-        if (Input.GetKeyDown(KeyCode.Q))
-            SwitchWeaponPrefab();
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            if (canShoot && clearToShoot)
-                Attack();
-
-        if (deathKeyPress && Input.anyKeyDown)
+        if (_isAllowedToShoot)
         {
-            _gameOverScreen.SetActive(false);
-            _pressToContinue.SetActive(false);
-            SaveManager.Instance.LoadGame();
-        }
+            UpdateUI();
 
+            if (Input.GetKeyDown(KeyCode.Q))
+                SwitchWeaponPrefab();
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+                if (canShoot && clearToShoot)
+                    Attack();
+
+            if (deathKeyPress && Input.anyKeyDown)
+            {
+                _gameOverScreen.SetActive(false);
+                _pressToContinue.SetActive(false);
+                SaveManager.Instance.LoadGame();
+            }
+        }
     }
 
     protected override void OnDeath()
     {
-
         deathKeyPress = true;
         _gameOverScreen.SetActive(true);
         _pressToContinue.SetActive(true);
-
     }
 
     public void AddScore()

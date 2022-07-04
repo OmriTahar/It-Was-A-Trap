@@ -41,11 +41,6 @@ public class OpenCurtain : MonoBehaviour
         Unit.OnBunnyKilled += BunnyCountCheck;
     }
 
-    private void OnDisable()
-    {
-        Unit.OnBunnyKilled -= BunnyCountCheck;
-    }
-
     private void Start()
     {
         foreach (var enemyActivisionTrigger in _enemyActivationTriggersList)
@@ -60,12 +55,15 @@ public class OpenCurtain : MonoBehaviour
         {
             _isOpen = true;
             StartCoroutine(Open());
+            Unit.OnBunnyKilled -= BunnyCountCheck;
         }
     }
 
     IEnumerator Open()
     {
         _playerController.IsAllowedToMove = false;
+        PlayerAim.Instance._canAim = false;
+        PlayerData.Instance._isAllowedToShoot = false;
         FirstSwitch();
         yield return new WaitForSeconds(_firstSwitchWaitDuration);
 
@@ -77,6 +75,8 @@ public class OpenCurtain : MonoBehaviour
 
         yield return new WaitForSeconds(_switchBackWaitDurtaion);
         _playerController.IsAllowedToMove = true;
+        PlayerAim.Instance._canAim = true;
+        PlayerData.Instance._isAllowedToShoot = true;
         enabled = false;
     }
 
