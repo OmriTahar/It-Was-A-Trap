@@ -106,10 +106,10 @@
 	<object class="MixerBusPanner" id="{898e9310-795d-47c5-a808-8d95425ae21a}" />
 	<object class="SingleSound" id="{a58489b6-c4d8-4849-98fc-5f346aa8ceb4}">
 		<property name="start">
-			<value>1.8500000000000003</value>
+			<value>0.30483034166958339</value>
 		</property>
 		<property name="length">
-			<value>0.53958101253960344</value>
+			<value>0.24516965833041671</value>
 		</property>
 		<property name="timelockedOffset">
 			<value>1.05</value>
@@ -126,10 +126,10 @@
 	</object>
 	<object class="SingleSound" id="{e25ea67d-70bd-409d-a802-4ac9262fba80}">
 		<property name="length">
-			<value>1.8500000000000001</value>
+			<value>0.30483034166958339</value>
 		</property>
 		<property name="timelockedOffset">
-			<value>0.20000000000000001</value>
+			<value>1.7451696583304168</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{07d4c60e-6e60-4a83-80c9-5187c92ffa5c}</destination>
@@ -252,7 +252,7 @@
 	<object class="MixerBusFader" id="{74293899-891d-4922-b2e5-32cc8795741c}" />
 	<object class="AutomationPoint" id="{e0e8d76e-2a3f-42d3-9dfe-05fc4e422e5e}">
 		<property name="position">
-			<value>2.2395810125396052</value>
+			<value>0.5</value>
 		</property>
 		<property name="value">
 			<value>1</value>
@@ -263,7 +263,7 @@
 	</object>
 	<object class="AutomationPoint" id="{52b4cd2b-95a9-4ecf-8b2e-3f8bb336a293}">
 		<property name="position">
-			<value>2.3895810125396029</value>
+			<value>0.54999999999999916</value>
 		</property>
 		<property name="value">
 			<value>0</value>
