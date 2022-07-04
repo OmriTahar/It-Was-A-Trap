@@ -31,6 +31,7 @@ public class PlayerData : Unit
     private bool deathKeyPress = false;
     //for sharon to delete:
     private Color orange = new Color(1, 0.5f, 0);
+    private Animator _animator;
 
     private void Awake()
     {
@@ -45,6 +46,8 @@ public class PlayerData : Unit
         Instance = this;
 
         #endregion
+
+        _animator = GetComponent<Animator>();
     }
     //ondisable?
     protected override void Start()
@@ -126,6 +129,7 @@ public class PlayerData : Unit
                 wall.transform.LookAt(rotateWallTo);
 
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Card");
+                _animator.Play("CardsCast_Animation", 1);
 
                 canShoot = false;
                 Invoke("ResetAttack", _timeBetweenAttacks);
