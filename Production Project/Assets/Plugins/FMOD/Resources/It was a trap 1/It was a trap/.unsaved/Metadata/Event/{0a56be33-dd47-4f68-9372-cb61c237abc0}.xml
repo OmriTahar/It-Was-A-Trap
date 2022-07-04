@@ -95,9 +95,6 @@
 		<property name="timelockedOffset">
 			<value>0.13028062843659158</value>
 		</property>
-		<property name="volume">
-			<value>-15</value>
-		</property>
 		<property name="pitch">
 			<value>-1</value>
 		</property>
