@@ -50,6 +50,12 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+    bool playfssound = false,soundactive =true;
+    private void ResetFootstepsSound()
+    {
+        soundactive = true;
+    }
+
     private void Awake()
     {
         Cursor.visible = IsCursorVisable;
@@ -76,6 +82,12 @@ public class PlayerController : MonoBehaviour
             if (_activeUpgradesWindow)
                 _activeUpgradesWindow.SetActive(false);
 
+        if (IsAllowedToMove && playfssound && !_isDashing && soundactive)
+        {
+            soundactive = false;
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Player/FootSteps Player");
+            Invoke("ResetFootstepsSound", 0.5f);
+        }
     }
 
     void FixedUpdate()
@@ -119,12 +131,10 @@ public class PlayerController : MonoBehaviour
             _animator.SetFloat("Velocity", playerVelocity.magnitude);
 
             if (Input.GetKeyDown(DashKey) && _canDash) // Dash Logic
-            {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Magician Dash");
+            {              
                 if (_rb.velocity.magnitude > 0) // Dash while moving
                 {
                     StartCoroutine(Dash(playerVelocity));
-
                 }
                 else // If dashing without moving -> dash to a random location
                 {
@@ -137,11 +147,19 @@ public class PlayerController : MonoBehaviour
                 playerVelocity = transform.TransformDirection(playerVelocity) * WalkSpeed;
                 Vector3 velocity = _rb.velocity;
                 Vector3 velocityChange = (playerVelocity - velocity);
+                if (velocityChange != Vector3.zero)               
+                    playfssound = true;
+                else 
+                    playfssound = false;
+
                 _rb.AddForce(velocityChange, ForceMode.VelocityChange);                
             }
         }
         else
         {
+            _rb.velocity = Vector3.zero;
+            _animator.SetFloat("Velocity", 0);
+
             // Stun effect. Check conditions only if PlayerCanMove = false
             if (PlayerData.Instance.IsStunned && PlayerData.Instance._stunEffect != null && !PlayerData.Instance._stunEffect.isPlaying)
             {
@@ -156,6 +174,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Dash(Vector3 dashVecolity)
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Magician Dash");
         _canDash = false;
         _isDashing = true;
 

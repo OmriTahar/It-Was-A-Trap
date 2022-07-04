@@ -73,13 +73,11 @@ public class Trap : Attack
     {
         //Can be deleted but its here as a safe measure
         _myCollider.enabled = false;
-
         yield return new WaitForSeconds(_placementDelay);
 
         //Turning trap graphics and collider
         _graphicsGO.SetActive(true);
-        _myCollider.enabled = true;
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Magic/Magic Trap Box");
+        _myCollider.enabled = true;       
 
         //Counting till death
         StartCoroutine(Decay());

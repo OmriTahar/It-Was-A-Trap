@@ -9,6 +9,7 @@ public enum WeaponType { Trap, Wall }
 public class PlayerData : Unit
 {
     public static PlayerData Instance;
+    internal bool _isAllowedToShoot = true;
 
     [Header("UI")]
     [SerializeField] private GameObject _gameOverScreen;
@@ -31,6 +32,7 @@ public class PlayerData : Unit
     private bool deathKeyPress = false;
     //for sharon to delete:
     private Color orange = new Color(1, 0.5f, 0);
+    private Animator _animator;
 
     private void Awake()
     {
@@ -45,6 +47,8 @@ public class PlayerData : Unit
         Instance = this;
 
         #endregion
+
+        _animator = GetComponent<Animator>();
     }
     //ondisable?
     protected override void Start()
@@ -59,22 +63,24 @@ public class PlayerData : Unit
 
     private void Update()
     {
-        UpdateUI();
-
-        if (Input.GetKeyDown(KeyCode.Q))
-            SwitchWeaponPrefab();
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            if (canShoot && clearToShoot)
-                Attack();
-
-        if (deathKeyPress && Input.anyKeyDown)
+        if (_isAllowedToShoot)
         {
-            _gameOverScreen.SetActive(false);
-            _pressToContinue.SetActive(false);
-            SaveManager.Instance.LoadGame();
-        }
+            UpdateUI();
 
+            if (Input.GetKeyDown(KeyCode.Q))
+                SwitchWeaponPrefab();
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+                if (canShoot && clearToShoot)
+                    Attack();
+
+            if (deathKeyPress && Input.anyKeyDown)
+            {
+                _gameOverScreen.SetActive(false);
+                _pressToContinue.SetActive(false);
+                SaveManager.Instance.LoadGame();
+            }
+        }
     }
 
     protected override void OnDeath()
@@ -107,6 +113,9 @@ public class PlayerData : Unit
                 Vector3 rotateTrapTo = new Vector3(transform.position.x, trap.transform.position.y, transform.position.z);
                 trap.transform.LookAt(rotateTrapTo);
 
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Magic/Magic Trap Box");
+                _animator.Play("TrapCast_Animation", 1);
+
                 canShoot = false;
                 Invoke("ResetAttack", _timeBetweenAttacks);
                 break;
@@ -120,6 +129,9 @@ public class PlayerData : Unit
 
                 Vector3 rotateWallTo = new Vector3(transform.position.x, wall.transform.position.y, transform.position.z);
                 wall.transform.LookAt(rotateWallTo);
+
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Card");
+                _animator.Play("CardsCast_Animation", 1);
 
                 canShoot = false;
                 Invoke("ResetAttack", _timeBetweenAttacks);

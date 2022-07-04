@@ -90,6 +90,7 @@ public class LeaperAI : BaseEnemyAI
                 {
                     print("Starting Leap!");
                     StartCoroutine(Leap());
+                    
                 }
             }
         }
@@ -165,14 +166,15 @@ public class LeaperAI : BaseEnemyAI
         if ((_playerTransform.position - transform.position).magnitude <= _maxLeapDistance && !_isLeapPathBlocked)
         {
             _animator.SetTrigger("Leap");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Bunny/Bunny Start Leap Attack");
 
             yield return _startLeapLogicCorutine;
 
             if (!IsStunned && _playerTransform != null && !_isLeapPathBlocked)
-            {
+            {              
                 AttackPrefab.SetActive(true);
                 _rb.AddForce((_playerTransform.position - transform.position) * _leapPower, ForceMode.Impulse);
-                _isMovingBackwards = true;
+                _isMovingBackwards = true;               
             }
 
             yield return _waitAfterLeapCoroutine;
