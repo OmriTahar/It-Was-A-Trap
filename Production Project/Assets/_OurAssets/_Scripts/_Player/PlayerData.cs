@@ -79,9 +79,11 @@ public class PlayerData : Unit
 
     protected override void OnDeath()
     {
+
         deathKeyPress = true;
         _gameOverScreen.SetActive(true);
         _pressToContinue.SetActive(true);
+
     }
 
     public void AddScore()
@@ -107,6 +109,8 @@ public class PlayerData : Unit
                 Vector3 rotateTrapTo = new Vector3(transform.position.x, trap.transform.position.y, transform.position.z);
                 trap.transform.LookAt(rotateTrapTo);
 
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Magic/Magic Trap Box");
+
                 canShoot = false;
                 Invoke("ResetAttack", _timeBetweenAttacks);
                 break;
@@ -120,6 +124,8 @@ public class PlayerData : Unit
 
                 Vector3 rotateWallTo = new Vector3(transform.position.x, wall.transform.position.y, transform.position.z);
                 wall.transform.LookAt(rotateWallTo);
+
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Card");
 
                 canShoot = false;
                 Invoke("ResetAttack", _timeBetweenAttacks);

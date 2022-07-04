@@ -48,9 +48,8 @@ public class Unit : MonoBehaviour
             if (!CompareTag("Player"))
             {
                 OnDeath();
-                OnBunnyKilled?.Invoke(); // Delegate attemp
-            }
-
+                OnBunnyKilled?.Invoke(); // Delegate attemp             
+            }           
             Destroy(gameObject);
         }
     }
