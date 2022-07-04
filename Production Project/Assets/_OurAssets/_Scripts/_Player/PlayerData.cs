@@ -113,6 +113,7 @@ public class PlayerData : Unit
                 trap.transform.LookAt(rotateTrapTo);
 
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Magic/Magic Trap Box");
+                _animator.Play("TrapCast_Animation", 1);
 
                 canShoot = false;
                 Invoke("ResetAttack", _timeBetweenAttacks);
