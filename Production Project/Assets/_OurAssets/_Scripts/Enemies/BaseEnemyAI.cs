@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public enum State { chasing, attacking, fleeing, creatingRange}
+public enum State { chasing, attacking, fleeing, creatingRange }
 public class BaseEnemyAI : Unit
 {
     protected NavMeshAgent _agent;
@@ -82,16 +82,17 @@ public class BaseEnemyAI : Unit
         if (!IsEnemyActivated)
             if (!_agent.SetDestination(transform.position))
                 _agent.SetDestination(transform.position);
-        else
-        {
-            if (IsStunned && (_stunEffect != null && !_stunEffect.isPlaying))
+            else
             {
-                _stunEffect.Play();
-                Stun();
+                if (IsStunned && (_stunEffect != null && !_stunEffect.isPlaying))
+                {
+                    _stunEffect.Play();
+                    Stun();
+                    _rb.Sleep();
+                }
+                else if (_stunEffect != null && !IsStunned && _stunEffect.isPlaying)
+                    _stunEffect.Stop();
             }
-            else if (_stunEffect != null && !IsStunned && _stunEffect.isPlaying)
-                _stunEffect.Stop();
-        }
     }
 
     protected virtual void ChasePlayer()

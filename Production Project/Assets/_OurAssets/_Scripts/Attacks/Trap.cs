@@ -131,6 +131,7 @@ public class Trap : Attack
 
             //Moving enemy to middle of trap, with his Y
             _trappededEnemy.transform.position = new Vector3(transform.position.x, _trappededEnemy.transform.position.y, transform.position.z);
+            _trappededEnemy.gameObject.GetComponent<Rigidbody>().Sleep();
 
             //Activating Particles
             _hitParticle.SetActive(true);
