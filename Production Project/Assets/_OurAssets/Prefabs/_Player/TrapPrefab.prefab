@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3115788867153083515}
   - component: {fileID: 4442331914426971674}
   - component: {fileID: 3481368531104073855}
+  - component: {fileID: 4556499257157913683}
   m_Layer: 9
   m_Name: TrapPrefab
   m_TagString: Untagged
@@ -58,6 +59,7 @@ MonoBehaviour:
   _hitParticle: {fileID: 3929031335700610076}
   _graphicsGO: {fileID: 611589502007564407}
   _animator: {fileID: 5356186398045540334}
+  _myNavMeshObstcale: {fileID: 4556499257157913683}
 --- !u!65 &3115788867153083515
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4843,6 +4845,22 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!208 &4556499257157913683
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265388038745949489}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5, y: 0.38, z: 1.695}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.61, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &341610259137815846
 PrefabInstance:
   m_ObjectHideFlags: 0
