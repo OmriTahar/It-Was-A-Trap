@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using UnityEngine.AI;
-
+using UnityEngine.SceneManagement;
 public enum WeaponType { Trap, Wall }
 public class PlayerData : Unit
 {
@@ -78,7 +78,7 @@ public class PlayerData : Unit
             {
                 _gameOverScreen.SetActive(false);
                 _pressToContinue.SetActive(false);
-                SaveManager.Instance.LoadGame();
+                SceneManager.LoadScene(1);
             }
         }
     }
