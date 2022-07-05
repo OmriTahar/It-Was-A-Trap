@@ -126,13 +126,11 @@ public class RangedEnemyAI : BaseEnemyAI
         if (hit.collider != null && hit.collider.tag != "Player")
         {
             _isThrowPathBlocked = true;
-            print(hit.collider.name + " is in front of me!");
             return;
         }
         else if (hit.collider != null && hit.collider.tag == "Player")
         {
             _isThrowPathBlocked = false;
-            print("PLAYER is in front of me!");
             return;
         }
     }
@@ -148,6 +146,8 @@ public class RangedEnemyAI : BaseEnemyAI
 
             if (!_isAlreadyAttacked && !_isThrowPathBlocked)
             {
+                _animator.SetTrigger("Throw");
+
                 GameObject carrot = _rangedProjectilePool.GetProjectileFromPool();
                 carrot.transform.position = _rangedShootPoint.position;
                 carrot.transform.rotation = Quaternion.identity;

@@ -88,7 +88,6 @@ public class BaseEnemyAI : Unit
                 {
                     _stunEffect.Play();
                     Stun();
-                    _rb.Sleep();
                 }
                 else if (_stunEffect != null && !IsStunned && _stunEffect.isPlaying)
                     _stunEffect.Stop();
