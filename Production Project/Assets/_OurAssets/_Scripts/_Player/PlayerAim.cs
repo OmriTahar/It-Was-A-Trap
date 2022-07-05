@@ -110,7 +110,7 @@ public class PlayerAim : MonoBehaviour
     public void ToggleDraw()
     {
         _canAim = !_canAim;
-        _outlinePrefab.SetActive(_canAim);
+        outline.SetActive(_canAim);
     }
 
     private void InteractionCheck(RaycastHit hit, Ray ray)
