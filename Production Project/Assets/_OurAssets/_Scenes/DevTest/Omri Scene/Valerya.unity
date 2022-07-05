@@ -25862,7 +25862,7 @@ GameObject:
   - component: {fileID: 1912893880}
   - component: {fileID: 1912893879}
   - component: {fileID: 1912893878}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Invisiable Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27778,6 +27778,10 @@ PrefabInstance:
       propertyPath: _cam
       value: 
       objectReference: {fileID: 2032137546}
+    - target: {fileID: 4061210518604259733, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: _canAim
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4061210518604259733, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: _canInteractUIText
       value: 
