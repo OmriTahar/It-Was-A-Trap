@@ -146,26 +146,27 @@ public class RangedEnemyAI : BaseEnemyAI
 
             if (!_isAlreadyAttacked && !_isThrowPathBlocked)
             {
-                _animator.SetTrigger("Throw");
-
-                GameObject carrot = _rangedProjectilePool.GetProjectileFromPool();
-                carrot.transform.position = _rangedShootPoint.position;
-                carrot.transform.rotation = Quaternion.identity;
-
-                Rigidbody rb = carrot.GetComponent<Rigidbody>();
-                rb.AddForce((_playerTransform.position - carrot.transform.position).normalized * _rangedShootForce, ForceMode.Impulse);
-
-                Vector3 rotateCarrotTo = new Vector3(transform.position.x, carrot.transform.position.y, transform.position.z);
-                carrot.transform.LookAt(rotateCarrotTo);
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Bunny/Carrot Shoot");
-
                 _isAlreadyAttacked = true;
-                Invoke(nameof(ResetAttack), _timeBetweenAttacks);
+                _animator.SetTrigger("Throw");
             }
         }
     }
 
+    public void Throw()
+    {
+        GameObject carrot = _rangedProjectilePool.GetProjectileFromPool();
+        carrot.transform.position = _rangedShootPoint.position;
+        carrot.transform.rotation = Quaternion.identity;
 
+        Rigidbody rb = carrot.GetComponent<Rigidbody>();
+        rb.AddForce((_playerTransform.position - carrot.transform.position).normalized * _rangedShootForce, ForceMode.Impulse);
+
+        Vector3 rotateCarrotTo = new Vector3(transform.position.x, carrot.transform.position.y, transform.position.z);
+        carrot.transform.LookAt(rotateCarrotTo);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Bunny/Carrot Shoot");
+
+        Invoke(nameof(ResetAttack), _timeBetweenAttacks);
+    }
 
     private bool CanEnemyFlee()
     {
