@@ -228,7 +228,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/It was a trap 1/It was a trap/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637925760864411559
+  lastModified: 637920210744714381
   FileSizes:
   - Name: Desktop
     Value: 2421728
@@ -364,7 +364,7 @@ MonoBehaviour:
   - {fileID: -2039351862199804846}
   StringsBanks:
   - {fileID: 3905044097606930977}
-  cacheTime: 637925760864441479
+  cacheTime: 637920210744729873
   cacheVersion: 10
 --- !u!114 &1469277712948076252
 MonoBehaviour:
@@ -496,7 +496,7 @@ MonoBehaviour:
   - {fileID: -2039351862199804846}
   IsStream: 1
   Is3D: 1
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -527,7 +527,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 3300
+  Length: 4244
 --- !u!114 &2501884156338051173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,7 +634,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 210
+  Length: 607
 --- !u!114 &3126051027214379373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,7 +688,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 135
+  Length: 265
 --- !u!114 &3905044097606930977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -704,7 +704,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/It was a trap 1/It was a trap/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637925760864441479
+  lastModified: 637920210744729873
   FileSizes:
   - Name: Desktop
     Value: 2234
