@@ -17500,6 +17500,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 757455772}
     m_Modifications:
+    - target: {fileID: 498301356, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+      propertyPath: m_text
+      value: press any key to continue...
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995633345572929908, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+      propertyPath: m_text
+      value: 'its a question of where and how, thats all. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 2995633345572929908, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330547206072591891, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4342435695453363861, guid: c75338d96ae022944893afc1b294b91f, type: 3}
       propertyPath: m_Name
       value: Player Canvas
@@ -17587,6 +17603,14 @@ PrefabInstance:
     - target: {fileID: 4342435695453363862, guid: c75338d96ae022944893afc1b294b91f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304662546642124926, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408711676279909178, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c75338d96ae022944893afc1b294b91f, type: 3}
@@ -28988,6 +29012,10 @@ PrefabInstance:
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 1112721080}
+    - target: {fileID: 1961995115909999450, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: _unitMaxHP
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1961995115909999450, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: _healthBarBG
       value: 
