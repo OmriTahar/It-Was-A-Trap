@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+
 public enum WeaponType { Trap, Wall }
 public class PlayerData : Unit
 {
@@ -13,7 +14,7 @@ public class PlayerData : Unit
 
     [Header("UI")]
     [SerializeField] private GameObject _gameOverScreen;
-    [SerializeField] private GameObject _pressToContinue;
+    [SerializeField] private GameObject _winScreen;
     [SerializeField] private TextMeshProUGUI _currentAmmoAmountText;
     [SerializeField] private TextMeshProUGUI _currentBunnyCountText;
     [SerializeField] private Image _currentWeaponImage;
@@ -27,9 +28,11 @@ public class PlayerData : Unit
     [SerializeField][ReadOnlyInspector] internal bool canShoot = true, clearToShoot = true;
     [SerializeField] private float _timeBetweenAttacks;
 
+    private PlayerController _myPlayerController;
     private SpriteRenderer _outlineRenderer;
     internal int bunnyCount = 0;
-    private bool deathKeyPress = false;
+    private bool _loseCondition = false;
+    private bool _winCondition = false;
     //for sharon to delete:
     private Color orange = new Color(1, 0.5f, 0);
     private Animator _animator;
@@ -49,7 +52,9 @@ public class PlayerData : Unit
         #endregion
 
         _animator = GetComponent<Animator>();
+        _myPlayerController = GetComponent<PlayerController>();
     }
+
     //ondisable?
     protected override void Start()
     {
@@ -73,21 +78,38 @@ public class PlayerData : Unit
             if (Input.GetKeyDown(KeyCode.Mouse0))
                 if (canShoot && clearToShoot)
                     Attack();
-
-            if (deathKeyPress && Input.anyKeyDown)
-            {
-                _gameOverScreen.SetActive(false);
-                _pressToContinue.SetActive(false);
-                SceneManager.LoadScene(1);
-            }
         }
+
+        if (_loseCondition && Input.anyKeyDown)
+        {
+            _gameOverScreen.SetActive(false);
+            _loseCondition = false;
+            SceneManager.LoadScene(1);
+        }
+
+        if (_winCondition && Input.anyKeyDown)
+        {
+            _winScreen.SetActive(false);
+            _winCondition = false;
+            SceneManager.LoadScene(0);
+        }
+    }
+
+    public void OnWin()
+    {
+        _winCondition = true;
+
+        _myPlayerController.IsAllowedToMove = false;
+        _myPlayerController.IsAllowedToRotate = false;
+        _isAllowedToShoot = false;
+
+        _winScreen.SetActive(true);
     }
 
     protected override void OnDeath()
     {
-        deathKeyPress = true;
+        _loseCondition = true;
         _gameOverScreen.SetActive(true);
-        _pressToContinue.SetActive(true);
     }
 
     public void AddScore()

@@ -3,27 +3,25 @@ using UnityEngine;
 
 public class CloseWallTrigger : MonoBehaviour
 {
-
     [SerializeField] GameObject _wallToClose;
+    [SerializeField] GameObject _lineToOpen;
+    Collider myCollider;
+    bool activeOpen = true;
 
-    private Renderer _renderer;
-    private MeshCollider _meshCollider;
-
-    void Awake()
+    private void Awake()
     {
-        _renderer = _wallToClose.GetComponent<Renderer>();
-        _meshCollider = _wallToClose.GetComponent<MeshCollider>();
-
-        _renderer.enabled = false;
-        _meshCollider.enabled = false;
+        myCollider = GetComponent<Collider>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            _renderer.enabled = true;
-            _meshCollider.enabled = true;
-        }
+        if (activeOpen)
+            if (other.CompareTag("Player"))
+            {
+                _wallToClose.SetActive(true);
+                if (_lineToOpen)
+                    _lineToOpen.SetActive(true);
+                myCollider.enabled = false;
+            }
     }
 }

@@ -106,7 +106,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _meshTransform: {fileID: 2800947986253184769}
   PlayerMovementCamera: {fileID: 0}
-  IsCursorVisable: 1
+  IsCursorVisable: 0
+  IsAllowedToRotate: 1
   IsAllowedToMove: 1
   WalkSpeed: 8.5
   DashKey: 304
@@ -169,7 +170,7 @@ MonoBehaviour:
   IsStunned: 0
   _stunEffect: {fileID: 1008851786627677189}
   _gameOverScreen: {fileID: 0}
-  _pressToContinue: {fileID: 0}
+  _winScreen: {fileID: 0}
   _currentAmmoAmountText: {fileID: 0}
   _currentBunnyCountText: {fileID: 0}
   _currentWeaponImage: {fileID: 0}
