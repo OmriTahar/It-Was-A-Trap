@@ -88,9 +88,7 @@ public class LeaperAI : BaseEnemyAI
 
                 if (((_isPlayerInAttackRange && !_isPlayerTooClose) || (_isPlayerTooClose && !_canCreateLeapRange)) && !_isLeapPathBlocked)
                 {
-                    print("Starting Leap!");
                     StartCoroutine(Leap());
-                    
                 }
             }
         }
@@ -105,13 +103,11 @@ public class LeaperAI : BaseEnemyAI
         if (hit.collider != null && hit.collider.tag != "Player")
         {
             _isLeapPathBlocked = true;
-            print(hit.collider.name + " is in front of me!");
             return;
         }
         else if (hit.collider != null && hit.collider.tag == "Player")
         {
             _isLeapPathBlocked = false;
-            print("PLAYER is in front of me!");
             return;
         }
         else

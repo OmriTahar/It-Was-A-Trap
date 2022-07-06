@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2286831028518699307}
   - component: {fileID: 2667273577287979074}
-  - component: {fileID: 3469521373912443747}
   m_Layer: 0
-  m_Name: Tutorial Trigger_Prefab
+  m_Name: CloseWall_Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -43,19 +42,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.542827, y: 3, z: 12.637417}
+  m_Size: {x: 25.1, y: 3, z: 3.61}
   m_Center: {x: -0.22858667, y: 0, z: 3.8187084}
---- !u!114 &3469521373912443747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1377899288777221683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b372ab086f93c94e8c1cc2efbf561de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _textObject: {fileID: 0}
-  _textToShow: Use W,A,S,D and Mouse to Move & Aim
