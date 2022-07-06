@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 74b4dc2192c78e34fac7fe18981928e8
+guid: 36fd5d486fe215d429f908496bc897b4
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -7,28 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Boss_Arena_Mat
-    second: {fileID: 2100000, guid: 781073d9f7739e74981a40ed68ceaae4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: Stage_00_Mat
-    second: {fileID: 2100000, guid: 540f023a09e33334caad5e37cca36cc7, type: 2}
+    second: {fileID: 2100000, guid: 33da64fe71599e74d9e6f7b7d772f69e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Wall_Lvl_01_mat
-    second: {fileID: 2100000, guid: de9bb45d13ee0c7409d7b105bb6aa179, type: 2}
+    second: {fileID: 2100000, guid: 71045cb74622f434391adb2cd1bf020b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Wall_Lvl_02_Mat
-    second: {fileID: 2100000, guid: eee9f1e21c7aa174ba8a1e220fd9ed86, type: 2}
+    second: {fileID: 2100000, guid: dad60fd2d9c3fd4479cb1c0f9ee4fa78, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Wall_Lvl_03_Mat
-    second: {fileID: 2100000, guid: 6bae6c84301ddb5468a55bf7a326e1b9, type: 2}
+    second: {fileID: 2100000, guid: 34480425d9cba63449cecd2d5d8ac022, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -59,7 +54,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.65
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -110,7 +105,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.0064999997
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
