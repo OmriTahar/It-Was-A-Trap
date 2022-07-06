@@ -8905,7 +8905,7 @@ PrefabInstance:
       objectReference: {fileID: 1556588124}
     - target: {fileID: 1533227088, guid: 78c24e5a02b9f7241962da9961244c4d, type: 3}
       propertyPath: _switchBackWaitDurtaion
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1533227088, guid: 78c24e5a02b9f7241962da9961244c4d, type: 3}
       propertyPath: _enemyActivationTriggersList.Array.size
@@ -24028,7 +24028,7 @@ PrefabInstance:
       objectReference: {fileID: 1556588124}
     - target: {fileID: 1533227088, guid: 78c24e5a02b9f7241962da9961244c4d, type: 3}
       propertyPath: _switchBackWaitDurtaion
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1533227088, guid: 78c24e5a02b9f7241962da9961244c4d, type: 3}
       propertyPath: _enemyActivationTriggersList.Array.size
