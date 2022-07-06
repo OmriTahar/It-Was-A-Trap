@@ -19723,6 +19723,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Curtain_Stage 01
       objectReference: {fileID: 0}
+    - target: {fileID: 6751696919161388771, guid: 78c24e5a02b9f7241962da9961244c4d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78c24e5a02b9f7241962da9961244c4d, type: 3}
 --- !u!4 &1533227085 stripped
