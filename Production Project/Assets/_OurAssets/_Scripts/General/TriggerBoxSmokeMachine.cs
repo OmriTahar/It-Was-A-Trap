@@ -8,8 +8,14 @@ public class TriggerBoxSmokeMachine : MonoBehaviour
     {
         if (other.tag == "Player" )
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Other/Smoke Machine");
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Other/Smoke Machine");
         }
     }
-    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+        }
+    }
+
 }

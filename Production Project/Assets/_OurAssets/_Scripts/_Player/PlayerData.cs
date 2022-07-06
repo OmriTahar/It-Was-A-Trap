@@ -33,6 +33,7 @@ public class PlayerData : Unit
     internal int bunnyCount = 0;
     private bool _loseCondition = false;
     private bool _winCondition = false;
+    bool mute = false;
     //for sharon to delete:
     private Color orange = new Color(1, 0.5f, 0);
     private Animator _animator;
@@ -92,6 +93,12 @@ public class PlayerData : Unit
             _winScreen.SetActive(false);
             _winCondition = false;
             SceneManager.LoadScene(0);
+        }
+
+        if (Input.GetKey(KeyCode.M))
+        {
+            mute = !mute;
+            FMODUnity.RuntimeManager.PauseAllEvents(mute);
         }
     }
 
