@@ -53,6 +53,8 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
 
             _playerController = other.gameObject.GetComponent<PlayerController>();
             _playerController.IsAllowedToMove = false;
+            _playerController.IsAllowedToRotate = false;
+            PlayerAim.Instance._canAim = false;
         }
 
 
@@ -61,6 +63,8 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
 
         attackedUnit.IsStunned = false;
         _playerController.IsAllowedToMove = true;
+        _playerController.IsAllowedToRotate = true;
+        PlayerAim.Instance._canAim = true;
         _hasAlreadyStunned = false;
     }
 }

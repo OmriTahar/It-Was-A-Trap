@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [Header("Camera")]
     public Camera PlayerMovementCamera;
     public bool IsCursorVisable = true;
+    public bool IsAllowedToRotate = true;
     #endregion
 
     #region Movement
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    bool playfssound = false,soundactive =true;
+    bool playfssound = false, soundactive = true;
     private void ResetFootstepsSound()
     {
         soundactive = true;
@@ -72,8 +73,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        CameraInput();
         HandleDashUI();
+
+        if (IsAllowedToRotate)
+            CameraInput();
 
         if (Input.GetKeyDown(KeyCode.Tab))
             if (_activeUpgradesWindow)
@@ -131,7 +134,7 @@ public class PlayerController : MonoBehaviour
             _animator.SetFloat("Velocity", playerVelocity.magnitude);
 
             if (Input.GetKeyDown(DashKey) && _canDash) // Dash Logic
-            {              
+            {
                 if (_rb.velocity.magnitude > 0) // Dash while moving
                 {
                     StartCoroutine(Dash(playerVelocity));
@@ -147,12 +150,12 @@ public class PlayerController : MonoBehaviour
                 playerVelocity = transform.TransformDirection(playerVelocity) * WalkSpeed;
                 Vector3 velocity = _rb.velocity;
                 Vector3 velocityChange = (playerVelocity - velocity);
-                if (velocityChange != Vector3.zero)               
+                if (velocityChange != Vector3.zero)
                     playfssound = true;
-                else 
+                else
                     playfssound = false;
 
-                _rb.AddForce(velocityChange, ForceMode.VelocityChange);                
+                _rb.AddForce(velocityChange, ForceMode.VelocityChange);
             }
         }
         else
