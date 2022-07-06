@@ -231,7 +231,7 @@ MonoBehaviour:
     m_Bits: 8
   IsEnemyActivated: 0
   AttackPrefab: {fileID: 3980606033960552458}
-  _timeBetweenAttacks: 0.5
+  _timeBetweenAttacks: 0.55
   _enemyAvoidancePriority: 50
   _randomPriority: 0
   _MinRandomAvoidanceNumber: 30

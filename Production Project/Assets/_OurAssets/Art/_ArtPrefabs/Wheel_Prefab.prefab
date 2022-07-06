@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1799801110775541249}
-  - component: {fileID: 7093646433154680225}
   - component: {fileID: 6104038318538482815}
   m_Layer: 10
   m_Name: Wheel_Prefab
@@ -33,19 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!65 &7093646433154680225
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5360010070620113246}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.2399828, y: 2.1800516, z: 0.594573}
-  m_Center: {x: -0.6199914, y: 1.3766044, z: 0.5567527}
 --- !u!65 &6104038318538482815
 BoxCollider:
   m_ObjectHideFlags: 0
