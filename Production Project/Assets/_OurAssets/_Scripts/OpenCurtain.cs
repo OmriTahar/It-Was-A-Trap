@@ -62,6 +62,7 @@ public class OpenCurtain : MonoBehaviour
     IEnumerator Open()
     {
         _playerController.IsAllowedToMove = false;
+        _playerController.IsAllowedToRotate = false;
         PlayerAim.Instance._canAim = false;
         PlayerData.Instance._isAllowedToShoot = false;
         FirstSwitch();
@@ -75,6 +76,7 @@ public class OpenCurtain : MonoBehaviour
 
         yield return new WaitForSeconds(_switchBackWaitDurtaion);
         _playerController.IsAllowedToMove = true;
+        _playerController.IsAllowedToRotate = true;
         PlayerAim.Instance._canAim = true;
         PlayerData.Instance._isAllowedToShoot = true;
         enabled = false;
