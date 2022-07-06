@@ -9,7 +9,6 @@ public class TriggerBoxSmokeMachine : MonoBehaviour
         if (other.tag == "Player" )
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Other/Smoke Machine");
-            
         }
     }
     
