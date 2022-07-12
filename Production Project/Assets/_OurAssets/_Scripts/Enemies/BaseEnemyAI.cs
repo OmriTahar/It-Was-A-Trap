@@ -37,6 +37,9 @@ public class BaseEnemyAI : Unit
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
 
+        _unitMaxHP = 1;
+        _unitHP = 1;
+
         EnemyAvoidanceInit();
     }
 

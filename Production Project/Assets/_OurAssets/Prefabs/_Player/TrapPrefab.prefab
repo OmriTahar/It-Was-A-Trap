@@ -59,7 +59,6 @@ MonoBehaviour:
   _hitParticle: {fileID: 3929031335700610076}
   _graphicsGO: {fileID: 611589502007564407}
   _animator: {fileID: 5356186398045540334}
-  _myNavMeshObstcale: {fileID: 4556499257157913683}
 --- !u!65 &3115788867153083515
 BoxCollider:
   m_ObjectHideFlags: 0

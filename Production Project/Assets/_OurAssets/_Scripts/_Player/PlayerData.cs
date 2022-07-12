@@ -40,7 +40,7 @@ public class PlayerData : Unit
     private bool _winCondition = false;
     bool mute = false;
     //for sharon to delete:
-    private Color orange = new Color(1, 0.5f, 0);
+    private Color _red = new Color(1, 0, 0);
 
     #region Animation
 
@@ -230,14 +230,14 @@ public class PlayerData : Unit
         if (clearnShot && myColor != Color.white)
             _outlineRenderer.color = Color.white;
 
-        else if (!clearnShot && myColor != orange)
-            _outlineRenderer.color = orange;
+        else if (!clearnShot && myColor != _red)
+            _outlineRenderer.color = _red;
 
         else if (clearnShot && myColor != Color.white)
             _outlineRenderer.color = Color.white;
 
-        else if (!clearnShot && myColor != orange)
-            _outlineRenderer.color = orange;
+        else if (!clearnShot && myColor != _red)
+            _outlineRenderer.color = _red;
     }
 
     private void ResetAttack()

@@ -3099,6 +3099,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8020574770979397837, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
+      propertyPath: _unitMaxHP
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020574770979397837, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
       propertyPath: _fleeCooldown
       value: 2
       objectReference: {fileID: 0}
