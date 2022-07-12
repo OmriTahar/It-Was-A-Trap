@@ -13356,11 +13356,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1520631516}
+  - {fileID: 1556627617}
   - {fileID: 1124385003}
   - {fileID: 1515913948}
   - {fileID: 772212208}
   - {fileID: 1575667078}
-  - {fileID: 1556627617}
   - {fileID: 840146736}
   - {fileID: 1507265524}
   - {fileID: 1085552374}
@@ -23407,7 +23407,7 @@ Transform:
   m_Children:
   - {fileID: 1268123785}
   m_Father: {fileID: 903364727}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1561142828
 GameObject:
@@ -30928,6 +30928,10 @@ PrefabInstance:
       propertyPath: _currentBunnyCountText
       value: 
       objectReference: {fileID: 186984128}
+    - target: {fileID: 1961995115909999450, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: _timeBeforeAllowingToPressContinue
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4061210518604259733, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: _cam
       value: 

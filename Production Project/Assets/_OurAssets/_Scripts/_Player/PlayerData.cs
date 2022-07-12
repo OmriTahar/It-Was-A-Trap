@@ -43,6 +43,10 @@ public class PlayerData : Unit
     //for sharon to delete:
     private Color _red = new Color(1, 0, 0);
 
+    [Header("Win / Death Screen Delay Settings")]
+    [SerializeField] bool _isAllowedToPressContinue = false;
+    [SerializeField] float _delayBeforeAllowingToPressContinue = 3f;
+
     #region Animation
 
     private Animator _animator;
@@ -98,14 +102,14 @@ public class PlayerData : Unit
                     Attack();
         }
 
-        if (_loseCondition && Input.anyKeyDown)
+        if (_loseCondition && Input.anyKeyDown && _isAllowedToPressContinue)
         {
             _gameOverScreen.SetActive(false);
             _loseCondition = false;
             SceneManager.LoadScene(1);
         }
 
-        if (_winCondition && Input.anyKeyDown)
+        if (_winCondition && Input.anyKeyDown && _isAllowedToPressContinue)
         {
             _winScreen.SetActive(false);
             _winCondition = false;
@@ -128,18 +132,25 @@ public class PlayerData : Unit
         _isAllowedToShoot = false;
 
         _winScreen.SetActive(true);
+        Invoke("TogglePlayerAllowToPressContinue", _delayBeforeAllowingToPressContinue);
     }
 
     protected override void OnDeath()
     {
         base.OnDeath();
-        Invoke("LoseCondition",3f);
+        Invoke("SetLoseCondition",3f);
     }
 
-    private void LoseCondition()
+    private void SetLoseCondition() // Allow death animation to finish (place holder)
     {
         _loseCondition = true;
         _gameOverScreen.SetActive(true);
+        Invoke("TogglePlayerAllowToPressContinue", _delayBeforeAllowingToPressContinue);
+    }
+
+    private void TogglePlayerAllowToPressContinue()
+    {
+        _isAllowedToPressContinue = true;
     }
 
     public void AddScore()

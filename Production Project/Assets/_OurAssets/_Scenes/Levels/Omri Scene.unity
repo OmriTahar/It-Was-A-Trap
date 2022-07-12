@@ -2607,6 +2607,10 @@ PrefabInstance:
       propertyPath: _currentBunnyCountText
       value: 
       objectReference: {fileID: 1111456221}
+    - target: {fileID: 1961995115909999450, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: _timeBeforeAllowingToPressContinue
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4061210518604259733, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: _cam
       value: 
