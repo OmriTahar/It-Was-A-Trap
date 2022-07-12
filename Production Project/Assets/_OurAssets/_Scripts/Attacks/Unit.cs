@@ -41,7 +41,7 @@ public class Unit : MonoBehaviour
             _healthBar.fillAmount = _unitHP / _unitMaxHP;
 
         if (gameObject.CompareTag("Player") && !IsStunned && showGotHitAnimation)
-            PlayerData.Instance.AnimatorGetter.Play(_gotHitHash, 1);
+            PlayerData.Instance.AnimatorGetter.Play(_gotHitHash, 2);
 
         CheckDeath();
     }
