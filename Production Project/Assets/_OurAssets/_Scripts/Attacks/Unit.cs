@@ -48,9 +48,16 @@ public class Unit : MonoBehaviour
 
     protected virtual void OnDeath()
     {
-        PlayerData.Instance.AddScore();
-        OnBunnyKilled?.Invoke();
-        Destroy(gameObject);
+        if (gameObject.CompareTag("Player"))
+        {
+            PlayerData.Instance.AnimatorGetter.Play("Death", 0);
+        }
+        else
+        {
+            PlayerData.Instance.AddScore();
+            OnBunnyKilled?.Invoke();
+            Destroy(gameObject);
+        }
     }
 
     private void CheckDeath()

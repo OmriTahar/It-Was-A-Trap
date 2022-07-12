@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
 
 public enum WeaponType { Trap, Wall }
 public class PlayerData : Unit
@@ -130,6 +131,12 @@ public class PlayerData : Unit
     }
 
     protected override void OnDeath()
+    {
+        base.OnDeath();
+        Invoke("LoseCondition",3f);
+    }
+
+    private void LoseCondition()
     {
         _loseCondition = true;
         _gameOverScreen.SetActive(true);
