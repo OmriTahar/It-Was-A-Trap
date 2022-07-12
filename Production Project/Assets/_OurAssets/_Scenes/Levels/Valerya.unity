@@ -30892,6 +30892,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1961995115909999448, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: _poolStartSize
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1961995115909999449, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: m_Name
       value: Player
@@ -30928,10 +30932,6 @@ PrefabInstance:
       propertyPath: _currentBunnyCountText
       value: 
       objectReference: {fileID: 186984128}
-    - target: {fileID: 1961995115909999450, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: _timeBeforeAllowingToPressContinue
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4061210518604259733, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: _cam
       value: 
@@ -30940,26 +30940,6 @@ PrefabInstance:
       propertyPath: _canInteractUIText
       value: 
       objectReference: {fileID: 907779928}
-    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: EventReference.Path
-      value: event:/Player/20's music game mix Am
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: EventReference.Guid.Data1
-      value: 1947986555
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: EventReference.Guid.Data2
-      value: 1183109973
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: EventReference.Guid.Data3
-      value: -234152302
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: EventReference.Guid.Data4
-      value: 2065951052
-      objectReference: {fileID: 0}
     - target: {fileID: 8446407416611106780, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: DashBarBG
       value: 

@@ -109,10 +109,10 @@ MonoBehaviour:
   IsCursorVisable: 0
   IsAllowedToRotate: 1
   IsAllowedToMove: 1
-  WalkSpeed: 8.5
+  WalkSpeed: 7.5
   DashKey: 304
-  DashSpeed: 20
-  DashDuration: 0.15
+  DashSpeed: 30
+  DashDuration: 0.2
   DashCooldownTotalTime: 2
   _activeUpgradesWindow: {fileID: 0}
   DashBarFill: {fileID: 0}
@@ -182,6 +182,8 @@ MonoBehaviour:
   canShoot: 1
   clearToShoot: 1
   _timeBetweenAttacks: 0.5
+  _isAllowedToPressContinue: 0
+  _delayBeforeAllowingToPressContinue: 3
 --- !u!114 &1961995115909999448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,11 +241,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 173456947
-      Data2: 1332272455
-      Data3: 1640723091
-      Data4: -1062520894
-    Path: event:/Player/Card
+      Data1: 1947986555
+      Data2: 1183109973
+      Data3: -234152302
+      Data4: 2065951052
+    Path: event:/Player/20's music game mix Am
   Event: 
   PlayEvent: 0
   StopEvent: 0
