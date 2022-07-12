@@ -29,6 +29,8 @@ public class BaseEnemyAI : Unit
     [SerializeField] protected int _MinRandomAvoidanceNumber;
     [SerializeField] protected int _MaxRandomAvoidanceNumber;
 
+    int _velocityHash;
+
     protected virtual void Awake()
     {
         _rb = GetComponent<Rigidbody>();
@@ -36,6 +38,12 @@ public class BaseEnemyAI : Unit
         _animator = GetComponent<Animator>();
 
         EnemyAvoidanceInit();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        _velocityHash = Animator.StringToHash("Velocity");
     }
 
     protected virtual void Update()
@@ -48,7 +56,7 @@ public class BaseEnemyAI : Unit
 
         if (_animator)
         {
-            _animator.SetFloat("Velocity", _agent.velocity.magnitude);
+            _animator.SetFloat(_velocityHash, _agent.velocity.magnitude);
         }
     }
 
