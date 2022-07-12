@@ -28,6 +28,8 @@ public class RangedEnemyAI : BaseEnemyAI
     [SerializeField] bool _isPlayerTooClose;
     [SerializeField] bool _canFlee;
     [SerializeField] bool _isFleeing;
+    [SerializeField] bool _hasFleedOnce;
+    [SerializeField] float _fleeCooldown;
 
     private Vector3 _directionToPlayer;
     private WaitForSeconds _fleeDurationCoroutine;
@@ -79,7 +81,10 @@ public class RangedEnemyAI : BaseEnemyAI
                     }
                 }
 
-                if ((_isPlayerInAttackRange && !_isPlayerTooClose))
+                if (_isPlayerTooClose && _canFlee && !_hasFleedOnce)
+                    StartCoroutine(Flee());
+
+                if ((_isPlayerInAttackRange && (!_isPlayerTooClose || _hasFleedOnce)))
                 {
                     transform.LookAt(_playerTransform);
                     CheckThrowPath();
@@ -89,9 +94,6 @@ public class RangedEnemyAI : BaseEnemyAI
                     else
                         CreateClearShotPath();
                 }
-
-                if (_isPlayerTooClose && _canFlee)
-                    StartCoroutine(Flee());
             }
         }
     }
@@ -185,20 +187,25 @@ public class RangedEnemyAI : BaseEnemyAI
     {
         _myCurrentState = State.fleeing;
         _isFleeing = true;
-        print("fleeing");
 
         _directionToPlayer = (transform.position - _playerTransform.position).normalized * _fleeDistance;
         Vector3 newFleePosition = transform.position + _directionToPlayer;
         _agent.SetDestination(newFleePosition);
 
         yield return _fleeDurationCoroutine;
-        print("finished fleeing");
+        _hasFleedOnce = true;
         _isFleeing = false;
+        Invoke("ResetFlee", _fleeCooldown);
     }
 
     private void ResetAttack()
     {
         _isAlreadyAttacked = false;
+    }
+
+    private void ResetFlee()
+    {
+        _hasFleedOnce = false;
     }
 
     private void OnDrawGizmosSelected()
