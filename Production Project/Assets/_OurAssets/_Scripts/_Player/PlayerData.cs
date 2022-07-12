@@ -9,8 +9,11 @@ using UnityEngine.SceneManagement;
 public enum WeaponType { Trap, Wall }
 public class PlayerData : Unit
 {
+
     public static PlayerData Instance;
     internal bool _isAllowedToShoot = true;
+
+    #region UI References
 
     [Header("UI")]
     [SerializeField] private GameObject _gameOverScreen;
@@ -22,6 +25,8 @@ public class PlayerData : Unit
     [SerializeField] private Sprite _trapImage;
     [SerializeField] private Sprite _trapOutlineSprite;
     [SerializeField] private Sprite _wallOutlineSprite;
+
+    #endregion
 
     [Header("Weapon Settings")]
     [SerializeField][ReadOnlyInspector] internal WeaponType currentWeapon;
@@ -36,9 +41,18 @@ public class PlayerData : Unit
     bool mute = false;
     //for sharon to delete:
     private Color orange = new Color(1, 0.5f, 0);
+
+    #region Animation
+
     private Animator _animator;
     public Animator AnimatorGetter => _animator;
 
+    int _trapCastAnimationHash;
+    int _cardsCastAnimationHash;
+
+    #endregion
+
+    
     private void Awake()
     {
         #region Singelton
@@ -66,6 +80,7 @@ public class PlayerData : Unit
             _currentBunnyCountText.text = $"{bunnyCount}";
 
         _outlineRenderer = PlayerAim.Instance.outline.transform.GetComponentInChildren<SpriteRenderer>();
+        AnimationHashInit();
     }
 
     private void Update()
@@ -144,7 +159,7 @@ public class PlayerData : Unit
                 trap.transform.LookAt(rotateTrapTo);
 
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Magic/Magic Trap Box");
-                _animator.Play("TrapCast_Animation", 1);
+                _animator.Play(_trapCastAnimationHash, 1);
 
                 canShoot = false;
                 Invoke("ResetAttack", _timeBetweenAttacks);
@@ -161,7 +176,7 @@ public class PlayerData : Unit
                 wall.transform.LookAt(rotateWallTo);
 
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Card");
-                _animator.Play("CardsCast_Animation", 1);
+                _animator.Play(_cardsCastAnimationHash, 1);
 
                 canShoot = false;
                 Invoke("ResetAttack", _timeBetweenAttacks);
@@ -250,4 +265,9 @@ public class PlayerData : Unit
         print($"Congrats your {unlockedUpgrade.myName} has been upgraded");
     }
 
+    private void AnimationHashInit()
+    {
+        _trapCastAnimationHash = Animator.StringToHash("TrapCast_Animation");
+        _cardsCastAnimationHash = Animator.StringToHash("CardsCast_Animation");
+    }
 }

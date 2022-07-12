@@ -18,6 +18,9 @@ public class Unit : MonoBehaviour
 
     public static event Action OnBunnyKilled;
 
+    // Animation Performance
+    int _gotHitHash;
+
 
     protected virtual void Start()
     {
@@ -25,17 +28,20 @@ public class Unit : MonoBehaviour
 
         if (_healthBar)
             _healthBar.fillAmount = _unitHP / _unitMaxHP;
+
+        if (gameObject.CompareTag("Player"))
+            _gotHitHash = Animator.StringToHash("GotHit");
     }
 
-    public void RecieveDamage(IAttackable<Unit> enemy)
+    public void RecieveDamage(IAttackable<Unit> enemy, bool showGotHitAnimation = true)
     {
         enemy.Attack(this);
 
         if (_healthBar)
             _healthBar.fillAmount = _unitHP / _unitMaxHP;
 
-        if (gameObject.CompareTag("Player"))
-            PlayerData.Instance.AnimatorGetter.SetTrigger("GotHit");
+        if (gameObject.CompareTag("Player") && !IsStunned && showGotHitAnimation)
+            PlayerData.Instance.AnimatorGetter.Play(_gotHitHash, 1);
 
         CheckDeath();
     }
@@ -43,7 +49,7 @@ public class Unit : MonoBehaviour
     protected virtual void OnDeath()
     {
         PlayerData.Instance.AddScore();
-        OnBunnyKilled?.Invoke();      
+        OnBunnyKilled?.Invoke();
         Destroy(gameObject);
     }
 

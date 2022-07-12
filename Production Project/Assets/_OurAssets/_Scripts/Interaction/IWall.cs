@@ -28,7 +28,7 @@ public class IWall : Attack
         else if (!_isTouchedGround && collision.gameObject.tag == "Player" && !_hasAttacked) // Ensures wall only hit player once
         {
             _hasAttacked = true;
-            collision.gameObject.GetComponent<Unit>().RecieveDamage(this);
+            collision.gameObject.GetComponent<Unit>().RecieveDamage(this, true);
         }
     }
 }

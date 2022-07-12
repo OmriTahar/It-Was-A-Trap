@@ -6265,6 +6265,18 @@ PrefabInstance:
       propertyPath: _attackEffect
       value: 
       objectReference: {fileID: 7482968780817774958}
+    - target: {fileID: 6205254416123414800, guid: 2b04318455d97624a9b511ee88ff3d45, type: 3}
+      propertyPath: _chargeColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205254416123414800, guid: 2b04318455d97624a9b511ee88ff3d45, type: 3}
+      propertyPath: _chargeColor.g
+      value: 0.6733866
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205254416123414800, guid: 2b04318455d97624a9b511ee88ff3d45, type: 3}
+      propertyPath: _chargeColor.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b04318455d97624a9b511ee88ff3d45, type: 3}
 --- !u!4 &4356710051991163568 stripped

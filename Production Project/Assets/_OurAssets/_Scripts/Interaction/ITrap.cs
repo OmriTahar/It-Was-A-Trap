@@ -40,7 +40,7 @@ public class ITrap : Attack
         if (other.gameObject.tag == "Enemy")
         {
             _attackedUnit = other.gameObject.GetComponent<Unit>();
-            _attackedUnit.RecieveDamage(this);
+            _attackedUnit.RecieveDamage(this, false);
 
             if (_causeStun)
             {

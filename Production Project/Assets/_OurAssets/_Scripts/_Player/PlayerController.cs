@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+
     #region Variables
 
     #region General
@@ -49,13 +50,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Color _dashBarColorCharge = new Color(1, 1, 0, 0.3f);
     #endregion
 
+    #region Animation Hash
+
+    int _velocityHash;
+    int _isStunnedHash;
+    int _startStunHash;
+
     #endregion
 
+    #region Sounds
+
     bool playfssound = false, soundactive = true;
-    private void ResetFootstepsSound()
-    {
-        soundactive = true;
-    }
+
+    #endregion
+
+    #endregion
+
 
     private void Awake()
     {
@@ -69,6 +79,11 @@ public class PlayerController : MonoBehaviour
 
         _dashCooldownRemainingTime = DashCooldownTotalTime;
         _dashDurationCoroutine = new WaitForSeconds(DashDuration);
+    }
+
+    private void Start()
+    {
+        HashAnimationsInit();
     }
 
     private void Update()
@@ -126,12 +141,12 @@ public class PlayerController : MonoBehaviour
         {
             if (!PlayerData.Instance.IsStunned && PlayerData.Instance._stunEffect.isPlaying)
             {
-                _animator.SetBool("IsStunned", false);
+                _animator.SetBool(_isStunnedHash, false);
                 PlayerData.Instance._stunEffect.Stop();
             }
 
             Vector3 playerVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            _animator.SetFloat("Velocity", playerVelocity.magnitude);
+            _animator.SetFloat(_velocityHash, playerVelocity.magnitude);
 
             if (Input.GetKeyDown(DashKey) && _canDash) // Dash Logic
             {
@@ -161,13 +176,13 @@ public class PlayerController : MonoBehaviour
         else
         {
             _rb.velocity = Vector3.zero;
-            _animator.SetFloat("Velocity", 0);
+            _animator.SetFloat(_velocityHash, 0);
 
             // Stun effect. Check conditions only if PlayerCanMove = false
             if (PlayerData.Instance.IsStunned && PlayerData.Instance._stunEffect != null && !PlayerData.Instance._stunEffect.isPlaying)
             {
-                _animator.SetBool("IsStunned", true);
-                _animator.SetTrigger("StartStun");
+                _animator.SetBool(_isStunnedHash, true);
+                _animator.SetTrigger(_startStunHash);
 
                 _rb.Sleep();
                 PlayerData.Instance._stunEffect.Play();
@@ -198,6 +213,18 @@ public class PlayerController : MonoBehaviour
             _meshTransform.LookAt(new Vector3(hit.point.x, _meshTransform.position.y, hit.point.z));
             Debug.DrawLine(camRay.origin, hit.point, Color.yellow);
         }
+    }
+
+    private void ResetFootstepsSound()
+    {
+        soundactive = true;
+    }
+
+    private void HashAnimationsInit()
+    {
+        _velocityHash = Animator.StringToHash("Velocity");
+        _isStunnedHash = Animator.StringToHash("IsStunned");
+        _startStunHash = Animator.StringToHash("StartStun");
     }
 
     #region Jump & Crouch Variables

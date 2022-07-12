@@ -33,7 +33,7 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
         if (other.gameObject.tag == "Player")
         {
             _attackedUnit = other.gameObject.GetComponent<Unit>();
-            _attackedUnit.RecieveDamage(this);
+            _attackedUnit.RecieveDamage(this, false);
 
             if (_causeStun)
             {
@@ -46,17 +46,15 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
     {
         if (!_hasAlreadyStunned)
         {
-            print("Start player stun!");
-
             _hasAlreadyStunned = true;
             attackedUnit.IsStunned = true;
+            print("player is stunned!");
 
             _playerController = other.gameObject.GetComponent<PlayerController>();
             _playerController.IsAllowedToMove = false;
             _playerController.IsAllowedToRotate = false;
             PlayerAim.Instance._canAim = false;
         }
-
 
         yield return new WaitForSeconds(_stunDuration);
         print("Finished Stun!");
