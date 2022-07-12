@@ -37,6 +37,7 @@ public class PlayerData : Unit
     //for sharon to delete:
     private Color orange = new Color(1, 0.5f, 0);
     private Animator _animator;
+    public Animator AnimatorGetter => _animator;
 
     private void Awake()
     {

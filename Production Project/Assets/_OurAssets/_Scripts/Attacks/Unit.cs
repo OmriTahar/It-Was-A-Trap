@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
+
     [Header("Unit Settings")]
     [SerializeField][ReadOnlyInspector] internal float _unitHP = 0;
     [SerializeField] protected float _unitMaxHP, _unitAttackRange;
@@ -33,13 +34,16 @@ public class Unit : MonoBehaviour
         if (_healthBar)
             _healthBar.fillAmount = _unitHP / _unitMaxHP;
 
+        if (gameObject.CompareTag("Player"))
+            PlayerData.Instance.AnimatorGetter.SetTrigger("GotHit");
+
         CheckDeath();
     }
 
     protected virtual void OnDeath()
     {
         PlayerData.Instance.AddScore();
-        OnBunnyKilled?.Invoke(); // Delegate attemp         
+        OnBunnyKilled?.Invoke();      
         Destroy(gameObject);
     }
 
@@ -48,8 +52,6 @@ public class Unit : MonoBehaviour
         if (_unitHP <= 0)
         {
             OnDeath();
-           
         }
     }
-
 }
