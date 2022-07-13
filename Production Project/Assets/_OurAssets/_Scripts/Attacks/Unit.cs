@@ -40,8 +40,11 @@ public class Unit : MonoBehaviour
         if (_healthBar)
             _healthBar.fillAmount = _unitHP / _unitMaxHP;
 
-        if (gameObject.CompareTag("Player") && !IsStunned && showGotHitAnimation)
-            PlayerData.Instance.AnimatorGetter.Play(_gotHitHash, 2);
+        if (_unitHP > 0 && gameObject.CompareTag("Player"))
+        {
+            if (!IsStunned && showGotHitAnimation)
+                PlayerData.Instance.AnimatorGetter.Play(_gotHitHash, 2);
+        }
 
         CheckDeath();
     }
@@ -59,6 +62,7 @@ public class Unit : MonoBehaviour
         if (gameObject.CompareTag("Player"))
         {
             PlayerData.Instance.AnimatorGetter.Play("Death", 0);
+            gameObject.GetComponent<PlayerController>().TogglePlayerInputAcceptance(false);
         }
         else
         {

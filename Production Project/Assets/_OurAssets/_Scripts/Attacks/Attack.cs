@@ -48,21 +48,14 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
         {
             _hasAlreadyStunned = true;
             attackedUnit.IsStunned = true;
-            print("player is stunned!");
 
             _playerController = other.gameObject.GetComponent<PlayerController>();
-            _playerController.IsAllowedToMove = false;
-            _playerController.IsAllowedToRotate = false;
-            PlayerAim.Instance._canAim = false;
+            _playerController.TogglePlayerInputAcceptance(false);
         }
 
         yield return new WaitForSeconds(_stunDuration);
-        print("Finished Stun!");
-
         attackedUnit.IsStunned = false;
-        _playerController.IsAllowedToMove = true;
-        _playerController.IsAllowedToRotate = true;
-        PlayerAim.Instance._canAim = true;
         _hasAlreadyStunned = false;
+        _playerController.TogglePlayerInputAcceptance(true);
     }
 }
