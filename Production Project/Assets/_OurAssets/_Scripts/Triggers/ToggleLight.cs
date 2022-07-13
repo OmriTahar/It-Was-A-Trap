@@ -13,7 +13,6 @@ public class ToggleLight : MonoBehaviour
     [Tooltip("If true: Light is allways ON")]
     [SerializeField] bool _isAlwaysEnabled = true;
 
-    private bool _isPlayerInRange;
 
     private void Awake()
     {

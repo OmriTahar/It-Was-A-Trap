@@ -49,9 +49,9 @@ public class Upgrade : MonoBehaviour
     {
         if (!unlocked)
         {
-            this.unlocked = true;
+            unlocked = true;
             ActivateUpgrade();
-            this.enabled = false;
+            enabled = false;
         }
     }
 
