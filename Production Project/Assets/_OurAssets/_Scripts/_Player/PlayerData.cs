@@ -1,18 +1,21 @@
-using System.Collections.Generic;
-using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
-using UnityEngine.AI;
 using UnityEngine.SceneManagement;
-using System.Threading.Tasks;
 
 public enum WeaponType { Trap, Wall }
 public class PlayerData : Unit
 {
 
+    #region Variables
+
+    #region Exposed Variables
+
     public static PlayerData Instance;
     internal bool _isAllowedToShoot = true;
+    internal int bunnyCount = 0;
+
+    #endregion
 
     #region UI References
 
@@ -29,35 +32,41 @@ public class PlayerData : Unit
 
     #endregion
 
+    #region Settings
+
     [Header("Weapon Settings")]
     [SerializeField][ReadOnlyInspector] internal WeaponType currentWeapon;
     [SerializeField][ReadOnlyInspector] internal bool canShoot = true, clearToShoot = true;
     [SerializeField] private float _timeBetweenAttacks;
 
-    private PlayerController _myPlayerController;
-    private SpriteRenderer _outlineRenderer;
-    internal int bunnyCount = 0;
-    private bool _loseCondition = false;
-    private bool _winCondition = false;
-    bool mute = false;
-    //for sharon to delete:
-    private Color _red = new Color(1, 0, 0);
-
     [Header("Win / Death Screen Delay Settings")]
     [SerializeField] bool _isAllowedToPressContinue = false;
     [SerializeField] float _delayBeforeAllowingToPressContinue = 3f;
 
-    #region Animation
+    #endregion
+
+    #region Private 
+
+    private PlayerController _myPlayerController;
+    private SpriteRenderer _outlineRenderer;
+    private bool _loseCondition = false;
+    private bool _winCondition = false;
+    private bool _mute = false;
+    private Color _red = new Color(1, 0, 0);
 
     private Animator _animator;
     public Animator AnimatorGetter => _animator;
-
-    int _trapCastAnimationHash;
-    int _cardsCastAnimationHash;
+    private int _trapCastAnimationHash;
+    private int _cardsCastAnimationHash;
 
     #endregion
 
-    
+    #endregion
+
+    #region Methods
+
+    #region Unity Callbacks
+
     private void Awake()
     {
         #region Singelton
@@ -76,7 +85,16 @@ public class PlayerData : Unit
         _myPlayerController = GetComponent<PlayerController>();
     }
 
-    //ondisable?
+    private void OnEnable()
+    {
+        OnPlayerKilled += SetLoseCondition;
+    }
+
+    private void OnDisable()
+    {
+        OnPlayerKilled -= SetLoseCondition;
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -118,10 +136,14 @@ public class PlayerData : Unit
 
         if (Input.GetKey(KeyCode.M))
         {
-            mute = !mute;
-            FMODUnity.RuntimeManager.PauseAllEvents(mute);
+            _mute = !_mute;
+            FMODUnity.RuntimeManager.PauseAllEvents(_mute);
         }
     }
+
+    #endregion
+
+    #region Win/Lose Conditions
 
     public void OnWin()
     {
@@ -135,13 +157,12 @@ public class PlayerData : Unit
         Invoke("TogglePlayerAllowToPressContinue", _delayBeforeAllowingToPressContinue);
     }
 
-    protected override void OnDeath()
-    {
-        base.OnDeath();
-        Invoke("SetLoseCondition",3f);
-    }
+    //protected override void OnDeath()
+    //{
+    //    base.OnDeath();
+    //}
 
-    private void SetLoseCondition() // Allow death animation to finish (place holder)
+    private void SetLoseCondition() 
     {
         _loseCondition = true;
         _gameOverScreen.SetActive(true);
@@ -153,15 +174,9 @@ public class PlayerData : Unit
         _isAllowedToPressContinue = true;
     }
 
-    public void AddScore()
-    {
-        bunnyCount++;
+    #endregion
 
-        if (_currentBunnyCountText)
-            _currentBunnyCountText.text = $"{bunnyCount}";
-
-        AbilityEligabilityCheck();
-    }
+    #region Attack Methods
 
     private void Attack()
     {
@@ -221,6 +236,40 @@ public class PlayerData : Unit
         }
     }
 
+    private void IsClearUIChange(WeaponType currWeapon, bool clearnShot, Color myColor)
+    {
+        if (clearnShot && myColor != Color.white)
+            _outlineRenderer.color = Color.white;
+
+        else if (!clearnShot && myColor != _red)
+            _outlineRenderer.color = _red;
+
+        else if (clearnShot && myColor != Color.white)
+            _outlineRenderer.color = Color.white;
+
+        else if (!clearnShot && myColor != _red)
+            _outlineRenderer.color = _red;
+    }
+
+    private void ResetAttack()
+    {
+        canShoot = true;
+    }
+
+    #endregion
+
+    #region UI Methods
+
+    public void AddScore()
+    {
+        bunnyCount++;
+
+        if (_currentBunnyCountText)
+            _currentBunnyCountText.text = $"{bunnyCount}";
+
+        AbilityEligabilityCheck();
+    }
+
     private void UpdateUI()
     {
         switch (currentWeapon)
@@ -243,25 +292,9 @@ public class PlayerData : Unit
         }
     }
 
-    private void IsClearUIChange(WeaponType currWeapon, bool clearnShot, Color myColor)
-    {
-        if (clearnShot && myColor != Color.white)
-            _outlineRenderer.color = Color.white;
+    #endregion
 
-        else if (!clearnShot && myColor != _red)
-            _outlineRenderer.color = _red;
-
-        else if (clearnShot && myColor != Color.white)
-            _outlineRenderer.color = Color.white;
-
-        else if (!clearnShot && myColor != _red)
-            _outlineRenderer.color = _red;
-    }
-
-    private void ResetAttack()
-    {
-        canShoot = true;
-    }
+    #region Upgrade System
 
     private void AbilityEligabilityCheck()
     {
@@ -283,9 +316,18 @@ public class PlayerData : Unit
         print($"Congrats your {unlockedUpgrade.myName} has been upgraded");
     }
 
+    #endregion
+
+    #region Extras
+
     private void AnimationHashInit()
     {
         _trapCastAnimationHash = Animator.StringToHash("TrapCast_Animation");
         _cardsCastAnimationHash = Animator.StringToHash("CardsCast_Animation");
     }
+
+    #endregion
+
+    #endregion
+
 }

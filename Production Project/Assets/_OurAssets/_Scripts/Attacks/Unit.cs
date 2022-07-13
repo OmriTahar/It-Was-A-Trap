@@ -17,8 +17,8 @@ public class Unit : MonoBehaviour
     public ParticleSystem _stunEffect;
 
     public static event Action OnBunnyKilled;
+    public static event Action OnPlayerKilled;
 
-    // Animation Performance
     int _gotHitHash;
 
 
@@ -46,6 +46,14 @@ public class Unit : MonoBehaviour
         CheckDeath();
     }
 
+    private void CheckDeath()
+    {
+        if (_unitHP <= 0)
+        {
+            OnDeath();
+        }
+    }
+
     protected virtual void OnDeath()
     {
         if (gameObject.CompareTag("Player"))
@@ -60,11 +68,8 @@ public class Unit : MonoBehaviour
         }
     }
 
-    private void CheckDeath()
+    public void PlayerDeath() // Executed after death animation end
     {
-        if (_unitHP <= 0)
-        {
-            OnDeath();
-        }
+        OnPlayerKilled?.Invoke();
     }
 }
