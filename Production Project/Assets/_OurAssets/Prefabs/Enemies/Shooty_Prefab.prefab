@@ -66,6 +66,7 @@ Transform:
   - {fileID: 1524652207805955106}
   - {fileID: 7079951843870308302}
   - {fileID: 4389780435512023250}
+  - {fileID: 5857758707664199675}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -148,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitHP: 0
-  _unitMaxHP: 1
+  _unitMaxHP: 18
   _unitAttackRange: 10
   _healthBarBG: {fileID: 0}
   _healthBar: {fileID: 0}
@@ -170,6 +171,7 @@ MonoBehaviour:
   _MinRandomAvoidanceNumber: 30
   _MaxRandomAvoidanceNumber: 50
   _rangedShootPoint: {fileID: 4389780435512023250}
+  _throwPathChecker: {fileID: 5857758707664199675}
   _rangedShootForce: 25
   _throwPathObstacleLayers:
     serializedVersion: 2
@@ -184,6 +186,9 @@ MonoBehaviour:
   _isPlayerTooClose: 0
   _canFlee: 0
   _isFleeing: 0
+  _hasFleedOnce: 0
+  _fleeCooldown: 2
+  _finishedThrowing: 1
 --- !u!95 &254986942225880776
 Animator:
   serializedVersion: 3
@@ -203,6 +208,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &8710132172394491426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5857758707664199675}
+  m_Layer: 6
+  m_Name: Throw Path Checker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5857758707664199675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8710132172394491426}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.67}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8020574770979397827}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1298796173069160255
 PrefabInstance:
   m_ObjectHideFlags: 0

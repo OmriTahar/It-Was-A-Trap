@@ -20,6 +20,7 @@ public class Unit : MonoBehaviour
     public static event Action OnPlayerKilled;
 
     int _gotHitHash;
+    bool _isDead = false;
 
 
     protected virtual void Start()
@@ -35,18 +36,21 @@ public class Unit : MonoBehaviour
 
     public void RecieveDamage(IAttackable<Unit> enemy, bool showGotHitAnimation = true)
     {
-        enemy.Attack(this);
-
-        if (_healthBar)
-            _healthBar.fillAmount = _unitHP / _unitMaxHP;
-
-        if (_unitHP > 0 && gameObject.CompareTag("Player"))
+        if (!_isDead)
         {
-            if (!IsStunned && showGotHitAnimation)
-                PlayerData.Instance.AnimatorGetter.Play(_gotHitHash, 2);
-        }
+            enemy.Attack(this);
 
-        CheckDeath();
+            if (_healthBar)
+                _healthBar.fillAmount = _unitHP / _unitMaxHP;
+
+            if (_unitHP > 0 && gameObject.CompareTag("Player"))
+            {
+                if (!IsStunned && showGotHitAnimation)
+                    PlayerData.Instance.AnimatorGetter.Play(_gotHitHash, 2);
+            }
+
+            CheckDeath();
+        }
     }
 
     private void CheckDeath()
@@ -59,8 +63,11 @@ public class Unit : MonoBehaviour
 
     protected virtual void OnDeath()
     {
+        _isDead = true;
+
         if (gameObject.CompareTag("Player"))
         {
+            PlayerData.Instance.AnimatorGetter.SetBool("IsDead", true);
             PlayerData.Instance.AnimatorGetter.Play("Death", 0);
             gameObject.GetComponent<PlayerController>().TogglePlayerInputAcceptance(false);
         }

@@ -41,10 +41,10 @@ public class ShoutAttack : Attack
                 _alreadyAttacked = true;
                 _attackedUnit = other.gameObject.GetComponent<Unit>();
 
+                _attackedUnit.RecieveDamage(this, false);
+
                 if (_causeStun)
                     StartCoroutine(StunPlayer(other, _attackedUnit));
-
-                _attackedUnit.RecieveDamage(this, false);
             }
         }
     }

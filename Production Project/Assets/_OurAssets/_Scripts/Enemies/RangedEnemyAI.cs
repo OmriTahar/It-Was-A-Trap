@@ -9,6 +9,7 @@ public class RangedEnemyAI : BaseEnemyAI
 
     [Header("Ranged Attack Settings")]
     [SerializeField] Transform _rangedShootPoint;
+    [SerializeField] Transform _throwPathChecker;
     [SerializeField] float _rangedShootForce;
     [Tooltip("Player layer must be included even though he is not a throw path obstacle!")]
     [SerializeField] LayerMask _throwPathObstacleLayers;
@@ -62,7 +63,7 @@ public class RangedEnemyAI : BaseEnemyAI
     {
         base.EnemyStateMachine();
 
-        if (IsEnemyActivated)
+        if (IsEnemyActivated && _finishedThrowing)
         {
 
             if (_isCreatingShotPath)
@@ -72,7 +73,7 @@ public class RangedEnemyAI : BaseEnemyAI
                     _isCreatingShotPath = false;
                 }
             }
-            else if (_finishedThrowing)
+            else
             {
                 if (!_isFleeing)
                 {
@@ -122,7 +123,7 @@ public class RangedEnemyAI : BaseEnemyAI
 
     private void CheckThrowPath()
     {
-        Ray ray = new Ray(_rangedShootPoint.position, _rangedShootPoint.forward);
+        Ray ray = new Ray(_throwPathChecker.position, _throwPathChecker.forward);
         RaycastHit hit;
         Physics.Raycast(ray, out hit, _unitAttackRange, _throwPathObstacleLayers);
 
