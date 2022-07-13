@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1799801110775541249}
   - component: {fileID: 6104038318538482815}
+  - component: {fileID: 8132293106148797550}
   m_Layer: 10
   m_Name: Wheel_Prefab
   m_TagString: Untagged
@@ -45,6 +46,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2465353, y: 1.3513559, z: 1.2598238}
   m_Center: {x: -0.53429437, y: 0.68525237, z: -0.1299119}
+--- !u!65 &8132293106148797550
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5360010070620113246}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3646753, y: 2.279419, z: 0.59458447}
+  m_Center: {x: -0.5872568, y: 1.3142016, z: 0.5870919}
 --- !u!1001 &7546192983354188236
 PrefabInstance:
   m_ObjectHideFlags: 0
