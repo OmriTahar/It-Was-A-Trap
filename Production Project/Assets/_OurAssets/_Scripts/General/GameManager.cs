@@ -4,16 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
             Application.Quit();
-        }
     }
 }
