@@ -30,6 +30,7 @@ public class RangedEnemyAI : BaseEnemyAI
     [SerializeField] bool _isFleeing;
     [SerializeField] bool _hasFleedOnce;
     [SerializeField] float _fleeCooldown;
+    [SerializeField] bool _finishedThrowing = true;
 
     private Vector3 _directionToPlayer;
     private WaitForSeconds _fleeDurationCoroutine;
@@ -71,7 +72,7 @@ public class RangedEnemyAI : BaseEnemyAI
                     _isCreatingShotPath = false;
                 }
             }
-            else
+            else if (_finishedThrowing)
             {
                 if (!_isFleeing)
                 {
@@ -149,12 +150,13 @@ public class RangedEnemyAI : BaseEnemyAI
             if (!_isAlreadyAttacked && !_isThrowPathBlocked)
             {
                 _isAlreadyAttacked = true;
+                _finishedThrowing = false;
                 _animator.SetTrigger("Throw");
             }
         }
     }
 
-    public void Throw()
+    public void Throw() // Called from animation event
     {
         GameObject carrot = _rangedProjectilePool.GetProjectileFromPool();
         carrot.transform.position = _rangedShootPoint.position;
@@ -168,6 +170,11 @@ public class RangedEnemyAI : BaseEnemyAI
         FMODUnity.RuntimeManager.PlayOneShot("event:/Bunny/Carrot Shoot");
 
         Invoke(nameof(ResetAttack), _timeBetweenAttacks);
+    }
+
+    public void FinishedThrowing() // Called from animation event. Fix fleeing before finishing throw animation
+    {
+        _finishedThrowing = true;
     }
 
     private bool CanEnemyFlee()
