@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public enum State { chasing, attacking, fleeing, creatingRange }
 public class BaseEnemyAI : Unit
 {
+
     protected NavMeshAgent _agent;
     protected Rigidbody _rb;
     protected Animator _animator;
@@ -47,6 +48,16 @@ public class BaseEnemyAI : Unit
     {
         base.Start();
         _velocityHash = Animator.StringToHash("Velocity");
+    }
+
+    private void OnEnable()
+    {
+        OnPlayerKilled += WeKilledThePlayer;
+    }
+
+    private void OnDisable()
+    {
+        OnPlayerKilled -= WeKilledThePlayer;
     }
 
     protected virtual void Update()
@@ -133,6 +144,11 @@ public class BaseEnemyAI : Unit
             }
         }
         return false;
+    }
+
+    public void WeKilledThePlayer()
+    {
+        IsEnemyActivated = false;
     }
 
     #region UnUsedVariables

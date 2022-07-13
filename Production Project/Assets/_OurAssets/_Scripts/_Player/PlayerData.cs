@@ -40,7 +40,7 @@ public class PlayerData : Unit
     [SerializeField] private float _timeBetweenAttacks;
 
     [Header("Win / Death Screen Delay Settings")]
-    [SerializeField] bool _isAllowedToPressContinue = false;
+    [SerializeField] bool _isCanPressContinue = false;
     [SerializeField] float _delayBeforeAllowingToPressContinue = 3f;
 
     #endregion
@@ -120,24 +120,24 @@ public class PlayerData : Unit
                     Attack();
         }
 
-        if (_loseCondition && Input.anyKeyDown && _isAllowedToPressContinue)
+        if (Input.GetKey(KeyCode.M))
+        {
+            _mute = !_mute;
+            FMODUnity.RuntimeManager.PauseAllEvents(_mute);
+        }
+
+        if (_loseCondition && _isCanPressContinue && Input.anyKeyDown)
         {
             _gameOverScreen.SetActive(false);
             _loseCondition = false;
             SceneManager.LoadScene(1);
         }
 
-        if (_winCondition && Input.anyKeyDown && _isAllowedToPressContinue)
+        if (_winCondition && _isCanPressContinue && Input.anyKeyDown)
         {
             _winScreen.SetActive(false);
             _winCondition = false;
             SceneManager.LoadScene(0);
-        }
-
-        if (Input.GetKey(KeyCode.M))
-        {
-            _mute = !_mute;
-            FMODUnity.RuntimeManager.PauseAllEvents(_mute);
         }
     }
 
@@ -154,24 +154,19 @@ public class PlayerData : Unit
         _isAllowedToShoot = false;
 
         _winScreen.SetActive(true);
-        Invoke("TogglePlayerAllowToPressContinue", _delayBeforeAllowingToPressContinue);
+        Invoke("ToggleCanPressContinue", _delayBeforeAllowingToPressContinue);
     }
-
-    //protected override void OnDeath()
-    //{
-    //    base.OnDeath();
-    //}
 
     private void SetLoseCondition() 
     {
         _loseCondition = true;
         _gameOverScreen.SetActive(true);
-        Invoke("TogglePlayerAllowToPressContinue", _delayBeforeAllowingToPressContinue);
+        Invoke("ToggleCanPressContinue", _delayBeforeAllowingToPressContinue);
     }
 
-    private void TogglePlayerAllowToPressContinue()
+    private void ToggleCanPressContinue()
     {
-        _isAllowedToPressContinue = true;
+        _isCanPressContinue = true;
     }
 
     #endregion

@@ -1720,9 +1720,9 @@ GameObject:
   - component: {fileID: 141275631}
   - component: {fileID: 141275630}
   m_Layer: 0
-  m_Name: WinBox
+  m_Name: Level Won_Trigger
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -30932,6 +30932,10 @@ PrefabInstance:
       propertyPath: _currentBunnyCountText
       value: 
       objectReference: {fileID: 186984128}
+    - target: {fileID: 1961995115909999450, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: _delayBeforeAllowingToPressContinue
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4061210518604259733, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: _cam
       value: 
