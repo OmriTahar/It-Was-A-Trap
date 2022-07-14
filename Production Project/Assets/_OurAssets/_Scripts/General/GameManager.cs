@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
     public void TogglePauseMenu(bool isGamePauesd)
     {
         _isGamePaused = isGamePauesd;
+        Cursor.visible = isGamePauesd;
 
         _pauseMenu.SetActive(isGamePauesd);
         _playerHUD.SetActive(!isGamePauesd);
