@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
         _pauseMenu.SetActive(isGamePauesd);
         _playerHUD.SetActive(!isGamePauesd);
 
+        IsTimeScaleStopped(isGamePauesd);
         IsPlayerActive(!isGamePauesd);
     }
 
@@ -72,5 +74,15 @@ public class GameManager : MonoBehaviour
         _playerController.TogglePlayerInputAcceptance(isPlayerActive);
         PlayerAim.Instance._canAim = isPlayerActive;
         PlayerData.Instance._isAllowedToShoot = isPlayerActive;
+    }
+
+    private void IsTimeScaleStopped(bool isStopped)
+    {
+        if (isStopped)
+        {
+            Time.timeScale = 0;
+        }
+        else
+            Time.timeScale = 1;
     }
 }
