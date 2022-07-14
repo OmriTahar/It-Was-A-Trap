@@ -181,9 +181,9 @@ MonoBehaviour:
   currentWeapon: 0
   canShoot: 1
   clearToShoot: 1
-  _timeBetweenAttacks: 0.5
-  _isAllowedToPressContinue: 0
-  _delayBeforeAllowingToPressContinue: 3
+  _timeBetweenAttacks: 0.75
+  _isCanPressContinue: 0
+  _delayBeforeAllowingToPressContinue: 1
 --- !u!114 &1961995115909999448
 MonoBehaviour:
   m_ObjectHideFlags: 0

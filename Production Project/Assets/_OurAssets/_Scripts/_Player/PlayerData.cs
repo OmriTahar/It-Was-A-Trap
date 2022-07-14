@@ -103,7 +103,9 @@ public class PlayerData : Unit
             _currentBunnyCountText.text = $"{bunnyCount}";
 
         _outlineRenderer = PlayerAim.Instance.outline.transform.GetComponentInChildren<SpriteRenderer>();
+
         AnimationHashInit();
+        OutcomeScreensInit();
     }
 
     private void Update()
@@ -126,24 +128,22 @@ public class PlayerData : Unit
             FMODUnity.RuntimeManager.PauseAllEvents(_mute);
         }
 
-        if (_loseCondition && _isCanPressContinue && Input.anyKeyDown)
-        {
-            _gameOverScreen.SetActive(false);
-            _loseCondition = false;
-            SceneManager.LoadScene(1);
-        }
-
-        if (_winCondition && _isCanPressContinue && Input.anyKeyDown)
-        {
-            _winScreen.SetActive(false);
-            _winCondition = false;
-            SceneManager.LoadScene(0);
-        }
+        if (_winCondition || _loseCondition)
+            GameIsOver();
     }
 
     #endregion
 
     #region Win/Lose Conditions
+
+    private void OutcomeScreensInit()
+    {
+        _gameOverScreen.SetActive(false);
+        _loseCondition = false;
+
+        _winScreen.SetActive(false);
+        _winCondition = false;
+    }
 
     public void OnWin()
     {
@@ -167,6 +167,15 @@ public class PlayerData : Unit
     private void ToggleCanPressContinue()
     {
         _isCanPressContinue = true;
+    }
+
+    private void GameIsOver()
+    {
+        if (_loseCondition && _isCanPressContinue && Input.anyKeyDown)
+            SceneManager.LoadScene(1);
+
+        if (_winCondition && _isCanPressContinue && Input.anyKeyDown)
+            SceneManager.LoadScene(0);
     }
 
     #endregion
