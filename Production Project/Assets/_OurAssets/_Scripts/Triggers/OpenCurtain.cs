@@ -11,6 +11,7 @@ public class OpenCurtain : MonoBehaviour
     [Tooltip("Add every activiton trigger before the curtain to be precise. Example: Curtain_02 needs to recieve Activion Trigger 1+2")]
     [SerializeField] List<ActivateEnemies> _enemyActivationTriggersList;
     [SerializeField][ReadOnlyInspector] int _bunnyCountToOpen;
+    [SerializeField] Light _pathLight;
 
     [Header("Cameras")]
     [SerializeField] CinemachineBrain _cameraBrain;
@@ -47,6 +48,8 @@ public class OpenCurtain : MonoBehaviour
         {
             _bunnyCountToOpen += enemyActivisionTrigger.EnemiesToActivate.Count;
         }
+
+        if (_pathLight != null) _pathLight.enabled = false;
     }
 
     private void BunnyCountCheck()
@@ -68,6 +71,7 @@ public class OpenCurtain : MonoBehaviour
         FirstSwitch();
         yield return new WaitForSeconds(_firstSwitchWaitDuration);
 
+        if (_pathLight != null) _pathLight.enabled = true;
         _animator.SetTrigger("Open");
 
         yield return new WaitForSeconds(_focusOnCurtainWaitDuraion);
