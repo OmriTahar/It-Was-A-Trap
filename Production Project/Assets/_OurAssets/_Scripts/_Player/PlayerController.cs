@@ -94,14 +94,6 @@ public class PlayerController : MonoBehaviour
         if (IsAllowedToRotate)
             CameraInput();
 
-        if (Input.GetKeyDown(KeyCode.Tab))
-            if (_activeUpgradesWindow)
-                _activeUpgradesWindow.SetActive(true);
-
-        if (Input.GetKeyUp(KeyCode.Tab))
-            if (_activeUpgradesWindow)
-                _activeUpgradesWindow.SetActive(false);
-
         if (IsAllowedToMove && playfssound && !_isDashing && soundactive)
         {
             soundactive = false;
@@ -111,6 +103,18 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
+
+        #region Upgrade Sysytem (Not Currently Used)
+
+        //if (Input.GetKeyDown(KeyCode.Tab))
+        //    if (_activeUpgradesWindow)
+        //        _activeUpgradesWindow.SetActive(true);
+
+        //if (Input.GetKeyUp(KeyCode.Tab))
+        //    if (_activeUpgradesWindow)
+        //        _activeUpgradesWindow.SetActive(false);
+
+        #endregion
     }
 
     void FixedUpdate()
