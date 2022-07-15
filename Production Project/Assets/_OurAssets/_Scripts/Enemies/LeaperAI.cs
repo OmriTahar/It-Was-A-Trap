@@ -144,6 +144,7 @@ public class LeaperAI : BaseEnemyAI
 
         _hasLeaped = true;
         _agent.SetDestination(transform.position);
+        _animator.SetTrigger("ChargeLeap");
 
         if (_isLeapPathBlocked)
         {
@@ -184,6 +185,7 @@ public class LeaperAI : BaseEnemyAI
         else // Leap distance is too long or path is blocked
         {
             _hasLeaped = false;
+            _animator.SetTrigger("CancleLeap");
         }
     }
 
