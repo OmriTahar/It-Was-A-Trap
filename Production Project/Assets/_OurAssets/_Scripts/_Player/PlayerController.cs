@@ -236,11 +236,10 @@ public class PlayerController : MonoBehaviour
         _startStunHash = Animator.StringToHash("StartStun");
     }
 
-    public void TogglePlayerInputAcceptance(bool isAcceptingInput)
+    public void CanPlayerMoveAndRotate(bool isAcceptingInput)
     {
         IsAllowedToMove = isAcceptingInput;
         IsAllowedToRotate = isAcceptingInput;
-        PlayerAim.Instance._canAim = isAcceptingInput;
     }
 
     #region Jump & Crouch Variables

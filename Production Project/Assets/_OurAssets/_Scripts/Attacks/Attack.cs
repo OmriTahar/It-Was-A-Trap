@@ -50,12 +50,12 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
             attackedUnit.IsStunned = true;
 
             _playerController = other.gameObject.GetComponent<PlayerController>();
-            _playerController.TogglePlayerInputAcceptance(false);
+            GameManager.Instance.IsPlayerActive(false);
         }
 
         yield return new WaitForSeconds(_stunDuration);
         attackedUnit.IsStunned = false;
         _hasAlreadyStunned = false;
-        _playerController.TogglePlayerInputAcceptance(true);
+        GameManager.Instance.IsPlayerActive(true);
     }
 }

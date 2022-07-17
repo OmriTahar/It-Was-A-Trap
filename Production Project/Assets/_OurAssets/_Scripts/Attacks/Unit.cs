@@ -69,7 +69,7 @@ public class Unit : MonoBehaviour
         {
             PlayerData.Instance.AnimatorGetter.SetBool("IsDead", true);
             PlayerData.Instance.AnimatorGetter.Play("Death", 0);
-            gameObject.GetComponent<PlayerController>().TogglePlayerInputAcceptance(false);
+            GameManager.Instance.IsPlayerActive(false);
         }
         else
         {

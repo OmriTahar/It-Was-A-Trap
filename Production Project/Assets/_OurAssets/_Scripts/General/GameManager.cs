@@ -70,11 +70,13 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    public void IsPlayerActive(bool isPlayerActive)
+    public void IsPlayerActive(bool isPlayerActive, bool enablePlayerHUD = true)
     {
-        _playerController.TogglePlayerInputAcceptance(isPlayerActive);
+        _playerController.CanPlayerMoveAndRotate(isPlayerActive);
         PlayerAim.Instance._canAim = isPlayerActive;
         PlayerData.Instance._isAllowedToShoot = isPlayerActive;
+
+        _playerHUD.SetActive(enablePlayerHUD);
     }
 
     private void IsTimeScaleStopped(bool isStopped)
