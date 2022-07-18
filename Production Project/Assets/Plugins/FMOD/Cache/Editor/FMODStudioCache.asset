@@ -228,10 +228,10 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/It was a trap 1/It was a trap/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637920210744714381
+  lastModified: 637927209583417393
   FileSizes:
   - Name: Desktop
-    Value: 2421728
+    Value: 3653664
   Exists: 1
 --- !u!114 &-1244282374247122042
 MonoBehaviour:
@@ -359,13 +359,41 @@ MonoBehaviour:
   - {fileID: 1767726797488870992}
   - {fileID: -7841367439004142556}
   - {fileID: 7695720594631207322}
+  - {fileID: 330781535557381403}
   EditorParameters: []
   MasterBanks:
   - {fileID: -2039351862199804846}
   StringsBanks:
   - {fileID: 3905044097606930977}
-  cacheTime: 637920210744729873
+  cacheTime: 637927209583447401
   cacheVersion: 10
+--- !u!114 &330781535557381403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/20's music game mix Am
+  m_EditorClassIdentifier: 
+  Path: event:/Player/20's music game mix Am
+  Guid:
+    Data1: 1947986555
+    Data2: 1183109973
+    Data3: -234152302
+    Data4: 2065951052
+  Banks:
+  - {fileID: -2039351862199804846}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &1469277712948076252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,7 +555,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 4244
+  Length: 3300
 --- !u!114 &2501884156338051173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,7 +662,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 607
+  Length: 210
 --- !u!114 &3126051027214379373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,7 +716,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 265
+  Length: 135
 --- !u!114 &3905044097606930977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -704,10 +732,10 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/It was a trap 1/It was a trap/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637920210744729873
+  lastModified: 637927209583447401
   FileSizes:
   - Name: Desktop
-    Value: 2234
+    Value: 2288
   Exists: 1
 --- !u!114 &4326594791297958230
 MonoBehaviour:
