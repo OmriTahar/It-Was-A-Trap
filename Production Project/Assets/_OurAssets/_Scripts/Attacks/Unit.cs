@@ -10,7 +10,7 @@ public class Unit : MonoBehaviour
     [Header("Unit Settings")]
     [SerializeField][ReadOnlyInspector] internal float _unitHP = 0;
     [SerializeField] protected float _unitMaxHP, _unitAttackRange;
-    [SerializeField] Image _healthBarBG, _healthBar;
+    [SerializeField] Image _healthBar;
 
     [Header("Stun Settings")]
     public bool IsStunned;
@@ -19,7 +19,8 @@ public class Unit : MonoBehaviour
     public static event Action OnBunnyKilled;
     public static event Action OnPlayerKilled;
 
-    int _gotHitHash;
+    int _gotHitAnimationHash;
+    int _gotHitEffectHash;
     bool _isDead = false;
 
 
@@ -31,7 +32,10 @@ public class Unit : MonoBehaviour
             _healthBar.fillAmount = _unitHP / _unitMaxHP;
 
         if (gameObject.CompareTag("Player"))
-            _gotHitHash = Animator.StringToHash("GotHit");
+        {
+            _gotHitAnimationHash = Animator.StringToHash("GotHit");
+            _gotHitEffectHash = Animator.StringToHash("Hit Effect");
+        }
     }
 
     public void RecieveDamage(IAttackable<Unit> enemy, bool showGotHitAnimation = true)
@@ -43,10 +47,14 @@ public class Unit : MonoBehaviour
             if (_healthBar)
                 _healthBar.fillAmount = _unitHP / _unitMaxHP;
 
+
             if (_unitHP > 0 && gameObject.CompareTag("Player"))
             {
                 if (!IsStunned && showGotHitAnimation)
-                    PlayerData.Instance.AnimatorGetter.Play(_gotHitHash, 2);
+                {
+                    PlayerData.Instance.HitEffectAnimator.Play(_gotHitEffectHash, 0);
+                    PlayerData.Instance.PlayerAnimatorGetter.Play(_gotHitAnimationHash, 2);
+                }
             }
 
             CheckDeath();
@@ -67,8 +75,8 @@ public class Unit : MonoBehaviour
 
         if (gameObject.CompareTag("Player"))
         {
-            PlayerData.Instance.AnimatorGetter.SetBool("IsDead", true);
-            PlayerData.Instance.AnimatorGetter.Play("Death", 0);
+            PlayerData.Instance.PlayerAnimatorGetter.SetBool("IsDead", true);
+            PlayerData.Instance.PlayerAnimatorGetter.Play("Death", 0);
             GameManager.Instance.IsPlayerActive(false);
         }
         else

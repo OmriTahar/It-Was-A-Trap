@@ -19,7 +19,10 @@ public class PlayerData : Unit
 
     #region UI References
 
-    [Header("UI")]
+    [Header("References")]
+    public Animator HitEffectAnimator;
+
+    [Header("UI References")]
     [SerializeField] private GameObject _gameOverScreen;
     [SerializeField] private GameObject _winScreen;
     [SerializeField] private TextMeshProUGUI _currentAmmoAmountText;
@@ -55,7 +58,7 @@ public class PlayerData : Unit
     private Color _red = new Color(1, 0, 0);
 
     private Animator _animator;
-    public Animator AnimatorGetter => _animator;
+    public Animator PlayerAnimatorGetter => _animator;
     private int _trapCastAnimationHash;
     private int _cardsCastAnimationHash;
 

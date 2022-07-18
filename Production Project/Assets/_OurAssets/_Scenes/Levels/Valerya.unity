@@ -10247,11 +10247,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c75338d96ae022944893afc1b294b91f, type: 3}
---- !u!1 &1112721072 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9120171692144852421, guid: c75338d96ae022944893afc1b294b91f, type: 3}
-  m_PrefabInstance: {fileID: 1112721071}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1112721073 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4342435695453363862, guid: c75338d96ae022944893afc1b294b91f, type: 3}
@@ -14644,6 +14639,14 @@ PrefabInstance:
     - target: {fileID: 2902085270117424560, guid: 6d2ef8db7ac7b8a4b80d3977432aec2f, type: 3}
       propertyPath: _focusOnCurtainWaitDuraion
       value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902085270117424560, guid: 6d2ef8db7ac7b8a4b80d3977432aec2f, type: 3}
+      propertyPath: _waitAfterFirstSwitchStarted
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902085270117424560, guid: 6d2ef8db7ac7b8a4b80d3977432aec2f, type: 3}
+      propertyPath: _waitAfterSecondSwitchStarted
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2902085270117424560, guid: 6d2ef8db7ac7b8a4b80d3977432aec2f, type: 3}
       propertyPath: _enemyActivationTriggersList.Array.size
@@ -19216,6 +19219,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912893876}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &1919227748 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6371873760629796442, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+  m_PrefabInstance: {fileID: 1112721071}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1933715085
 GameObject:
   m_ObjectHideFlags: 0
@@ -19613,6 +19621,14 @@ PrefabInstance:
     - target: {fileID: 2902085270117424560, guid: 6d2ef8db7ac7b8a4b80d3977432aec2f, type: 3}
       propertyPath: _focusOnCurtainWaitDuraion
       value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902085270117424560, guid: 6d2ef8db7ac7b8a4b80d3977432aec2f, type: 3}
+      propertyPath: _waitAfterFirstSwitchStarted
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902085270117424560, guid: 6d2ef8db7ac7b8a4b80d3977432aec2f, type: 3}
+      propertyPath: _waitAfterSecondSwitchStarted
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2902085270117424560, guid: 6d2ef8db7ac7b8a4b80d3977432aec2f, type: 3}
       propertyPath: _enemyActivationTriggersList.Array.size
@@ -21478,6 +21494,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1112721081}
     - target: {fileID: 1961995115909999450, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: HitEffectAnimator
+      value: 
+      objectReference: {fileID: 1919227748}
+    - target: {fileID: 1961995115909999450, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: _currentWeaponImage
       value: 
       objectReference: {fileID: 1112721078}
@@ -21512,7 +21532,7 @@ PrefabInstance:
     - target: {fileID: 8446407416611106780, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: _activeUpgradesWindow
       value: 
-      objectReference: {fileID: 1112721072}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
 --- !u!1001 &561712848652339026
@@ -21901,6 +21921,14 @@ PrefabInstance:
     - target: {fileID: 2902085270117424560, guid: 6d2ef8db7ac7b8a4b80d3977432aec2f, type: 3}
       propertyPath: _focusOnCurtainWaitDuraion
       value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902085270117424560, guid: 6d2ef8db7ac7b8a4b80d3977432aec2f, type: 3}
+      propertyPath: _waitAfterFirstSwitchStarted
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902085270117424560, guid: 6d2ef8db7ac7b8a4b80d3977432aec2f, type: 3}
+      propertyPath: _waitAfterSecondSwitchStarted
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2902085270117424560, guid: 6d2ef8db7ac7b8a4b80d3977432aec2f, type: 3}
       propertyPath: _enemyActivationTriggersList.Array.data[0]

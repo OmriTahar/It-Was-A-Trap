@@ -2541,6 +2541,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4342435695453363862, guid: c75338d96ae022944893afc1b294b91f, type: 3}
   m_PrefabInstance: {fileID: 882029646635646390}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &882029646635646392 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6371873760629796442, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+  m_PrefabInstance: {fileID: 882029646635646390}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &882029646635646393 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4342435694773278789, guid: c75338d96ae022944893afc1b294b91f, type: 3}
@@ -2947,6 +2952,10 @@ PrefabInstance:
       propertyPath: _pressToContinue
       value: 
       objectReference: {fileID: 882029646635646396}
+    - target: {fileID: 1961995115909999450, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: HitEffectAnimator
+      value: 
+      objectReference: {fileID: 882029646635646392}
     - target: {fileID: 1961995115909999450, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: _currentWeaponImage
       value: 
@@ -3479,7 +3488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8020574770979397839, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
