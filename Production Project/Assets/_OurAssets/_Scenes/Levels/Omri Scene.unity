@@ -510,7 +510,7 @@ Transform:
   - {fileID: 1711025571}
   - {fileID: 3765775243966138933}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &426752788
 GameObject:
@@ -606,6 +606,17 @@ Transform:
   m_Father: {fileID: 403918561}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &490652497 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2441543020305328614, guid: 04bc93f1ffcda954eb359455ea6d5584, type: 3}
+  m_PrefabInstance: {fileID: 50727406}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89986d10ba986e0478c243ec64444774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &527110250 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2633738232760503270, guid: 253e1630663fb154ca13c7ea03f33003, type: 3}
@@ -1250,6 +1261,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 757455772}
     m_Modifications:
+    - target: {fileID: 2739715780423013250, guid: a81d044fa3cdaf943acacf899d75db79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 490652497}
+    - target: {fileID: 2739715780423013250, guid: a81d044fa3cdaf943acacf899d75db79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TogglePauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739715780760144250, guid: a81d044fa3cdaf943acacf899d75db79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 490652497}
+    - target: {fileID: 2739715780760144250, guid: a81d044fa3cdaf943acacf899d75db79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitToDesktop
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739715781813713132, guid: a81d044fa3cdaf943acacf899d75db79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 490652497}
+    - target: {fileID: 2739715781813713132, guid: a81d044fa3cdaf943acacf899d75db79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToMainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 2739715781825575672, guid: a81d044fa3cdaf943acacf899d75db79, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1896,7 +1931,7 @@ Transform:
   m_Children:
   - {fileID: 981641103}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1845715275
 PrefabInstance:
@@ -2506,11 +2541,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4342435695453363862, guid: c75338d96ae022944893afc1b294b91f, type: 3}
   m_PrefabInstance: {fileID: 882029646635646390}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &882029646635646392 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9120171692144852421, guid: c75338d96ae022944893afc1b294b91f, type: 3}
-  m_PrefabInstance: {fileID: 882029646635646390}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &882029646635646393 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4342435694773278789, guid: c75338d96ae022944893afc1b294b91f, type: 3}
@@ -2960,7 +2990,7 @@ PrefabInstance:
     - target: {fileID: 8446407416611106780, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: _activeUpgradesWindow
       value: 
-      objectReference: {fileID: 882029646635646392}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
 --- !u!114 &2800947985314556638 stripped

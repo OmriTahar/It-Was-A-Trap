@@ -43,7 +43,6 @@ public class PlayerController : MonoBehaviour
 
     #region UI
     [Header("UI")]
-    [SerializeField] private GameObject _activeUpgradesWindow;
     [SerializeField] private Image DashBarFill;
     [SerializeField] private Image DashBarBG;
     [SerializeField] private Color _dashBarColorFull = new Color(1, 1, 0, 1);

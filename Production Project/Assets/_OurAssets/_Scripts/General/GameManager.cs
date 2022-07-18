@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         _playerHUD.SetActive(!isGamePauesd);
 
         IsTimeScaleStopped(isGamePauesd);
-        IsPlayerActive(!isGamePauesd);
+        IsPlayerActive(!isGamePauesd, !isGamePauesd);
     }
 
     public void GoToMainMenu()
