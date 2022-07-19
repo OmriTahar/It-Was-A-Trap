@@ -2298,6 +2298,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FogMachine_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 8904502660922973675, guid: b6f4db3bf153a5b4da6680da008e858e, type: 3}
+      propertyPath: m_Size.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8904502660922973675, guid: b6f4db3bf153a5b4da6680da008e858e, type: 3}
+      propertyPath: m_Size.z
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6f4db3bf153a5b4da6680da008e858e, type: 3}
 --- !u!4 &290986839 stripped
@@ -21562,6 +21570,26 @@ PrefabInstance:
       propertyPath: _canInteractUIText
       value: 
       objectReference: {fileID: 907779928}
+    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: EventReference.Path
+      value: event:/Sound/Magic/Magic Trap Box
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: EventReference.Guid.Data1
+      value: 1863376777
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: EventReference.Guid.Data2
+      value: 1221910528
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: EventReference.Guid.Data3
+      value: 1053538456
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: EventReference.Guid.Data4
+      value: 1857992100
+      objectReference: {fileID: 0}
     - target: {fileID: 8446407416611106780, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: DashBarBG
       value: 

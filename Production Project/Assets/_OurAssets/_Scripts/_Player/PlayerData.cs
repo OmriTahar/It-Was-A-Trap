@@ -198,7 +198,7 @@ public class PlayerData : Unit
                 Vector3 rotateTrapTo = new Vector3(transform.position.x, trap.transform.position.y, transform.position.z);
                 trap.transform.LookAt(rotateTrapTo);
 
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Magic/Magic Trap Box");
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Magic/Magic Trap Box");
                 _animator.Play(_trapCastAnimationHash, 1);
 
                 canShoot = false;
@@ -215,7 +215,7 @@ public class PlayerData : Unit
                 Vector3 rotateWallTo = new Vector3(transform.position.x, wall.transform.position.y, transform.position.z);
                 wall.transform.LookAt(rotateWallTo);
 
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Card");
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Player/Card");
                 _animator.Play(_cardsCastAnimationHash, 1);
 
                 canShoot = false;
