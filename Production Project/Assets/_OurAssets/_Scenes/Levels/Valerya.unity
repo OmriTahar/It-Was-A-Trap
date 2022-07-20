@@ -2439,6 +2439,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4559250629087863126, guid: 41fa60a93ed02a64a990dd00baa10939, type: 3}
+      propertyPath: _bunniesToKillCounter
+      value: 
+      objectReference: {fileID: 1180153141}
+    - target: {fileID: 4559250629087863126, guid: 41fa60a93ed02a64a990dd00baa10939, type: 3}
       propertyPath: EnemiesToActivate.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -10085,6 +10089,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 757455772}
     m_Modifications:
+    - target: {fileID: 2585190029634030149, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -13.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661490912462547990, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 54
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637774826608591175, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4342435695453363861, guid: c75338d96ae022944893afc1b294b91f, type: 3}
       propertyPath: m_Name
       value: Player Canvas
@@ -10172,6 +10188,26 @@ PrefabInstance:
     - target: {fileID: 4342435695453363862, guid: c75338d96ae022944893afc1b294b91f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540414045568277461, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 106.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8066690265848449018, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394290556572497628, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 60.6807
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394290556572497628, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 38.1216
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394290556572497628, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 87.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c75338d96ae022944893afc1b294b91f, type: 3}
@@ -10928,6 +10964,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1570450909412397389, guid: c11da19672c28d741bce4a172d211779, type: 3}
   m_PrefabInstance: {fileID: 1170692958}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1180153141 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3637774826608591175, guid: c75338d96ae022944893afc1b294b91f, type: 3}
+  m_PrefabInstance: {fileID: 1112721071}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1184909145
 GameObject:
   m_ObjectHideFlags: 0
@@ -17747,6 +17794,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4559250629087863126, guid: 41fa60a93ed02a64a990dd00baa10939, type: 3}
+      propertyPath: _bunniesToKillCounter
+      value: 
+      objectReference: {fileID: 1180153141}
+    - target: {fileID: 4559250629087863126, guid: 41fa60a93ed02a64a990dd00baa10939, type: 3}
       propertyPath: EnemiesToActivate.Array.size
       value: 9
       objectReference: {fileID: 0}
@@ -22136,6 +22187,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4559250629087863126, guid: 41fa60a93ed02a64a990dd00baa10939, type: 3}
+      propertyPath: _bunniesToKillCounter
+      value: 
+      objectReference: {fileID: 1180153141}
     - target: {fileID: 4559250629087863126, guid: 41fa60a93ed02a64a990dd00baa10939, type: 3}
       propertyPath: EnemiesToActivate.Array.size
       value: 4
