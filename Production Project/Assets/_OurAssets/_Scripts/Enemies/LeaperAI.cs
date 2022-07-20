@@ -146,7 +146,7 @@ public class LeaperAI : BaseEnemyAI
         _agent.SetDestination(transform.position);
         _animator.SetTrigger("ChargeLeap");
 
-        _rb.constraints = RigidbodyConstraints.FreezePosition;
+        _rb.constraints = RigidbodyConstraints.FreezePosition; // Makes sure he is not being pushed
 
         if (_isLeapPathBlocked)
         {
