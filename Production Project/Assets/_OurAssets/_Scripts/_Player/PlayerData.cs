@@ -164,7 +164,6 @@ public class PlayerData : Unit
     {
         _loseCondition = true;
         _gameOverScreen.SetActive(true);
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Player/Magician Death");
         Invoke("ToggleCanPressContinue", _delayBeforeAllowingToPressContinue);
     }
 
@@ -184,6 +183,7 @@ public class PlayerData : Unit
 
     protected override void OnDeath()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Player/Magician Death");
         IsDead = true;
         PlayerAnimatorGetter.SetBool("IsDead", true);
         PlayerAnimatorGetter.Play("Death", 0);

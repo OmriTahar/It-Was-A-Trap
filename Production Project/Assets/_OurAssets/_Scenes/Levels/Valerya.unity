@@ -21622,6 +21622,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 907779928}
     - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: EventReference.Path
       value: event:/Sound/Magic/Magic Box Caught Enemy
       objectReference: {fileID: 0}

@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8386033656259768337}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Knife_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8386033656259768337
 Transform:
@@ -85,6 +85,14 @@ PrefabInstance:
     - target: {fileID: 4415462803854309338, guid: c7f3b25d67f4b9e4fad01b38390f962d, type: 3}
       propertyPath: m_Name
       value: knife_lp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415462803854309338, guid: c7f3b25d67f4b9e4fad01b38390f962d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415462803854309338, guid: c7f3b25d67f4b9e4fad01b38390f962d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7f3b25d67f4b9e4fad01b38390f962d, type: 3}
