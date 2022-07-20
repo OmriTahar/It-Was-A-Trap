@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject _pauseMenu;
     [SerializeField] PlayerController _playerController;
 
+    [Header("Settings")]
+    [SerializeField] bool _playThemeMusic = true;
+
     private bool _isGamePaused = false;
 
     private void Awake()
@@ -33,8 +36,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _pauseMenu.SetActive(false);
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Music");
+        TogglePauseMenu(false);
+
+        if (_playThemeMusic)
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Music");
     }
 
     private void Update()

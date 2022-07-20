@@ -21841,6 +21841,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1112721076}
     - target: {fileID: 2441543020305328614, guid: 04bc93f1ffcda954eb359455ea6d5584, type: 3}
+      propertyPath: _playThemeMusic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2441543020305328614, guid: 04bc93f1ffcda954eb359455ea6d5584, type: 3}
       propertyPath: _playerController
       value: 
       objectReference: {fileID: 615491301}

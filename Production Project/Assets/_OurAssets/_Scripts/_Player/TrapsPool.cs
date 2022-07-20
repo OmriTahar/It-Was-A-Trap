@@ -10,6 +10,8 @@ public class TrapsPool : MonoBehaviour
 
     void Start()
     {
+        ReadyToFireTrapsQueue.Clear();
+
         for (int i = 0; i < _poolStartSize; i++)
         {
             GameObject trap = Instantiate(_trapPrefab);
