@@ -51,7 +51,7 @@ public class MenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/20's music game mix Am");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Music");
         SceneManager.LoadScene(1);
     }
 

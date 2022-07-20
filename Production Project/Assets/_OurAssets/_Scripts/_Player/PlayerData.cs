@@ -164,6 +164,7 @@ public class PlayerData : Unit
     {
         _loseCondition = true;
         _gameOverScreen.SetActive(true);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Player/Magician Death");
         Invoke("ToggleCanPressContinue", _delayBeforeAllowingToPressContinue);
     }
 

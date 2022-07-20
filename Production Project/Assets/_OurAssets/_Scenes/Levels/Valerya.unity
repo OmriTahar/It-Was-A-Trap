@@ -21572,23 +21572,23 @@ PrefabInstance:
       objectReference: {fileID: 907779928}
     - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: EventReference.Path
-      value: event:/Sound/Magic/Magic Trap Box
+      value: event:/Sound/Magic/Magic Box Caught Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: EventReference.Guid.Data1
-      value: 1863376777
+      value: 146984440
       objectReference: {fileID: 0}
     - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: EventReference.Guid.Data2
-      value: 1221910528
+      value: 1174761846
       objectReference: {fileID: 0}
     - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: EventReference.Guid.Data3
-      value: 1053538456
+      value: -53016134
       objectReference: {fileID: 0}
     - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: EventReference.Guid.Data4
-      value: 1857992100
+      value: -919414720
       objectReference: {fileID: 0}
     - target: {fileID: 8446407416611106780, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: DashBarBG

@@ -163,7 +163,7 @@ public class LeaperAI : BaseEnemyAI
         if ((_playerTransform.position - transform.position).magnitude <= _maxLeapDistance && !_isLeapPathBlocked)
         {
             _animator.SetTrigger("Leap");
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Bunny/Bunny Start Leap Attack");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Bunny/Bunny Start Leap Attack");
 
             yield return _startLeapLogicCorutine;
 

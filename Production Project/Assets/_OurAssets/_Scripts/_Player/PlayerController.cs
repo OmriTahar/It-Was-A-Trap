@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
         if (IsAllowedToMove && playfssound && !_isDashing && soundactive)
         {
             soundactive = false;
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Player/FootSteps Player");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Player/FootSteps Player");
             Invoke("ResetFootstepsSound", 0.5f);
         }
 
@@ -200,7 +200,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Dash(Vector3 dashVecolity)
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Magician Dash");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Player/Magician Dash");
         _canDash = false;
         _isDashing = true;
 

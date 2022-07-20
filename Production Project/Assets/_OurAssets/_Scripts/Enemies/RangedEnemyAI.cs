@@ -168,7 +168,7 @@ public class RangedEnemyAI : BaseEnemyAI
 
         Vector3 rotateCarrotTo = new Vector3(transform.position.x, carrot.transform.position.y, transform.position.z);
         carrot.transform.LookAt(rotateCarrotTo);
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Bunny/Carrot Shoot");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Bunny/Carrot Shoot 2");
 
         Invoke(nameof(ResetAttack), _timeBetweenAttacks);
     }
