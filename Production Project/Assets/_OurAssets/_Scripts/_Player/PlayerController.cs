@@ -29,6 +29,11 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Dash
+    [Header("Dash Materials (Effect)")]
+    [SerializeField] SkinnedMeshRenderer _magicianMesh;
+    [SerializeField] Material _regularMeshMaterial;
+    [SerializeField] Material _dashMeshMaterial;
+
     [Header("Dash Settings")]
     public KeyCode DashKey = KeyCode.LeftShift;
     public float DashSpeed = 60f;
@@ -83,6 +88,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         HashAnimationsInit();
+        _magicianMesh.material = _regularMeshMaterial;
     }
 
     private void Update()
@@ -200,6 +206,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Dash(Vector3 dashVecolity)
     {
+        _magicianMesh.material = _dashMeshMaterial;
+
         FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Player/Magician Dash");
         _canDash = false;
         _isDashing = true;
@@ -209,6 +217,7 @@ public class PlayerController : MonoBehaviour
 
         yield return _dashDurationCoroutine;
         _isDashing = false;
+        _magicianMesh.material = _regularMeshMaterial;
     }
 
     private void CameraInput()
