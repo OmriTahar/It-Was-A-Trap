@@ -5,10 +5,12 @@ using UnityEngine;
 public class CarrotProjectile : Attack
 {
 
-    private BoxCollider _myCollider;
-    [SerializeField] ProjectilePool _projectilePool;
+    [Header("Carrot Settings")]
     [SerializeField] float _decayTime = 3f;
+    [SerializeField] GameObject _myEffect;
 
+    private BoxCollider _myCollider;
+    private ProjectilePool _projectilePool;
 
     private void Start()
     {
@@ -23,6 +25,8 @@ public class CarrotProjectile : Attack
         }
 
         _myCollider.isTrigger = false;
+        _myEffect.SetActive(false);
+
         StartCoroutine(Decay());
     }
 

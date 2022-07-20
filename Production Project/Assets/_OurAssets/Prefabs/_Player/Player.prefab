@@ -110,11 +110,13 @@ MonoBehaviour:
   IsAllowedToRotate: 1
   IsAllowedToMove: 1
   WalkSpeed: 7.5
+  _magicianMesh: {fileID: 2800947986151345499}
+  _regularMeshMaterial: {fileID: 2100000, guid: e377a31509d364348b26c6f2122dbcb4, type: 2}
+  _dashMeshMaterial: {fileID: 2100000, guid: 6d87509f5baf900499ac016bb5d26090, type: 2}
   DashKey: 304
   DashSpeed: 30
   DashDuration: 0.2
   DashCooldownTotalTime: 2
-  _activeUpgradesWindow: {fileID: 0}
   DashBarFill: {fileID: 0}
   DashBarBG: {fileID: 0}
   _dashBarColorFull: {r: 1, g: 1, b: 1, a: 100}
@@ -165,10 +167,10 @@ MonoBehaviour:
   _unitHP: 0
   _unitMaxHP: 40
   _unitAttackRange: 10
-  _healthBarBG: {fileID: 0}
   _healthBar: {fileID: 0}
   IsStunned: 0
   _stunEffect: {fileID: 1008851786627677189}
+  HitEffectAnimator: {fileID: 0}
   _gameOverScreen: {fileID: 0}
   _winScreen: {fileID: 0}
   _currentAmmoAmountText: {fileID: 0}

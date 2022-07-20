@@ -151,6 +151,7 @@ public class LeaperAI : BaseEnemyAI
         if (_isLeapPathBlocked)
         {
             _hasLeaped = false;
+            _rb.constraints = RigidbodyConstraints.None;
             yield break;
         }
 
@@ -159,6 +160,7 @@ public class LeaperAI : BaseEnemyAI
         if (_isLeapPathBlocked)
         {
             _hasLeaped = false;
+            _rb.constraints = RigidbodyConstraints.None;
             yield break;
         }
 
@@ -190,6 +192,7 @@ public class LeaperAI : BaseEnemyAI
         {
             _hasLeaped = false;
             _animator.SetTrigger("CancleLeap");
+            _rb.constraints = RigidbodyConstraints.None;
         }
     }
 
