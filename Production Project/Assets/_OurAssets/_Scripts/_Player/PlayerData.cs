@@ -182,6 +182,14 @@ public class PlayerData : Unit
             SceneManager.LoadScene(0);
     }
 
+    protected override void OnDeath()
+    {
+        IsDead = true;
+        PlayerAnimatorGetter.SetBool("IsDead", true);
+        PlayerAnimatorGetter.Play("Death", 0);
+        GameManager.Instance.IsPlayerActive(false);
+    }
+
     #endregion
 
     #region Attack Methods

@@ -146,6 +146,8 @@ public class LeaperAI : BaseEnemyAI
         _agent.SetDestination(transform.position);
         _animator.SetTrigger("ChargeLeap");
 
+        _rb.constraints = RigidbodyConstraints.FreezePosition;
+
         if (_isLeapPathBlocked)
         {
             _hasLeaped = false;
@@ -162,6 +164,8 @@ public class LeaperAI : BaseEnemyAI
 
         if ((_playerTransform.position - transform.position).magnitude <= _maxLeapDistance && !_isLeapPathBlocked)
         {
+            _rb.constraints = RigidbodyConstraints.None;
+
             _animator.SetTrigger("Leap");
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Bunny/Bunny Start Leap Attack");
 

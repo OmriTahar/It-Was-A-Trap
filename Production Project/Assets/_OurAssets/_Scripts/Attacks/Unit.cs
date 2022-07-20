@@ -21,7 +21,7 @@ public class Unit : MonoBehaviour
 
     int _gotHitAnimationHash;
     int _gotHitEffectHash;
-    bool _isDead = false;
+    protected bool IsDead = false;
 
 
     protected virtual void Start()
@@ -40,7 +40,7 @@ public class Unit : MonoBehaviour
 
     public void RecieveDamage(IAttackable<Unit> enemy, bool showGotHitAnimation = true)
     {
-        if (!_isDead)
+        if (!IsDead)
         {
             enemy.Attack(this);
 
@@ -71,20 +71,11 @@ public class Unit : MonoBehaviour
 
     protected virtual void OnDeath()
     {
-        _isDead = true;
+        IsDead = true;
 
-        if (gameObject.CompareTag("Player"))
-        {
-            PlayerData.Instance.PlayerAnimatorGetter.SetBool("IsDead", true);
-            PlayerData.Instance.PlayerAnimatorGetter.Play("Death", 0);
-            GameManager.Instance.IsPlayerActive(false);
-        }
-        else
-        {
-            PlayerData.Instance.AddScore();
-            OnBunnyKilled?.Invoke();
-            Destroy(gameObject);
-        }
+        PlayerData.Instance.AddScore();
+        OnBunnyKilled?.Invoke();
+        Destroy(gameObject);
     }
 
     public void PlayerDeath() // Executed after death animation end
