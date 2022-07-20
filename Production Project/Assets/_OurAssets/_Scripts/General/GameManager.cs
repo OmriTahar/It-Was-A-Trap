@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _pauseMenu.SetActive(false);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Music");
     }
 
     private void Update()
