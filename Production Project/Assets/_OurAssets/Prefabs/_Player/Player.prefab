@@ -112,6 +112,7 @@ MonoBehaviour:
   _magicianMesh: {fileID: 2800947986151345499}
   _regularMeshMaterial: {fileID: 2100000, guid: e377a31509d364348b26c6f2122dbcb4, type: 2}
   _dashMeshMaterial: {fileID: 2100000, guid: 6d87509f5baf900499ac016bb5d26090, type: 2}
+  _dashTrailEffect: {fileID: 3267219018483265400}
   DashKey: 304
   DashSpeed: 30
   DashDuration: 0.25
@@ -2036,7 +2037,7 @@ GameObject:
   - component: {fileID: 2800947986151345496}
   - component: {fileID: 2800947986151345499}
   m_Layer: 0
-  m_Name: Magician1
+  m_Name: Skinned Mesh & Material
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2312,6 +2313,7 @@ Transform:
   m_Children:
   - {fileID: 2800947986151345496}
   - {fileID: 2800947985215302156}
+  - {fileID: 3267219018483265401}
   m_Father: {fileID: 1961995115909999445}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2438,6 +2440,77 @@ Transform:
   m_Father: {fileID: 2800947986143549649}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2428944930449015613
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2800947986253184769}
+    m_Modifications:
+    - target: {fileID: 928347253322427460, guid: ce34346f31760544da9dfe09510e65a1, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 928347253322427460, guid: ce34346f31760544da9dfe09510e65a1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 928347253322427460, guid: ce34346f31760544da9dfe09510e65a1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 928347253322427460, guid: ce34346f31760544da9dfe09510e65a1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.162
+      objectReference: {fileID: 0}
+    - target: {fileID: 928347253322427460, guid: ce34346f31760544da9dfe09510e65a1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 928347253322427460, guid: ce34346f31760544da9dfe09510e65a1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 928347253322427460, guid: ce34346f31760544da9dfe09510e65a1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 928347253322427460, guid: ce34346f31760544da9dfe09510e65a1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 928347253322427460, guid: ce34346f31760544da9dfe09510e65a1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 928347253322427460, guid: ce34346f31760544da9dfe09510e65a1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 928347253322427460, guid: ce34346f31760544da9dfe09510e65a1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 928347253322427461, guid: ce34346f31760544da9dfe09510e65a1, type: 3}
+      propertyPath: m_Name
+      value: DashTrail_Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 928347253322427461, guid: ce34346f31760544da9dfe09510e65a1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ce34346f31760544da9dfe09510e65a1, type: 3}
+--- !u!1 &3267219018483265400 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 928347253322427461, guid: ce34346f31760544da9dfe09510e65a1, type: 3}
+  m_PrefabInstance: {fileID: 2428944930449015613}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3267219018483265401 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 928347253322427460, guid: ce34346f31760544da9dfe09510e65a1, type: 3}
+  m_PrefabInstance: {fileID: 2428944930449015613}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4428043704441250764
 PrefabInstance:
   m_ObjectHideFlags: 0

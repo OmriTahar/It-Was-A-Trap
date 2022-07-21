@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] SkinnedMeshRenderer _magicianMesh;
     [SerializeField] Material _regularMeshMaterial;
     [SerializeField] Material _dashMeshMaterial;
+    [SerializeField] GameObject _dashTrailEffect;
 
     [Header("Dash Settings")]
     public KeyCode DashKey = KeyCode.LeftShift;
@@ -89,6 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         HashAnimationsInit();
         _magicianMesh.material = _regularMeshMaterial;
+        _dashTrailEffect.SetActive(false);
     }
 
     private void Update()
@@ -207,6 +209,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator Dash(Vector3 dashVecolity)
     {
         _magicianMesh.material = _dashMeshMaterial;
+        _dashTrailEffect.SetActive(true);
 
         FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Player/Magician Dash");
         _canDash = false;
@@ -218,6 +221,7 @@ public class PlayerController : MonoBehaviour
         yield return _dashDurationCoroutine;
         _isDashing = false;
         _magicianMesh.material = _regularMeshMaterial;
+        _dashTrailEffect.SetActive(false);
     }
 
     private void CameraInput()
