@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IWall : Attack
+public class FallingWall : Attack
 {
 
     [Header("Wall Settings")]

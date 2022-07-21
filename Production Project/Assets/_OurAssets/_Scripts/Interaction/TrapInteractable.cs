@@ -5,7 +5,7 @@ using UnityEngine;
 public class TrapInteractable : Interactable
 {
 
-    [SerializeField] ITrap _trapToActivate;
+    [SerializeField] FallingTrap _trapToActivate;
 
     private void Start()
     {

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ITrap : Attack
+public class FallingTrap : Attack
 {
 
     [Header("Trap Refrences")]
@@ -12,27 +12,23 @@ public class ITrap : Attack
 
     [Header("Trap Settings")]
     public bool _isActivated = false;
+    [SerializeField] float _dropSpeed = 5f;
     [SerializeField] float _waitBeforeKillBunny = 1f;
-    //[SerializeField] float _waitBeforeDestroyTrap = 3f;
+    [SerializeField] float _waitBeforeDestroyTrap = 3f;
 
-    private bool _stopUpdate;
     private WaitForSeconds _waitBeforeKillBunnyCoroutine;
+    private bool _isTouchedGround = false;
 
 
     private void Awake()
     {
-        _catchCollider.enabled = false;
         _waitBeforeKillBunnyCoroutine = new WaitForSeconds(_waitBeforeKillBunny);
     }
 
     void Update()
     {
-        if (_isActivated && !_stopUpdate)
-        {
-            _trapAnimator.SetTrigger("CloseTrap");
-            StartCoroutine(KillBunny());
-            _stopUpdate = true;
-        }
+        if (!_isTouchedGround &&_isActivated)
+            transform.position += new Vector3(0, -1, 0) * _dropSpeed * Time.deltaTime;
     }
 
     public override void OnTriggerEnter(Collider other)
@@ -41,23 +37,21 @@ public class ITrap : Attack
         {
             _attackedUnit = other.gameObject.GetComponent<Unit>();
             _attackedUnit.RecieveDamage(this, false);
-
-            if (_causeStun)
-            {
-                StartCoroutine(StunPlayer(other, _attackedUnit));
-            }
         }
     }
 
-    IEnumerator KillBunny()
+    private void OnCollisionEnter(Collision collision)
     {
-        yield return new WaitForSeconds(_waitBeforeKillBunny);
-        _catchCollider.enabled = true;
+        if (collision.gameObject.tag == "Ground")
+        {
+            _isTouchedGround = true;
+            StartCoroutine(Decay());
+        }
     }
 
-    //IEnumerator Decay()
-    //{
-    //    yield return new WaitForSeconds(_waitBeforeDestroyTrap);
-    //    Destroy(gameObject);
-    //}
+    IEnumerator Decay()
+    {
+        yield return new WaitForSeconds(_waitBeforeDestroyTrap);
+        Destroy(gameObject);
+    }
 }
