@@ -11,12 +11,12 @@ public class BaseEnemyAI : Unit
     protected NavMeshAgent _agent;
     protected Rigidbody _rb;
     protected Animator _animator;
-    [SerializeField][ReadOnlyInspector] protected State _myCurrentState;
 
     [Header("General")]
     [SerializeField] protected Transform _playerTransform;
     [SerializeField] protected LayerMask _groundLayer, _playerLayer;
     public bool IsEnemyActivated;
+    [SerializeField][ReadOnlyInspector] protected State _myCurrentState;
 
     [Header("General Attack Settings")]
     [SerializeField] protected GameObject AttackPrefab;

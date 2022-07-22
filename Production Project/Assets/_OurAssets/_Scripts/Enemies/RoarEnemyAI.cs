@@ -96,18 +96,6 @@ public class RoarEnemyAI : BaseEnemyAI
         }
     }
 
-    //protected override void ChasePlayer()
-    //{
-    //    var sqrDistance = (transform.position - _playerTransform.position).sqrMagnitude;
-
-    //    if (_playerTransform != null)
-    //    {
-    //        transform.LookAt(_playerTransform);
-    //        _agent.SetDestination(_playerTransform.position);
-    //        _agent.isStopped = (sqrDistance <= _unitAttackRange);
-    //    }
-    //}
-
     private void AttemptShout()
     {
         transform.LookAt(_playerTransform);

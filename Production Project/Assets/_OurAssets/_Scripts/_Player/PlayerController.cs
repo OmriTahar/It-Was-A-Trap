@@ -208,7 +208,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Dash(Vector3 dashVecolity)
     {
-        _magicianMesh.material = _dashMeshMaterial;
+        //_magicianMesh.material = _dashMeshMaterial;
         _dashTrailEffect.SetActive(true);
 
         FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Player/Magician Dash");
@@ -220,7 +220,7 @@ public class PlayerController : MonoBehaviour
 
         yield return _dashDurationCoroutine;
         _isDashing = false;
-        _magicianMesh.material = _regularMeshMaterial;
+        //_magicianMesh.material = _regularMeshMaterial;
         _dashTrailEffect.SetActive(false);
     }
 

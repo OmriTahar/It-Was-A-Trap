@@ -6,7 +6,7 @@ public class ShoutAttack : Attack
 {
 
     [Header("Refrences")]
-    [SerializeField] ParticleSystem _attackEffect;
+    [SerializeField] GameObject _attackEffect;
 
     [Header("Shout Settings")]
     [SerializeField] float _shoutFieldActiveDuration = 0.5f;
@@ -67,7 +67,9 @@ public class ShoutAttack : Attack
         }
         _colorLerpElapsedTime = 0f;
 
-        if (_attackEffect) _attackEffect.Play();
+        if (_attackEffect)
+            _attackEffect.SetActive(true);
+
         MyCollider.enabled = true;
         MyRenderer.enabled = false;
         _startAttackLogic = true;
@@ -79,6 +81,7 @@ public class ShoutAttack : Attack
     {
         yield return new WaitForSeconds(_shoutFieldActiveDuration);
 
+        _attackEffect.SetActive(false);
         _startAttackLogic = false;
         MyCollider.enabled = false;
         _alreadyAttacked = false;
