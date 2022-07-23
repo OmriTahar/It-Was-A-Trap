@@ -21903,23 +21903,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: EventReference.Path
-      value: event:/Sound/Magic/Magic Box Caught Enemy
+      value: event:/Sound/Other/Crowd Cheering
       objectReference: {fileID: 0}
     - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: EventReference.Guid.Data1
-      value: 146984440
+      value: -1264898364
       objectReference: {fileID: 0}
     - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: EventReference.Guid.Data2
-      value: 1174761846
+      value: 1188487370
       objectReference: {fileID: 0}
     - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: EventReference.Guid.Data3
-      value: -53016134
+      value: 928233913
       objectReference: {fileID: 0}
     - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: EventReference.Guid.Data4
-      value: -919414720
+      value: 1841677301
       objectReference: {fileID: 0}
     - target: {fileID: 8446407416611106780, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: DashBarBG

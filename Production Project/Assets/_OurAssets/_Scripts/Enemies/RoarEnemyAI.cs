@@ -108,6 +108,7 @@ public class RoarEnemyAI : BaseEnemyAI
 
     IEnumerator Shout(Vector3 lockedPlayerPosition)
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Bunny/Bunny Starting Stun Attack");
         _animator.SetTrigger("Shout");
         _shoutAttack.ActivateShout();
 
@@ -137,7 +138,6 @@ public class RoarEnemyAI : BaseEnemyAI
         _directionToPlayer = (transform.position - _playerTransform.position).normalized * 10;
         Vector3 newFleePosition = transform.position + _directionToPlayer;
         _agent.SetDestination(newFleePosition);
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Bunny/Bunny Starting Stun Attack");
         yield return _fleeDurationCoroutine;
         _isFleeing = false;
     }
