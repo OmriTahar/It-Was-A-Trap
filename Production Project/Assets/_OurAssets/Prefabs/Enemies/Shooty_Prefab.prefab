@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitHP: 0
-  _unitMaxHP: 18
+  _unitMaxHP: 1
   _unitAttackRange: 10
   _healthBar: {fileID: 0}
   IsStunned: 0
