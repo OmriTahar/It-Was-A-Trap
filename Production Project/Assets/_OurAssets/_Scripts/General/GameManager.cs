@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
 
     private bool _isGamePaused = false;
 
+    // ---------- FMOD ----------
+    FMOD.Studio.Bus _masterBus;
+
     private void Awake()
     {
         #region Singleton
@@ -44,6 +47,8 @@ public class GameManager : MonoBehaviour
 
         if (_playThemeMusic)
             FMODUnity.RuntimeManager.PlayOneShot("event:/Music");
+
+        _masterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
     }
 
     private void Update()
@@ -60,6 +65,7 @@ public class GameManager : MonoBehaviour
     {
         _isGamePaused = isGamePauesd;
         Cursor.visible = isGamePauesd;
+        FMODUnity.RuntimeManager.PauseAllEvents(isGamePauesd);
 
         _pauseMenu.SetActive(isGamePauesd);
         _playerHUD.SetActive(!isGamePauesd);
@@ -70,6 +76,7 @@ public class GameManager : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        _masterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         SceneManager.LoadScene(0);
     }
 
