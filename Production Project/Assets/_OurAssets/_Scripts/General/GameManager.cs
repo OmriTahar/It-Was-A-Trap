@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] bool _playThemeMusic = true;
 
+    [Header("Temporary Bandages")]
+    [Tooltip("If the player gets deActivated while hit effect is on - this stops the effect")]
+    [SerializeField] Animator _playerHitEffectAnimator;
+
     private bool _isGamePaused = false;
 
     private void Awake()
@@ -83,6 +87,9 @@ public class GameManager : MonoBehaviour
         PlayerData.Instance._isAllowedToShoot = isPlayerActive;
 
         _playerHUD.SetActive(enablePlayerHUD);
+
+        if (!isPlayerActive && _playerHitEffectAnimator != null)
+            _playerHitEffectAnimator.SetTrigger("Stop");
     }
 
     private void IsTimeScaleStopped(bool isStopped)
