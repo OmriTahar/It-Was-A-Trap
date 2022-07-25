@@ -150,12 +150,8 @@ public class PlayerData : Unit
 
     public void OnWin()
     {
+        GameManager.Instance.IsPlayerActive(false);
         _winCondition = true;
-
-        _myPlayerController.IsAllowedToMove = false;
-        _myPlayerController.IsAllowedToRotate = false;
-        _isAllowedToShoot = false;
-
         _winScreen.SetActive(true);
         Invoke("ToggleCanPressContinue", _delayBeforeAllowingToPressContinue);
     }
