@@ -86,10 +86,10 @@ public class GameManager : MonoBehaviour
         PlayerAim.Instance._canAim = isPlayerActive;
         PlayerData.Instance._isAllowedToShoot = isPlayerActive;
 
-        _playerHUD.SetActive(enablePlayerHUD);
-
         if (!isPlayerActive && _playerHitEffectAnimator != null)
             _playerHitEffectAnimator.SetTrigger("Stop");
+
+        _playerHUD.SetActive(enablePlayerHUD);
     }
 
     private void IsTimeScaleStopped(bool isStopped)
