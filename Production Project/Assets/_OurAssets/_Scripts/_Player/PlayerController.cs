@@ -95,7 +95,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        
         HandleDashUI();
 
         if (IsAllowedToRotate)
@@ -107,9 +106,6 @@ public class PlayerController : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Player/FootSteps Player");
             Invoke("ResetFootstepsSound", 0.5f);
         }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-            Application.Quit();
 
         #region Upgrade Sysytem (Not Currently Used)
 
