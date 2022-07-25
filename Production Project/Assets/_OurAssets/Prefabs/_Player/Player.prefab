@@ -168,6 +168,7 @@ MonoBehaviour:
   _unitMaxHP: 40
   _unitAttackRange: 10
   _healthBar: {fileID: 0}
+  IsStunable: 1
   IsStunned: 0
   _stunEffect: {fileID: 1008851786627677189}
   HitEffectAnimator: {fileID: 0}

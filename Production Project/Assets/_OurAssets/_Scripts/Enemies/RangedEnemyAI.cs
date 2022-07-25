@@ -23,7 +23,6 @@ public class RangedEnemyAI : BaseEnemyAI
     [SerializeField] bool _isPlayerInAttackRange;
     [SerializeField] bool _isThrowPathBlocked;
     [SerializeField] bool _isAlreadyAttacked;
-    [SerializeField] bool _isCreatingShotPath;
 
     [Header("Enemy Flee Status")]
     [SerializeField] bool _isPlayerTooClose;
@@ -66,11 +65,11 @@ public class RangedEnemyAI : BaseEnemyAI
         if (IsEnemyActivated && _finishedThrowing)
         {
 
-            if (_isCreatingShotPath)
+            if (IsCreatingAttackPath)
             {
                 if (HasReachedDestination())
                 {
-                    _isCreatingShotPath = false;
+                    IsCreatingAttackPath = false;
                 }
             }
             else
@@ -94,7 +93,7 @@ public class RangedEnemyAI : BaseEnemyAI
                     if (!_isThrowPathBlocked)
                         RangeAttack();
                     else
-                        CreateClearShotPath();
+                        CreateClearAttackPath();
                 }
             }
         }
@@ -110,15 +109,6 @@ public class RangedEnemyAI : BaseEnemyAI
             if (!_isPlayerTooClose && _isPlayerInAttackRange)
                 return;
         }
-    }
-
-    private void CreateClearShotPath()
-    {
-        _isCreatingShotPath = true;
-        _myCurrentState = State.creatingRange;
-
-        Vector3 newPosition = (_playerTransform.position + (transform.TransformDirection((Vector3.left * (_unitAttackRange - 3)))));
-        _agent.SetDestination(newPosition);
     }
 
     private void CheckThrowPath()

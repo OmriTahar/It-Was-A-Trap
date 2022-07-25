@@ -13,6 +13,7 @@ public class Unit : MonoBehaviour
     [SerializeField] Image _healthBar;
 
     [Header("Stun Settings")]
+    public bool IsStunable = false;
     public bool IsStunned;
     public ParticleSystem _stunEffect;
 

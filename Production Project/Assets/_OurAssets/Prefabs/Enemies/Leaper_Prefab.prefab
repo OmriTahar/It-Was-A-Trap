@@ -118,11 +118,10 @@ MonoBehaviour:
   _unitHP: 0
   _unitMaxHP: 1
   _unitAttackRange: 5
-  _healthBarBG: {fileID: 0}
   _healthBar: {fileID: 0}
+  IsStunable: 0
   IsStunned: 0
   _stunEffect: {fileID: 0}
-  _myCurrentState: 0
   _playerTransform: {fileID: 0}
   _groundLayer:
     serializedVersion: 2
@@ -131,6 +130,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   IsEnemyActivated: 0
+  _myCurrentState: 0
   AttackPrefab: {fileID: 6468441648287161683}
   _timeBetweenAttacks: 2
   _enemyAvoidancePriority: 1
@@ -138,18 +138,18 @@ MonoBehaviour:
   _MinRandomAvoidanceNumber: 10
   _MaxRandomAvoidanceNumber: 30
   _leapPower: 7500
-  _waitBeforeLeap: 1
-  _waitAfterLeap: 3
-  _playerIsTooCloseRange: 3
-  _maxLeapDistance: 12
   _minLeapDistance: 3
+  _maxLeapDistance: 12
+  _playerIsTooCloseRange: 3
   _leapPathObstacleLayers:
     serializedVersion: 2
     m_Bits: 13832
+  _chargeAnimationDelay: 1
+  _afterLeapDelay: 2
   _isPlayerInAttackRange: 0
   _isPlayerTooClose: 0
   _isLeapPathBlocked: 0
-  _hasLeaped: 0
+  _isLeaping: 0
   _isMovingBackwards: 0
 --- !u!95 &4158529393150689974
 Animator:

@@ -31,6 +31,8 @@ public class BaseEnemyAI : Unit
     [SerializeField] protected int _MaxRandomAvoidanceNumber;
 
     int _velocityHash;
+    protected bool IsCreatingAttackPath;
+
 
     protected virtual void Awake()
     {
@@ -104,7 +106,8 @@ public class BaseEnemyAI : Unit
         if (!IsEnemyActivated)
             if (!_agent.SetDestination(transform.position))
                 _agent.SetDestination(transform.position);
-            else
+
+            else // Currently no eneies can get stunned
             {
                 if (IsStunned && (_stunEffect != null && !_stunEffect.isPlaying))
                 {
@@ -129,6 +132,15 @@ public class BaseEnemyAI : Unit
     {
         _rb.Sleep();  // Freezes enemy
         _agent.SetDestination(transform.position);
+    }
+
+    protected void CreateClearAttackPath()
+    {
+        IsCreatingAttackPath = true;
+        _myCurrentState = State.creatingRange;
+
+        Vector3 newPosition = (_playerTransform.position + (transform.TransformDirection((Vector3.left * (_unitAttackRange - 3)))));
+        _agent.SetDestination(newPosition);
     }
 
     protected virtual bool HasReachedDestination()

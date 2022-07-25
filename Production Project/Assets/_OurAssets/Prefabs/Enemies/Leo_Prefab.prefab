@@ -218,6 +218,7 @@ MonoBehaviour:
   _unitMaxHP: 1
   _unitAttackRange: 3.5
   _healthBar: {fileID: 0}
+  IsStunable: 0
   IsStunned: 0
   _stunEffect: {fileID: 0}
   _playerTransform: {fileID: 0}

@@ -35,7 +35,7 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
             _attackedUnit = other.gameObject.GetComponent<Unit>();
             _attackedUnit.RecieveDamage(this, false);
 
-            if (_causeStun)
+            if (_causeStun && _attackedUnit.IsStunable)
             {
                 StartCoroutine(StunPlayer(other, _attackedUnit));
             }
