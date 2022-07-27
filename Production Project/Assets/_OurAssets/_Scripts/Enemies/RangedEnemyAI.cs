@@ -8,11 +8,13 @@ public class RangedEnemyAI : BaseEnemyAI
     private ProjectilePool _rangedProjectilePool;
 
     [Header("Ranged Attack Settings")]
-    [SerializeField] Transform _rangedShootPoint;
-    [SerializeField] Transform _throwPathChecker;
     [SerializeField] float _rangedShootForce;
     [Tooltip("Player layer must be included even though he is not a throw path obstacle!")]
     [SerializeField] LayerMask _throwPathObstacleLayers;
+
+    [Header("Ranged Attack References")]
+    [SerializeField] Transform _rangedShootPoint;
+    [SerializeField] Transform _throwPathChecker;
 
     [Header("Fleeing Settings")]
     [SerializeField] float _startFleeFromPlayer_Range;

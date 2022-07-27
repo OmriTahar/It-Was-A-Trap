@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public enum State { chasing, attacking, fleeing, creatingRange }
+public enum State { chasing, attacking, fleeing, creatingRange, notActivated }
 public class BaseEnemyAI : Unit
 {
 
@@ -12,15 +12,11 @@ public class BaseEnemyAI : Unit
     protected Rigidbody _rb;
     protected Animator _animator;
 
-    [Header("General")]
+    [Header("General References & Settings")]
     [SerializeField] protected Transform _playerTransform;
     [SerializeField] protected LayerMask _groundLayer, _playerLayer;
-    public bool IsEnemyActivated;
-    [SerializeField][ReadOnlyInspector] protected State _myCurrentState;
-
-    [Header("General Attack Settings")]
+    [Tooltip("Ranged enemy ('shooty') has a projectile pool so this can be left empty.")]
     [SerializeField] protected GameObject AttackPrefab;
-    [SerializeField] protected float _timeBetweenAttacks;
 
     [Header("Avoidance Settings")]
     [Tooltip("Ignores all other enemies with higher number. Lower value means higher imprortance.")]
@@ -29,6 +25,11 @@ public class BaseEnemyAI : Unit
     [SerializeField] protected bool _randomPriority;
     [SerializeField] protected int _MinRandomAvoidanceNumber;
     [SerializeField] protected int _MaxRandomAvoidanceNumber;
+
+    [Header("Attack Settings & Status")]
+    [SerializeField][ReadOnlyInspector] protected State _myCurrentState;
+    public bool IsEnemyActivated;
+    [SerializeField] protected float _timeBetweenAttacks;
 
     int _velocityHash;
     protected bool IsCreatingAttackPath;
@@ -104,8 +105,12 @@ public class BaseEnemyAI : Unit
     protected virtual void EnemyStateMachine()
     {
         if (!IsEnemyActivated)
+        {
+            _myCurrentState = State.notActivated;
+
             if (!_agent.SetDestination(transform.position))
                 _agent.SetDestination(transform.position);
+        }
 
             else // Currently no eneies can get stunned
             {
