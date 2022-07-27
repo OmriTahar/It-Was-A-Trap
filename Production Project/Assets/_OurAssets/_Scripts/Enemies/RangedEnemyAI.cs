@@ -8,7 +8,8 @@ public class RangedEnemyAI : BaseEnemyAI
     private ProjectilePool _rangedProjectilePool;
 
     [Header("Ranged Attack Settings")]
-    [SerializeField] float _rangedShootForce;
+    [SerializeField] float _ShootForce;
+    [SerializeField] float _arcShootForce;
     [Tooltip("Player layer must be included even though he is not a throw path obstacle!")]
     [SerializeField] LayerMask _throwPathObstacleLayers;
 
@@ -156,7 +157,8 @@ public class RangedEnemyAI : BaseEnemyAI
         carrot.transform.rotation = Quaternion.identity;
 
         Rigidbody rb = carrot.GetComponent<Rigidbody>();
-        rb.AddForce((_playerTransform.position - carrot.transform.position).normalized * _rangedShootForce, ForceMode.Impulse);
+        rb.AddForce((_playerTransform.position - carrot.transform.position).normalized * _ShootForce, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * _arcShootForce, ForceMode.Impulse);
 
         Vector3 rotateCarrotTo = new Vector3(transform.position.x, carrot.transform.position.y, transform.position.z);
         carrot.transform.LookAt(rotateCarrotTo);

@@ -3496,10 +3496,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RangedEnemy_Prefab
       objectReference: {fileID: 0}
-    - target: {fileID: 8020574770979397839, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51e0f4a739cd724498e6f044a342dacc, type: 3}
 --- !u!1001 &6400661522809697077

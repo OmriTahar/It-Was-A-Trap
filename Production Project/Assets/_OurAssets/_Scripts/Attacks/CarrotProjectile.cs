@@ -12,9 +12,15 @@ public class CarrotProjectile : Attack
     private BoxCollider _myCollider;
     private ProjectilePool _projectilePool;
 
+
     private void Start()
     {
         _myCollider = GetComponent<BoxCollider>();
+    }
+
+    private void OnEnable()
+    {
+        _myEffect.SetActive(true);
     }
 
     public override void OnTriggerEnter(Collider other)
