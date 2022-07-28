@@ -392,10 +392,10 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/It was a trap 2/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637943481283714490
+  lastModified: 637946388797512581
   FileSizes:
   - Name: Desktop
-    Value: 2374
+    Value: 2418
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -444,12 +444,13 @@ MonoBehaviour:
   - {fileID: 250331765579773695}
   - {fileID: -4119855991683802437}
   - {fileID: -6576810357263593514}
+  - {fileID: 6210406924881133517}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1331996494637321609}
   StringsBanks:
   - {fileID: -1588518143151437567}
-  cacheTime: 637943481283714490
+  cacheTime: 637946388797512581
   cacheVersion: 10
 --- !u!114 &250331765579773695
 MonoBehaviour:
@@ -547,10 +548,10 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/It was a trap 2/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637943481283694498
+  lastModified: 637946388797492630
   FileSizes:
   - Name: Desktop
-    Value: 3672352
+    Value: 6588128
   Exists: 1
 --- !u!114 &1533593680788178469
 MonoBehaviour:
@@ -822,6 +823,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 920
+--- !u!114 &6210406924881133517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambient Swing
+  m_EditorClassIdentifier: 
+  Path: event:/Ambient Swing
+  Guid:
+    Data1: -1403965498
+    Data2: 1137522218
+    Data3: -699018309
+    Data4: 1660274828
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 217664
 --- !u!114 &6310755829758559794
 MonoBehaviour:
   m_ObjectHideFlags: 0
