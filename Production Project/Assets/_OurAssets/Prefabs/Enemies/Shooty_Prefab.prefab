@@ -169,8 +169,8 @@ MonoBehaviour:
   _myCurrentState: 0
   IsEnemyActivated: 0
   _timeBetweenAttacks: 2
-  _ShootForce: 8.5
-  _arcShootForce: 3
+  _ShootForce: 12
+  _arcShootForce: 5
   _throwPathObstacleLayers:
     serializedVersion: 2
     m_Bits: 13896
