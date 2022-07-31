@@ -125,6 +125,18 @@ public class PlayerController : MonoBehaviour
         HandleMovementAndDash();
     }
 
+    private void OnEnable()
+    {
+        Attack.OnPlayerStartStun += HandleStartStun;
+        Attack.OnPlayerStopStun += HandleStopStun;
+    }
+
+    private void OnDisable()
+    {
+        Attack.OnPlayerStartStun -= HandleStartStun;
+        Attack.OnPlayerStopStun -= HandleStopStun;
+    }
+
     private void HandleDashUI()
     {
         if (!_canDash)
@@ -151,12 +163,6 @@ public class PlayerController : MonoBehaviour
     {
         if (IsAllowedToMove)
         {
-            if (!PlayerData.Instance.IsStunned && PlayerData.Instance._stunEffect.isPlaying)
-            {
-                _animator.SetBool(_isStunnedHash, false);
-                PlayerData.Instance._stunEffect.Stop();
-            }
-
             Vector3 playerVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             _animator.SetFloat(_velocityHash, playerVelocity.magnitude);
 
@@ -190,21 +196,27 @@ public class PlayerController : MonoBehaviour
             _rb.velocity = Vector3.zero;
             _animator.SetFloat(_velocityHash, 0);
 
-            // Stun effect. Check conditions only if PlayerCanMove = false
-            if (PlayerData.Instance.IsStunned && PlayerData.Instance._stunEffect != null && !PlayerData.Instance._stunEffect.isPlaying)
+            // --- Stun effect. Check conditions only if PlayerCanMove = false ---
+            if (PlayerData.Instance.IsStunned)
             {
-                _animator.SetBool(_isStunnedHash, true);
-                _animator.SetTrigger(_startStunHash);
-
                 _rb.Sleep();
-                PlayerData.Instance._stunEffect.Play();
             }
         }
     }
 
+    private void HandleStartStun()
+    {
+        _animator.SetBool(_isStunnedHash, true);
+        _animator.SetTrigger(_startStunHash);
+    }
+
+    private void HandleStopStun()
+    {
+        _animator.SetBool(_isStunnedHash, false);
+    }
+
     IEnumerator Dash(Vector3 dashVecolity)
     {
-        //_magicianMesh.material = _dashMeshMaterial;
         _dashTrailEffect.SetActive(true);
 
         FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Player/Magician Dash");
@@ -216,7 +228,6 @@ public class PlayerController : MonoBehaviour
 
         yield return _dashDurationCoroutine;
         _isDashing = false;
-        //_magicianMesh.material = _regularMeshMaterial;
         _dashTrailEffect.SetActive(false);
     }
 

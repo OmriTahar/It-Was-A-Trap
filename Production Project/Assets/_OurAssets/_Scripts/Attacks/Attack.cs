@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,9 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
     protected WaitForSeconds _stunEndCoroutine;
 
     private bool _hasAlreadyStunned = false;
+
+    public static event Action OnPlayerStartStun; 
+    public static event Action OnPlayerStopStun; 
 
     void Awake()
     {
@@ -46,16 +50,22 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
     {
         if (!_hasAlreadyStunned)
         {
+            OnPlayerStartStun?.Invoke();
+
             _hasAlreadyStunned = true;
             attackedUnit.IsStunned = true;
+            PlayerData.Instance._stunEffect.SetActive(true);
 
-            _playerController = other.gameObject.GetComponent<PlayerController>();
             GameManager.Instance.IsPlayerActive(false);
         }
 
         yield return new WaitForSeconds(_stunDuration);
+
+        OnPlayerStopStun?.Invoke();
         attackedUnit.IsStunned = false;
         _hasAlreadyStunned = false;
+        PlayerData.Instance._stunEffect.SetActive(false);
+
         GameManager.Instance.IsPlayerActive(true);
     }
 }

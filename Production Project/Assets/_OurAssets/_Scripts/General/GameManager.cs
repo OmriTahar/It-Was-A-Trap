@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         #endregion
+
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void Start()

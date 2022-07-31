@@ -112,16 +112,17 @@ public class BaseEnemyAI : Unit
                 _agent.SetDestination(transform.position);
         }
 
-            else // Currently no eneies can get stunned
-            {
-                if (IsStunned && (_stunEffect != null && !_stunEffect.isPlaying))
-                {
-                    _stunEffect.Play();
-                    Stun();
-                }
-                else if (_stunEffect != null && !IsStunned && _stunEffect.isPlaying)
-                    _stunEffect.Stop();
-            }
+        // ------ Currently no enemies can get stunned ------
+        //else 
+        //{
+        //    if (IsStunned && (_stunEffect != null && !_stunEffect.isPlaying))
+        //    {
+        //        _stunEffect.Play();
+        //        Stun();
+        //    }
+        //    else if (_stunEffect != null && !IsStunned && _stunEffect.isPlaying)
+        //        _stunEffect.Stop();
+        //}
     }
 
     protected virtual void ChasePlayer()

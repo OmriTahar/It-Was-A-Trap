@@ -15,7 +15,7 @@ public class Unit : MonoBehaviour
     [Header("Stun Settings")]
     public bool IsStunable = false;
     public bool IsStunned;
-    public ParticleSystem _stunEffect;
+    public GameObject _stunEffect;
 
     public static event Action OnBunnyKilled;
     public static event Action OnPlayerKilled;
