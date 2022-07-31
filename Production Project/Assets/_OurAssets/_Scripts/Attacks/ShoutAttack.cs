@@ -16,20 +16,20 @@ public class ShoutAttack : Attack
     [SerializeField] Color _chargeColor = new Color(100, 0, 0);
     [SerializeField] Color _activationColor = new Color(255, 0, 0);
 
-    private Collider MyCollider;
-    private MeshRenderer MyRenderer;
+    private MeshCollider _meshCollider;
+    private MeshRenderer _meshRenderer;
     private float _colorLerpElapsedTime = 0f;
     private bool _startAttackLogic = false;
     private bool _alreadyAttacked;
 
     private void Awake()
     {
-        MyCollider = GetComponent<Collider>();
-        MyRenderer = GetComponent<MeshRenderer>();
+        _meshCollider = GetComponent<MeshCollider>();
+        _meshRenderer = GetComponent<MeshRenderer>();
 
-        MyRenderer.material.color = _chargeColor;
-        MyRenderer.enabled = false;
-        MyCollider.enabled = false;
+        _meshRenderer.material.color = _chargeColor;
+        _meshRenderer.enabled = false;
+        _meshCollider.enabled = false;
     }
 
     private void OnTriggerStay(Collider other)
@@ -56,13 +56,13 @@ public class ShoutAttack : Attack
 
     private IEnumerator ShoutCoroutine()
     {
-        MyRenderer.enabled = true;
-        MyRenderer.material.color = _chargeColor;
+        _meshRenderer.enabled = true;
+        _meshRenderer.material.color = _chargeColor;
 
         while (_colorLerpElapsedTime < _colorLerpTotalDuration)
         {
             _colorLerpElapsedTime += Time.deltaTime;
-            MyRenderer.material.color = Color.Lerp(_chargeColor, _activationColor, _colorLerpElapsedTime / _colorLerpTotalDuration);
+            _meshRenderer.material.color = Color.Lerp(_chargeColor, _activationColor, _colorLerpElapsedTime / _colorLerpTotalDuration);
             yield return null;
         }
         _colorLerpElapsedTime = 0f;
@@ -70,8 +70,8 @@ public class ShoutAttack : Attack
         if (_attackEffect)
             _attackEffect.SetActive(true);
 
-        MyCollider.enabled = true;
-        MyRenderer.enabled = false;
+        _meshCollider.enabled = true;
+        _meshRenderer.enabled = false;
         _startAttackLogic = true;
 
         StartCoroutine(ResetAttack());
@@ -83,8 +83,8 @@ public class ShoutAttack : Attack
 
         _attackEffect.SetActive(false);
         _startAttackLogic = false;
-        MyCollider.enabled = false;
+        _meshCollider.enabled = false;
         _alreadyAttacked = false;
-        MyRenderer.material.color = _chargeColor;
+        _meshRenderer.material.color = _chargeColor;
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 844510616554342071}
   - component: {fileID: 4330095022483147026}
   - component: {fileID: 2014060328976612824}
-  - component: {fileID: 517922817107320572}
+  - component: {fileID: 8468410691984711272}
   - component: {fileID: 6205254416123414800}
   m_Layer: 0
   m_Name: LeoRangeAttack
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 68571330268945421}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 2.3600001}
-  m_LocalScale: {x: 1.65, y: 0.5, z: 1.65}
+  m_LocalScale: {x: 0.8, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 68571330268945421}
-  m_Mesh: {fileID: 2906107138255250401, guid: 4be73bd107d05f9488b11be51b1197ea, type: 3}
+  m_Mesh: {fileID: 7629811779324647873, guid: 606d22e85e7a9f143ac2812efa6a25bc, type: 3}
 --- !u!23 &2014060328976612824
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -83,7 +83,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &517922817107320572
+--- !u!64 &8468410691984711272
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,7 +96,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 2906107138255250401, guid: 4be73bd107d05f9488b11be51b1197ea, type: 3}
+  m_Mesh: {fileID: 7629811779324647873, guid: 606d22e85e7a9f143ac2812efa6a25bc, type: 3}
 --- !u!114 &6205254416123414800
 MonoBehaviour:
   m_ObjectHideFlags: 0
