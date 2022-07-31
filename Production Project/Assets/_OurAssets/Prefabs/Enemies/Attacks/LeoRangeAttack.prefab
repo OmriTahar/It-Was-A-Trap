@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 844510616554342071}
   - component: {fileID: 4330095022483147026}
   - component: {fileID: 2014060328976612824}
-  - component: {fileID: 8468410691984711272}
+  - component: {fileID: 4968712530760585971}
   - component: {fileID: 6205254416123414800}
   m_Layer: 0
   m_Name: LeoRangeAttack
@@ -83,7 +83,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8468410691984711272
+--- !u!64 &4968712530760585971
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,10 +91,10 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 68571330268945421}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7629811779324647873, guid: 606d22e85e7a9f143ac2812efa6a25bc, type: 3}
 --- !u!114 &6205254416123414800
