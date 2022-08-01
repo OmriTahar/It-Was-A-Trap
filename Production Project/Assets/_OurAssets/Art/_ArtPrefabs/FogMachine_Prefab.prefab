@@ -4897,8 +4897,9 @@ GameObject:
   - component: {fileID: 2381910583881040456}
   - component: {fileID: 8904502660922973675}
   - component: {fileID: 1746563564278618013}
-  - component: {fileID: 6666980417507813020}
   - component: {fileID: 6908296528463888823}
+  - component: {fileID: 1911514019}
+  - component: {fileID: 1911514022}
   m_Layer: 0
   m_Name: BoxTrigger
   m_TagString: Untagged
@@ -4931,7 +4932,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 2, z: 25}
+  m_Size: {x: 10, y: 2, z: 40}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1746563564278618013
 MonoBehaviour:
@@ -4945,7 +4946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f060cbf173b22b4488b6b08b68866861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6666980417507813020
+--- !u!114 &6908296528463888823
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4953,6 +4954,23 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5653445305226505561}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Player
+  Emitters:
+  - Target: {fileID: 0}
+    Params: []
+  TriggerEvent: 3
+--- !u!114 &1911514019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5653445305226505561}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
@@ -4972,10 +4990,10 @@ MonoBehaviour:
   TriggerOnce: 0
   Preload: 0
   Params: []
-  OverrideAttenuation: 0
+  OverrideAttenuation: 1
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!114 &6908296528463888823
+--- !u!114 &1911514022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4989,7 +5007,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollisionTag: Player
   Emitters:
-  - Target: {fileID: 0}
+  - Target: {fileID: 1911514019}
     Params: []
   TriggerEvent: 3
 --- !u!1 &6933123563929500117

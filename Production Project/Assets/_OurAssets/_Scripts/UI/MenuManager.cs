@@ -51,7 +51,6 @@ public class MenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Other/Crowd Cheering");
         FMODUnity.RuntimeManager.PlayOneShot("event:/Music");
         SceneManager.LoadScene(1);
     }
