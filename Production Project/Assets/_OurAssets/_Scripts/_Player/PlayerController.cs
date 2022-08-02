@@ -68,8 +68,9 @@ public class PlayerController : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] float _timeBetweenSteps = 0.3f;
 
-    private bool _walkSoundActive = false;
-    private bool _stunSoundPlayed = false;
+    private bool _isPlayingWalkSound = false;
+    private bool _isPlayingStunSound = false;
+    private bool _playStepTwoSound = false;
 
     #endregion
 
@@ -182,11 +183,11 @@ public class PlayerController : MonoBehaviour
                 Vector3 velocityChange = (playerVelocity - velocity);
 
                 _rb.AddForce(velocityChange, ForceMode.VelocityChange);
-            }
 
-            if (!_walkSoundActive && playerVelocity.magnitude > 0.1f)
-            {
-                PlayFootStep();
+                if (!_isPlayingWalkSound && playerVelocity.magnitude > 0.1f)
+                {
+                    PlayFootStep();
+                }
             }
         }
         else
@@ -204,17 +205,17 @@ public class PlayerController : MonoBehaviour
     {
         _animator.SetBool(_isStunnedHash, true);
         _animator.SetTrigger(_startStunHash);
-        if (!_stunSoundPlayed)
+        if (!_isPlayingStunSound)
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Player Stun Birds 1");
-            _stunSoundPlayed = true;
+            _isPlayingStunSound = true;
         }
     }
 
     private void HandleStopStun()
     {
         _animator.SetBool(_isStunnedHash, false);
-        ResetSound();
+        ResetStunSound();
     }
 
     IEnumerator Dash(Vector3 dashVecolity)
@@ -235,24 +236,32 @@ public class PlayerController : MonoBehaviour
 
     private void RotationInput()
     {
-        _meshTransform.LookAt(new Vector3(PlayerAim.Instance.outline.transform.position.x , _meshTransform.position.y, PlayerAim.Instance.outline.transform.position.z));
+        _meshTransform.LookAt(new Vector3(PlayerAim.Instance.outline.transform.position.x, _meshTransform.position.y, PlayerAim.Instance.outline.transform.position.z));
     }
 
     private void PlayFootStep()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Woman Shoe Jog on Concrete");
-        _walkSoundActive = true;
+        _isPlayingWalkSound = true;
+
+        if (!_playStepTwoSound)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Woman Shoe Jog on Concrete");
+        }
+        else
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Woman Shoe Jog on Concrete"); // Insert here second step sound
+
+        _playStepTwoSound = !_playStepTwoSound;
         Invoke("ResetFootstepsSound", _timeBetweenSteps);
     }
 
     private void ResetFootstepsSound()
     {
-        _walkSoundActive = false;
+        _isPlayingWalkSound = false;
     }
 
-    void ResetSound()
+    void ResetStunSound()
     {
-        _stunSoundPlayed = false;
+        _isPlayingStunSound = false;
     }
 
     private void HashAnimationsInit()
@@ -379,6 +388,6 @@ public class PlayerController : MonoBehaviour
     //    }
     //}
 
-    #endregion 
-    
+    #endregion
+
 }
