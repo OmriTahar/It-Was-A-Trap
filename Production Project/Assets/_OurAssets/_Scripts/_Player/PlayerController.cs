@@ -66,9 +66,11 @@ public class PlayerController : MonoBehaviour
     #region Sounds
 
     public float TimeBetweenSteps = 0.5f;
-    bool _playWalkSound = false, _walkSoundActive = true;
-    bool _stunSoundPlayed = false;
-    bool _stepSwitch = true;
+    private bool _playWalkSound = false;
+    private bool _walkSoundActive = true;
+    private bool _stunSoundPlayed = false;
+    private bool _stepSwitch = true;
+
     #endregion
 
     #endregion
@@ -109,7 +111,7 @@ public class PlayerController : MonoBehaviour
             Invoke("ResetFootstepsSound", TimeBetweenSteps);
         }
 
-        #region Upgrade Sysytem (Not Currently Used)
+        #region Upgrade Sysytem (Currently Not Used)
 
         //if (Input.GetKeyDown(KeyCode.Tab))
         //    if (_activeUpgradesWindow)
@@ -214,9 +216,7 @@ public class PlayerController : MonoBehaviour
 
             // --- Stun effect. Check conditions only if PlayerCanMove = false ---
             if (PlayerData.Instance.IsStunned)
-            {
                 _rb.Sleep();
-            }
         }
     }
 
@@ -233,8 +233,8 @@ public class PlayerController : MonoBehaviour
 
     private void HandleStopStun()
     {
-        ResetSound();
         _animator.SetBool(_isStunnedHash, false);
+        ResetSound();
     }
 
     IEnumerator Dash(Vector3 dashVecolity)
@@ -261,6 +261,11 @@ public class PlayerController : MonoBehaviour
     private void ResetFootstepsSound()
     {
         _walkSoundActive = true;
+    }
+
+    void ResetSound()
+    {
+        _stunSoundPlayed = false;
     }
 
     private void HashAnimationsInit()
@@ -388,8 +393,5 @@ public class PlayerController : MonoBehaviour
     //}
 
     #endregion 
-    void ResetSound()
-    {
-        _stunSoundPlayed = false;
-    }
+    
 }

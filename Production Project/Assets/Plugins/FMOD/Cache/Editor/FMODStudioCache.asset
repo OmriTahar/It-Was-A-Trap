@@ -350,7 +350,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1112
---- !u!114 &-3675276190840381958
+--- !u!114 &-3580758065997021246
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -419,38 +419,11 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/It was a trap 2/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637950617921036607
+  lastModified: 637950641118422026
   FileSizes:
   - Name: Desktop
     Value: 2586
   Exists: 1
---- !u!114 &-1214384926780811615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Player Stun Birds 1
-  m_EditorClassIdentifier: 
-  Path: event:/Player Stun Birds 1
-  Guid:
-    Data1: -1509139276
-    Data2: 1152252190
-    Data3: -1842292047
-    Data4: -1110049443
-  Banks:
-  - {fileID: 1331996494637321609}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1550
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,15 +472,15 @@ MonoBehaviour:
   - {fileID: -4119855991683802437}
   - {fileID: -6576810357263593514}
   - {fileID: 6210406924881133517}
-  - {fileID: -1214384926780811615}
-  - {fileID: -3675276190840381958}
-  - {fileID: 6420238228213302502}
+  - {fileID: 6079434448782724341}
+  - {fileID: 486681632785544330}
+  - {fileID: -3580758065997021246}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1331996494637321609}
   StringsBanks:
   - {fileID: -1588518143151437567}
-  cacheTime: 637950617921036607
+  cacheTime: 637950641118422026
   cacheVersion: 10
 --- !u!114 &250331765579773695
 MonoBehaviour:
@@ -536,6 +509,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 44
+--- !u!114 &486681632785544330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player Stun Birds 1
+  m_EditorClassIdentifier: 
+  Path: event:/Player Stun Birds 1
+  Guid:
+    Data1: -1509139276
+    Data2: 1152252190
+    Data3: -1842292047
+    Data4: -1110049443
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1550
 --- !u!114 &589733921898609713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,7 +605,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/It was a trap 2/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637950617921006683
+  lastModified: 637950641118399581
   FileSizes:
   - Name: Desktop
     Value: 6721632
@@ -853,6 +853,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 230
+--- !u!114 &6079434448782724341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Woman Shoe Jog on Concrete
+  m_EditorClassIdentifier: 
+  Path: event:/Woman Shoe Jog on Concrete
+  Guid:
+    Data1: 1748579207
+    Data2: 1109841284
+    Data3: -2042477420
+    Data4: -1748590864
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 250
 --- !u!114 &6124816194958267958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -934,33 +961,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 12371
---- !u!114 &6420238228213302502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Woman Shoe Jog on Concrete
-  m_EditorClassIdentifier: 
-  Path: event:/Woman Shoe Jog on Concrete
-  Guid:
-    Data1: 1748579207
-    Data2: 1109841284
-    Data3: -2042477420
-    Data4: -1748590864
-  Banks:
-  - {fileID: 1331996494637321609}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 250
 --- !u!114 &7186683072287868730
 MonoBehaviour:
   m_ObjectHideFlags: 0
