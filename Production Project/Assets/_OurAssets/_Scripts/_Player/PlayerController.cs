@@ -65,10 +65,13 @@ public class PlayerController : MonoBehaviour
 
     #region Sounds
 
-    public float TimeBetweenSteps = 0.5f;
-    bool _playWalkSound = false, _walkSoundActive = true;
-    bool _stunSoundPlayed = false;
-    bool _stepSwitch = true;
+    [Header("Sounds")]
+    [SerializeField] float _timeBetweenSteps = 0.3f;
+
+    private bool _isPlayingWalkSound = false;
+    private bool _isPlayingStunSound = false;
+    private bool _playStepTwoSound = false;
+
     #endregion
 
     #endregion
@@ -102,14 +105,7 @@ public class PlayerController : MonoBehaviour
         if (IsAllowedToRotate)
             RotationInput();
 
-        if (IsAllowedToMove && _playWalkSound && !_isDashing && _walkSoundActive)
-        {
-            _walkSoundActive = false;
-            PlayFootStep();
-            Invoke("ResetFootstepsSound", TimeBetweenSteps);
-        }
-
-        #region Upgrade Sysytem (Not Currently Used)
+        #region Upgrade Sysytem (Currently Not Used)
 
         //if (Input.GetKeyDown(KeyCode.Tab))
         //    if (_activeUpgradesWindow)
@@ -120,20 +116,6 @@ public class PlayerController : MonoBehaviour
         //        _activeUpgradesWindow.SetActive(false);
 
         #endregion
-    }
-
-    private void PlayFootStep()
-    {
-        if (_stepSwitch)
-        {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Woman Shoe Jog on Concrete");
-            _stepSwitch = !_stepSwitch;
-        }
-        else
-        {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Woman Shoe Jog on Concrete");
-            _stepSwitch = !_stepSwitch;
-        }
     }
 
     void FixedUpdate()
@@ -199,12 +181,13 @@ public class PlayerController : MonoBehaviour
                 playerVelocity = transform.TransformDirection(playerVelocity) * WalkSpeed;
                 Vector3 velocity = _rb.velocity;
                 Vector3 velocityChange = (playerVelocity - velocity);
-                if (velocityChange != Vector3.zero)
-                    _playWalkSound = true;
-                else
-                    _playWalkSound = false;
 
                 _rb.AddForce(velocityChange, ForceMode.VelocityChange);
+
+                if (!_isPlayingWalkSound && playerVelocity.magnitude > 0.1f)
+                {
+                    PlayFootStep();
+                }
             }
         }
         else
@@ -214,9 +197,7 @@ public class PlayerController : MonoBehaviour
 
             // --- Stun effect. Check conditions only if PlayerCanMove = false ---
             if (PlayerData.Instance.IsStunned)
-            {
                 _rb.Sleep();
-            }
         }
     }
 
@@ -224,17 +205,17 @@ public class PlayerController : MonoBehaviour
     {
         _animator.SetBool(_isStunnedHash, true);
         _animator.SetTrigger(_startStunHash);
-        if (!_stunSoundPlayed)
+        if (!_isPlayingStunSound)
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Player Stun Birds 1");
-            _stunSoundPlayed = true;
+            _isPlayingStunSound = true;
         }
     }
 
     private void HandleStopStun()
     {
-        ResetSound();
         _animator.SetBool(_isStunnedHash, false);
+        ResetStunSound();
     }
 
     IEnumerator Dash(Vector3 dashVecolity)
@@ -255,12 +236,32 @@ public class PlayerController : MonoBehaviour
 
     private void RotationInput()
     {
-        _meshTransform.LookAt(new Vector3(PlayerAim.Instance.outline.transform.position.x , _meshTransform.position.y, PlayerAim.Instance.outline.transform.position.z));
+        _meshTransform.LookAt(new Vector3(PlayerAim.Instance.outline.transform.position.x, _meshTransform.position.y, PlayerAim.Instance.outline.transform.position.z));
+    }
+
+    private void PlayFootStep()
+    {
+        _isPlayingWalkSound = true;
+
+        if (!_playStepTwoSound)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Woman Shoe Jog on Concrete");
+        }
+        else
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Woman Shoe Jog on Concrete"); // Insert here second step sound
+
+        _playStepTwoSound = !_playStepTwoSound;
+        Invoke("ResetFootstepsSound", _timeBetweenSteps);
     }
 
     private void ResetFootstepsSound()
     {
-        _walkSoundActive = true;
+        _isPlayingWalkSound = false;
+    }
+
+    void ResetStunSound()
+    {
+        _isPlayingStunSound = false;
     }
 
     private void HashAnimationsInit()
@@ -387,9 +388,6 @@ public class PlayerController : MonoBehaviour
     //    }
     //}
 
-    #endregion 
-    void ResetSound()
-    {
-        _stunSoundPlayed = false;
-    }
+    #endregion
+
 }

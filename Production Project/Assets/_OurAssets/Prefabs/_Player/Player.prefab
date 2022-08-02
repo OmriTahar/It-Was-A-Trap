@@ -122,6 +122,7 @@ MonoBehaviour:
   DashBarBG: {fileID: 0}
   _dashBarColorFull: {r: 1, g: 1, b: 1, a: 100}
   _dashBarColorCharge: {r: 0.75, g: 0.75, b: 0.75, a: 0.29803923}
+  _timeBetweenSteps: 0.3
 --- !u!114 &4061210518604259733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +181,7 @@ MonoBehaviour:
   _currentWeaponImage: {fileID: 0}
   _coverImage: {fileID: 21300000, guid: aed27b3b2ebd9a1408da702ed3fb99db, type: 3}
   _trapImage: {fileID: 21300000, guid: 3bc01680edec3794e996ddca9df3635c, type: 3}
-  _trapOutlineSprite: {fileID: 21300000, guid: 7f8acebabd708134f8fc8ca6626c2bbc, type: 3}
+  _trapOutlineSprite: {fileID: 21300000, guid: 7efc604e9e80cde4d9ffdb0bffb170af, type: 3}
   _wallOutlineSprite: {fileID: 21300000, guid: e84aaa187d02cdf408f17feb184787fe, type: 3}
   currentWeapon: 0
   canShoot: 1
@@ -245,11 +246,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1947986555
-      Data2: 1183109973
-      Data3: -234152302
-      Data4: 2065951052
-    Path: event:/Player/20's music game mix Am
+      Data1: -675549832
+      Data2: 1106712273
+      Data3: 2028062358
+      Data4: -633170654
+    Path: event:/Sound/Player/Magician Stunned
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -2053,7 +2054,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2800947986151345497}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 14.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2800947986253184769}
