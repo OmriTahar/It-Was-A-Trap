@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
         HandleDashUI();
 
         if (IsAllowedToRotate)
-            CameraInput();
+            RotationInput();
 
         if (IsAllowedToMove && _playWalkSound && !_isDashing && _walkSoundActive)
         {
@@ -238,16 +238,9 @@ public class PlayerController : MonoBehaviour
         _dashTrailEffect.SetActive(false);
     }
 
-    private void CameraInput()
+    private void RotationInput()
     {
-        RaycastHit hit;
-        Ray camRay = PlayerMovementCamera.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(camRay, out hit))
-        {
-            _meshTransform.LookAt(new Vector3(hit.point.x, _meshTransform.position.y, hit.point.z));
-            Debug.DrawLine(camRay.origin, hit.point, Color.yellow);
-        }
+        _meshTransform.LookAt(new Vector3(PlayerAim.Instance.outline.transform.position.x , _meshTransform.position.y, PlayerAim.Instance.outline.transform.position.z));
     }
 
     private void ResetFootstepsSound()
