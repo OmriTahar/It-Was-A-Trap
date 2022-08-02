@@ -65,9 +65,10 @@ public class PlayerController : MonoBehaviour
 
     #region Sounds
 
+    public float TimeBetweenSteps = 0.5f;
     bool _playWalkSound = false, _walkSoundActive = true;
     bool _stunSoundPlayed = false;
-
+    bool _stepSwitch = true;
     #endregion
 
     #endregion
@@ -104,8 +105,8 @@ public class PlayerController : MonoBehaviour
         if (IsAllowedToMove && _playWalkSound && !_isDashing && _walkSoundActive)
         {
             _walkSoundActive = false;
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Player/FootSteps Player");
-            Invoke("ResetFootstepsSound", 0.5f);
+            PlayFootStep();
+            Invoke("ResetFootstepsSound", TimeBetweenSteps);
         }
 
         #region Upgrade Sysytem (Not Currently Used)
@@ -119,6 +120,20 @@ public class PlayerController : MonoBehaviour
         //        _activeUpgradesWindow.SetActive(false);
 
         #endregion
+    }
+
+    private void PlayFootStep()
+    {
+        if (_stepSwitch)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Woman Shoe Jog on Concrete");
+            _stepSwitch = !_stepSwitch;
+        }
+        else
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Woman Shoe Jog on Concrete");
+            _stepSwitch = !_stepSwitch;
+        }
     }
 
     void FixedUpdate()
