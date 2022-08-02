@@ -180,10 +180,6 @@ public class PlayerController : MonoBehaviour
                 playerVelocity = transform.TransformDirection(playerVelocity) * WalkSpeed;
                 Vector3 velocity = _rb.velocity;
                 Vector3 velocityChange = (playerVelocity - velocity);
-                if (velocityChange != Vector3.zero)
-                    _playWalkSound = true;
-                else
-                    _playWalkSound = false;
 
                 _rb.AddForce(velocityChange, ForceMode.VelocityChange);
             }
