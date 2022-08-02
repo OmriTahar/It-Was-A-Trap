@@ -64,13 +64,12 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Sounds
+
     [Header("Sounds")]
     [SerializeField] float _timeBetweenSteps = 0.3f;
 
-    private bool _playWalkSound = false;
     private bool _walkSoundActive = false;
     private bool _stunSoundPlayed = false;
-    private bool _stepSwitch = true;
 
     #endregion
 
