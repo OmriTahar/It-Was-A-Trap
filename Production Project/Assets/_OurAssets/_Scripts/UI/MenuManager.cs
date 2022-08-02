@@ -87,5 +87,9 @@ public class MenuManager : MonoBehaviour
         if (iconArray[buttonNum])
             iconArray[buttonNum].color = transparent;
     }
+    public void Playsound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/UI/UI 3");
+    }
 
 }

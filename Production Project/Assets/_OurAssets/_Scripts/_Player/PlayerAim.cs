@@ -55,7 +55,7 @@ public class PlayerAim : MonoBehaviour
         {
             UpdateAim();
 
-            if (Input.GetKeyDown(KeyCode.F) && _canInteract)
+            if (Input.GetKeyDown(KeyCode.E) && _canInteract)
                 Interact();
         }
     }
