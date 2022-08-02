@@ -65,7 +65,8 @@ public class PlayerController : MonoBehaviour
 
     #region Sounds
 
-    bool playfssound = false, soundactive = true;
+    bool _playWalkSound = false, _walkSoundActive = true;
+    bool _stunSoundPlayed = false;
 
     #endregion
 
@@ -100,9 +101,9 @@ public class PlayerController : MonoBehaviour
         if (IsAllowedToRotate)
             CameraInput();
 
-        if (IsAllowedToMove && playfssound && !_isDashing && soundactive)
+        if (IsAllowedToMove && _playWalkSound && !_isDashing && _walkSoundActive)
         {
-            soundactive = false;
+            _walkSoundActive = false;
             FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Player/FootSteps Player");
             Invoke("ResetFootstepsSound", 0.5f);
         }
@@ -184,9 +185,9 @@ public class PlayerController : MonoBehaviour
                 Vector3 velocity = _rb.velocity;
                 Vector3 velocityChange = (playerVelocity - velocity);
                 if (velocityChange != Vector3.zero)
-                    playfssound = true;
+                    _playWalkSound = true;
                 else
-                    playfssound = false;
+                    _playWalkSound = false;
 
                 _rb.AddForce(velocityChange, ForceMode.VelocityChange);
             }
@@ -208,10 +209,16 @@ public class PlayerController : MonoBehaviour
     {
         _animator.SetBool(_isStunnedHash, true);
         _animator.SetTrigger(_startStunHash);
+        if (!_stunSoundPlayed)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Player Stun Birds 1");
+            _stunSoundPlayed = true;
+        }
     }
 
     private void HandleStopStun()
     {
+        ResetSound();
         _animator.SetBool(_isStunnedHash, false);
     }
 
@@ -245,7 +252,7 @@ public class PlayerController : MonoBehaviour
 
     private void ResetFootstepsSound()
     {
-        soundactive = true;
+        _walkSoundActive = true;
     }
 
     private void HashAnimationsInit()
@@ -373,5 +380,8 @@ public class PlayerController : MonoBehaviour
     //}
 
     #endregion 
-
+    void ResetSound()
+    {
+        _stunSoundPlayed = false;
+    }
 }

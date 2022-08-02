@@ -322,7 +322,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2000
+  Length: 300
 --- !u!114 &-4119855991683802437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,11 +392,38 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/It was a trap 2/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637949647856850415
+  lastModified: 637950557154832848
   FileSizes:
   - Name: Desktop
-    Value: 2418
+    Value: 2468
   Exists: 1
+--- !u!114 &-1214384926780811615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player Stun Birds 1
+  m_EditorClassIdentifier: 
+  Path: event:/Player Stun Birds 1
+  Guid:
+    Data1: -1509139276
+    Data2: 1152252190
+    Data3: -1842292047
+    Data4: -1110049443
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1550
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,12 +472,13 @@ MonoBehaviour:
   - {fileID: -4119855991683802437}
   - {fileID: -6576810357263593514}
   - {fileID: 6210406924881133517}
+  - {fileID: -1214384926780811615}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1331996494637321609}
   StringsBanks:
   - {fileID: -1588518143151437567}
-  cacheTime: 637949647856850415
+  cacheTime: 637950557154832848
   cacheVersion: 10
 --- !u!114 &250331765579773695
 MonoBehaviour:
@@ -548,10 +576,10 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/It was a trap 2/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637949647856820500
+  lastModified: 637950557154802933
   FileSizes:
   - Name: Desktop
-    Value: 6588000
+    Value: 6589248
   Exists: 1
 --- !u!114 &1533593680788178469
 MonoBehaviour:
