@@ -19,8 +19,9 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
 
     private bool _hasAlreadyStunned = false;
 
-    public static event Action OnPlayerStartStun; 
-    public static event Action OnPlayerStopStun; 
+    public static event Action OnPlayerStartStun;
+    public static event Action OnPlayerStopStun;
+
 
     void Awake()
     {

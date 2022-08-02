@@ -268,7 +268,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1437
+  Length: 1417
 --- !u!114 &-5294224370722307671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,7 +322,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2000
+  Length: 300
 --- !u!114 &-4119855991683802437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,6 +350,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1112
+--- !u!114 &-3675276190840381958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Opening Curtains-Sound Effect
+  m_EditorClassIdentifier: 
+  Path: event:/Opening Curtains-Sound Effect
+  Guid:
+    Data1: 1638672377
+    Data2: 1139957156
+    Data3: 2101095324
+    Data4: -650403600
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3000
 --- !u!114 &-2365644307862118556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,11 +419,38 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/It was a trap 2/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637949647856850415
+  lastModified: 637950617921036607
   FileSizes:
   - Name: Desktop
-    Value: 2418
+    Value: 2586
   Exists: 1
+--- !u!114 &-1214384926780811615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player Stun Birds 1
+  m_EditorClassIdentifier: 
+  Path: event:/Player Stun Birds 1
+  Guid:
+    Data1: -1509139276
+    Data2: 1152252190
+    Data3: -1842292047
+    Data4: -1110049443
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1550
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,12 +499,15 @@ MonoBehaviour:
   - {fileID: -4119855991683802437}
   - {fileID: -6576810357263593514}
   - {fileID: 6210406924881133517}
+  - {fileID: -1214384926780811615}
+  - {fileID: -3675276190840381958}
+  - {fileID: 6420238228213302502}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1331996494637321609}
   StringsBanks:
   - {fileID: -1588518143151437567}
-  cacheTime: 637949647856850415
+  cacheTime: 637950617921036607
   cacheVersion: 10
 --- !u!114 &250331765579773695
 MonoBehaviour:
@@ -548,10 +605,10 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/It was a trap 2/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637949647856820500
+  lastModified: 637950617921006683
   FileSizes:
   - Name: Desktop
-    Value: 6588000
+    Value: 6721632
   Exists: 1
 --- !u!114 &1533593680788178469
 MonoBehaviour:
@@ -877,6 +934,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 12371
+--- !u!114 &6420238228213302502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Woman Shoe Jog on Concrete
+  m_EditorClassIdentifier: 
+  Path: event:/Woman Shoe Jog on Concrete
+  Guid:
+    Data1: 1748579207
+    Data2: 1109841284
+    Data3: -2042477420
+    Data4: -1748590864
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 250
 --- !u!114 &7186683072287868730
 MonoBehaviour:
   m_ObjectHideFlags: 0

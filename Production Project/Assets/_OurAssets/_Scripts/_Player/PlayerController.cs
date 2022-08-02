@@ -65,8 +65,10 @@ public class PlayerController : MonoBehaviour
 
     #region Sounds
 
-    bool playfssound = false, soundactive = true;
-
+    public float TimeBetweenSteps = 0.5f;
+    bool _playWalkSound = false, _walkSoundActive = true;
+    bool _stunSoundPlayed = false;
+    bool _stepSwitch = true;
     #endregion
 
     #endregion
@@ -98,13 +100,13 @@ public class PlayerController : MonoBehaviour
         HandleDashUI();
 
         if (IsAllowedToRotate)
-            CameraInput();
+            RotationInput();
 
-        if (IsAllowedToMove && playfssound && !_isDashing && soundactive)
+        if (IsAllowedToMove && _playWalkSound && !_isDashing && _walkSoundActive)
         {
-            soundactive = false;
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Player/FootSteps Player");
-            Invoke("ResetFootstepsSound", 0.5f);
+            _walkSoundActive = false;
+            PlayFootStep();
+            Invoke("ResetFootstepsSound", TimeBetweenSteps);
         }
 
         #region Upgrade Sysytem (Not Currently Used)
@@ -118,6 +120,20 @@ public class PlayerController : MonoBehaviour
         //        _activeUpgradesWindow.SetActive(false);
 
         #endregion
+    }
+
+    private void PlayFootStep()
+    {
+        if (_stepSwitch)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Woman Shoe Jog on Concrete");
+            _stepSwitch = !_stepSwitch;
+        }
+        else
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Woman Shoe Jog on Concrete");
+            _stepSwitch = !_stepSwitch;
+        }
     }
 
     void FixedUpdate()
@@ -184,9 +200,9 @@ public class PlayerController : MonoBehaviour
                 Vector3 velocity = _rb.velocity;
                 Vector3 velocityChange = (playerVelocity - velocity);
                 if (velocityChange != Vector3.zero)
-                    playfssound = true;
+                    _playWalkSound = true;
                 else
-                    playfssound = false;
+                    _playWalkSound = false;
 
                 _rb.AddForce(velocityChange, ForceMode.VelocityChange);
             }
@@ -208,10 +224,16 @@ public class PlayerController : MonoBehaviour
     {
         _animator.SetBool(_isStunnedHash, true);
         _animator.SetTrigger(_startStunHash);
+        if (!_stunSoundPlayed)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Player Stun Birds 1");
+            _stunSoundPlayed = true;
+        }
     }
 
     private void HandleStopStun()
     {
+        ResetSound();
         _animator.SetBool(_isStunnedHash, false);
     }
 
@@ -231,21 +253,14 @@ public class PlayerController : MonoBehaviour
         _dashTrailEffect.SetActive(false);
     }
 
-    private void CameraInput()
+    private void RotationInput()
     {
-        RaycastHit hit;
-        Ray camRay = PlayerMovementCamera.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(camRay, out hit))
-        {
-            _meshTransform.LookAt(new Vector3(hit.point.x, _meshTransform.position.y, hit.point.z));
-            Debug.DrawLine(camRay.origin, hit.point, Color.yellow);
-        }
+        _meshTransform.LookAt(new Vector3(PlayerAim.Instance.outline.transform.position.x , _meshTransform.position.y, PlayerAim.Instance.outline.transform.position.z));
     }
 
     private void ResetFootstepsSound()
     {
-        soundactive = true;
+        _walkSoundActive = true;
     }
 
     private void HashAnimationsInit()
@@ -373,5 +388,8 @@ public class PlayerController : MonoBehaviour
     //}
 
     #endregion 
-
+    void ResetSound()
+    {
+        _stunSoundPlayed = false;
+    }
 }
