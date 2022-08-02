@@ -64,10 +64,11 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Sounds
+    [Header("Sounds")]
+    [SerializeField] float _timeBetweenSteps = 0.3f;
 
-    public float TimeBetweenSteps = 0.5f;
     private bool _playWalkSound = false;
-    private bool _walkSoundActive = true;
+    private bool _walkSoundActive = false;
     private bool _stunSoundPlayed = false;
     private bool _stepSwitch = true;
 
@@ -104,13 +105,6 @@ public class PlayerController : MonoBehaviour
         if (IsAllowedToRotate)
             RotationInput();
 
-        if (IsAllowedToMove && _playWalkSound && !_isDashing && _walkSoundActive)
-        {
-            _walkSoundActive = false;
-            PlayFootStep();
-            Invoke("ResetFootstepsSound", TimeBetweenSteps);
-        }
-
         #region Upgrade Sysytem (Currently Not Used)
 
         //if (Input.GetKeyDown(KeyCode.Tab))
@@ -122,20 +116,6 @@ public class PlayerController : MonoBehaviour
         //        _activeUpgradesWindow.SetActive(false);
 
         #endregion
-    }
-
-    private void PlayFootStep()
-    {
-        if (_stepSwitch)
-        {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Woman Shoe Jog on Concrete");
-            _stepSwitch = !_stepSwitch;
-        }
-        else
-        {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Woman Shoe Jog on Concrete");
-            _stepSwitch = !_stepSwitch;
-        }
     }
 
     void FixedUpdate()
@@ -208,6 +188,11 @@ public class PlayerController : MonoBehaviour
 
                 _rb.AddForce(velocityChange, ForceMode.VelocityChange);
             }
+
+            if (!_walkSoundActive && playerVelocity.magnitude > 0.1f)
+            {
+                PlayFootStep();
+            }
         }
         else
         {
@@ -258,9 +243,16 @@ public class PlayerController : MonoBehaviour
         _meshTransform.LookAt(new Vector3(PlayerAim.Instance.outline.transform.position.x , _meshTransform.position.y, PlayerAim.Instance.outline.transform.position.z));
     }
 
+    private void PlayFootStep()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Woman Shoe Jog on Concrete");
+        _walkSoundActive = true;
+        Invoke("ResetFootstepsSound", _timeBetweenSteps);
+    }
+
     private void ResetFootstepsSound()
     {
-        _walkSoundActive = true;
+        _walkSoundActive = false;
     }
 
     void ResetSound()

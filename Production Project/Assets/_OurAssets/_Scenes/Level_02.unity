@@ -1295,10 +1295,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 543014457}
-  - {fileID: 1900419611}
-  - {fileID: 356195285}
   - {fileID: 984776149}
   - {fileID: 1719269136}
+  - {fileID: 1900419611}
+  - {fileID: 356195285}
   m_Father: {fileID: 427978450}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7394,17 +7394,6 @@ MonoBehaviour:
 --- !u!114 &993431011 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 119329114021056168, guid: c75338d96ae022944893afc1b294b91f, type: 3}
-  m_PrefabInstance: {fileID: 993431001}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &993431012 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 119329113925230008, guid: c75338d96ae022944893afc1b294b91f, type: 3}
   m_PrefabInstance: {fileID: 993431001}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -15318,10 +15307,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 993431003}
     - target: {fileID: 1961995115909999450, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: _healthBarBG
-      value: 
-      objectReference: {fileID: 993431012}
-    - target: {fileID: 1961995115909999450, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: _gameOverScreen
       value: 
       objectReference: {fileID: 993431004}
@@ -15341,10 +15326,6 @@ PrefabInstance:
       propertyPath: _currentBunnyCountText
       value: 
       objectReference: {fileID: 993431006}
-    - target: {fileID: 2800947986151345496, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 14.27
-      objectReference: {fileID: 0}
     - target: {fileID: 4061210518604259733, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: _cam
       value: 
@@ -15353,30 +15334,6 @@ PrefabInstance:
       propertyPath: _canInteractUIText
       value: 
       objectReference: {fileID: 993431005}
-    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: EventReference.Path
-      value: event:/Sound/Player/Magician Stunned
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: EventReference.Guid.Data1
-      value: -675549832
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: EventReference.Guid.Data2
-      value: 1106712273
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: EventReference.Guid.Data3
-      value: 2028062358
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: EventReference.Guid.Data4
-      value: -633170654
-      objectReference: {fileID: 0}
     - target: {fileID: 8446407416611106780, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: DashBarBG
       value: 
@@ -15389,10 +15346,6 @@ PrefabInstance:
       propertyPath: PlayerMovementCamera
       value: 
       objectReference: {fileID: 1766300099}
-    - target: {fileID: 8446407416611106780, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
-      propertyPath: _activeUpgradesWindow
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
 --- !u!114 &2127285752 stripped
