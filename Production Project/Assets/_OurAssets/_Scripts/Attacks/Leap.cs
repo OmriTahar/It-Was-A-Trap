@@ -23,7 +23,7 @@ public class Leap : Attack
         if (other.gameObject.tag == "Player" && !_hasAttacked)
         {
             _hasAttacked = true;
-            other.gameObject.GetComponent<Unit>().RecieveDamage(this);
+            other.gameObject.GetComponent<Unit>().RecieveDamage(this, true);
 
             _hasAttacked = false;
             _myCollider.enabled = false;

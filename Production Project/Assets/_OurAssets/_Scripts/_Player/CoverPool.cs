@@ -12,6 +12,8 @@ public class CoverPool : MonoBehaviour
 
     void Start()
     {
+        ReadyToFireCoversQueue.Clear();
+
         for (int i = 0; i < _poolStartSize; i++)
         {
             GameObject wall = Instantiate(_wallPrefab);

@@ -408,9 +408,8 @@ MonoBehaviour:
   SwitchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: Assets/Plugins/FMOD/Resources/It was a trap 1/It was a trap/It
-    was a trap.fspro
-  sourceBankPath: Assets/Plugins/FMOD/Resources/It was a trap 1/It was a trap/Build
+  sourceProjectPath: Assets/Plugins/FMOD/Resources/It was a trap 2/It was a trap.fspro
+  sourceBankPath: Assets/Plugins/FMOD/Resources/It was a trap 2/Build
   SourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1

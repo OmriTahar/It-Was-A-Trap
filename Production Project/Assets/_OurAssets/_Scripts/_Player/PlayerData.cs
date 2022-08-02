@@ -1,19 +1,30 @@
-using System.Collections.Generic;
-using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
-using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+
 public enum WeaponType { Trap, Wall }
 public class PlayerData : Unit
 {
+
+    #region Variables
+
+    #region Exposed Variables
+
     public static PlayerData Instance;
     internal bool _isAllowedToShoot = true;
+    internal int bunnyCount = 0;
 
-    [Header("UI")]
+    #endregion
+
+    #region UI References
+
+    [Header("References")]
+    public Animator HitEffectAnimator;
+
+    [Header("UI References")]
     [SerializeField] private GameObject _gameOverScreen;
-    [SerializeField] private GameObject _pressToContinue;
+    [SerializeField] private GameObject _winScreen;
     [SerializeField] private TextMeshProUGUI _currentAmmoAmountText;
     [SerializeField] private TextMeshProUGUI _currentBunnyCountText;
     [SerializeField] private Image _currentWeaponImage;
@@ -22,17 +33,42 @@ public class PlayerData : Unit
     [SerializeField] private Sprite _trapOutlineSprite;
     [SerializeField] private Sprite _wallOutlineSprite;
 
+    #endregion
+
+    #region Settings
+
     [Header("Weapon Settings")]
     [SerializeField][ReadOnlyInspector] internal WeaponType currentWeapon;
     [SerializeField][ReadOnlyInspector] internal bool canShoot = true, clearToShoot = true;
     [SerializeField] private float _timeBetweenAttacks;
 
+    [Header("Win / Death Screen Delay Settings")]
+    [SerializeField] bool _isCanPressContinue = false;
+    [SerializeField] float _delayBeforeAllowingToPressContinue = 3f;
+
+    #endregion
+
+    #region Private 
+
+    private PlayerController _myPlayerController;
     private SpriteRenderer _outlineRenderer;
-    internal int bunnyCount = 0;
-    private bool deathKeyPress = false;
-    //for sharon to delete:
-    private Color orange = new Color(1, 0.5f, 0);
+    private bool _loseCondition = false;
+    private bool _winCondition = false;
+    private bool _mute = false;
+    private Color _red = new Color(1, 0, 0);
+
     private Animator _animator;
+    public Animator PlayerAnimatorGetter => _animator;
+    private int _trapCastAnimationHash;
+    private int _cardsCastAnimationHash;
+
+    #endregion
+
+    #endregion
+
+    #region Methods
+
+    #region Unity Callbacks
 
     private void Awake()
     {
@@ -49,8 +85,19 @@ public class PlayerData : Unit
         #endregion
 
         _animator = GetComponent<Animator>();
+        _myPlayerController = GetComponent<PlayerController>();
     }
-    //ondisable?
+
+    private void OnEnable()
+    {
+        OnPlayerKilled += SetLoseCondition;
+    }
+
+    private void OnDisable()
+    {
+        OnPlayerKilled -= SetLoseCondition;
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -59,6 +106,9 @@ public class PlayerData : Unit
             _currentBunnyCountText.text = $"{bunnyCount}";
 
         _outlineRenderer = PlayerAim.Instance.outline.transform.GetComponentInChildren<SpriteRenderer>();
+
+        AnimationHashInit();
+        OutcomeScreensInit();
     }
 
     private void Update()
@@ -73,32 +123,72 @@ public class PlayerData : Unit
             if (Input.GetKeyDown(KeyCode.Mouse0))
                 if (canShoot && clearToShoot)
                     Attack();
-
-            if (deathKeyPress && Input.anyKeyDown)
-            {
-                _gameOverScreen.SetActive(false);
-                _pressToContinue.SetActive(false);
-                SceneManager.LoadScene(1);
-            }
         }
+
+        if (Input.GetKey(KeyCode.M))
+        {
+            _mute = !_mute;
+            FMODUnity.RuntimeManager.PauseAllEvents(_mute);
+        }
+
+        if (_winCondition || _loseCondition)
+            GameIsOver();
+    }
+
+    #endregion
+
+    #region Win/Lose Conditions
+
+    private void OutcomeScreensInit()
+    {
+        _gameOverScreen.SetActive(false);
+        _loseCondition = false;
+
+        _winScreen.SetActive(false);
+        _winCondition = false;
+    }
+
+    public void OnWin()
+    {
+        GameManager.Instance.IsPlayerActive(false);
+        _winCondition = true;
+        _winScreen.SetActive(true);
+        Invoke("ToggleCanPressContinue", _delayBeforeAllowingToPressContinue);
+    }
+
+    private void SetLoseCondition() 
+    {
+        _loseCondition = true;
+        _gameOverScreen.SetActive(true);
+        Invoke("ToggleCanPressContinue", _delayBeforeAllowingToPressContinue);
+    }
+
+    private void ToggleCanPressContinue()
+    {
+        _isCanPressContinue = true;
+    }
+
+    private void GameIsOver()
+    {
+        if (_loseCondition && _isCanPressContinue && Input.anyKeyDown)
+            SceneManager.LoadScene(1);
+
+        if (_winCondition && _isCanPressContinue && Input.anyKeyDown)
+            SceneManager.LoadScene(0);
     }
 
     protected override void OnDeath()
     {
-        deathKeyPress = true;
-        _gameOverScreen.SetActive(true);
-        _pressToContinue.SetActive(true);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Player/Magician Death");
+        IsDead = true;
+        PlayerAnimatorGetter.SetBool("IsDead", true);
+        PlayerAnimatorGetter.Play("Death", 0);
+        GameManager.Instance.IsPlayerActive(false);
     }
 
-    public void AddScore()
-    {
-        bunnyCount++;
+    #endregion
 
-        if (_currentBunnyCountText)
-            _currentBunnyCountText.text = $"{bunnyCount}";
-
-        AbilityEligabilityCheck();
-    }
+    #region Attack Methods
 
     private void Attack()
     {
@@ -113,8 +203,8 @@ public class PlayerData : Unit
                 Vector3 rotateTrapTo = new Vector3(transform.position.x, trap.transform.position.y, transform.position.z);
                 trap.transform.LookAt(rotateTrapTo);
 
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Magic/Magic Trap Box");
-                _animator.Play("TrapCast_Animation", 1);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Magic/Magic Trap Box");
+                _animator.Play(_trapCastAnimationHash, 1);
 
                 canShoot = false;
                 Invoke("ResetAttack", _timeBetweenAttacks);
@@ -130,8 +220,8 @@ public class PlayerData : Unit
                 Vector3 rotateWallTo = new Vector3(transform.position.x, wall.transform.position.y, transform.position.z);
                 wall.transform.LookAt(rotateWallTo);
 
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Card");
-                _animator.Play("CardsCast_Animation", 1);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Player/Card");
+                _animator.Play(_cardsCastAnimationHash, 1);
 
                 canShoot = false;
                 Invoke("ResetAttack", _timeBetweenAttacks);
@@ -158,6 +248,40 @@ public class PlayerData : Unit
         }
     }
 
+    private void IsClearUIChange(WeaponType currWeapon, bool clearnShot, Color myColor)
+    {
+        if (clearnShot && myColor != Color.white)
+            _outlineRenderer.color = Color.white;
+
+        else if (!clearnShot && myColor != _red)
+            _outlineRenderer.color = _red;
+
+        else if (clearnShot && myColor != Color.white)
+            _outlineRenderer.color = Color.white;
+
+        else if (!clearnShot && myColor != _red)
+            _outlineRenderer.color = _red;
+    }
+
+    private void ResetAttack()
+    {
+        canShoot = true;
+    }
+
+    #endregion
+
+    #region UI Methods
+
+    public void AddScore()
+    {
+        bunnyCount++;
+
+        if (_currentBunnyCountText)
+            _currentBunnyCountText.text = $"{bunnyCount}";
+
+        AbilityEligabilityCheck();
+    }
+
     private void UpdateUI()
     {
         switch (currentWeapon)
@@ -180,25 +304,9 @@ public class PlayerData : Unit
         }
     }
 
-    private void IsClearUIChange(WeaponType currWeapon, bool clearnShot, Color myColor)
-    {
-        if (clearnShot && myColor != Color.white)
-            _outlineRenderer.color = Color.white;
+    #endregion
 
-        else if (!clearnShot && myColor != orange)
-            _outlineRenderer.color = orange;
-
-        else if (clearnShot && myColor != Color.white)
-            _outlineRenderer.color = Color.white;
-
-        else if (!clearnShot && myColor != orange)
-            _outlineRenderer.color = orange;
-    }
-
-    private void ResetAttack()
-    {
-        canShoot = true;
-    }
+    #region Upgrade System
 
     private void AbilityEligabilityCheck()
     {
@@ -219,5 +327,19 @@ public class PlayerData : Unit
     {
         print($"Congrats your {unlockedUpgrade.myName} has been upgraded");
     }
+
+    #endregion
+
+    #region Extras
+
+    private void AnimationHashInit()
+    {
+        _trapCastAnimationHash = Animator.StringToHash("TrapCast_Animation");
+        _cardsCastAnimationHash = Animator.StringToHash("CardsCast_Animation");
+    }
+
+    #endregion
+
+    #endregion
 
 }

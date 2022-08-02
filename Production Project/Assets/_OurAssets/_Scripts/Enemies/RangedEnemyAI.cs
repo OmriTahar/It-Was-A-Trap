@@ -8,10 +8,14 @@ public class RangedEnemyAI : BaseEnemyAI
     private ProjectilePool _rangedProjectilePool;
 
     [Header("Ranged Attack Settings")]
-    [SerializeField] Transform _rangedShootPoint;
-    [SerializeField] float _rangedShootForce;
+    [SerializeField] float _ShootForce;
+    [SerializeField] float _arcShootForce;
     [Tooltip("Player layer must be included even though he is not a throw path obstacle!")]
     [SerializeField] LayerMask _throwPathObstacleLayers;
+
+    [Header("Ranged Attack References")]
+    [SerializeField] Transform _rangedShootPoint;
+    [SerializeField] Transform _throwPathChecker;
 
     [Header("Fleeing Settings")]
     [SerializeField] float _startFleeFromPlayer_Range;
@@ -22,12 +26,14 @@ public class RangedEnemyAI : BaseEnemyAI
     [SerializeField] bool _isPlayerInAttackRange;
     [SerializeField] bool _isThrowPathBlocked;
     [SerializeField] bool _isAlreadyAttacked;
-    [SerializeField] bool _isCreatingShotPath;
 
     [Header("Enemy Flee Status")]
     [SerializeField] bool _isPlayerTooClose;
     [SerializeField] bool _canFlee;
     [SerializeField] bool _isFleeing;
+    [SerializeField] bool _hasFleedOnce;
+    [SerializeField] float _fleeCooldown;
+    [SerializeField] bool _finishedThrowing = true;
 
     private Vector3 _directionToPlayer;
     private WaitForSeconds _fleeDurationCoroutine;
@@ -59,14 +65,14 @@ public class RangedEnemyAI : BaseEnemyAI
     {
         base.EnemyStateMachine();
 
-        if (IsEnemyActivated)
+        if (IsEnemyActivated && _finishedThrowing)
         {
 
-            if (_isCreatingShotPath)
+            if (IsCreatingAttackPath)
             {
                 if (HasReachedDestination())
                 {
-                    _isCreatingShotPath = false;
+                    IsCreatingAttackPath = false;
                 }
             }
             else
@@ -79,7 +85,10 @@ public class RangedEnemyAI : BaseEnemyAI
                     }
                 }
 
-                if ((_isPlayerInAttackRange && !_isPlayerTooClose))
+                if (_isPlayerTooClose && _canFlee && !_hasFleedOnce)
+                    StartCoroutine(Flee());
+
+                if ((_isPlayerInAttackRange && (!_isPlayerTooClose || _hasFleedOnce)))
                 {
                     transform.LookAt(_playerTransform);
                     CheckThrowPath();
@@ -87,11 +96,8 @@ public class RangedEnemyAI : BaseEnemyAI
                     if (!_isThrowPathBlocked)
                         RangeAttack();
                     else
-                        CreateClearShotPath();
+                        CreateClearAttackPath();
                 }
-
-                if (_isPlayerTooClose && _canFlee)
-                    StartCoroutine(Flee());
             }
         }
     }
@@ -108,18 +114,9 @@ public class RangedEnemyAI : BaseEnemyAI
         }
     }
 
-    private void CreateClearShotPath()
-    {
-        _isCreatingShotPath = true;
-        _myCurrentState = State.creatingRange;
-
-        Vector3 newPosition = (_playerTransform.position + (transform.TransformDirection((Vector3.left * (_unitAttackRange - 3)))));
-        _agent.SetDestination(newPosition);
-    }
-
     private void CheckThrowPath()
     {
-        Ray ray = new Ray(_rangedShootPoint.position, _rangedShootPoint.forward);
+        Ray ray = new Ray(_throwPathChecker.position, _throwPathChecker.forward);
         RaycastHit hit;
         Physics.Raycast(ray, out hit, _unitAttackRange, _throwPathObstacleLayers);
 
@@ -147,25 +144,32 @@ public class RangedEnemyAI : BaseEnemyAI
             if (!_isAlreadyAttacked && !_isThrowPathBlocked)
             {
                 _isAlreadyAttacked = true;
+                _finishedThrowing = false;
                 _animator.SetTrigger("Throw");
             }
         }
     }
 
-    public void Throw()
+    public void Throw() // Called from animation event
     {
         GameObject carrot = _rangedProjectilePool.GetProjectileFromPool();
         carrot.transform.position = _rangedShootPoint.position;
         carrot.transform.rotation = Quaternion.identity;
 
         Rigidbody rb = carrot.GetComponent<Rigidbody>();
-        rb.AddForce((_playerTransform.position - carrot.transform.position).normalized * _rangedShootForce, ForceMode.Impulse);
+        rb.AddForce((_playerTransform.position - carrot.transform.position).normalized * _ShootForce, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * _arcShootForce, ForceMode.Impulse);
 
         Vector3 rotateCarrotTo = new Vector3(transform.position.x, carrot.transform.position.y, transform.position.z);
         carrot.transform.LookAt(rotateCarrotTo);
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Bunny/Carrot Shoot");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Bunny/Carrot Shoot 2");
 
         Invoke(nameof(ResetAttack), _timeBetweenAttacks);
+    }
+
+    public void FinishedThrowing() // Called from animation event. Fix fleeing before finishing throw animation
+    {
+        _finishedThrowing = true;
     }
 
     private bool CanEnemyFlee()
@@ -185,20 +189,25 @@ public class RangedEnemyAI : BaseEnemyAI
     {
         _myCurrentState = State.fleeing;
         _isFleeing = true;
-        print("fleeing");
 
         _directionToPlayer = (transform.position - _playerTransform.position).normalized * _fleeDistance;
         Vector3 newFleePosition = transform.position + _directionToPlayer;
         _agent.SetDestination(newFleePosition);
 
         yield return _fleeDurationCoroutine;
-        print("finished fleeing");
+        _hasFleedOnce = true;
         _isFleeing = false;
+        Invoke("ResetFlee", _fleeCooldown);
     }
 
     private void ResetAttack()
     {
         _isAlreadyAttacked = false;
+    }
+
+    private void ResetFlee()
+    {
+        _hasFleedOnce = false;
     }
 
     private void OnDrawGizmosSelected()

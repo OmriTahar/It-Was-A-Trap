@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+
     #region Variables
 
     #region General
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [Header("Camera")]
     public Camera PlayerMovementCamera;
     public bool IsCursorVisable = true;
+    public bool IsAllowedToRotate = true;
     #endregion
 
     #region Movement
@@ -27,6 +29,12 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Dash
+    [Header("Dash Materials (Effect)")]
+    [SerializeField] SkinnedMeshRenderer _magicianMesh;
+    [SerializeField] Material _regularMeshMaterial;
+    [SerializeField] Material _dashMeshMaterial;
+    [SerializeField] GameObject _dashTrailEffect;
+
     [Header("Dash Settings")]
     public KeyCode DashKey = KeyCode.LeftShift;
     public float DashSpeed = 60f;
@@ -41,20 +49,30 @@ public class PlayerController : MonoBehaviour
 
     #region UI
     [Header("UI")]
-    [SerializeField] private GameObject _activeUpgradesWindow;
     [SerializeField] private Image DashBarFill;
     [SerializeField] private Image DashBarBG;
     [SerializeField] private Color _dashBarColorFull = new Color(1, 1, 0, 1);
     [SerializeField] private Color _dashBarColorCharge = new Color(1, 1, 0, 0.3f);
     #endregion
 
+    #region Animation Hash
+
+    int _velocityHash;
+    int _isStunnedHash;
+    int _startStunHash;
+
     #endregion
 
-    bool playfssound = false,soundactive =true;
-    private void ResetFootstepsSound()
-    {
-        soundactive = true;
-    }
+    #region Sounds
+
+    public float TimeBetweenSteps = 0.5f;
+    bool _playWalkSound = false, _walkSoundActive = true;
+    bool _stunSoundPlayed = false;
+    bool _stepSwitch = true;
+    #endregion
+
+    #endregion
+
 
     private void Awake()
     {
@@ -70,29 +88,69 @@ public class PlayerController : MonoBehaviour
         _dashDurationCoroutine = new WaitForSeconds(DashDuration);
     }
 
+    private void Start()
+    {
+        HashAnimationsInit();
+        _magicianMesh.material = _regularMeshMaterial;
+        _dashTrailEffect.SetActive(false);
+    }
+
     private void Update()
     {
-        CameraInput();
         HandleDashUI();
 
-        if (Input.GetKeyDown(KeyCode.Tab))
-            if (_activeUpgradesWindow)
-                _activeUpgradesWindow.SetActive(true);
-        if (Input.GetKeyUp(KeyCode.Tab))
-            if (_activeUpgradesWindow)
-                _activeUpgradesWindow.SetActive(false);
+        if (IsAllowedToRotate)
+            RotationInput();
 
-        if (IsAllowedToMove && playfssound && !_isDashing && soundactive)
+        if (IsAllowedToMove && _playWalkSound && !_isDashing && _walkSoundActive)
         {
-            soundactive = false;
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Player/FootSteps Player");
-            Invoke("ResetFootstepsSound", 0.5f);
+            _walkSoundActive = false;
+            PlayFootStep();
+            Invoke("ResetFootstepsSound", TimeBetweenSteps);
+        }
+
+        #region Upgrade Sysytem (Not Currently Used)
+
+        //if (Input.GetKeyDown(KeyCode.Tab))
+        //    if (_activeUpgradesWindow)
+        //        _activeUpgradesWindow.SetActive(true);
+
+        //if (Input.GetKeyUp(KeyCode.Tab))
+        //    if (_activeUpgradesWindow)
+        //        _activeUpgradesWindow.SetActive(false);
+
+        #endregion
+    }
+
+    private void PlayFootStep()
+    {
+        if (_stepSwitch)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Woman Shoe Jog on Concrete");
+            _stepSwitch = !_stepSwitch;
+        }
+        else
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Woman Shoe Jog on Concrete");
+            _stepSwitch = !_stepSwitch;
         }
     }
 
     void FixedUpdate()
     {
         HandleMovementAndDash();
+    }
+
+    private void OnEnable()
+    {
+        Attack.OnPlayerStartStun += HandleStartStun;
+        Attack.OnPlayerStopStun += HandleStopStun;
+    }
+
+    private void OnDisable()
+    {
+        Attack.OnPlayerStartStun -= HandleStartStun;
+        Attack.OnPlayerStopStun -= HandleStopStun;
     }
 
     private void HandleDashUI()
@@ -121,17 +179,11 @@ public class PlayerController : MonoBehaviour
     {
         if (IsAllowedToMove)
         {
-            if (!PlayerData.Instance.IsStunned && PlayerData.Instance._stunEffect.isPlaying)
-            {
-                _animator.SetBool("IsStunned", false);
-                PlayerData.Instance._stunEffect.Stop();
-            }
-
             Vector3 playerVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            _animator.SetFloat("Velocity", playerVelocity.magnitude);
+            _animator.SetFloat(_velocityHash, playerVelocity.magnitude);
 
             if (Input.GetKeyDown(DashKey) && _canDash) // Dash Logic
-            {              
+            {
                 if (_rb.velocity.magnitude > 0) // Dash while moving
                 {
                     StartCoroutine(Dash(playerVelocity));
@@ -147,34 +199,49 @@ public class PlayerController : MonoBehaviour
                 playerVelocity = transform.TransformDirection(playerVelocity) * WalkSpeed;
                 Vector3 velocity = _rb.velocity;
                 Vector3 velocityChange = (playerVelocity - velocity);
-                if (velocityChange != Vector3.zero)               
-                    playfssound = true;
-                else 
-                    playfssound = false;
+                if (velocityChange != Vector3.zero)
+                    _playWalkSound = true;
+                else
+                    _playWalkSound = false;
 
-                _rb.AddForce(velocityChange, ForceMode.VelocityChange);                
+                _rb.AddForce(velocityChange, ForceMode.VelocityChange);
             }
         }
         else
         {
             _rb.velocity = Vector3.zero;
-            _animator.SetFloat("Velocity", 0);
+            _animator.SetFloat(_velocityHash, 0);
 
-            // Stun effect. Check conditions only if PlayerCanMove = false
-            if (PlayerData.Instance.IsStunned && PlayerData.Instance._stunEffect != null && !PlayerData.Instance._stunEffect.isPlaying)
+            // --- Stun effect. Check conditions only if PlayerCanMove = false ---
+            if (PlayerData.Instance.IsStunned)
             {
-                _animator.SetBool("IsStunned", true);
-                _animator.SetTrigger("StartStun");
-
                 _rb.Sleep();
-                PlayerData.Instance._stunEffect.Play();
             }
         }
     }
 
+    private void HandleStartStun()
+    {
+        _animator.SetBool(_isStunnedHash, true);
+        _animator.SetTrigger(_startStunHash);
+        if (!_stunSoundPlayed)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Player Stun Birds 1");
+            _stunSoundPlayed = true;
+        }
+    }
+
+    private void HandleStopStun()
+    {
+        ResetSound();
+        _animator.SetBool(_isStunnedHash, false);
+    }
+
     IEnumerator Dash(Vector3 dashVecolity)
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Magician Dash");
+        _dashTrailEffect.SetActive(true);
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Player/Magician Dash");
         _canDash = false;
         _isDashing = true;
 
@@ -183,18 +250,30 @@ public class PlayerController : MonoBehaviour
 
         yield return _dashDurationCoroutine;
         _isDashing = false;
+        _dashTrailEffect.SetActive(false);
     }
 
-    private void CameraInput()
+    private void RotationInput()
     {
-        RaycastHit hit;
-        Ray camRay = PlayerMovementCamera.ScreenPointToRay(Input.mousePosition);
+        _meshTransform.LookAt(new Vector3(PlayerAim.Instance.outline.transform.position.x , _meshTransform.position.y, PlayerAim.Instance.outline.transform.position.z));
+    }
 
-        if (Physics.Raycast(camRay, out hit))
-        {
-            _meshTransform.LookAt(new Vector3(hit.point.x, _meshTransform.position.y, hit.point.z));
-            Debug.DrawLine(camRay.origin, hit.point, Color.yellow);
-        }
+    private void ResetFootstepsSound()
+    {
+        _walkSoundActive = true;
+    }
+
+    private void HashAnimationsInit()
+    {
+        _velocityHash = Animator.StringToHash("Velocity");
+        _isStunnedHash = Animator.StringToHash("IsStunned");
+        _startStunHash = Animator.StringToHash("StartStun");
+    }
+
+    public void CanPlayerMoveAndRotate(bool isAcceptingInput)
+    {
+        IsAllowedToMove = isAcceptingInput;
+        IsAllowedToRotate = isAcceptingInput;
     }
 
     #region Jump & Crouch Variables
@@ -309,5 +388,8 @@ public class PlayerController : MonoBehaviour
     //}
 
     #endregion 
-
+    void ResetSound()
+    {
+        _stunSoundPlayed = false;
+    }
 }

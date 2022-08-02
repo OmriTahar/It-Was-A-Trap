@@ -112,8 +112,8 @@ public class Trap : Attack
 
         //Damage Trapped AI, if not null
         if (_trappededEnemy)
-            _trappededEnemy.RecieveDamage(this);
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Magic/Magic Box Caught Enemy");
+            _trappededEnemy.RecieveDamage(this, false);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Magic/Magic Box Caught Enemy");
 
         //Actual stun, _stunDuration = stun you want - animation
         yield return new WaitForSeconds(_stunDuration - _animationDuration);

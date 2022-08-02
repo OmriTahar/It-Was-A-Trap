@@ -1,742 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9169349216797970986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UI/UI 6
-  m_EditorClassIdentifier: 
-  Path: event:/UI/UI 6
-  Guid:
-    Data1: 105743128
-    Data2: 1261798889
-    Data3: 262584495
-    Data4: -1222134938
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 124
---- !u!114 &-7841367439004142556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Magic/Magic Dissapear
-  m_EditorClassIdentifier: 
-  Path: event:/Magic/Magic Dissapear
-  Guid:
-    Data1: -732237584
-    Data2: 1279217613
-    Data3: -1532699992
-    Data4: 1609606114
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1112
---- !u!114 &-6817747944873164158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Bunny/Bunnies Rumbling Ambience
-  m_EditorClassIdentifier: 
-  Path: event:/Bunny/Bunnies Rumbling Ambience
-  Guid:
-    Data1: -1058018249
-    Data2: 1217233087
-    Data3: -474129733
-    Data4: -170769430
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2000
---- !u!114 &-6616472872410740959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UI/UI 2
-  m_EditorClassIdentifier: 
-  Path: event:/UI/UI 2
-  Guid:
-    Data1: 915332243
-    Data2: 1153081245
-    Data3: -1136673384
-    Data4: 1208547464
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 65
---- !u!114 &-4927807537544076078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Player/FootSteps Player
-  m_EditorClassIdentifier: 
-  Path: event:/Player/FootSteps Player
-  Guid:
-    Data1: -885360557
-    Data2: 1160698936
-    Data3: 590855585
-    Data4: 664081320
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 355
---- !u!114 &-4142348949034301219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Other/Small Wheels
-  m_EditorClassIdentifier: 
-  Path: event:/Other/Small Wheels
-  Guid:
-    Data1: 1202360612
-    Data2: 1137621022
-    Data3: -51659092
-    Data4: -1736484021
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 900
---- !u!114 &-3938113900078525433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Smoke Machine/Intensity
-  m_EditorClassIdentifier: 
-  Name: Intensity
-  StudioPath: 
-  Min: 0
-  Max: 100
-  Default: 0
-  ID:
-    data1: 1205014017
-    data2: 1580035065
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &-2335009990933634078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UI/UI 5
-  m_EditorClassIdentifier: 
-  Path: event:/UI/UI 5
-  Guid:
-    Data1: -956618061
-    Data2: 1232751784
-    Data3: 292202664
-    Data4: 161167346
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 40
---- !u!114 &-2039351862199804846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Plugins/FMOD/Resources/It was a trap 1/It was a trap/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 637919685398663777
-  FileSizes:
-  - Name: Desktop
-    Value: 2422016
-  Exists: 1
---- !u!114 &-1244282374247122042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Magic/Magic Wand Attack Trap Box
-  m_EditorClassIdentifier: 
-  Path: event:/Magic/Magic Wand Attack Trap Box
-  Guid:
-    Data1: 1234573379
-    Data2: 1215582516
-    Data3: -1868600937
-    Data4: 1856436325
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1680
---- !u!114 &-1135827418417276658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UI/Load GameSaveGame
-  m_EditorClassIdentifier: 
-  Path: event:/UI/Load GameSaveGame
-  Guid:
-    Data1: -1361421139
-    Data2: 1188164749
-    Data3: 1098598568
-    Data4: 1483039848
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 750
---- !u!114 &-740174277097161412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Player/Magician Hurt
-  m_EditorClassIdentifier: 
-  Path: event:/Player/Magician Hurt
-  Guid:
-    Data1: -443829113
-    Data2: 1326649329
-    Data3: 1547657407
-    Data4: 1819896989
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 480
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
-  m_EditorClassIdentifier: 
-  EditorBanks:
-  - {fileID: 3905044097606930977}
-  - {fileID: -2039351862199804846}
-  EditorEvents:
-  - {fileID: 2530160257990933019}
-  - {fileID: -9169349216797970986}
-  - {fileID: 2501884156338051173}
-  - {fileID: -4142348949034301219}
-  - {fileID: 3899117590367562192}
-  - {fileID: -6817747944873164158}
-  - {fileID: -1244282374247122042}
-  - {fileID: -4927807537544076078}
-  - {fileID: 9165278457582473235}
-  - {fileID: 3126051027214379373}
-  - {fileID: -740174277097161412}
-  - {fileID: 1469277712948076252}
-  - {fileID: 2897168314053403734}
-  - {fileID: -6616472872410740959}
-  - {fileID: 6015880741666162587}
-  - {fileID: -1135827418417276658}
-  - {fileID: -2335009990933634078}
-  - {fileID: 5914086753777085011}
-  - {fileID: 2261320162875469831}
-  - {fileID: 1657195936690370412}
-  - {fileID: 1923201358230668268}
-  - {fileID: 6369613713603928252}
-  - {fileID: 4326594791297958230}
-  - {fileID: 2274510369373114416}
-  - {fileID: 6316314750782719671}
-  - {fileID: 7758830306934654500}
-  - {fileID: 1767726797488870992}
-  - {fileID: -7841367439004142556}
-  - {fileID: 7695720594631207322}
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: -2039351862199804846}
-  StringsBanks:
-  - {fileID: 3905044097606930977}
-  cacheTime: 637919685398703787
-  cacheVersion: 10
---- !u!114 &1469277712948076252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Magic/Magic Trap Box
-  m_EditorClassIdentifier: 
-  Path: event:/Magic/Magic Trap Box
-  Guid:
-    Data1: 1863376777
-    Data2: 1221910528
-    Data3: 1053538456
-    Data4: 1857992100
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1437
---- !u!114 &1657195936690370412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UI/UI 4
-  m_EditorClassIdentifier: 
-  Path: event:/UI/UI 4
-  Guid:
-    Data1: 1517454277
-    Data2: 1116327657
-    Data3: 1808385961
-    Data4: 1142393386
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 92
---- !u!114 &1767726797488870992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UI/UI 7
-  m_EditorClassIdentifier: 
-  Path: event:/UI/UI 7
-  Guid:
-    Data1: 1439179239
-    Data2: 1275107141
-    Data3: 1380760764
-    Data4: 926888608
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 44
---- !u!114 &1923201358230668268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UI/UI 1
-  m_EditorClassIdentifier: 
-  Path: event:/UI/UI 1
-  Guid:
-    Data1: -259915818
-    Data2: 1217190670
-    Data3: 1239092155
-    Data4: 237429007
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 350
---- !u!114 &2261320162875469831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Other/Crowd Cheering
-  m_EditorClassIdentifier: 
-  Path: event:/Other/Crowd Cheering
-  Guid:
-    Data1: -1264898364
-    Data2: 1188487370
-    Data3: 928233913
-    Data4: 1841677301
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 12371
---- !u!114 &2274510369373114416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Player/Magician Death
-  m_EditorClassIdentifier: 
-  Path: event:/Player/Magician Death
-  Guid:
-    Data1: 504342496
-    Data2: 1303179324
-    Data3: -252201571
-    Data4: -1500453868
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4244
---- !u!114 &2501884156338051173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Bunny/Bunny Running
-  m_EditorClassIdentifier: 
-  Path: event:/Bunny/Bunny Running
-  Guid:
-    Data1: -698886372
-    Data2: 1112814672
-    Data3: 40112317
-    Data4: 518023728
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 150
---- !u!114 &2530160257990933019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Bunny/Carrot Shoot 2
-  m_EditorClassIdentifier: 
-  Path: event:/Bunny/Carrot Shoot 2
-  Guid:
-    Data1: -721888754
-    Data2: 1232782563
-    Data3: 1560900789
-    Data4: 639474032
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 250
---- !u!114 &2668237609947170052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Bunny Starting Stun Attack/Parameter 1
-  m_EditorClassIdentifier: 
-  Name: Parameter 1
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3910331400
-    data2: 3365343294
-  Type: 2
-  IsGlobal: 0
-  Labels:
-  - Stun
-  - Death
-  Exists: 1
---- !u!114 &2897168314053403734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Player/Magician Dash
-  m_EditorClassIdentifier: 
-  Path: event:/Player/Magician Dash
-  Guid:
-    Data1: -788628342
-    Data2: 1256160295
-    Data3: 1851531961
-    Data4: 1742497512
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 607
---- !u!114 &3126051027214379373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UI/UI 3
-  m_EditorClassIdentifier: 
-  Path: event:/UI/UI 3
-  Guid:
-    Data1: -1546928251
-    Data2: 1149355462
-    Data3: -122580804
-    Data4: 639915047
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 185
---- !u!114 &3899117590367562192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Player/Card
-  m_EditorClassIdentifier: 
-  Path: event:/Player/Card
-  Guid:
-    Data1: 173456947
-    Data2: 1332272455
-    Data3: 1640723091
-    Data4: -1062520894
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 265
---- !u!114 &3905044097606930977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/Plugins/FMOD/Resources/It was a trap 1/It was a trap/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 637919685398703787
-  FileSizes:
-  - Name: Desktop
-    Value: 2234
-  Exists: 1
---- !u!114 &4326594791297958230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UI/Save Game
-  m_EditorClassIdentifier: 
-  Path: event:/UI/Save Game
-  Guid:
-    Data1: 1416742110
-    Data2: 1257417326
-    Data3: 154296252
-    Data4: 1795151446
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 230
---- !u!114 &4999614806027832238
+--- !u!114 &-8694874345684808360
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -762,7 +26,7 @@ MonoBehaviour:
   - Leap
   - Death
   Exists: 1
---- !u!114 &5914086753777085011
+--- !u!114 &-8668742698830955659
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -772,53 +36,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Other/Smoke Machine
+  m_Name: event:/Sound/Other/Small Wheels
   m_EditorClassIdentifier: 
-  Path: event:/Other/Smoke Machine
+  Path: event:/Sound/Other/Small Wheels
   Guid:
-    Data1: -105091135
-    Data2: 1191674605
-    Data3: 1200979861
-    Data4: 974316394
+    Data1: 1202360612
+    Data2: 1137621022
+    Data3: -51659092
+    Data4: -1736484021
   Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -3938113900078525433}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4300
---- !u!114 &6015880741666162587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Bunny/Bunny Starting Stun Attack
-  m_EditorClassIdentifier: 
-  Path: event:/Bunny/Bunny Starting Stun Attack
-  Guid:
-    Data1: -1960392298
-    Data2: 1140425815
-    Data3: 1955442307
-    Data4: -874941293
-  Banks:
-  - {fileID: -2039351862199804846}
+  - {fileID: 1331996494637321609}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters:
-  - {fileID: 2668237609947170052}
+  Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 4812
---- !u!114 &6316314750782719671
+  Length: 900
+--- !u!114 &-8455319976445381740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -828,52 +63,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Bunny/Bunny Start Leap Attack
+  m_Name: event:/Sound/Bunny/Bunny Running
   m_EditorClassIdentifier: 
-  Path: event:/Bunny/Bunny Start Leap Attack
+  Path: event:/Sound/Bunny/Bunny Running
   Guid:
-    Data1: 1084147424
-    Data2: 1272645833
-    Data3: -1607534462
-    Data4: -969744020
+    Data1: -698886372
+    Data2: 1112814672
+    Data3: 40112317
+    Data4: 518023728
   Banks:
-  - {fileID: -2039351862199804846}
+  - {fileID: 1331996494637321609}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 1
-  Parameters:
-  - {fileID: 4999614806027832238}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4412
---- !u!114 &6369613713603928252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Other/Hanger Swinging
-  m_EditorClassIdentifier: 
-  Path: event:/Other/Hanger Swinging
-  Guid:
-    Data1: 133582551
-    Data2: 1256484543
-    Data3: -1246697321
-    Data4: -2105697768
-  Banks:
-  - {fileID: -2039351862199804846}
-  IsStream: 0
-  Is3D: 1
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 18500
---- !u!114 &7695720594631207322
+  Length: 210
+--- !u!114 &-7843422372811153520
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -883,16 +90,97 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Magic/Magic Box Caught Enemy
+  m_Name: event:/Sound/Player/Magician Hurt
   m_EditorClassIdentifier: 
-  Path: event:/Magic/Magic Box Caught Enemy
+  Path: event:/Sound/Player/Magician Hurt
+  Guid:
+    Data1: -443829113
+    Data2: 1326649329
+    Data3: 1547657407
+    Data4: 1819896989
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 480
+--- !u!114 &-7243922580598197761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/UI/UI 5
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/UI/UI 5
+  Guid:
+    Data1: -956618061
+    Data2: 1232751784
+    Data3: 292202664
+    Data4: 161167346
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 40
+--- !u!114 &-6737894704656354002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/UI/UI 6
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/UI/UI 6
+  Guid:
+    Data1: 105743128
+    Data2: 1261798889
+    Data3: 262584495
+    Data4: -1222134938
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 124
+--- !u!114 &-6576810357263593514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/Magic/Magic Box Caught Enemy
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/Magic/Magic Box Caught Enemy
   Guid:
     Data1: 146984440
     Data2: 1174761846
     Data3: -53016134
     Data4: -919414720
   Banks:
-  - {fileID: -2039351862199804846}
+  - {fileID: 1331996494637321609}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -900,7 +188,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1281
---- !u!114 &7758830306934654500
+--- !u!114 &-6255399363285453066
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -910,24 +198,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Bunny/Carrot Shoot
+  m_Name: event:/Sound/UI/Load GameSaveGame
   m_EditorClassIdentifier: 
-  Path: event:/Bunny/Carrot Shoot
+  Path: event:/Sound/UI/Load GameSaveGame
   Guid:
-    Data1: -254453021
-    Data2: 1259691054
-    Data3: 805178249
-    Data4: 521426996
+    Data1: -1361421139
+    Data2: 1188164749
+    Data3: 1098598568
+    Data4: 1483039848
   Banks:
-  - {fileID: -2039351862199804846}
+  - {fileID: 1331996494637321609}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 700
---- !u!114 &9165278457582473235
+  Length: 750
+--- !u!114 &-6214359064467468559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -937,20 +225,875 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Player/Magician Stunned
+  m_Name: event:/Sound/Player/FootSteps Player
   m_EditorClassIdentifier: 
-  Path: event:/Player/Magician Stunned
+  Path: event:/Sound/Player/FootSteps Player
   Guid:
-    Data1: -675549832
-    Data2: 1106712273
-    Data3: 2028062358
-    Data4: -633170654
+    Data1: -885360557
+    Data2: 1160698936
+    Data3: 590855585
+    Data4: 664081320
   Banks:
-  - {fileID: -2039351862199804846}
+  - {fileID: 1331996494637321609}
   IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 355
+--- !u!114 &-5554944971220152513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/Magic/Magic Trap Box
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/Magic/Magic Trap Box
+  Guid:
+    Data1: 1863376777
+    Data2: 1221910528
+    Data3: 1053538456
+    Data4: 1857992100
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1417
+--- !u!114 &-5294224370722307671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/Bunny/Bunnies Rumbling Ambience
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/Bunny/Bunnies Rumbling Ambience
+  Guid:
+    Data1: -1058018249
+    Data2: 1217233087
+    Data3: -474129733
+    Data4: -170769430
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &-4581956669633880097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/Player/Magician Stunned
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/Player/Magician Stunned
+  Guid:
+    Data1: -675549832
+    Data2: 1106712273
+    Data3: 2028062358
+    Data4: -633170654
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 300
+--- !u!114 &-4119855991683802437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/Magic/Magic Dissapear
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/Magic/Magic Dissapear
+  Guid:
+    Data1: -732237584
+    Data2: 1279217613
+    Data3: -1532699992
+    Data4: 1609606114
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1112
+--- !u!114 &-3675276190840381958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Opening Curtains-Sound Effect
+  m_EditorClassIdentifier: 
+  Path: event:/Opening Curtains-Sound Effect
+  Guid:
+    Data1: 1638672377
+    Data2: 1139957156
+    Data3: 2101095324
+    Data4: -650403600
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3000
+--- !u!114 &-2365644307862118556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/Other/Smoke Machine
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/Other/Smoke Machine
+  Guid:
+    Data1: -105091135
+    Data2: 1191674605
+    Data3: 1200979861
+    Data4: 974316394
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4300
+--- !u!114 &-1588518143151437567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Plugins/FMOD/Resources/It was a trap 2/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637950617921036607
+  FileSizes:
+  - Name: Desktop
+    Value: 2586
+  Exists: 1
+--- !u!114 &-1214384926780811615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player Stun Birds 1
+  m_EditorClassIdentifier: 
+  Path: event:/Player Stun Birds 1
+  Guid:
+    Data1: -1509139276
+    Data2: 1152252190
+    Data3: -1842292047
+    Data4: -1110049443
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1550
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: -1588518143151437567}
+  - {fileID: 1331996494637321609}
+  EditorEvents:
+  - {fileID: 8793447731621058568}
+  - {fileID: 6124816194958267958}
+  - {fileID: -6737894704656354002}
+  - {fileID: -8455319976445381740}
+  - {fileID: 4492062420964880438}
+  - {fileID: -8668742698830955659}
+  - {fileID: 3931430220912969774}
+  - {fileID: -5294224370722307671}
+  - {fileID: 8446809913011771288}
+  - {fileID: -6214359064467468559}
+  - {fileID: -4581956669633880097}
+  - {fileID: 1030627826758557537}
+  - {fileID: 8599901113209340363}
+  - {fileID: -7843422372811153520}
+  - {fileID: -5554944971220152513}
+  - {fileID: 7186683072287868730}
+  - {fileID: 1533593680788178469}
+  - {fileID: 8631532773349253222}
+  - {fileID: -6255399363285453066}
+  - {fileID: -7243922580598197761}
+  - {fileID: -2365644307862118556}
+  - {fileID: 6310755829758559794}
+  - {fileID: 2654851733567270075}
+  - {fileID: 4121236600321450710}
+  - {fileID: 589733921898609713}
+  - {fileID: 6031226511637069515}
+  - {fileID: 1875875692546921272}
+  - {fileID: 3498429201940462860}
+  - {fileID: 250331765579773695}
+  - {fileID: -4119855991683802437}
+  - {fileID: -6576810357263593514}
+  - {fileID: 6210406924881133517}
+  - {fileID: -1214384926780811615}
+  - {fileID: -3675276190840381958}
+  - {fileID: 6420238228213302502}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 1331996494637321609}
+  StringsBanks:
+  - {fileID: -1588518143151437567}
+  cacheTime: 637950617921036607
+  cacheVersion: 10
+--- !u!114 &250331765579773695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/UI/UI 7
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/UI/UI 7
+  Guid:
+    Data1: 1439179239
+    Data2: 1275107141
+    Data3: 1380760764
+    Data4: 926888608
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 44
+--- !u!114 &589733921898609713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/Other/Hanger Swinging
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/Other/Hanger Swinging
+  Guid:
+    Data1: 133582551
+    Data2: 1256484543
+    Data3: -1246697321
+    Data4: -2105697768
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 18500
+--- !u!114 &1030627826758557537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/Player/20's music game mix Am
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/Player/20's music game mix Am
+  Guid:
+    Data1: 1947986555
+    Data2: 1183109973
+    Data3: -234152302
+    Data4: 2065951052
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &1331996494637321609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Plugins/FMOD/Resources/It was a trap 2/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637950617921006683
+  FileSizes:
+  - Name: Desktop
+    Value: 6721632
+  Exists: 1
+--- !u!114 &1533593680788178469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/UI/UI 2
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/UI/UI 2
+  Guid:
+    Data1: 915332243
+    Data2: 1153081245
+    Data3: -1136673384
+    Data4: 1208547464
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 65
+--- !u!114 &1875875692546921272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/Player/Magician Death
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/Player/Magician Death
+  Guid:
+    Data1: 504342496
+    Data2: 1303179324
+    Data3: -252201571
+    Data4: -1500453868
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3300
+--- !u!114 &2180824968797484799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Bunny Starting Stun Attack/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3910331400
+    data2: 3365343294
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Stun
+  - Death
+  Exists: 1
+--- !u!114 &2654851733567270075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/UI/UI 4
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/UI/UI 4
+  Guid:
+    Data1: 1517454277
+    Data2: 1116327657
+    Data3: 1808385961
+    Data4: 1142393386
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 92
+--- !u!114 &3498429201940462860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/Bunny/Bunny Start Leap Attack
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/Bunny/Bunny Start Leap Attack
+  Guid:
+    Data1: 1084147424
+    Data2: 1272645833
+    Data3: -1607534462
+    Data4: -969744020
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -8694874345684808360}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3450
+--- !u!114 &3931430220912969774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/Player/Card
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/Player/Card
+  Guid:
+    Data1: 173456947
+    Data2: 1332272455
+    Data3: 1640723091
+    Data4: -1062520894
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1750
+--- !u!114 &4121236600321450710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/UI/UI 1
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/UI/UI 1
+  Guid:
+    Data1: -259915818
+    Data2: 1217190670
+    Data3: 1239092155
+    Data4: 237429007
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 350
+--- !u!114 &4492062420964880438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music
+  m_EditorClassIdentifier: 
+  Path: event:/Music
+  Guid:
+    Data1: -1778802142
+    Data2: 1231230316
+    Data3: -602353490
+    Data4: 1850763762
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 98100
+--- !u!114 &6031226511637069515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/UI/Save Game
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/UI/Save Game
+  Guid:
+    Data1: 1416742110
+    Data2: 1257417326
+    Data3: 154296252
+    Data4: 1795151446
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 230
+--- !u!114 &6124816194958267958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/Bunny/Bunny Death
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/Bunny/Bunny Death
+  Guid:
+    Data1: -1822750191
+    Data2: 1271321085
+    Data3: 1937848963
+    Data4: -1649011191
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 920
+--- !u!114 &6210406924881133517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambient Swing
+  m_EditorClassIdentifier: 
+  Path: event:/Ambient Swing
+  Guid:
+    Data1: -1403965498
+    Data2: 1137522218
+    Data3: -699018309
+    Data4: 1660274828
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 217664
+--- !u!114 &6310755829758559794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/Other/Crowd Cheering
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/Other/Crowd Cheering
+  Guid:
+    Data1: -1264898364
+    Data2: 1188487370
+    Data3: 928233913
+    Data4: 1841677301
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 12371
+--- !u!114 &6420238228213302502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Woman Shoe Jog on Concrete
+  m_EditorClassIdentifier: 
+  Path: event:/Woman Shoe Jog on Concrete
+  Guid:
+    Data1: 1748579207
+    Data2: 1109841284
+    Data3: -2042477420
+    Data4: -1748590864
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 250
+--- !u!114 &7186683072287868730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/Player/Magician Dash
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/Player/Magician Dash
+  Guid:
+    Data1: -788628342
+    Data2: 1256160295
+    Data3: 1851531961
+    Data4: 1742497512
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 186
+--- !u!114 &8446809913011771288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/Magic/Magic Wand Attack Trap Box
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/Magic/Magic Wand Attack Trap Box
+  Guid:
+    Data1: 1234573379
+    Data2: 1215582516
+    Data3: -1868600937
+    Data4: 1856436325
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 290
+--- !u!114 &8599901113209340363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/UI/UI 3
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/UI/UI 3
+  Guid:
+    Data1: -1546928251
+    Data2: 1149355462
+    Data3: -122580804
+    Data4: 639915047
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 185
+--- !u!114 &8631532773349253222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/Bunny/Bunny Starting Stun Attack
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/Bunny/Bunny Starting Stun Attack
+  Guid:
+    Data1: -1960392298
+    Data2: 1140425815
+    Data3: 1955442307
+    Data4: -874941293
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 2180824968797484799}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4812
+--- !u!114 &8793447731621058568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound/Bunny/Carrot Shoot 2
+  m_EditorClassIdentifier: 
+  Path: event:/Sound/Bunny/Carrot Shoot 2
+  Guid:
+    Data1: -721888754
+    Data2: 1232782563
+    Data3: 1560900789
+    Data4: 639474032
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 250

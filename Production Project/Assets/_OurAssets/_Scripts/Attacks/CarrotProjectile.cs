@@ -5,9 +5,12 @@ using UnityEngine;
 public class CarrotProjectile : Attack
 {
 
-    private BoxCollider _myCollider;
-    [SerializeField] ProjectilePool _projectilePool;
+    [Header("Carrot Settings")]
     [SerializeField] float _decayTime = 3f;
+    [SerializeField] GameObject _myEffect;
+
+    private BoxCollider _myCollider;
+    private ProjectilePool _projectilePool;
 
 
     private void Start()
@@ -15,15 +18,21 @@ public class CarrotProjectile : Attack
         _myCollider = GetComponent<BoxCollider>();
     }
 
+    private void OnEnable()
+    {
+        _myEffect.SetActive(true);
+    }
+
     public override void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<Unit>().RecieveDamage(this);
-            //PlayHitEffect(_hitEffect, _hitTransform);
+            other.gameObject.GetComponent<Unit>().RecieveDamage(this, true);
         }
 
         _myCollider.isTrigger = false;
+        _myEffect.SetActive(false);
+
         StartCoroutine(Decay());
     }
 

@@ -44,13 +44,14 @@ public class MenuManager : MonoBehaviour
         menu.Open();
     }
 
-    public void EndGame()
+    public void QuitApplication()
     {
         Application.Quit();
     }
 
     public void StartGame()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Music");
         SceneManager.LoadScene(1);
     }
 
@@ -85,6 +86,10 @@ public class MenuManager : MonoBehaviour
     {
         if (iconArray[buttonNum])
             iconArray[buttonNum].color = transparent;
+    }
+    public void Playsound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/UI/UI 3");
     }
 
 }

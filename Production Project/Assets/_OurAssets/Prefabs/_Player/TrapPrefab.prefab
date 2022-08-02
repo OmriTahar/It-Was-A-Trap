@@ -59,7 +59,6 @@ MonoBehaviour:
   _hitParticle: {fileID: 3929031335700610076}
   _graphicsGO: {fileID: 611589502007564407}
   _animator: {fileID: 5356186398045540334}
-  _myNavMeshObstcale: {fileID: 4556499257157913683}
 --- !u!65 &3115788867153083515
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -263,7 +262,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.637104, g: 0.9716981, b: 0.94619125, a: 1}
+      maxColor: {r: 0.6509804, g: 0.29803923, b: 0.42352942, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5144,15 +5143,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2801637512829269820, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.94509804
+      value: 0.42352942
       objectReference: {fileID: 0}
     - target: {fileID: 2801637512829269820, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.972549
+      value: 0.29803923
       objectReference: {fileID: 0}
     - target: {fileID: 2801637512829269820, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.63529414
+      value: 0.6509804
       objectReference: {fileID: 0}
     - target: {fileID: 2801637512829269820, guid: 2bfcd2694d925c149ab9515fa484e115, type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.size

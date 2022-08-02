@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,10 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
 
     private bool _hasAlreadyStunned = false;
 
+    public static event Action OnPlayerStartStun;
+    public static event Action OnPlayerStopStun;
+
+
     void Awake()
     {
         _stunEndCoroutine = new WaitForSeconds(_stunDuration);
@@ -33,9 +38,9 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
         if (other.gameObject.tag == "Player")
         {
             _attackedUnit = other.gameObject.GetComponent<Unit>();
-            _attackedUnit.RecieveDamage(this);
+            _attackedUnit.RecieveDamage(this, false);
 
-            if (_causeStun)
+            if (_causeStun && _attackedUnit.IsStunable)
             {
                 StartCoroutine(StunPlayer(other, _attackedUnit));
             }
@@ -46,21 +51,22 @@ public class Attack : MonoBehaviour, IAttackable<Unit>
     {
         if (!_hasAlreadyStunned)
         {
-            print("Start player stun!");
+            OnPlayerStartStun?.Invoke();
 
             _hasAlreadyStunned = true;
             attackedUnit.IsStunned = true;
+            PlayerData.Instance._stunEffect.SetActive(true);
 
-            _playerController = other.gameObject.GetComponent<PlayerController>();
-            _playerController.IsAllowedToMove = false;
+            GameManager.Instance.IsPlayerActive(false);
         }
 
-
         yield return new WaitForSeconds(_stunDuration);
-        print("Finished Stun!");
 
+        OnPlayerStopStun?.Invoke();
         attackedUnit.IsStunned = false;
-        _playerController.IsAllowedToMove = true;
         _hasAlreadyStunned = false;
+        PlayerData.Instance._stunEffect.SetActive(false);
+
+        GameManager.Instance.IsPlayerActive(true);
     }
 }

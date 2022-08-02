@@ -4,22 +4,19 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public enum State { chasing, attacking, fleeing, creatingRange }
+public enum State { chasing, attacking, fleeing, creatingRange, notActivated }
 public class BaseEnemyAI : Unit
 {
+
     protected NavMeshAgent _agent;
     protected Rigidbody _rb;
     protected Animator _animator;
-    [SerializeField][ReadOnlyInspector] protected State _myCurrentState;
 
-    [Header("General")]
+    [Header("General References & Settings")]
     [SerializeField] protected Transform _playerTransform;
     [SerializeField] protected LayerMask _groundLayer, _playerLayer;
-    public bool IsEnemyActivated;
-
-    [Header("General Attack Settings")]
+    [Tooltip("Ranged enemy ('shooty') has a projectile pool so this can be left empty.")]
     [SerializeField] protected GameObject AttackPrefab;
-    [SerializeField] protected float _timeBetweenAttacks;
 
     [Header("Avoidance Settings")]
     [Tooltip("Ignores all other enemies with higher number. Lower value means higher imprortance.")]
@@ -29,13 +26,41 @@ public class BaseEnemyAI : Unit
     [SerializeField] protected int _MinRandomAvoidanceNumber;
     [SerializeField] protected int _MaxRandomAvoidanceNumber;
 
+    [Header("Attack Settings & Status")]
+    [SerializeField][ReadOnlyInspector] protected State _myCurrentState;
+    public bool IsEnemyActivated;
+    [SerializeField] protected float _timeBetweenAttacks;
+
+    int _velocityHash;
+    protected bool IsCreatingAttackPath;
+
+
     protected virtual void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
 
+        _unitMaxHP = 1;
+        _unitHP = 1;
+
         EnemyAvoidanceInit();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        _velocityHash = Animator.StringToHash("Velocity");
+    }
+
+    private void OnEnable()
+    {
+        OnPlayerKilled += WeKilledThePlayer;
+    }
+
+    private void OnDisable()
+    {
+        OnPlayerKilled -= WeKilledThePlayer;
     }
 
     protected virtual void Update()
@@ -48,7 +73,7 @@ public class BaseEnemyAI : Unit
 
         if (_animator)
         {
-            _animator.SetFloat("Velocity", _agent.velocity.magnitude);
+            _animator.SetFloat(_velocityHash, _agent.velocity.magnitude);
         }
     }
 
@@ -80,18 +105,24 @@ public class BaseEnemyAI : Unit
     protected virtual void EnemyStateMachine()
     {
         if (!IsEnemyActivated)
+        {
+            _myCurrentState = State.notActivated;
+
             if (!_agent.SetDestination(transform.position))
                 _agent.SetDestination(transform.position);
-            else
-            {
-                if (IsStunned && (_stunEffect != null && !_stunEffect.isPlaying))
-                {
-                    _stunEffect.Play();
-                    Stun();
-                }
-                else if (_stunEffect != null && !IsStunned && _stunEffect.isPlaying)
-                    _stunEffect.Stop();
-            }
+        }
+
+        // ------ Currently no enemies can get stunned ------
+        //else 
+        //{
+        //    if (IsStunned && (_stunEffect != null && !_stunEffect.isPlaying))
+        //    {
+        //        _stunEffect.Play();
+        //        Stun();
+        //    }
+        //    else if (_stunEffect != null && !IsStunned && _stunEffect.isPlaying)
+        //        _stunEffect.Stop();
+        //}
     }
 
     protected virtual void ChasePlayer()
@@ -109,6 +140,15 @@ public class BaseEnemyAI : Unit
         _agent.SetDestination(transform.position);
     }
 
+    protected void CreateClearAttackPath()
+    {
+        IsCreatingAttackPath = true;
+        _myCurrentState = State.creatingRange;
+
+        Vector3 newPosition = (_playerTransform.position + (transform.TransformDirection((Vector3.left * (_unitAttackRange - 3)))));
+        _agent.SetDestination(newPosition);
+    }
+
     protected virtual bool HasReachedDestination()
     {
         if (!_agent.pathPending)
@@ -122,6 +162,11 @@ public class BaseEnemyAI : Unit
             }
         }
         return false;
+    }
+
+    public void WeKilledThePlayer()
+    {
+        IsEnemyActivated = false;
     }
 
     #region UnUsedVariables

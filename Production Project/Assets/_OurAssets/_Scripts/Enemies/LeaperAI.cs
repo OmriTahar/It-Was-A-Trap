@@ -5,40 +5,41 @@ using UnityEngine.AI;
 public class LeaperAI : BaseEnemyAI
 {
 
-    [Header("Leap Settings")]
+    [Header("Designers Leap Settings")]
     [SerializeField] float _leapPower;
-    [SerializeField] float _waitBeforeLeap;
-    [SerializeField] float _waitAfterLeap;
-    [SerializeField] float _playerIsTooCloseRange;
+    [SerializeField] float _minLeapDistance = 3f;
     [Tooltip("Cancles the leap if the player flee beyond this range.")]
     [SerializeField] float _maxLeapDistance;
-    [SerializeField] float _minLeapDistance = 3f;
+    [SerializeField] float _playerIsTooCloseRange;
+
+    [Header("Debug Settings")]
     [Tooltip("Player layer must be included even though he is not a leap path obstacle!")]
     [SerializeField] LayerMask _leapPathObstacleLayers;
-
-    private Vector3 _directionToPlayer;
-    private Vector3 _newDestination;
+    [SerializeField] float _chargeAnimationDelay;
+    [SerializeField] float _afterLeapDelay;
 
     [Header("Enemy Status")]
     [SerializeField] bool _isPlayerInAttackRange;
     [SerializeField] bool _isPlayerTooClose;
     [SerializeField] bool _isLeapPathBlocked;
-    [SerializeField] bool _hasLeaped = false;
+    [SerializeField] bool _isLeaping = false;
     [SerializeField] bool _isMovingBackwards;
 
-    private WaitForSeconds _startLeapLogicCorutine = new WaitForSeconds(0.3f);
-    private WaitForSeconds _waitBeforeLeapCoroutine;
-    private WaitForSeconds _waitAfterLeapCoroutine;
-    private bool _isLeapRayHitSomthing;
+    private Vector3 _directionToPlayer;
+    private Vector3 _newDestination;
     private bool _canCreateLeapRange;
+
+    private WaitForSeconds _leapAnimationDelay = new WaitForSeconds(0.3f);
+    private WaitForSeconds _chargeAnimationDelayCoroutine;
+    private WaitForSeconds _afterLeapDelayCoroutine;
 
 
     protected override void Awake()
     {
         base.Awake();
 
-        _waitBeforeLeapCoroutine = new WaitForSeconds(_waitBeforeLeap);
-        _waitAfterLeapCoroutine = new WaitForSeconds(_waitAfterLeap);
+        _chargeAnimationDelayCoroutine = new WaitForSeconds(_chargeAnimationDelay);
+        _afterLeapDelayCoroutine = new WaitForSeconds(_afterLeapDelay);
     }
 
     protected override void Update()
@@ -69,28 +70,29 @@ public class LeaperAI : BaseEnemyAI
         {
             transform.LookAt(_playerTransform);
 
-            if (_isPlayerInAttackRange && _isLeapPathBlocked)
+            if (!_isLeaping)
             {
-                ChasePlayer();
-            }
-
-            if (!_hasLeaped)
-            {
-                if (!_isPlayerInAttackRange || _isLeapPathBlocked)
+                if (IsCreatingAttackPath)
                 {
-                    _isMovingBackwards = false;
-                    ChasePlayer();
+                    if (HasReachedDestination())
+                    {
+                        IsCreatingAttackPath = false;
+                    }
                 }
-                else if (_isPlayerTooClose && _canCreateLeapRange)
+                else
                 {
-                    CreateLeapRange();
-                }
-
-                if (((_isPlayerInAttackRange && !_isPlayerTooClose) || (_isPlayerTooClose && !_canCreateLeapRange)) && !_isLeapPathBlocked)
-                {
-                    print("Starting Leap!");
-                    StartCoroutine(Leap());
-                    
+                    if (((_isPlayerInAttackRange && !_isPlayerTooClose) || (_isPlayerTooClose && !_canCreateLeapRange)) && !_isLeapPathBlocked)
+                    {
+                        StartCoroutine(Leap());
+                    }
+                    else if (_isPlayerTooClose && _canCreateLeapRange)
+                    {
+                        CreateLeapRange();
+                    }
+                    else if (!_isPlayerInAttackRange || (_isPlayerInAttackRange && _isLeapPathBlocked))
+                    {
+                        ChasePlayer();
+                    }
                 }
             }
         }
@@ -105,13 +107,11 @@ public class LeaperAI : BaseEnemyAI
         if (hit.collider != null && hit.collider.tag != "Player")
         {
             _isLeapPathBlocked = true;
-            print(hit.collider.name + " is in front of me!");
             return;
         }
         else if (hit.collider != null && hit.collider.tag == "Player")
         {
             _isLeapPathBlocked = false;
-            print("PLAYER is in front of me!");
             return;
         }
         else
@@ -145,49 +145,38 @@ public class LeaperAI : BaseEnemyAI
     private IEnumerator Leap()
     {
         _myCurrentState = State.attacking;
+        _isLeaping = true;
 
-        _hasLeaped = true;
         _agent.SetDestination(transform.position);
+        _rb.constraints = RigidbodyConstraints.FreezePosition; // Makes sure he is not being pushed
+        _animator.SetTrigger("ChargeLeap");
 
-        if (_isLeapPathBlocked)
-        {
-            _hasLeaped = false;
-            yield break;
-        }
-
-        yield return _waitBeforeLeapCoroutine;
-
-        if (_isLeapPathBlocked)
-        {
-            _hasLeaped = false;
-            yield break;
-        }
+        yield return _chargeAnimationDelayCoroutine;
 
         if ((_playerTransform.position - transform.position).magnitude <= _maxLeapDistance && !_isLeapPathBlocked)
         {
+            _rb.constraints = RigidbodyConstraints.None;
             _animator.SetTrigger("Leap");
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Bunny/Bunny Start Leap Attack");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Bunny/Bunny Start Leap Attack");
 
-            yield return _startLeapLogicCorutine;
+            yield return _leapAnimationDelay;
 
-            if (!IsStunned && _playerTransform != null && !_isLeapPathBlocked)
-            {              
-                AttackPrefab.SetActive(true);
-                _rb.AddForce((_playerTransform.position - transform.position) * _leapPower, ForceMode.Impulse);
-                _isMovingBackwards = true;               
-            }
+            AttackPrefab.SetActive(true);
+            _rb.AddForce((_playerTransform.position - transform.position) * _leapPower, ForceMode.Impulse);
+            _isMovingBackwards = true;
 
-            yield return _waitAfterLeapCoroutine;
-            if (!IsStunned && _playerTransform != null && !_isLeapPathBlocked)
-            {
-                AttackPrefab.SetActive(false);
-            }
+            yield return _afterLeapDelayCoroutine;
 
-            _hasLeaped = false;
+            AttackPrefab.SetActive(false);
+            _isLeaping = false;
+            _isMovingBackwards = false;
         }
         else // Leap distance is too long or path is blocked
         {
-            _hasLeaped = false;
+            _isLeaping = false;
+            _animator.SetTrigger("CancleLeap");
+            _rb.constraints = RigidbodyConstraints.None;
+            CreateClearAttackPath();
         }
     }
 
