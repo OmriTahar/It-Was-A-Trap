@@ -70,6 +70,7 @@ public class OpenCurtain : MonoBehaviour
         yield return new WaitForSeconds(_waitAfterFirstSwitchStarted);
         if (_pathLight != null) _pathLight.enabled = true;
         _animator.SetTrigger("Open");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Opening Curtains-Sound Effect");
 
         yield return new WaitForSeconds(_focusOnCurtainWaitDuraion);
         SwitchCameraBack();

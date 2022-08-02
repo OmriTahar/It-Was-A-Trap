@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{dda8ffdb-476d-4414-86d2-fde746c3677d}">
+		<property name="assetPath">
+			<value>Woman Shoe Jog on Concrete.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3.8661249999999998</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{d2fb07ad-71fb-4e6a-b17b-e0ddfce1b26c}</destination>
+		</relationship>
+	</object>
+</objects>
