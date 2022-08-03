@@ -446,7 +446,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/It was a trap 2/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637951405172962082
+  lastModified: 637951416889836557
   FileSizes:
   - Name: Desktop
     Value: 2680
@@ -509,7 +509,7 @@ MonoBehaviour:
   - {fileID: 1331996494637321609}
   StringsBanks:
   - {fileID: -1588518143151437567}
-  cacheTime: 637951405172962082
+  cacheTime: 637951416889836557
   cacheVersion: 10
 --- !u!114 &250331765579773695
 MonoBehaviour:
@@ -634,10 +634,10 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/It was a trap 2/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637951405172942136
+  lastModified: 637951416889806638
   FileSizes:
   - Name: Desktop
-    Value: 6731744
+    Value: 6731616
   Exists: 1
 --- !u!114 &1533593680788178469
 MonoBehaviour:

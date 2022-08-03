@@ -245,13 +245,9 @@ public class PlayerController : MonoBehaviour
 
         if (!_playStepTwoSound)
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/FIRST STEP");
-        }
-        else
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Second Step"); // Insert here second step sound
-
-        _playStepTwoSound = !_playStepTwoSound;
-        Invoke("ResetFootstepsSound", _timeBetweenSteps);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Sound/Player/FootSteps Player");
+            Invoke("ResetFootstepsSound", _timeBetweenSteps);
+        } 
     }
 
     private void ResetFootstepsSound()
