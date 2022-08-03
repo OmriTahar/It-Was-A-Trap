@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Second Step
   Guid:
-    Data1: -2032297165
-    Data2: 1136321083
-    Data3: -1701494357
-    Data4: -1187871522
+    Data1: 855002261
+    Data2: 1314042458
+    Data3: 1028300204
+    Data4: -164562168
   Banks:
   - {fileID: 1331996494637321609}
   IsStream: 0
@@ -26,7 +26,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 351
+  Length: 295
 --- !u!114 &-8694874345684808360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,10 +446,10 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/It was a trap 2/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637951391643224543
+  lastModified: 637951405172962082
   FileSizes:
   - Name: Desktop
-    Value: 2622
+    Value: 2680
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -503,12 +503,13 @@ MonoBehaviour:
   - {fileID: -3580758065997021246}
   - {fileID: 6492464162916587388}
   - {fileID: -9078761509818902471}
+  - {fileID: 7601180967128422669}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1331996494637321609}
   StringsBanks:
   - {fileID: -1588518143151437567}
-  cacheTime: 637951391643224543
+  cacheTime: 637951405172962082
   cacheVersion: 10
 --- !u!114 &250331765579773695
 MonoBehaviour:
@@ -633,10 +634,10 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/It was a trap 2/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637951391643194614
+  lastModified: 637951405172942136
   FileSizes:
   - Name: Desktop
-    Value: 6686784
+    Value: 6731744
   Exists: 1
 --- !u!114 &1533593680788178469
 MonoBehaviour:
@@ -976,10 +977,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/FIRST STEP
   Guid:
-    Data1: -312824773
-    Data2: 1321102470
-    Data3: 1736478622
-    Data4: 719509563
+    Data1: -646115860
+    Data2: 1287200136
+    Data3: 759499180
+    Data4: 2115307039
   Banks:
   - {fileID: 1331996494637321609}
   IsStream: 0
@@ -1016,6 +1017,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 186
+--- !u!114 &7601180967128422669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Woman Shoe Jog on Concrete
+  m_EditorClassIdentifier: 
+  Path: event:/Woman Shoe Jog on Concrete
+  Guid:
+    Data1: 1748579207
+    Data2: 1109841284
+    Data3: -2042477420
+    Data4: -1748590864
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 250
 --- !u!114 &8446809913011771288
 MonoBehaviour:
   m_ObjectHideFlags: 0
