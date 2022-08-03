@@ -25212,6 +25212,26 @@ PrefabInstance:
       propertyPath: _canInteractUIText
       value: 
       objectReference: {fileID: 907779928}
+    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: EventReference.Path
+      value: event:/Second Step
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: EventReference.Guid.Data1
+      value: -2032297165
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: EventReference.Guid.Data2
+      value: 1136321083
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: EventReference.Guid.Data3
+      value: -1701494357
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: EventReference.Guid.Data4
+      value: -1187871522
+      objectReference: {fileID: 0}
     - target: {fileID: 8446407416611106780, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: DashBarBG
       value: 
