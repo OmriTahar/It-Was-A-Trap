@@ -16,9 +16,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject _pauseMenu;
     [SerializeField] PlayerController _playerController;
 
-    [Header("Settings")]
-    [SerializeField] bool _playThemeMusic = true;
-
     [Header("Intro Video")]
     [SerializeField] bool _playIntroCutscene;
     [SerializeField] RawImage _videoRawImage;
@@ -49,19 +46,15 @@ public class GameManager : MonoBehaviour
         #endregion
 
         Cursor.lockState = CursorLockMode.Confined;
+        _introVideoPlayer.Stop();
     }
 
     private void Start()
     {
-
         _masterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
 
-        //if (_playThemeMusic)
-        //    FMODUnity.RuntimeManager.PlayOneShot("event:/Music");
+        #region Intro Cutscene
 
-        // --------- Intro Cutscene ------
-
-        _introVideoPlayer.Stop();
         _videoRawImage.gameObject.SetActive(_playIntroCutscene);
 
         if (_playIntroCutscene)
@@ -73,6 +66,8 @@ public class GameManager : MonoBehaviour
             _introVideoPlayer.Play();
             Invoke("CloseCutscene", 26f);
         }
+
+        #endregion
     }
 
     private void CloseCutscene()
