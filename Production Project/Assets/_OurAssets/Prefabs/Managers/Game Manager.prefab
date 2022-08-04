@@ -46,3 +46,8 @@ MonoBehaviour:
   _playerHUD: {fileID: 0}
   _pauseMenu: {fileID: 0}
   _playerController: {fileID: 0}
+  _playThemeMusic: 0
+  _playIntroCutscene: 1
+  _videoRawImage: {fileID: 0}
+  _introVideoPlayer: {fileID: 0}
+  _playerHitEffectAnimator: {fileID: 0}
