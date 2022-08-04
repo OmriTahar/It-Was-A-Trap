@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +18,12 @@ public class GameManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] bool _playThemeMusic = true;
+
+    [Header("Intro Video")]
+    [SerializeField] bool _playIntroCutscene;
+    [SerializeField] RawImage _videoRawImage;
+    [SerializeField] VideoPlayer _introVideoPlayer;
+    private bool _isCutsceneFinished = false;
 
     [Header("Temporary Bandages")]
     [Tooltip("If the player gets deActivated while hit effect is on - this stops the effect")]
@@ -45,19 +53,54 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        TogglePauseMenu(false);
-
-        if (_playThemeMusic)
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Music");
 
         _masterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
+
+        //if (_playThemeMusic)
+        //    FMODUnity.RuntimeManager.PlayOneShot("event:/Music");
+
+        // --------- Intro Cutscene ------
+
+        _introVideoPlayer.Stop();
+        _videoRawImage.gameObject.SetActive(_playIntroCutscene);
+
+        if (_playIntroCutscene)
+        {
+            TogglePauseMenu(true);
+            IsTimeScaleStopped(false);
+            Cursor.visible = false;
+
+            _introVideoPlayer.Play();
+            Invoke("CloseCutscene", 26f);
+        }
+    }
+
+    private void CloseCutscene()
+    {
+        print("Finished Cutscene!");
+        _isCutsceneFinished = true;
+
+        _introVideoPlayer.Stop();
+        _videoRawImage.gameObject.SetActive(false);
+        TogglePauseMenu(false);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            TogglePauseMenu(!_isGamePaused);
+            if (_playIntroCutscene && !_isCutsceneFinished) // Quit Cutscene
+            {
+                CloseCutscene();
+            }
+            else if (_playIntroCutscene && _isCutsceneFinished) // Cutscene is finished
+            {
+                TogglePauseMenu(!_isGamePaused);
+            }
+            else if (!_playIntroCutscene) // Start without cutscene
+            {
+                TogglePauseMenu(!_isGamePaused);
+            }
         }
     }
 
