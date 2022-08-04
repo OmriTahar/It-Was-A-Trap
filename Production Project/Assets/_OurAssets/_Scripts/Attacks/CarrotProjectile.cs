@@ -28,6 +28,7 @@ public class CarrotProjectile : Attack
         if (other.gameObject.tag == "Player")
         {
             other.gameObject.GetComponent<Unit>().RecieveDamage(this, true);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Mixkit-hard-and-quick-punch-2143");
         }
 
         _myCollider.isTrigger = false;

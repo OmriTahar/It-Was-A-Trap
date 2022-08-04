@@ -24,6 +24,7 @@ public class Leap : Attack
         {
             _hasAttacked = true;
             other.gameObject.GetComponent<Unit>().RecieveDamage(this, true);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Mixkit-hard-and-quick-punch-2143");
 
             _hasAttacked = false;
             _myCollider.enabled = false;

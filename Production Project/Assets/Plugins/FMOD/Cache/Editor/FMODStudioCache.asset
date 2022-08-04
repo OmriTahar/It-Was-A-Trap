@@ -419,11 +419,38 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/It was a trap 2/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637952046594217520
+  lastModified: 637952181809005046
   FileSizes:
   - Name: Desktop
-    Value: 2586
+    Value: 2660
   Exists: 1
+--- !u!114 &-409624145224242376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Mixkit-hard-and-quick-punch-2143
+  m_EditorClassIdentifier: 
+  Path: event:/Mixkit-hard-and-quick-punch-2143
+  Guid:
+    Data1: -800143929
+    Data2: 1248992899
+    Data3: -835832931
+    Data4: -1989911852
+  Banks:
+  - {fileID: 1331996494637321609}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 350
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,12 +502,13 @@ MonoBehaviour:
   - {fileID: 486681632785544330}
   - {fileID: -3580758065997021246}
   - {fileID: 7601180967128422669}
+  - {fileID: -409624145224242376}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1331996494637321609}
   StringsBanks:
   - {fileID: -1588518143151437567}
-  cacheTime: 637952046594217520
+  cacheTime: 637952181809005046
   cacheVersion: 10
 --- !u!114 &250331765579773695
 MonoBehaviour:
@@ -605,10 +633,10 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/Resources/It was a trap 2/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637952046594193582
+  lastModified: 637952181808974802
   FileSizes:
   - Name: Desktop
-    Value: 6721632
+    Value: 6730688
   Exists: 1
 --- !u!114 &1533593680788178469
 MonoBehaviour:

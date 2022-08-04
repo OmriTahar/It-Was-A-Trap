@@ -28531,23 +28531,23 @@ PrefabInstance:
       objectReference: {fileID: 907779928}
     - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: EventReference.Path
-      value: event:/Second Step
+      value: event:/Mixkit-hard-and-quick-punch-2143
       objectReference: {fileID: 0}
     - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: EventReference.Guid.Data1
-      value: 855002261
+      value: -800143929
       objectReference: {fileID: 0}
     - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: EventReference.Guid.Data2
-      value: 1314042458
+      value: 1248992899
       objectReference: {fileID: 0}
     - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: EventReference.Guid.Data3
-      value: 1028300204
+      value: -835832931
       objectReference: {fileID: 0}
     - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: EventReference.Guid.Data4
-      value: -164562168
+      value: -1989911852
       objectReference: {fileID: 0}
     - target: {fileID: 8446407416611106780, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: DashBarBG
