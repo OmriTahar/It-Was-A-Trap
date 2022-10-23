@@ -28530,6 +28530,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 907779928}
     - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
+      propertyPath: PlayEvent
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864851264094597, guid: 859423a4487e4984fab8cca697ad34a5, type: 3}
       propertyPath: EventReference.Path
       value: event:/Music
       objectReference: {fileID: 0}
