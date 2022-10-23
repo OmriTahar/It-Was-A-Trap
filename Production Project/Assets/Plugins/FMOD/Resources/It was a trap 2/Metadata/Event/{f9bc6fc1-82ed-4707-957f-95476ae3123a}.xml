@@ -142,7 +142,6 @@
 		<property name="length">
 			<value>4.3000000000000007</value>
 		</property>
-		<property name="name" />
 		<relationship name="timeline">
 			<destination>{d565a1f3-fd57-4156-a6f9-2f30e4c5b526}</destination>
 		</relationship>
@@ -196,7 +195,7 @@
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>-11</value>
+			<value>-27.5</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{8c6e926b-3ceb-47fd-95fd-c23d1068e659}">
